@@ -42,8 +42,8 @@ class TransactionalAspect implements Aspect
      */
     public function aroundMethodExecution(MethodInvocation $invocation)
     {
-        $connection = $invocation->getMethod()->getAnnotation('Transactional')->connection;
-
+        $connection = $invocation->getMethod()
+            ->getAnnotation('Transactional')->value;
         $database = $this->db->connection($connection);
         $database->beginTransaction();
         try {
@@ -54,5 +54,6 @@ class TransactionalAspect implements Aspect
             $database->rollBack();
             throw $exception;
         }
+
     }
 }

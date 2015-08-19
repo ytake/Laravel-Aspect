@@ -15,11 +15,17 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class Transactional extends Annotation
+final class Cacheable extends Annotation
 {
-    /** @var bool $readOnly  for read only */
-    public $readOnly = false;
+    /** @var null|string[] $value  cache key, if use array tagging */
+    public $key = null;
 
-    /** @var null $connection  database connection */
-    public $value = null;
+    /** @var bool $readOnly  for read only */
+    public $cacheNames = null;
+
+    /** @var string $driver  cache driver  */
+    public $driver = null;
+
+    /** @var int $lifetime  cache life time */
+    public $lifetime = 120;
 }

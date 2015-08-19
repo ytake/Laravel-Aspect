@@ -12,7 +12,7 @@
 namespace Ytake\LaravelAop\Aspect;
 
 use Go\Core\AspectKernel as CoreKernel;
-use Illuminate\Contracts\Foundation\Application as LaravelApplication;
+use Illuminate\Contracts\Container\Container as LaravelApplication;
 
 /**
  * Class LaravelKernel
