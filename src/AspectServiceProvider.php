@@ -12,38 +12,49 @@
 namespace Ytake\LaravelAop;
 
 use Illuminate\Support\ServiceProvider;
-use Doctrine\Common\Annotations\AnnotationRegistry;
 
 /**
- * Class AopServiceProvider
+ * Class AspectServiceProvider
  *
  * @package Ytake\LaravelAop
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
  */
-class AopServiceProvider extends ServiceProvider
+class AspectServiceProvider extends ServiceProvider
 {
+    /**
+     * @inheritdoc
+     */
+    public function boot()
+    {
+        // register annotation
+        $this->app->make('aspect.annotation.register')->registerAspectAnnotations();
+        // annotation driver
+        $this->app->make('aspect.manager')->register();
+    }
+
     /**
      * @inheritdoc
      */
     public function register()
     {
+        /**
+         * for package configure
+         */
         $configPath = __DIR__ . '/config/ytake-laravel-aop.php';
         $this->mergeConfigFrom($configPath, 'ytake-laravel-aop');
         $this->publishes([$configPath => config_path('ytake-laravel-aop.php')], 'aspect');
 
-        $this->app->singleton('aop.manager', function($app) {
-            $this->registerAspectAnnotations();
+        $this->registerAspectAnnotations();
+
+        $this->app->singleton('aspect.manager', function ($app) {
             return new AspectManager($app);
         });
-        $this->app->make('aop.manager')->register();
     }
 
-    /**
-     * use annotations
-     *
-     * @return void
-     */
     protected function registerAspectAnnotations()
     {
-        AnnotationRegistry::registerFile(__DIR__ . '/Annotation/Transactional.php');
+        $this->app->singleton('aspect.annotation.register', function () {
+            return new Annotation();
+        });
     }
 }

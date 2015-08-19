@@ -12,7 +12,7 @@
 namespace Ytake\LaravelAop;
 
 use Ytake\LaravelAop\Aspect\AspectKernel;
-use Illuminate\Contracts\Foundation\Application as LaravelApplication;
+use Illuminate\Contracts\Container\Container as LaravelApplication;
 
 /**
  * Class GoAspect
@@ -37,10 +37,14 @@ class GoAspect implements AspectDriverInterface
         $this->configure = $configure;
     }
 
+    public function registerAspect()
+    {
+        // TODO: add user aspect
+    }
+
     /**
      * initialize aspect kernel
      *
-     * @param array $configure
      * @return void
      */
     public function register()
