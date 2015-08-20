@@ -1,8 +1,7 @@
 <?php
 
-class TransactionalTest extends \TestCase
+class CacheEvictTest extends \TestCase
 {
-
     /** @var \Ytake\LaravelAop\AspectManager $manager */
     protected $manager;
 
@@ -18,21 +17,10 @@ class TransactionalTest extends \TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testTransactionalAssertString()
+    public function testCacheableGenerateCacheNameSingleKey()
     {
-        $transactional = new \__Test\AspectTransactionalString;
-        $this->assertContains('testing', $transactional->start());
-    }
-
-    /**
-     * @runInSeparateProcess
-     */
-    public function testTransactionalDatabase()
-    {
-        $transactional = new \__Test\AspectTransactionalDatabase($this->app['db']);
-        $this->assertInternalType('array', $transactional->start());
-        $this->assertInstanceOf('stdClass', $transactional->start()[0]);
-
+        $cache = new \__Test\AspectCacheEvict();
+        $result = $cache->singleCacheDelete();
     }
 
     /**

@@ -32,7 +32,8 @@
     "ytake/lom": "~0.0",
     "mockery/mockery": "*",
     "satooshi/php-coveralls": "*",
-    "illuminate/database": "~5.0"
+    "illuminate/database": "~5.0",
+    "illuminate/cache": "~5.0"
   },
   "autoload": {
     "psr-4": {

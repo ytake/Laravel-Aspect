@@ -15,17 +15,14 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class Cacheable extends Annotation
+final class CacheEvict extends Annotation
 {
-    /** @var null|string[] $value cache key, if use array tagging */
-    public $key = null;
+    /** @var string|string[] $value cache key, if use array tagging */
+    public $key;
 
-    /** @var null  */
-    public $cacheNames = null;
+    /** @var null */
+    public $cacheNames;
 
     /** @var string $driver cache driver */
     public $driver = null;
-
-    /** @var int $lifetime cache life time */
-    public $lifetime = 120;
 }

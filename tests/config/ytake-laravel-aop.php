@@ -28,16 +28,16 @@ return [
     'aop' => [
         'go' => [
             // boolean Determines whether or not kernel is in debug mode
-            'debug' => false,
+            'debug' => true,
             // string Path to the application root directory.
-            'appDir' => 'src',
+            'appDir' => __DIR__ . '/../src',
             // string Path to the cache directory where compiled classes will be stored
-            'cacheDir' => 'storage',
+            'cacheDir' => __DIR__ . '/../storage',
             // integer Binary mask of features
             // 'features' => 0,
             // array WhiteList of directories where aspects should be applied. Empty for everywhere.
             'includePaths' => [
-                'src',
+                __DIR__ . '/../src',
             ],
             // array BlackList of directories or files where aspects shouldn't be applied.
             // 'excludePaths' => []

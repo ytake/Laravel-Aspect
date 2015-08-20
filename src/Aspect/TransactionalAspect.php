@@ -54,6 +54,5 @@ class TransactionalAspect implements Aspect
             $database->rollBack();
             throw $exception;
         }
-
     }
 }

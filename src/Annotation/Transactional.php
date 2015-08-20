@@ -17,9 +17,6 @@ use Doctrine\Common\Annotations\Annotation;
  */
 final class Transactional extends Annotation
 {
-    /** @var bool $readOnly  for read only */
-    public $readOnly = false;
-
     /** @var null $connection  database connection */
     public $value = null;
 }

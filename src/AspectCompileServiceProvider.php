@@ -9,23 +9,34 @@
  * THE SOFTWARE.
  */
 
-use Doctrine\Common\Annotations\Annotation;
+namespace Ytake\LaravelAop;
+
+use Illuminate\Support\ServiceProvider;
 
 /**
- * @Annotation
- * @Target("METHOD")
+ * Class AspectServiceProvider
+ *
+ * @package Ytake\LaravelAop
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
-final class Cacheable extends Annotation
+class AspectCompileServiceProvider extends ServiceProvider
 {
-    /** @var null|string[] $value cache key, if use array tagging */
-    public $key = null;
+    /**
+     * @inheritdoc
+     */
+    public function register()
+    {
 
-    /** @var null  */
-    public $cacheNames = null;
+    }
 
-    /** @var string $driver cache driver */
-    public $driver = null;
+    /**
+     * @inheritdoc
+     */
+    public static function compiles()
+    {
+        return [
 
-    /** @var int $lifetime cache life time */
-    public $lifetime = 120;
+        ];
+    }
 }

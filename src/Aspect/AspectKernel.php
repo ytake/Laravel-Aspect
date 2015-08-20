@@ -26,5 +26,7 @@ final class AspectKernel extends LaravelKernel
     protected function configureAop(AspectContainer $container)
     {
         $container->registerAspect(new TransactionalAspect($this->laravel['db']));
+        $container->registerAspect(new CacheableAspect($this->laravel['cache']));
+        $container->registerAspect(new CacheEvictAspect($this->laravel['cache']));
     }
 }

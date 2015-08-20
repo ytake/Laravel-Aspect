@@ -50,6 +50,17 @@ class TestCase extends \PHPUnit_Framework_TestCase
         });
     }
 
+    protected function registerCache()
+    {
+        $this->app->singleton('cache', function ($app) {
+            return new \Illuminate\Cache\CacheManager($app);
+        });
+
+        $this->app->singleton('cache.store', function ($app) {
+            return $app['cache']->driver();
+        });
+    }
+
     protected function createApplicationContainer()
     {
         $this->app = new \Illuminate\Container\Container;
@@ -58,11 +69,12 @@ class TestCase extends \PHPUnit_Framework_TestCase
         });
         $this->registerConfigure();
         $this->registerDatabase();
+        $this->registerCache();
     }
 
     protected function tearDown()
     {
-        $this->app['filesystem']->deleteDirectory('storage');
+        $this->app['filesystem']->deleteDirectory(__DIR__ . '/storage');
         $this->app = null;
     }
 }
