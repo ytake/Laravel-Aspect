@@ -38,7 +38,7 @@ class CacheableAspect extends AbstractCache
 
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
-            if (in_array('#' . $parameter->getName(), $annotation->key)) {
+            if (in_array('#' . $parameter->name, $annotation->key)) {
                 $keys[] = $arguments[$parameter->getPosition()];
             }
         }

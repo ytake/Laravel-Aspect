@@ -35,7 +35,7 @@ abstract class AbstractCache implements Aspect
     protected function generateCacheName($names, MethodInvocation $invocation)
     {
         if (is_null($names)) {
-            $names = $invocation->getMethod()->getName();
+            $names = $invocation->getMethod()->name;
         }
         if (!is_array($names)) {
             return [$names];

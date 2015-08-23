@@ -48,7 +48,7 @@
       "__Test\\": "tests/src"
     }
   },
-  "Suggests": {
+  "suggest": {
     "ext-aop": "for extension driver"
   }
 }
