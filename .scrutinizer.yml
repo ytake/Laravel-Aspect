@@ -1,9 +1,8 @@
 filter:
     paths:
-        - app/
+        - src/*
     excluded_paths:
         - tests/*
-        - spec/*
 tools:
     php_code_sniffer:
         config:
