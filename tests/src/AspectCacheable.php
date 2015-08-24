@@ -34,7 +34,7 @@ class AspectCacheable
     }
 
     /**
-     * @\Cacheable(cacheNames="testing1",key={"#id","#value"})
+     * @\Cacheable(cacheName="testing1",key={"#id","#value"})
      * @param $id
      * @param $value
      * @return mixed
@@ -45,7 +45,7 @@ class AspectCacheable
     }
 
     /**
-     * @\Cacheable(cacheNames={"testing1","testing2"},key={"#id","#value"})
+     * @\Cacheable(tags={"testing1","testing2"},key={"#id","#value"})
      * @param $id
      * @param $value
      * @return mixed
@@ -56,7 +56,7 @@ class AspectCacheable
     }
 
     /**
-     *  @\Cacheable(cacheNames={"testing1","testing2"},key={"#id","#class"})
+     *  @\Cacheable(tags={"testing1","testing2"},key={"#id","#class"})
      * @param           $id
      * @param \stdClass $class
      * @return mixed

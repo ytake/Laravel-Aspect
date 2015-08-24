@@ -1,5 +1,6 @@
 # Laravel-Aspect
-for laravel framework(develop)
+for laravel framework(develop) with Go!Aop Framework  
+Aspect Oriented Programming /Laravel Package 
 
 [![Build Status](https://travis-ci.org/ytake/Laravel-Aspect.svg?branch=develop)](https://travis-ci.org/ytake/Laravel-Aspect)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/?branch=develop)
@@ -23,8 +24,8 @@ for laravel framework(develop)
 
 ## Annotations
 
-### @Transactional
-for database transaction
+### @Transactional(Around Advice)
+for database transaction(illuminate/database)
 
 * option
 
@@ -33,17 +34,90 @@ for database transaction
 | value | database connection |
 
 ```php
-/**
- * @Transactional("master")
- */
-public function save(array $params)
-{
-    return $this->eloquent->save($params)
-}
 
+    /**
+     * @Transactional("master")
+     */
+    public function save(array $params)
+    {
+        return $this->eloquent->save($params)
+    }
 ```
 
-### @Cacheable
+### @Cacheable(After Advice)
+for cache(illuminate/cache)
 
+* option
 
-### @CacheEvict
+| params | description |
+|-----|-------|
+| key | cache key |
+| cacheName | cache name(merge cache key) |
+| driver | Accessing Cache Driver(store) |
+| lifetime | cache lifetime (default: 120min) |
+| tags | Storing Tagged Cache Items |
+
+```php
+
+    /**
+     * @\Cacheable(cacheName="testing1",key={"#id","#value"})
+     * @param $id
+     * @param $value
+     * @return mixed
+     */
+    public function namedMultipleKey($id, $value)
+    {
+        return $id;
+    }
+```
+
+### @CacheEvict(After Advice)
+for cache(illuminate/cache) / remove cache
+
+* option
+
+| params | description |
+|-----|-------|
+| key | cache key |
+| cacheName | cache name(merge cache key) |
+| driver | Accessing Cache Driver(store) |
+| tags | Storing Tagged Cache Items |
+| allEntries | flush(default:false) |
+
+```php
+
+    /**
+     * @\CacheEvict(cacheName="testing",tags={"testing1"},allEntries=true)
+     * @return null
+     */
+    public function removeCache()
+    {
+        return null;
+    }
+```
+
+### @CachePut(After Advice)
+for cache(illuminate/cache) / cache put
+
+* option
+
+| params | description |
+|-----|-------|
+| key | cache key |
+| cacheName | cache name(merge cache key) |
+| driver | Accessing Cache Driver(store) |
+| lifetime | cache lifetime (default: 120min) |
+| tags | Storing Tagged Cache Items |
+
+```php
+
+    /**
+     * @\CachePut(cacheName={"testing1"},tags="testing1")
+     */
+    public function throwExceptionCache()
+    {
+        return 'testing';
+    }
+    
+```
+

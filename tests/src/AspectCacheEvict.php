@@ -20,4 +20,24 @@ class AspectCacheEvict
     {
         return 'testing';
     }
+
+    /**
+     * @\Cacheable(cacheName="testing",tags={"testing1"},key={"#id","#value"})
+     * @param $id
+     * @param $value
+     * @return mixed
+     */
+    public function cached($id, $value)
+    {
+        return $id;
+    }
+
+    /**
+     * @\CacheEvict(cacheName="testing",tags={"testing1"},allEntries=true)
+     * @return null
+     */
+    public function removeCache()
+    {
+        return null;
+    }
 }

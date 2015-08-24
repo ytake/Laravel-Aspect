@@ -28,6 +28,9 @@ final class CacheEvict extends Annotation
     /** @var string $driver cache driver */
     public $driver = null;
 
-    /** @var array $sections  cache sections */
-    public $sections = [];
+    /** @var array $tags */
+    public $tags = [];
+
+    /** @var bool  */
+    public $allEntries = false;
 }

@@ -52,6 +52,9 @@ class AspectServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * @return void
+     */
     protected function registerAspectAnnotations()
     {
         $this->app->singleton('aspect.annotation.register', function () {

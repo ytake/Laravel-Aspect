@@ -36,14 +36,6 @@ class AspectManager extends Manager
     }
 
     /**
-     * for aop extension
-     */
-    protected function createExtDriver()
-    {
-        // TODO
-    }
-
-    /**
      * @inheritdoc
      */
     public function getDefaultDriver()

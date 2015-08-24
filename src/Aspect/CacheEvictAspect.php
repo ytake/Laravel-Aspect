@@ -26,6 +26,7 @@ class CacheEvictAspect extends AbstractCache
     /**
      * @After("@annotation(CacheEvict)")
      * @param MethodInvocation $invocation
+     *
      * @return mixed
      */
     public function afterMethodExecution(MethodInvocation $invocation)
@@ -33,14 +34,16 @@ class CacheEvictAspect extends AbstractCache
         /** @var \CacheEvict $annotation */
         $annotation = $invocation->getMethod()->getAnnotation('CacheEvict');
 
-        $keys = $this->generateCacheName($annotation->cacheNames, $invocation);
+        $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];
         }
         $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
         // detect use cache driver
-        /** @var \Illuminate\Contracts\Cache\Repository $cache */
-        $cache = $this->cache->store($annotation->driver);
+        $cache = $this->detectCacheRepository($annotation);
+        if($annotation->allEntries) {
+            return $cache->flush();
+        }
         $cache->forget(implode($this->join, $keys));
     }
 }

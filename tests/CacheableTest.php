@@ -55,7 +55,7 @@ class CacheableTest extends \TestCase
         $cache = new \__Test\AspectCacheable;
         $result = $cache->namedMultipleNameAndKey(1000, 'testing');
         $this->assertSame(1000, $result);
-        $this->assertSame(1000, $this->app['cache']->get('testing1:testing2:1000:testing'));
+        $this->assertSame(1000, $this->app['cache']->tags(['testing1', 'testing2'])->get('namedMultipleNameAndKey:1000:testing'));
     }
 
     /**

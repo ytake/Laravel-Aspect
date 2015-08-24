@@ -1,6 +1,6 @@
 <?php
 
-class CacheEvictTest extends \TestCase
+class CachePutTest extends \TestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
@@ -17,25 +17,23 @@ class CacheEvictTest extends \TestCase
     /**
      * @runInSeparateProcess
      */
-    public function testGenerateCacheNameRemoveNullKey()
+    public function testCachePutReturnUpdatedValue()
     {
-        $cache = new \__Test\AspectCacheEvict();
-        $cache->singleCacheDelete();
-        $this->assertNull($this->app['cache']->get('singleCacheDelete'));
+        $cache = new \__Test\AspectCachePut;
+        $this->app['cache']->add('singleKey:1000', 1, 120);
+        $result = $cache->singleKey(1000);
+        $this->assertSame(1000, $result);
+        $this->assertSame(1000, $this->app['cache']->get('singleKey:1000'));
     }
 
     /**
      * @runInSeparateProcess
+     * @expectedException \InvalidArgumentException
      */
-    public function testCacheableAndRemove()
+    public function testCacheableGenerateCacheNameSingleKey()
     {
-        $cache = new \__Test\AspectCacheEvict();
-        $cache->cached(1, 2);
-        $this->assertNotNull($this->app['cache']->tags(['testing1'])->get('testing:1:2'));
-
-        // flush all entries
-        $cache->removeCache();
-        $this->assertNull($this->app['cache']->tags(['testing1'])->get('testing:1:2'));
+        $cache = new \__Test\AspectCachePut;
+        $cache->throwExceptionCache();
     }
 
     /**
@@ -45,7 +43,7 @@ class CacheEvictTest extends \TestCase
     {
         $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
-        /** @var \Ytake\LaravelAspect\GoAspect $aspect */
+        /** @var \Ytake\LaravelAop\GoAspect $aspect */
         $aspect = $this->manager->driver('go');
         $aspect->register();
     }

@@ -9,27 +9,28 @@
  * THE SOFTWARE.
  */
 
-namespace Ytake\LaravelAspect\Aspect;
-
-use Go\Core\AspectContainer;
+use Doctrine\Common\Annotations\Annotation;
 
 /**
- * Class AspectKernel
- *
- * @package Ytake\LaravelAspect\Aspect
+ * @Annotation
+ * @Target("METHOD")
  * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
  * @license http://opensource.org/licenses/MIT MIT
  */
-final class AspectKernel extends LaravelKernel
+final class CachePut extends Annotation
 {
-    /**
-     * @inheritdoc
-     */
-    protected function configureAop(AspectContainer $container)
-    {
-        $container->registerAspect(new TransactionalAspect($this->laravel['db']));
-        $container->registerAspect(new CacheableAspect($this->laravel['cache']));
-        $container->registerAspect(new CacheEvictAspect($this->laravel['cache']));
-        $container->registerAspect(new CachePutAspect($this->laravel['cache']));
-    }
+    /** @var null|string[] $value cache key, if use array tagging */
+    public $key = null;
+
+    /** @var null */
+    public $cacheName = null;
+
+    /** @var string $driver cache driver */
+    public $driver = null;
+
+    /** @var int $lifetime cache life time */
+    public $lifetime = 120;
+
+    /** @var array $tags */
+    public $tags = [];
 }

@@ -48,5 +48,6 @@ class Annotation
         AnnotationRegistry::registerFile(__DIR__ . '/Annotation/Transactional.php');
         AnnotationRegistry::registerFile(__DIR__ . '/Annotation/Cacheable.php');
         AnnotationRegistry::registerFile(__DIR__ . '/Annotation/CacheEvict.php');
+        AnnotationRegistry::registerFile(__DIR__ . '/Annotation/CachePut.php');
     }
 }

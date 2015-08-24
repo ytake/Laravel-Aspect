@@ -1,4 +1,13 @@
 <?php
+/**
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 namespace Ytake\LaravelAspect\Aspect;
 
@@ -30,26 +39,27 @@ abstract class AbstractCache implements Aspect
     }
 
     /**
-     * @param                  $names
+     * @param                  $name
      * @param MethodInvocation $invocation
-     * @return array|string
+     *
+     * @return array
      */
-    protected function generateCacheName($names, MethodInvocation $invocation)
+    protected function generateCacheName($name, MethodInvocation $invocation)
     {
-        if (is_null($names)) {
-            $names = $invocation->getMethod()->name;
+        if (is_array($name)) {
+            throw new \InvalidArgumentException('Invalid argument');
         }
-        if (!is_array($names)) {
-            return [$names];
+        if (is_null($name)) {
+            $name = $invocation->getMethod()->name;
         }
-
-        return $names;
+        return [$name];
     }
 
     /**
      * @param MethodInvocation $invocation
      * @param                  $annotation
      * @param                  $keys
+     *
      * @return array
      */
     protected function detectCacheKeys(MethodInvocation $invocation, $annotation, $keys)
@@ -65,5 +75,21 @@ abstract class AbstractCache implements Aspect
         }
 
         return $keys;
+    }
+
+    /**
+     * @param $annotation
+     *
+     * @return \Illuminate\Contracts\Cache\Repository
+     */
+    protected function detectCacheRepository($annotation)
+    {
+        /** @var \Illuminate\Contracts\Cache\Repository $cache */
+        $cache = $this->cache->store($annotation->driver);
+        if (count($annotation->tags)) {
+            $cache = $cache->tags($annotation->tags);
+            return $cache;
+        }
+        return $cache;
     }
 }

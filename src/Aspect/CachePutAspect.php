@@ -15,23 +15,23 @@ use Go\Lang\Annotation\After;
 use Go\Aop\Intercept\MethodInvocation;
 
 /**
- * Class CacheableAspect
+ * Class CachePutAspect
  *
  * @package Ytake\LaravelAspect\Aspect
  * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
  * @license http://opensource.org/licenses/MIT MIT
  */
-class CacheableAspect extends AbstractCache
+class CachePutAspect extends AbstractCache
 {
     /**
-     * @After("@annotation(Cacheable)")
+     * @After("@annotation(CachePut)")
      * @param MethodInvocation $invocation
      * @return mixed
      */
-    public function afterMethodExecution(MethodInvocation $invocation)
+    public function aroundMethodExecution(MethodInvocation $invocation)
     {
-        /** @var \Cacheable $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation('Cacheable');
+        /** @var \CachePut $annotation */
+        $annotation = $invocation->getMethod()->getAnnotation('CachePut');
 
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
@@ -42,7 +42,7 @@ class CacheableAspect extends AbstractCache
         $cache = $this->detectCacheRepository($annotation);
 
         if ($result = $invocation->proceed()) {
-            $cache->add(implode($this->join, $keys), $result, $annotation->lifetime);
+            $cache->put(implode($this->join, $keys), $result, $annotation->lifetime);
         }
 
         return $result;

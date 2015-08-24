@@ -9,7 +9,7 @@
  * THE SOFTWARE.
  */
 
-namespace Ytake\LaravelAop;
+namespace Ytake\LaravelAspect;
 
 use Illuminate\Support\ServiceProvider;
 use Ytake\LaravelAspect\Console\ClearCacheCommand;

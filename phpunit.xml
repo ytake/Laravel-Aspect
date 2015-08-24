@@ -20,6 +20,8 @@
             <directory>./src</directory>
             <exclude>
                 <file>./src/AspectServiceProvider.php</file>
+                <file>./src/CompileServiceProvider.php</file>
+                <file>./src/ConsoleServiceProvider.php</file>
             </exclude>
         </whitelist>
     </filter>

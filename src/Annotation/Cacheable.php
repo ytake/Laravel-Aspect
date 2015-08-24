@@ -31,6 +31,6 @@ final class Cacheable extends Annotation
     /** @var int $lifetime cache life time */
     public $lifetime = 120;
 
-    /** @var array $sections  cache sections */
-    public $sections = [];
+    /** @var array $tags */
+    public $tags = [];
 }
