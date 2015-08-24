@@ -9,14 +9,16 @@
  * THE SOFTWARE.
  */
 
-namespace Ytake\LaravelAop;
+namespace Ytake\LaravelAspect;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 /**
  * Class Annotation
  *
- * @package Ytake\LaravelAop
+ * @package Ytake\LaravelAspect
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 class Annotation
 {

@@ -9,12 +9,14 @@
  * THE SOFTWARE.
  */
 
-namespace Ytake\LaravelAop;
+namespace Ytake\LaravelAspect;
 
 /**
  * Interface AspectDriverInterface
  *
- * @package Ytake\LaravelAop
+ * @package Ytake\LaravelAspect
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 interface AspectDriverInterface
 {

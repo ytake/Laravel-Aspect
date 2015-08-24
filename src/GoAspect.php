@@ -9,15 +9,17 @@
  * THE SOFTWARE.
  */
 
-namespace Ytake\LaravelAop;
+namespace Ytake\LaravelAspect;
 
-use Ytake\LaravelAop\Aspect\AspectKernel;
+use Ytake\LaravelAspect\Aspect\AspectKernel;
 use Illuminate\Contracts\Container\Container as LaravelApplication;
 
 /**
  * Class GoAspect
  *
- * @package Ytake\LaravelAop
+ * @package Ytake\LaravelAspect
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 class GoAspect implements AspectDriverInterface
 {

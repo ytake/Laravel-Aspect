@@ -2,7 +2,7 @@
 
 class CacheEvictTest extends \TestCase
 {
-    /** @var \Ytake\LaravelAop\AspectManager $manager */
+    /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     protected static $instance;
@@ -10,7 +10,7 @@ class CacheEvictTest extends \TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAop\AspectManager($this->app);
+        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
     }
 
@@ -28,9 +28,9 @@ class CacheEvictTest extends \TestCase
      */
     protected function resolveManager()
     {
-        $annotation = new \Ytake\LaravelAop\Annotation;
+        $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
-        /** @var \Ytake\LaravelAop\GoAspect $aspect */
+        /** @var \Ytake\LaravelAspect\GoAspect $aspect */
         $aspect = $this->manager->driver('go');
         $aspect->register();
     }

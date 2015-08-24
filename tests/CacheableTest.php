@@ -2,7 +2,7 @@
 
 class CacheableTest extends \TestCase
 {
-    /** @var \Ytake\LaravelAop\AspectManager $manager */
+    /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     protected static $instance;
@@ -10,7 +10,7 @@ class CacheableTest extends \TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAop\AspectManager($this->app);
+        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
     }
 
@@ -59,11 +59,23 @@ class CacheableTest extends \TestCase
     }
 
     /**
+     * @runInSeparateProcess
+     */
+    public function testCacheableCacheObject()
+    {
+        $cache = new \__Test\AspectCacheable;
+        $class = new \stdClass;
+        $class->title = 'testing';
+        $result = $cache->cachingKeyObject(1000, $class);
+        $this->assertSame(1000, $result);
+    }
+
+    /**
      *
      */
     protected function resolveManager()
     {
-        $annotation = new \Ytake\LaravelAop\Annotation;
+        $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
         /** @var \Ytake\LaravelAop\GoAspect $aspect */
         $aspect = $this->manager->driver('go');

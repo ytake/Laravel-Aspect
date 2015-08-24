@@ -14,15 +14,20 @@ use Doctrine\Common\Annotations\Annotation;
 /**
  * @Annotation
  * @Target("METHOD")
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 final class CacheEvict extends Annotation
 {
-    /** @var string|string[] $value cache key, if use array tagging */
-    public $key;
+    /** @var null|string[] $value cache key, if use array tagging */
+    public $key = null;
 
     /** @var null */
-    public $cacheNames;
+    public $cacheName = null;
 
     /** @var string $driver cache driver */
     public $driver = null;
+
+    /** @var array $sections  cache sections */
+    public $sections = [];
 }

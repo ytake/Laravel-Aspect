@@ -9,7 +9,7 @@
  * THE SOFTWARE.
  */
 
-namespace Ytake\LaravelAop\Aspect;
+namespace Ytake\LaravelAspect\Aspect;
 
 use Go\Core\AspectKernel as CoreKernel;
 use Illuminate\Contracts\Container\Container as LaravelApplication;
@@ -17,7 +17,9 @@ use Illuminate\Contracts\Container\Container as LaravelApplication;
 /**
  * Class LaravelKernel
  *
- * @package Ytake\LaravelAop\Aspect
+ * @package Ytake\LaravelAspect\Aspect
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 abstract class LaravelKernel extends CoreKernel
 {

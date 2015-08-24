@@ -9,7 +9,7 @@
  * THE SOFTWARE.
  */
 
-namespace Ytake\LaravelAop\Aspect;
+namespace Ytake\LaravelAspect\Aspect;
 
 use Go\Aop\Aspect;
 use Go\Lang\Annotation\Around;
@@ -20,7 +20,9 @@ use Illuminate\Database\ConnectionResolverInterface;
 /**
  * Class TransactionalAspect
  *
- * @package Ytake\LaravelAop\Aspect
+ * @package Ytake\LaravelAspect\Aspect
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 class TransactionalAspect implements Aspect
 {

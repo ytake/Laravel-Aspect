@@ -9,7 +9,7 @@
  * THE SOFTWARE.
  */
 
-namespace Ytake\LaravelAop\Aspect;
+namespace Ytake\LaravelAspect\Aspect;
 
 use Go\Lang\Annotation\After;
 use Go\Aop\Intercept\MethodInvocation;
@@ -17,7 +17,9 @@ use Go\Aop\Intercept\MethodInvocation;
 /**
  * Class CacheEvictAspect
  *
- * @package Ytake\LaravelAop\Aspect
+ * @package Ytake\LaravelAspect\Aspect
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 class CacheEvictAspect extends AbstractCache
 {
@@ -35,13 +37,7 @@ class CacheEvictAspect extends AbstractCache
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];
         }
-
-        $arguments = $invocation->getArguments();
-        foreach ($invocation->getMethod()->getParameters() as $parameter) {
-            if (in_array('#' . $parameter->name, $annotation->key)) {
-                $keys[] = $arguments[$parameter->getPosition()];
-            }
-        }
+        $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
         // detect use cache driver
         /** @var \Illuminate\Contracts\Cache\Repository $cache */
         $cache = $this->cache->store($annotation->driver);

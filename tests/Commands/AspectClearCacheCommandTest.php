@@ -2,19 +2,19 @@
 
 class AspectClearCacheCommandTest extends \TestCase
 {
-    /** @var \Ytake\LaravelAop\AspectManager $manager */
+    /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
 
-    /** @var \Ytake\LaravelAop\Console\ClearCacheCommand */
+    /** @var \Ytake\LaravelAspect\Console\ClearCacheCommand */
     protected $command;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAop\AspectManager($this->app);
+        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
 
-        $this->command = new \Ytake\LaravelAop\Console\ClearCacheCommand(
+        $this->command = new \Ytake\LaravelAspect\Console\ClearCacheCommand(
             $this->app['config'],
             $this->app['filesystem']
         );
@@ -48,9 +48,9 @@ class AspectClearCacheCommandTest extends \TestCase
      */
     protected function resolveManager()
     {
-        $annotation = new \Ytake\LaravelAop\Annotation;
+        $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
-        /** @var \Ytake\LaravelAop\GoAspect $aspect */
+        /** @var \Ytake\LaravelAspect\GoAspect $aspect */
         $aspect = $this->manager->driver('go');
         $aspect->register();
     }

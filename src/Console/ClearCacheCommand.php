@@ -1,6 +1,6 @@
 <?php
 
-namespace Ytake\LaravelAop\Console;
+namespace Ytake\LaravelAspect\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -9,7 +9,7 @@ use Illuminate\Contracts\Config\Repository as ConfigRepository;
 /**
  * Class ClearCacheCommand
  *
- * @package Ytake\LaravelAop\Console
+ * @package Ytake\LaravelAspect\Console
  * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
  * @license http://opensource.org/licenses/MIT MIT
  */

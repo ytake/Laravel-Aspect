@@ -37,7 +37,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ytake\\LaravelAop\\": "src"
+      "Ytake\\LaravelAspect\\": "src"
     }
   },
   "autoload-dev": {

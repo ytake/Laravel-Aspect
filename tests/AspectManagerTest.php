@@ -2,13 +2,13 @@
 
 class AspectManagerTest extends \TestCase
 {
-    /** @var \Ytake\LaravelAop\AspectManager $manager */
+    /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAop\AspectManager($this->app);
+        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
     }
 
     public function testCreateDriverInstance()
@@ -19,7 +19,7 @@ class AspectManagerTest extends \TestCase
     public function testCreateGoDriverInstance()
     {
         $this->assertInstanceOf(
-            \Ytake\LaravelAop\GoAspect::class, $this->manager->driver('go')
+            \Ytake\LaravelAspect\GoAspect::class, $this->manager->driver('go')
         );
     }
 }

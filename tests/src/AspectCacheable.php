@@ -54,4 +54,15 @@ class AspectCacheable
     {
         return $id;
     }
+
+    /**
+     *  @\Cacheable(cacheNames={"testing1","testing2"},key={"#id","#class"})
+     * @param           $id
+     * @param \stdClass $class
+     * @return mixed
+     */
+    public function cachingKeyObject($id, \stdClass $class)
+    {
+        return $id;
+    }
 }

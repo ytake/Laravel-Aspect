@@ -12,8 +12,12 @@ for laravel framework(develop)
 
 ```php
 'providers' => [
-    // added 
-    \Ytake\LaravelAop\AopServiceProvider
+    // added AspectServiceProvider 
+    \Ytake\LaravelAspect\AspectServiceProvider::class,
+    // added Artisan Command
+    \Ytake\LaravelAspect\ConsoleServiceProvider::class,
+    // compile service(for production)
+    \Ytake\LaravelAspect\CompileServiceProvider::class,
 ]
 ```
 

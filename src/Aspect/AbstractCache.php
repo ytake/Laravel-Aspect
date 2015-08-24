@@ -1,6 +1,6 @@
 <?php
 
-namespace Ytake\LaravelAop\Aspect;
+namespace Ytake\LaravelAspect\Aspect;
 
 use Go\Aop\Aspect;
 use Go\Aop\Intercept\MethodInvocation;
@@ -9,7 +9,9 @@ use Illuminate\Contracts\Cache\Factory as CacheFactory;
 /**
  * Class AbstractCache
  *
- * @package Ytake\LaravelAop\Aspect
+ * @package Ytake\LaravelAspect\Aspect
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 abstract class AbstractCache implements Aspect
 {
@@ -42,5 +44,26 @@ abstract class AbstractCache implements Aspect
         }
 
         return $names;
+    }
+
+    /**
+     * @param MethodInvocation $invocation
+     * @param                  $annotation
+     * @param                  $keys
+     * @return array
+     */
+    protected function detectCacheKeys(MethodInvocation $invocation, $annotation, $keys)
+    {
+        $arguments = $invocation->getArguments();
+        foreach ($invocation->getMethod()->getParameters() as $parameter) {
+            // exclude object
+            if (in_array('#' . $parameter->name, $annotation->key)) {
+                if (!is_object($arguments[$parameter->getPosition()])) {
+                    $keys[] = $arguments[$parameter->getPosition()];
+                }
+            }
+        }
+
+        return $keys;
     }
 }

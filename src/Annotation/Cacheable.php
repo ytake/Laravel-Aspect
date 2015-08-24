@@ -14,18 +14,23 @@ use Doctrine\Common\Annotations\Annotation;
 /**
  * @Annotation
  * @Target("METHOD")
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 final class Cacheable extends Annotation
 {
     /** @var null|string[] $value cache key, if use array tagging */
     public $key = null;
 
-    /** @var null  */
-    public $cacheNames = null;
+    /** @var null */
+    public $cacheName = null;
 
     /** @var string $driver cache driver */
     public $driver = null;
 
     /** @var int $lifetime cache life time */
     public $lifetime = 120;
+
+    /** @var array $sections  cache sections */
+    public $sections = [];
 }

@@ -12,16 +12,28 @@
 namespace Ytake\LaravelAop;
 
 use Illuminate\Support\ServiceProvider;
+use Ytake\LaravelAspect\Console\ClearCacheCommand;
 
 /**
  * Class AspectServiceProvider
  *
- * @package Ytake\LaravelAop
+ * @package Ytake\LaravelAspect
  * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
  * @license http://opensource.org/licenses/MIT MIT
  */
-class AspectCompileServiceProvider extends ServiceProvider
+class ConsoleServiceProvider extends ServiceProvider
 {
+    /** @var bool */
+    protected $defer = true;
+
+    /**
+     * @inheritdoc
+     */
+    public function boot()
+    {
+        $this->registerCommands();
+    }
+
     /**
      * @inheritdoc
      */
@@ -31,12 +43,23 @@ class AspectCompileServiceProvider extends ServiceProvider
     }
 
     /**
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        $this->app->singleton('command.ytake.aspect.clear-cache', function ($app) {
+            return new ClearCacheCommand($app['config'], $app['files']);
+        });
+        $this->commands(['command.ytake.aspect.clear-cache']);
+    }
+
+    /**
      * @inheritdoc
      */
-    public static function compiles()
+    public function provides()
     {
         return [
-
+            'command.ytake.aspect.clear-cache'
         ];
     }
 }

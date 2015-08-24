@@ -9,14 +9,16 @@
  * THE SOFTWARE.
  */
 
-namespace Ytake\LaravelAop\Aspect;
+namespace Ytake\LaravelAspect\Aspect;
 
 use Go\Core\AspectContainer;
 
 /**
  * Class AspectKernel
  *
- * @package Ytake\LaravelAop\Aspect
+ * @package Ytake\LaravelAspect\Aspect
+ * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
+ * @license http://opensource.org/licenses/MIT MIT
  */
 final class AspectKernel extends LaravelKernel
 {
