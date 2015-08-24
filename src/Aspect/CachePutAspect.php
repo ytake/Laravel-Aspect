@@ -28,7 +28,7 @@ class CachePutAspect extends AbstractCache
      * @param MethodInvocation $invocation
      * @return mixed
      */
-    public function aroundMethodExecution(MethodInvocation $invocation)
+    public function afterMethodExecution(MethodInvocation $invocation)
     {
         /** @var \CachePut $annotation */
         $annotation = $invocation->getMethod()->getAnnotation('CachePut');
