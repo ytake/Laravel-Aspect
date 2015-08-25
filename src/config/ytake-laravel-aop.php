@@ -30,7 +30,7 @@ return [
             // boolean Determines whether or not kernel is in debug mode
             'debug' => env('ASPECT_DEBUG', true),
             // string Path to the application root directory.
-            'appDir' => base_path(),
+            'appDir' => app_path(),
             // string Path to the cache directory where compiled classes will be stored
             'cacheDir' => storage_path('framework/aop'),
             // integer Binary mask of features
