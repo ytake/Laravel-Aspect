@@ -17,9 +17,16 @@ Aspect Oriented Programming /Laravel Package
     \Ytake\LaravelAspect\AspectServiceProvider::class,
     // added Artisan Command
     \Ytake\LaravelAspect\ConsoleServiceProvider::class,
-    // compile service(for production)
-    \Ytake\LaravelAspect\CompileServiceProvider::class,
 ]
+```
+
+## for optimize(production)
+required config/compile.php
+
+```php
+'providers' => [
+    \Ytake\LaravelAspect\CompileServiceProvider::class,
+],
 ```
 
 ## Annotations
