@@ -61,15 +61,6 @@ $ php artisan vendor:publish --tag=aspect
 $ php artisan vendor:publish --provider="Ytake\LaravelAspect\AspectServiceProvider"
 ```
 
-### for optimize(production)
-required config/compile.php
-
-```php
-'providers' => [
-    \Ytake\LaravelAspect\CompileServiceProvider::class,
-],
-```
-
 ## Cache Clear Command
 
 ```bash

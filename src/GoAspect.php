@@ -46,8 +46,11 @@ class GoAspect implements AspectDriverInterface
      */
     public function register()
     {
-        $kernel = AspectKernel::getInstance();
-        $kernel->setLaravel($this->laravel);
-        $kernel->init($this->configure);
+        if (!defined('AOP_CACHE_DIR')) {
+            $kernel = AspectKernel::getInstance();
+            $kernel->setLaravel($this->laravel);
+            $kernel->init($this->configure);
+        }
     }
+
 }
