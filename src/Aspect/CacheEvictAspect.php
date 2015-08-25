@@ -24,15 +24,14 @@ use Go\Aop\Intercept\MethodInvocation;
 class CacheEvictAspect extends AbstractCache
 {
     /**
-     * @After("@annotation(CacheEvict)")
+     * @After("@annotation(Ytake\LaravelAspect\Annotation\CacheEvict)")
      * @param MethodInvocation $invocation
      *
      * @return mixed
      */
     public function afterMethodExecution(MethodInvocation $invocation)
     {
-        /** @var \CacheEvict $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation('CacheEvict');
+        $annotation = $invocation->getMethod()->getAnnotation('Ytake\LaravelAspect\Annotation\CacheEvict');
 
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
@@ -41,7 +40,7 @@ class CacheEvictAspect extends AbstractCache
         $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
         // detect use cache driver
         $cache = $this->detectCacheRepository($annotation);
-        if($annotation->allEntries) {
+        if ($annotation->allEntries) {
             return $cache->flush();
         }
         $cache->forget(implode($this->join, $keys));

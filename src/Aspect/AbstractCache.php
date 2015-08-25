@@ -52,6 +52,7 @@ abstract class AbstractCache implements Aspect
         if (is_null($name)) {
             $name = $invocation->getMethod()->name;
         }
+
         return [$name];
     }
 
@@ -84,12 +85,13 @@ abstract class AbstractCache implements Aspect
      */
     protected function detectCacheRepository($annotation)
     {
-        /** @var \Illuminate\Contracts\Cache\Repository $cache */
         $cache = $this->cache->store($annotation->driver);
         if (count($annotation->tags)) {
             $cache = $cache->tags($annotation->tags);
+
             return $cache;
         }
+
         return $cache;
     }
 }

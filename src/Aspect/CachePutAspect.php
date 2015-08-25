@@ -24,14 +24,13 @@ use Go\Aop\Intercept\MethodInvocation;
 class CachePutAspect extends AbstractCache
 {
     /**
-     * @After("@annotation(CachePut)")
+     * @After("@annotation(Ytake\LaravelAspect\Annotation\CachePut)")
      * @param MethodInvocation $invocation
      * @return mixed
      */
     public function afterMethodExecution(MethodInvocation $invocation)
     {
-        /** @var \CachePut $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation('CachePut');
+        $annotation = $invocation->getMethod()->getAnnotation('Ytake\LaravelAspect\Annotation\CachePut');
 
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {

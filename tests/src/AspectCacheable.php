@@ -5,6 +5,8 @@
 
 namespace __Test;
 
+use Ytake\LaravelAspect\Annotation\Cacheable;
+
 /**
  * Class AspectCacheable
  *
@@ -13,7 +15,7 @@ namespace __Test;
 class AspectCacheable
 {
     /**
-     * @\Cacheable(key="#id")
+     * @Cacheable(key="#id")
      * @param null $id
      * @return null
      */
@@ -23,7 +25,7 @@ class AspectCacheable
     }
 
     /**
-     * @\Cacheable(key={"#id","#value"})
+     * @Cacheable(key={"#id","#value"})
      * @param $id
      * @param $value
      * @return mixed
@@ -34,7 +36,7 @@ class AspectCacheable
     }
 
     /**
-     * @\Cacheable(cacheName="testing1",key={"#id","#value"})
+     * @Cacheable(cacheName="testing1",key={"#id","#value"})
      * @param $id
      * @param $value
      * @return mixed
@@ -45,7 +47,7 @@ class AspectCacheable
     }
 
     /**
-     * @\Cacheable(tags={"testing1","testing2"},key={"#id","#value"})
+     * @Cacheable(tags={"testing1","testing2"},key={"#id","#value"})
      * @param $id
      * @param $value
      * @return mixed
@@ -56,7 +58,7 @@ class AspectCacheable
     }
 
     /**
-     *  @\Cacheable(tags={"testing1","testing2"},key={"#id","#class"})
+     * @Cacheable(tags={"testing1","testing2"},key={"#id","#class"})
      * @param           $id
      * @param \stdClass $class
      * @return mixed

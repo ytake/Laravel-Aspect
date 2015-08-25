@@ -11,7 +11,7 @@
 
 namespace Ytake\LaravelAspect\Aspect;
 
-use Go\Lang\Annotation\After;
+use Go\Lang\Annotation\Around;
 use Go\Aop\Intercept\MethodInvocation;
 
 /**
@@ -24,15 +24,13 @@ use Go\Aop\Intercept\MethodInvocation;
 class CacheableAspect extends AbstractCache
 {
     /**
-     * @After("@annotation(Cacheable)")
+     * @Around("@annotation(Ytake\LaravelAspect\Annotation\Cacheable)")
      * @param MethodInvocation $invocation
      * @return mixed
      */
-    public function afterMethodExecution(MethodInvocation $invocation)
+    public function aroundMethodExecution(MethodInvocation $invocation)
     {
-        /** @var \Cacheable $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation('Cacheable');
-
+        $annotation = $invocation->getMethod()->getAnnotation('Ytake\LaravelAspect\Annotation\Cacheable');
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];
@@ -40,8 +38,8 @@ class CacheableAspect extends AbstractCache
         $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
         // detect use cache driver
         $cache = $this->detectCacheRepository($annotation);
-
         if ($result = $invocation->proceed()) {
+
             $cache->add(implode($this->join, $keys), $result, $annotation->lifetime);
         }
 

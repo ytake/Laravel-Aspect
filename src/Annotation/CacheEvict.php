@@ -9,6 +9,8 @@
  * THE SOFTWARE.
  */
 
+namespace Ytake\LaravelAspect\Annotation;
+
 use Doctrine\Common\Annotations\Annotation;
 
 /**

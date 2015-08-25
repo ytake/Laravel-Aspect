@@ -27,7 +27,7 @@ class CompileServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        //
     }
 
     /**
@@ -42,15 +42,10 @@ class CompileServiceProvider extends ServiceProvider
             base_path() . '/vendor/ytake/laravel-aspect/src/AspectServiceProvider.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/ConsoleServiceProvider.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/GoAspect.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Annotation/Cacheable.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Annotation/CacheEvict.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Annotation/CachePut.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Annotation/Transactional.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/Aspect/AspectKernel.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/Aspect/CacheableAspect.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/Aspect/CacheEvictAspect.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/Aspect/CachePutAspect.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Aspect/LaravelAspect.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/Aspect/TransactionalAspect.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/Console/ClearCacheCommand.php',
         ];

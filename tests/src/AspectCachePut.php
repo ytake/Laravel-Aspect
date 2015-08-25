@@ -5,6 +5,8 @@
 
 namespace __Test;
 
+use Ytake\LaravelAspect\Annotation\CachePut;
+
 /**
  * Class AspectCachePut
  *
@@ -14,7 +16,7 @@ namespace __Test;
 class AspectCachePut
 {
     /**
-     * @\CachePut(key="#id")
+     * @CachePut(key="#id")
      * @param null $id
      * @return null
      */
@@ -24,7 +26,7 @@ class AspectCachePut
     }
 
     /**
-     * @\CachePut(cacheName={"testing1"},tags="testing1")
+     * @CachePut(cacheName={"testing1"},tags="testing1")
      */
     public function throwExceptionCache()
     {

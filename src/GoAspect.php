@@ -39,11 +39,6 @@ class GoAspect implements AspectDriverInterface
         $this->configure = $configure;
     }
 
-    public function registerAspect()
-    {
-        // TODO: add user aspect
-    }
-
     /**
      * initialize aspect kernel
      *

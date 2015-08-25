@@ -1,4 +1,13 @@
 <?php
+/**
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 namespace Ytake\LaravelAspect\Console;
 
@@ -18,13 +27,13 @@ class ClearCacheCommand extends Command
     /** @var string */
     protected $name = 'ytake:aspect-clear-cache';
 
-    /** @var string  */
+    /** @var string */
     protected $description = 'compiles all known templates';
 
-    /** @var ConfigRepository  */
+    /** @var ConfigRepository */
     protected $config;
 
-    /** @var Filesystem  */
+    /** @var Filesystem */
     protected $filesystem;
 
     /**
@@ -46,7 +55,7 @@ class ClearCacheCommand extends Command
         $configure = $this->config->get('ytake-laravel-aop');
 
         $driverConfig = $configure['aop'][$configure['default']];
-        if(isset($driverConfig['cacheDir'])) {
+        if (isset($driverConfig['cacheDir'])) {
             $this->filesystem->deleteDirectory($driverConfig['cacheDir']);
         }
         $this->info('aspect/annotation cache clear!');

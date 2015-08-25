@@ -5,6 +5,9 @@
 
 namespace __Test;
 
+use Ytake\LaravelAspect\Annotation\Cacheable;
+use Ytake\LaravelAspect\Annotation\CacheEvict;
+
 /**
  * Class AspectCacheEvict
  *
@@ -13,7 +16,7 @@ namespace __Test;
 class AspectCacheEvict
 {
     /**
-     * @\CacheEvict
+     * @CacheEvict
      * @return string
      */
     public function singleCacheDelete()
@@ -22,7 +25,7 @@ class AspectCacheEvict
     }
 
     /**
-     * @\Cacheable(cacheName="testing",tags={"testing1"},key={"#id","#value"})
+     * @Cacheable(cacheName="testing",tags={"testing1"},key={"#id","#value"})
      * @param $id
      * @param $value
      * @return mixed
@@ -33,7 +36,7 @@ class AspectCacheEvict
     }
 
     /**
-     * @\CacheEvict(cacheName="testing",tags={"testing1"},allEntries=true)
+     * @CacheEvict(cacheName="testing",tags={"testing1"},allEntries=true)
      * @return null
      */
     public function removeCache()

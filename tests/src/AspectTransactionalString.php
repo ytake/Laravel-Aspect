@@ -6,6 +6,7 @@
 namespace __Test;
 
 use Ytake\Lom\Meta\NoArgsConstructor;
+use Ytake\LaravelAspect\Annotation\Transactional;
 
 /**
  * Class AspectTransactional

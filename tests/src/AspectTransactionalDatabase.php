@@ -5,6 +5,7 @@
 
 namespace __Test;
 
+use Ytake\LaravelAspect\Annotation\Transactional;
 use Illuminate\Database\ConnectionResolverInterface;
 
 /**

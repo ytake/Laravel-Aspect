@@ -38,19 +38,20 @@ class TransactionalAspect implements Aspect
     }
 
     /**
-     * @Around("@annotation(Transactional)")
+     * @Around("@annotation(Ytake\LaravelAspect\Annotation\Transactional)")
      * @param MethodInvocation $invocation
      * @return mixed
      */
     public function aroundMethodExecution(MethodInvocation $invocation)
     {
         $connection = $invocation->getMethod()
-            ->getAnnotation('Transactional')->value;
+            ->getAnnotation('Ytake\LaravelAspect\Annotation\Transactional')->value;
         $database = $this->db->connection($connection);
         $database->beginTransaction();
         try {
             $result = $invocation->proceed();
             $database->commit();
+
             return $result;
         } catch (QueryException $exception) {
             $database->rollBack();
