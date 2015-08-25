@@ -1,6 +1,5 @@
 # Laravel-Aspect
 for laravel framework(develop) with Go!Aop Framework  
-Aspect Oriented Programming /Laravel Package 
 
 [![Build Status](https://travis-ci.org/ytake/Laravel-Aspect.svg?branch=develop)](https://travis-ci.org/ytake/Laravel-Aspect)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/?branch=develop)
@@ -47,6 +46,12 @@ required config/compile.php
 'providers' => [
     \Ytake\LaravelAspect\CompileServiceProvider::class,
 ],
+```
+
+## Cache Clear Command
+
+```bash
+$ php artisan ytake:aspect-clear-cache
 ```
 
 ## Annotations
