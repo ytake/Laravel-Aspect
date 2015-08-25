@@ -1,9 +1,9 @@
 # Laravel-Aspect
 for laravel framework(use Go!Aop Framework)
 
-[![Build Status](https://travis-ci.org/ytake/Laravel-Aspect.svg?branch=develop)](https://travis-ci.org/ytake/Laravel-Aspect)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/?branch=develop)
-[![Coverage Status](https://coveralls.io/repos/ytake/Laravel-Aspect/badge.svg?branch=develop&service=github)](https://coveralls.io/github/ytake/Laravel-Aspect?branch=develop)
+[![Build Status](https://travis-ci.org/ytake/Laravel-Aspect.svg?branch=master)](https://travis-ci.org/ytake/Laravel-Aspect)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/?branch=master)
+[![Coverage Status](https://coveralls.io/repos/ytake/Laravel-Aspect/badge.svg?branch=master&service=github)](https://coveralls.io/github/ytake/Laravel-Aspect?branch=master)
 
 [![StyleCI](https://styleci.io/repos/40900709/shield)](https://styleci.io/repos/40900709)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/70dace68-fe04-4039-aeb4-47a64c6acca3/mini.png)](https://insight.sensiolabs.com/projects/70dace68-fe04-4039-aeb4-47a64c6acca3)
