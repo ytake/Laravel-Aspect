@@ -39,7 +39,6 @@ class CacheableAspect extends AbstractCache
         // detect use cache driver
         $cache = $this->detectCacheRepository($annotation);
         if ($result = $invocation->proceed()) {
-
             $cache->add(implode($this->join, $keys), $result, $annotation->lifetime);
         }
 

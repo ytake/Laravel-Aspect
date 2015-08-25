@@ -39,7 +39,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // 
+        // register bindings
     }
 
     /**
