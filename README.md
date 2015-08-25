@@ -20,7 +20,27 @@ Aspect Oriented Programming /Laravel Package
 ]
 ```
 
-## for optimize(production)
+### publish configure
+
+* basic
+
+```bash
+$ php artisan vendor:publish
+```
+
+* use tag option
+
+```bash
+$ php artisan vendor:publish --tag=aspect
+```
+
+* use provider 
+
+```bash
+$ php artisan vendor:publish --provider="Ytake\LaravelAspect\AspectServiceProvider"
+```
+
+### for optimize(production)
 required config/compile.php
 
 ```php
