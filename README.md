@@ -10,6 +10,23 @@ for laravel framework(use Go!Aop Framework)
 
 ## usage
 
+### install 
+
+```bash
+$ composer require ytake/laravel-aspect
+```
+ or
+ 
+ ```json
+   "require": {
+    "php": ">=5.5.9",
+    "laravel/framework": "5.1.*",
+    "ytake/laravel-aspect": "~0.0"
+  },
+ ```
+
+### added serviceProvider
+
 ```php
 'providers' => [
     // added AspectServiceProvider 
