@@ -3,6 +3,7 @@ for laravel framework(use Go!Aop Framework)
 
 [![Build Status](http://img.shields.io/travis/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://travis-ci.org/ytake/Laravel-Aspect)
 [![Coverage Status](http://img.shields.io/coveralls/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://coveralls.io/r/ytake/Laravel-Aspect?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/55dc10228d9c4b001b000870/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55dc10228d9c4b001b000870)
 [![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/ytake/Laravel-Aspect.svg?style=flat-square)](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/?branch=master)
 
 [![StyleCI](https://styleci.io/repos/40900709/shield)](https://styleci.io/repos/40900709)
