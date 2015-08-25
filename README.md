@@ -1,5 +1,5 @@
 # Laravel-Aspect
-for laravel framework(develop) with Go!Aop Framework  
+for laravel framework(use Go!Aop Framework)
 
 [![Build Status](https://travis-ci.org/ytake/Laravel-Aspect.svg?branch=develop)](https://travis-ci.org/ytake/Laravel-Aspect)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/?branch=develop)
