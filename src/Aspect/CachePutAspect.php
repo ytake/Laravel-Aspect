@@ -11,7 +11,7 @@
 
 namespace Ytake\LaravelAspect\Aspect;
 
-use Go\Lang\Annotation\After;
+use Go\Lang\Annotation\Around;
 use Go\Aop\Intercept\MethodInvocation;
 
 /**
@@ -24,7 +24,7 @@ use Go\Aop\Intercept\MethodInvocation;
 class CachePutAspect extends AbstractCache
 {
     /**
-     * @After("@annotation(Ytake\LaravelAspect\Annotation\CachePut)")
+     * @Around("@annotation(Ytake\LaravelAspect\Annotation\CachePut)")
      * @param MethodInvocation $invocation
      * @return mixed
      */

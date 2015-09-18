@@ -52,5 +52,4 @@ class GoAspect implements AspectDriverInterface
             $kernel->init($this->configure);
         }
     }
-
 }
