@@ -77,7 +77,6 @@ class CacheableTest extends \TestCase
     {
         $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
-        /** @var \Ytake\LaravelAop\GoAspect $aspect */
         $aspect = $this->manager->driver('go');
         $aspect->register();
     }

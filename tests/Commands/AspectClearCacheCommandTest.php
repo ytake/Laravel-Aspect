@@ -39,7 +39,8 @@ class AspectClearCacheCommandTest extends \TestCase
         $configure = $this->app['config']->get('ytake-laravel-aop');
         $driverConfig = $configure['aop'][$configure['default']];
         if(isset($driverConfig['cacheDir'])) {
-            $this->assertFalse($this->app['filesystem']->exists($driverConfig['cacheDir']));
+            $files = $this->app['filesystem']->files($driverConfig['cacheDir']);
+            $this->assertCount(0, $files);
         }
     }
 
