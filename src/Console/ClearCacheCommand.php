@@ -56,7 +56,7 @@ class ClearCacheCommand extends Command
 
         $driverConfig = $configure['aop'][$configure['default']];
         if (isset($driverConfig['cacheDir'])) {
-            $this->filesystem->deleteDirectory($driverConfig['cacheDir']);
+            $this->filesystem->cleanDirectory($driverConfig['cacheDir']);
         }
         $this->info('aspect/annotation cache clear!');
     }
