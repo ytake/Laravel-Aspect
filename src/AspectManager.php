@@ -35,6 +35,11 @@ class AspectManager extends Manager
         );
     }
 
+    protected function createNullDriver()
+    {
+        return new NullAspect();
+    }
+
     /**
      * @inheritdoc
      */
