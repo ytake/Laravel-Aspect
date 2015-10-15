@@ -29,4 +29,12 @@ class NullAspect implements AspectDriverInterface
     {
         return;
     }
+
+    /**
+     * @param array $classes
+     */
+    public function setAspects(array $classes)
+    {
+        return;
+    }
 }

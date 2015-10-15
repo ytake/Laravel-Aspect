@@ -29,6 +29,9 @@ class GoAspect implements AspectDriverInterface
     /** @var LaravelApplication */
     protected $laravel;
 
+    /** @var AspectKernel */
+    protected $kernel;
+
     /**
      * @param LaravelApplication $laravel
      * @param array              $configure
@@ -37,6 +40,7 @@ class GoAspect implements AspectDriverInterface
     {
         $this->laravel = $laravel;
         $this->configure = $configure;
+        $this->kernel = AspectKernel::getInstance();
     }
 
     /**
@@ -47,9 +51,16 @@ class GoAspect implements AspectDriverInterface
     public function register()
     {
         if (!defined('AOP_CACHE_DIR')) {
-            $kernel = AspectKernel::getInstance();
-            $kernel->setLaravel($this->laravel);
-            $kernel->init($this->configure);
+            $this->kernel->setLaravel($this->laravel);
+            $this->kernel->init($this->configure);
         }
+    }
+
+    /**
+     * @param array $classes
+     */
+    public function setAspects(array $classes)
+    {
+        $this->kernel->setAop($classes);
     }
 }

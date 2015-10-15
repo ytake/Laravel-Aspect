@@ -22,11 +22,27 @@ use Go\Core\AspectContainer;
  */
 final class AspectKernel extends LaravelKernel
 {
+    /** @var array */
+    protected $aspects;
+
+    /**
+     * @param array $classes
+     */
+    public function setAop(array $classes)
+    {
+        $this->aspects = $classes;
+    }
+
     /**
      * @inheritdoc
      */
     protected function configureAop(AspectContainer $container)
     {
+        if ($this->aspects) {
+            foreach($this->aspects as $aspect) {
+                $container->registerAspect($this->laravel->make($aspect));
+            }
+        }
         $container->registerAspect(new TransactionalAspect($this->laravel['db']));
         $container->registerAspect(new CacheableAspect($this->laravel['cache']));
         $container->registerAspect(new CacheEvictAspect($this->laravel['cache']));

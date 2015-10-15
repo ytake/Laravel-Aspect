@@ -22,4 +22,14 @@ class AspectManagerTest extends \TestCase
             \Ytake\LaravelAspect\GoAspect::class, $this->manager->driver('go')
         );
     }
+
+    public function testCreateNullDriverInstance()
+    {
+        $driver = $this->manager->driver('none');
+        $this->assertInstanceOf(\Ytake\LaravelAspect\NullAspect::class, $driver);
+        $this->assertNull($driver->setAspects([]));
+        $this->assertNull($driver->register());
+        $class = new \ReflectionClass($driver);
+        $this->assertSame(0, count($class->getProperties()));
+    }
 }
