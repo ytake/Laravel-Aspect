@@ -17,7 +17,7 @@ return [
 
     /**
      * choose aop library
-     * "go"(go-aop), "ext"(aop-ext)
+     * "go"(go-aop), "none"(for testing)
      *
      * @see https://github.com/goaop/framework
      */
@@ -42,8 +42,9 @@ return [
             // array BlackList of directories or files where aspects shouldn't be applied.
             // 'excludePaths' => []
         ],
-        'ext' => [
-
+        'none' => [
+            // for testing driver
+            // no use aspect
         ]
     ],
 ];
