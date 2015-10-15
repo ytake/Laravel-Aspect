@@ -29,7 +29,6 @@
     "symfony/framework-bundle": "2.*",
     "symfony/console": "2.*",
     "phpunit/phpunit": "4.*",
-    "ytake/lom": "~0.0",
     "mockery/mockery": "*",
     "satooshi/php-coveralls": "*",
     "illuminate/database": "~5.0",
