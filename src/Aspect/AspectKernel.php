@@ -39,7 +39,7 @@ final class AspectKernel extends LaravelKernel
     protected function configureAop(AspectContainer $container)
     {
         if ($this->aspects) {
-            foreach($this->aspects as $aspect) {
+            foreach ($this->aspects as $aspect) {
                 $container->registerAspect($this->laravel->make($aspect));
             }
         }
