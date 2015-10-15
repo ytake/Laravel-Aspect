@@ -46,8 +46,5 @@
     "psr-4": {
       "__Test\\": "tests/src"
     }
-  },
-  "suggest": {
-    "ext-aop": "for extension driver"
   }
 }
