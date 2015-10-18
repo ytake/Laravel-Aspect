@@ -1,47 +1,24 @@
 <?php
-/**
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 
-/**
- * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
- * @license http://opensource.org/licenses/MIT MIT
- */
 return [
 
     /**
      * choose aop library
-     * "go"(go-aop), "none"(for testing)
-     *
-     * @see https://github.com/goaop/framework
+     * "ray"(Ray.Aop), "none"(for testing)
      */
-    'default' => env('ASPECT_DRIVER', 'go'),
+    'default' => env('ASPECT_DRIVER', 'ray'),
+
+    //
+    'debug' => env('ASPECT_DEBUG', true),
 
     /**
      *
      */
     'aop' => [
-        'go' => [
-            // boolean Determines whether or not kernel is in debug mode
-            'debug' => env('ASPECT_DEBUG', true),
-            // string Path to the application root directory.
-            'appDir' => app_path(),
+
+        'ray' => [
             // string Path to the cache directory where compiled classes will be stored
-            'cacheDir' => storage_path('framework/aop'),
-            // integer Binary mask of features
-            // 'features' => 0,
-            // array WhiteList of directories where aspects should be applied. Empty for everywhere.
-            'includePaths' => [
-               app_path()
-            ],
-            // array BlackList of directories or files where aspects shouldn't be applied.
-            // 'excludePaths' => []
+            'cache_dir' => storage_path('framework/aop'),
         ],
         'none' => [
             // for testing driver
