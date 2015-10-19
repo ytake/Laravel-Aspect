@@ -2,6 +2,7 @@
 
 namespace Ytake\LaravelAspect;
 
+use Ray\Aop\Bind;
 use Ray\Aop\Compiler;
 use Ray\Aop\Matcher;
 use PhpParser\Parser;
@@ -9,8 +10,6 @@ use PhpParser\Lexer;
 use PhpParser\BuilderFactory;
 use PhpParser\PrettyPrinter\Standard;
 use Illuminate\Contracts\Container\Container;
-use Ytake\LaravelAspect\Execution\CacheableExecution;
-use Ytake\LaravelAspect\Execution\CacheEvictExecution;
 
 /**
  * Class RayAspectKernel
@@ -40,10 +39,24 @@ class RayAspectKernel implements AspectDriverInterface
      */
     public function register()
     {
-        $compiler = $this->getCompiler();
+        $pointcutMarshal = [];
+        foreach($this->configure['aspect'] as $aspect => $classes) {
+            $aspectClass = 'Ytake\\LaravelAspect\\Execution\\' . $aspect . 'Execution';
+            $execution = new $aspectClass;
+            foreach($classes as $class) {
+                $pointcutMarshal[$class][] = $execution->bootstrap($this->app);
+            }
+        }
 
-        (new CacheableExecution())->bootstrap($this->app, $compiler);
-        (new CacheEvictExecution())->bootstrap($this->app, $compiler);
+        foreach($pointcutMarshal as $class => $pointcut) {
+            $bind = (new Bind)->bind($class, $pointcut);
+            $this->app->bind($class, function ($app) use ($bind, $class) {
+                $class = $this->getCompiler()->compile($class, $bind);
+                $instance = $app->make($class);
+                $instance->bindings = $bind->getBindings();
+                return $instance;
+            });
+        }
     }
 
     /**

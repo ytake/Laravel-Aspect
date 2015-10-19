@@ -17,6 +17,7 @@ class AfterCacheEvictAspect extends AbstractCache
     public function invoke(MethodInvocation $invocation)
     {
         $result = $invocation->proceed();
+
         $annotation = $this->reader
             ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
 
@@ -27,8 +28,9 @@ class AfterCacheEvictAspect extends AbstractCache
         $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
         // detect use cache driver
         $cache = $this->detectCacheRepository($annotation);
+
         if ($annotation->allEntries) {
-            return $cache->flush();
+            $cache->flush();
         }
         $cache->forget(implode($this->join, $keys));
         return $result;

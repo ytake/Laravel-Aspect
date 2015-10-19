@@ -25,19 +25,10 @@ class CachePutExecution
         $cache = new AroundCachePutAspect($app['cache']);
         $cache->setReader($app['aspect.annotation.reader']);
         $cache->setAnnotation($this->annotation);
-        $pointcut = new Pointcut(
+        return new Pointcut(
             (new Matcher)->any(),
             (new Matcher)->annotatedWith($this->annotation),
             [$cache]
         );
-        $bind = (new Bind)->bind($class, [$pointcut]);
-        /*
-        $app->bind($class, function (Application $app) use ($bind, $compiler, $class) {
-            $class = $compiler->compile($class, $bind);
-            $reflection = $app->make($class);
-            $reflection->bindings = $bind->getBindings();
-            return $reflection;
-        });
-        */
     }
 }
