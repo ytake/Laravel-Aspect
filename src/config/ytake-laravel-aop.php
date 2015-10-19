@@ -19,6 +19,13 @@ return [
         'ray' => [
             // string Path to the cache directory where compiled classes will be stored
             'cache_dir' => storage_path('framework/aop'),
+            // use Classes
+            'Cacheable' => [
+
+            ],
+            'CacheEvict' => [
+
+            ]
         ],
         'none' => [
             // for testing driver

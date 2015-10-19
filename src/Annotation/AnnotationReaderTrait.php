@@ -12,6 +12,9 @@ trait AnnotationReaderTrait
     /** @var AnnotationReader */
     protected $reader;
 
+    /** @var string */
+    protected $annotation;
+
     /**
      * @param AnnotationReader $reader
      */
