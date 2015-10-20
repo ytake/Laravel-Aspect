@@ -2,6 +2,8 @@
 
 namespace Ytake\LaravelAspect;
 
+use Ytake\LaravelAspect\Modules\AspectModule;
+
 /**
  * Class NullAspectKernel
  */
@@ -12,7 +14,7 @@ class NullAspectKernel implements AspectDriverInterface
      *
      * @return void
      */
-    public function register(AspectRegisterable $module = null)
+    public function register(AspectModule $module = null)
     {
 
     }

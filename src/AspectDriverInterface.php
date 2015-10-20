@@ -2,7 +2,7 @@
 
 namespace Ytake\LaravelAspect;
 
-use Ytake\LaravelAspect\AspectRegisterable;
+use Ytake\LaravelAspect\Modules\AspectModule;
 
 /**
  * Interface AspectDriverInterface
@@ -10,7 +10,7 @@ use Ytake\LaravelAspect\AspectRegisterable;
 interface AspectDriverInterface
 {
     /**
-     * @param AspectRegisterable $module
+     * @param AspectModule $module
      */
-    public function register(AspectRegisterable $module = null);
+    public function register(AspectModule $module = null);
 }

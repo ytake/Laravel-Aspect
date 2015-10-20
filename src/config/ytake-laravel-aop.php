@@ -7,8 +7,6 @@ return [
      * "ray"(Ray.Aop), "none"(for testing)
      */
     'default' => env('ASPECT_DRIVER', 'ray'),
-    //
-    'debug' => env('ASPECT_DEBUG', true),
     /**
      *
      */

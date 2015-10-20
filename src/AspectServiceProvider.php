@@ -17,8 +17,6 @@ class AspectServiceProvider extends ServiceProvider
     {
         // register annotation
         $this->app->make('aspect.annotation.register')->registerAspectAnnotations();
-        // boot aspect kernel
-        $this->app->make('aspect.manager')->register();
     }
 
     /**

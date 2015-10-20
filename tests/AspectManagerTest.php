@@ -27,7 +27,6 @@ class AspectManagerTest extends \TestCase
     {
         $driver = $this->manager->driver('none');
         $this->assertInstanceOf(\Ytake\LaravelAspect\NullAspectKernel::class, $driver);
-        $this->assertNull($driver->setAspects([]));
         $this->assertNull($driver->register());
         $class = new \ReflectionClass($driver);
         $this->assertSame(0, count($class->getProperties()));

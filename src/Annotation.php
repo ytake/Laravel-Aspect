@@ -22,9 +22,7 @@ class Annotation
     }
 
     /**
-     * use annotations
-     *
-     * @return void
+     * @throws FileNotFoundException
      */
     public function registerAspectAnnotations()
     {

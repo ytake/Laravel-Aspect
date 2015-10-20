@@ -10,6 +10,7 @@ use PhpParser\Lexer;
 use PhpParser\BuilderFactory;
 use PhpParser\PrettyPrinter\Standard;
 use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Modules\AspectModule;
 
 /**
  * Class RayAspectKernel
@@ -22,6 +23,9 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var array */
     protected $configure;
 
+    /** @var Compiler  */
+    protected $compiler;
+
     /**
      * @param Container $app
      * @param array     $configure
@@ -30,6 +34,7 @@ class RayAspectKernel implements AspectDriverInterface
     {
         $this->app = $app;
         $this->configure = $configure;
+        $this->compiler = $this->getCompiler();
     }
 
     /**
@@ -37,30 +42,9 @@ class RayAspectKernel implements AspectDriverInterface
      *
      * @return void
      */
-    public function register(AspectRegisterable $module = null)
+    public function register(AspectModule $module = null)
     {
-        $this->app->call([$module, 'add']);
-        /*
-        $pointcutMarshal = [];
-        foreach ($this->configure['aspect'] as $aspect => $classes) {
-            $aspectClass = 'Ytake\\LaravelAspect\\PointCut\\' . $aspect . 'PointCut';
-            foreach ($classes as $class) {
-                $pointcutMarshal[$class][] = $this->app->call([new $aspectClass, 'configure']);
-            }
-        }
-
-        foreach ($pointcutMarshal as $class => $pointcut) {
-            $bind = (new Bind)->bind($class, $pointcut);
-            $compiledClass = $this->getCompiler()->compile($class, $bind);
-            if ($compiledClass !== $class) {
-                $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
-                    $instance = $app->make($compiledClass);
-                    $instance->bindings = $bind->getBindings();
-                    return $instance;
-                });
-            }
-        }
-        */
+        (new $module($this->app, new Bind()))->setCompiler($this->compiler)->add();
     }
 
     /**

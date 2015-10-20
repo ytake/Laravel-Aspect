@@ -5,7 +5,7 @@ namespace Ytake\LaravelAspect\PointCut;
 use Ray\Aop\Matcher;
 use Ray\Aop\Pointcut;
 use Illuminate\Contracts\Foundation\Application;
-use Ytake\LaravelAspect\Aspect\AroundTransactionalAspect;
+use Ytake\LaravelAspect\Interceptor\TransactionalInterceptor;
 
 /**
  * Class TransactionalPointCut
@@ -22,7 +22,7 @@ class TransactionalPointCut
      */
     public function configure(Application $app)
     {
-        $cache = new AroundTransactionalAspect($app['db']);
+        $cache = new TransactionalInterceptor($app['db']);
         $cache->setReader($app['aspect.annotation.reader']);
         $cache->setAnnotation($this->annotation);
         return new Pointcut(
