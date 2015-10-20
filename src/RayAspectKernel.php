@@ -2,6 +2,7 @@
 
 namespace Ytake\LaravelAspect;
 
+use Ray\Aop\Bind;
 use Ray\Aop\Compiler;
 use Ray\Aop\Matcher;
 use PhpParser\Parser;
@@ -9,15 +10,13 @@ use PhpParser\Lexer;
 use PhpParser\BuilderFactory;
 use PhpParser\PrettyPrinter\Standard;
 use Illuminate\Contracts\Container\Container;
-use Ytake\LaravelAspect\Execution\CacheableExecution;
-use Ytake\LaravelAspect\Execution\CacheEvictExecution;
 
 /**
  * Class RayAspectKernel
  */
 class RayAspectKernel implements AspectDriverInterface
 {
-    /** @var Container  */
+    /** @var Container */
     protected $app;
 
     /** @var array */
@@ -25,7 +24,7 @@ class RayAspectKernel implements AspectDriverInterface
 
     /**
      * @param Container $app
-     * @param array       $configure
+     * @param array     $configure
      */
     public function __construct(Container $app, array $configure)
     {
@@ -38,20 +37,30 @@ class RayAspectKernel implements AspectDriverInterface
      *
      * @return void
      */
-    public function register()
+    public function register(AspectRegisterable $module = null)
     {
-        $compiler = $this->getCompiler();
+        $this->app->call([$module, 'add']);
+        /*
+        $pointcutMarshal = [];
+        foreach ($this->configure['aspect'] as $aspect => $classes) {
+            $aspectClass = 'Ytake\\LaravelAspect\\PointCut\\' . $aspect . 'PointCut';
+            foreach ($classes as $class) {
+                $pointcutMarshal[$class][] = $this->app->call([new $aspectClass, 'configure']);
+            }
+        }
 
-        (new CacheableExecution())->bootstrap($this->app, $compiler);
-        (new CacheEvictExecution())->bootstrap($this->app, $compiler);
-    }
-
-    /**
-     * @param array $classes
-     */
-    public function setAspects(array $classes)
-    {
-
+        foreach ($pointcutMarshal as $class => $pointcut) {
+            $bind = (new Bind)->bind($class, $pointcut);
+            $compiledClass = $this->getCompiler()->compile($class, $bind);
+            if ($compiledClass !== $class) {
+                $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
+                    $instance = $app->make($compiledClass);
+                    $instance->bindings = $bind->getBindings();
+                    return $instance;
+                });
+            }
+        }
+        */
     }
 
     /**

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * CodeGenMethod Class, CodeGen Class is:
+ * Copyright (c) 2012-2015, The Ray Project for PHP
+ *
+ * @license http://opensource.org/licenses/bsd-license.php BSD
+ */
+
 namespace Ytake\LaravelAspect;
 
 use PhpParser\BuilderFactory;
@@ -91,7 +98,7 @@ final class CodeGen implements CodeGenInterface
         // pretty print
         $code = $this->printer->prettyPrint($useStmtsVisitor());
 
-        return (string) $code;
+        return (string)$code;
     }
 
     /**

@@ -12,16 +12,8 @@ class NullAspectKernel implements AspectDriverInterface
      *
      * @return void
      */
-    public function register()
+    public function register(AspectRegisterable $module = null)
     {
-        return;
-    }
 
-    /**
-     * @param array $classes
-     */
-    public function setAspects(array $classes)
-    {
-        return;
     }
 }

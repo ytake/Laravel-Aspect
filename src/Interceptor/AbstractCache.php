@@ -1,6 +1,6 @@
 <?php
 
-namespace Ytake\LaravelAspect\Aspect;
+namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;

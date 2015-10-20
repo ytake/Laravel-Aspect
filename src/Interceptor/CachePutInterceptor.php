@@ -1,13 +1,13 @@
 <?php
 
-namespace Ytake\LaravelAspect\Aspect;
+namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
 
 /**
- * Class AfterCacheEvictAspect
+ * Class AroundCachePutAspect
  */
-class AfterCacheEvictAspect extends AbstractCache
+class CachePutInterceptor extends AbstractCache
 {
     /**
      * @param MethodInvocation $invocation
@@ -16,7 +16,6 @@ class AfterCacheEvictAspect extends AbstractCache
      */
     public function invoke(MethodInvocation $invocation)
     {
-        $result = $invocation->proceed();
         $annotation = $this->reader
             ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
 
@@ -27,10 +26,11 @@ class AfterCacheEvictAspect extends AbstractCache
         $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
         // detect use cache driver
         $cache = $this->detectCacheRepository($annotation);
-        if ($annotation->allEntries) {
-            return $cache->flush();
+
+        if ($result = $invocation->proceed()) {
+            $cache->put(implode($this->join, $keys), $result, $annotation->lifetime);
         }
-        $cache->forget(implode($this->join, $keys));
+
         return $result;
     }
 }

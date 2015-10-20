@@ -2,18 +2,15 @@
 
 namespace Ytake\LaravelAspect;
 
+use Ytake\LaravelAspect\AspectRegisterable;
+
 /**
  * Interface AspectDriverInterface
  */
 interface AspectDriverInterface
 {
     /**
-     * @return mixed
+     * @param AspectRegisterable $module
      */
-    public function register();
-
-    /**
-     * add user aspect script
-     */
-    public function setAspects(array $classes);
+    public function register(AspectRegisterable $module = null);
 }

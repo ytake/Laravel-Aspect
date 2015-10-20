@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * CodeGenMethod Class, CodeGen Class is:
+ * Copyright (c) 2012-2015, The Ray Project for PHP
+ *
+ * @license http://opensource.org/licenses/bsd-license.php BSD
+ */
+
 namespace Ytake\LaravelAspect;
 
 use PHPParser\Builder\Method;
@@ -131,6 +138,7 @@ final class CodeGenMethod
      */
     private function getMethodInsideStatement()
     {
+        // fixed call parent method
         $code = file_get_contents(__DIR__ . '/data/CodeTemplate.php');
         $node = $this->parser->parse($code)[0];
         /** @var $node \PHPParser\Node\Stmt\Class_ */

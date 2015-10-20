@@ -11,18 +11,18 @@ use Doctrine\Common\Annotations\AnnotationReader;
 class AspectServiceProvider extends ServiceProvider
 {
     /**
-     * {@inheritdoc}
+     * boot serivce
      */
     public function boot()
     {
         // register annotation
         $this->app->make('aspect.annotation.register')->registerAspectAnnotations();
-        // annotation driver
+        // boot aspect kernel
         $this->app->make('aspect.manager')->register();
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function register()
     {
@@ -33,7 +33,9 @@ class AspectServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($configPath, 'ytake-laravel-aop');
         $this->publishes([$configPath => config_path('ytake-laravel-aop.php')], 'aspect');
 
-        $this->registerAspectAnnotations();
+        $this->app->singleton('aspect.annotation.register', function () {
+            return new Annotation();
+        });
 
         $this->app->singleton('aspect.annotation.reader', function () {
             return new AnnotationReader;
@@ -41,16 +43,6 @@ class AspectServiceProvider extends ServiceProvider
 
         $this->app->singleton('aspect.manager', function ($app) {
             return new AspectManager($app);
-        });
-    }
-
-    /**
-     * @return void
-     */
-    protected function registerAspectAnnotations()
-    {
-        $this->app->singleton('aspect.annotation.register', function () {
-            return new Annotation();
         });
     }
 }

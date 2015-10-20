@@ -31,7 +31,7 @@ class AspectManager extends Manager
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getDefaultDriver()
     {
@@ -39,8 +39,8 @@ class AspectManager extends Manager
     }
 
     /**
-     * @param $driver
-     * @return mixed
+     * @param string $driver
+     * @return string[]
      */
     protected function getConfigure($driver)
     {
