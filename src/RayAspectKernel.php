@@ -38,12 +38,13 @@ class RayAspectKernel implements AspectDriverInterface
     }
 
     /**
-     * initialize aspect kernel
-     *
-     * @return void
+     * @param string|null $module
      */
-    public function register(AspectModule $module = null)
+    public function register($module = null)
     {
+        if (class_exists($module)) {
+
+        }
         (new $module($this->app, new Bind()))->setCompiler($this->compiler)->add();
     }
 

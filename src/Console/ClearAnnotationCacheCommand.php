@@ -7,15 +7,15 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 /**
- * Class ClearCacheCommand
+ * Class ClearAnnotationCacheCommand
  */
-class ClearCacheCommand extends Command
+class ClearAnnotationCacheCommand extends Command
 {
     /** @var string */
-    protected $name = 'ytake:aspect-clear-cache';
+    protected $name = 'ytake:annotation-clear-cache';
 
     /** @var string */
-    protected $description = 'Flush the application aspect code cache';
+    protected $description = 'Flush the application annotation cache';
 
     /** @var ConfigRepository */
     protected $config;
@@ -39,12 +39,11 @@ class ClearCacheCommand extends Command
      */
     public function fire()
     {
-        $configure = $this->config->get('ytake-laravel-aop');
-
-        $driverConfig = $configure['aop'][$configure['default']];
+        $configure = $this->config->get('ytake-laravel-aop.annotation');
+        $driverConfig = $configure['drivers']['file'];
         if (isset($driverConfig['cache_dir'])) {
             $this->filesystem->cleanDirectory($driverConfig['cache_dir']);
         }
-        $this->info('aspect code cache clear!');
+        $this->info('annotation cache clear!');
     }
 }

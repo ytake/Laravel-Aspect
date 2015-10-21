@@ -3,7 +3,6 @@
 namespace Ytake\LaravelAspect;
 
 use Illuminate\Support\ServiceProvider;
-use Doctrine\Common\Annotations\AnnotationReader;
 
 /**
  * Class AspectServiceProvider
@@ -35,8 +34,8 @@ class AspectServiceProvider extends ServiceProvider
             return new Annotation();
         });
 
-        $this->app->singleton('aspect.annotation.reader', function () {
-            return new AnnotationReader;
+        $this->app->singleton('aspect.annotation.reader', function ($app) {
+            return (new AnnotationManager($app))->getReader();
         });
 
         $this->app->singleton('aspect.manager', function ($app) {

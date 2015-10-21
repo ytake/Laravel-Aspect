@@ -3,6 +3,7 @@
 namespace Ytake\LaravelAspect;
 
 use Illuminate\Support\ServiceProvider;
+use Ytake\LaravelAspect\Console\ClearAnnotationCacheCommand;
 use Ytake\LaravelAspect\Console\ClearCacheCommand;
 
 /**
@@ -13,16 +14,13 @@ class ConsoleServiceProvider extends ServiceProvider
     /** @var bool */
     protected $defer = true;
 
-    /**
-     * @inheritdoc
-     */
     public function boot()
     {
         $this->registerCommands();
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function register()
     {
@@ -37,16 +35,23 @@ class ConsoleServiceProvider extends ServiceProvider
         $this->app->singleton('command.ytake.aspect.clear-cache', function ($app) {
             return new ClearCacheCommand($app['config'], $app['files']);
         });
-        $this->commands(['command.ytake.aspect.clear-cache']);
+        $this->app->singleton('command.ytake.annotation.clear-cache', function ($app) {
+            return new ClearAnnotationCacheCommand($app['config'], $app['files']);
+        });
+        $this->commands([
+            'command.ytake.aspect.clear-cache',
+            'command.ytake.annotation.clear-cache'
+        ]);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function provides()
     {
         return [
-            'command.ytake.aspect.clear-cache'
+            'command.ytake.aspect.clear-cache',
+            'command.ytake.annotation.clear-cache'
         ];
     }
 }

@@ -22,7 +22,7 @@ class CacheableModule extends AspectModule
         $pointcut = $this->app->call([new CacheablePointCut, 'configure']);
 
         foreach ($this->classes as $class) {
-            $bind = $this->bind->bind($class, $pointcut);
+            $bind = $this->bind->bind($class, [$pointcut]);
             $compiledClass = $this->compiler->compile($class, $bind);
             $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
                 $instance = $app->make($compiledClass);

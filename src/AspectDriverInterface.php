@@ -2,15 +2,14 @@
 
 namespace Ytake\LaravelAspect;
 
-use Ytake\LaravelAspect\Modules\AspectModule;
-
 /**
  * Interface AspectDriverInterface
  */
 interface AspectDriverInterface
 {
     /**
-     * @param AspectModule $module
+     * @param null $module
+     * @return void
      */
-    public function register(AspectModule $module = null);
+    public function register($module = null);
 }

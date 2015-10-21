@@ -2,23 +2,23 @@
 
 namespace Ytake\LaravelAspect\Annotation;
 
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 
 /**
  * Class AnnotationReaderTrait
  */
 trait AnnotationReaderTrait
 {
-    /** @var AnnotationReader */
+    /** @var Reader */
     protected $reader;
 
     /** @var string */
     protected $annotation;
 
     /**
-     * @param AnnotationReader $reader
+     * @param Reader $reader
      */
-    public function setReader(AnnotationReader $reader)
+    public function setReader(Reader $reader)
     {
         $this->reader = $reader;
     }

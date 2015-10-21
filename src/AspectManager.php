@@ -6,6 +6,7 @@ use Illuminate\Support\Manager;
 
 /**
  * Class AspectManager
+ * @method void register() register(string $module)
  */
 class AspectManager extends Manager
 {
@@ -35,7 +36,7 @@ class AspectManager extends Manager
      */
     public function getDefaultDriver()
     {
-        return $this->app['config']->get('ytake-laravel-aop.default');
+        return $this->app['config']->get('ytake-laravel-aop.aspect.default');
     }
 
     /**
@@ -44,7 +45,7 @@ class AspectManager extends Manager
      */
     protected function getConfigure($driver)
     {
-        $aspectConfigure = $this->app['config']->get('ytake-laravel-aop.aop');
+        $aspectConfigure = $this->app['config']->get('ytake-laravel-aop.aspect.drivers');
 
         return $aspectConfigure[$driver];
     }

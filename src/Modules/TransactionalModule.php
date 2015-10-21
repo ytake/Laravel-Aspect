@@ -5,9 +5,9 @@ namespace Ytake\LaravelAspect\Modules;
 use Ytake\LaravelAspect\PointCut\TransactionalPointCut;
 
 /**
- * Class CacheableModule
+ * Class TransactionalModule
  */
-class CacheableModule extends AspectModule
+class TransactionalModule extends AspectModule
 {
     /**
      * @var array
@@ -25,7 +25,7 @@ class CacheableModule extends AspectModule
         $pointcut = $this->app->call([new TransactionalPointCut, 'configure']);
 
         foreach ($this->classes as $class) {
-            $bind = $this->bind->bind($class, $pointcut);
+            $bind = $this->bind->bind($class, [$pointcut]);
             $compiledClass = $this->compiler->compile($class, $bind);
             $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
                 $instance = $app->make($compiledClass);
