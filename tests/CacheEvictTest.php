@@ -5,8 +5,6 @@ class CacheEvictTest extends \TestCase
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
 
-    protected static $instance;
-
     protected function setUp()
     {
         parent::setUp();
@@ -14,22 +12,16 @@ class CacheEvictTest extends \TestCase
         $this->resolveManager();
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testGenerateCacheNameRemoveNullKey()
     {
-        $cache = new \__Test\AspectCacheEvict();
+        $cache = $this->app->make(\__Test\AspectCacheEvict::class);
         $cache->singleCacheDelete();
         $this->assertNull($this->app['cache']->get('singleCacheDelete'));
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testCacheableAndRemove()
     {
-        $cache = new \__Test\AspectCacheEvict();
+        $cache = $this->app->make(\__Test\AspectCacheEvict::class);
         $cache->cached(1, 2);
         $this->assertNotNull($this->app['cache']->tags(['testing1'])->get('testing:1:2'));
 
@@ -45,8 +37,8 @@ class CacheEvictTest extends \TestCase
     {
         $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
-        /** @var \Ytake\LaravelAspect\GoAspect $aspect */
-        $aspect = $this->manager->driver('go');
-        $aspect->register();
+        $aspect = $this->app['aspect.manager']->driver('ray');
+        $aspect->register(\__Test\CacheEvictModule::class);
+        $aspect->register(\__Test\CacheableModule::class);
     }
 }

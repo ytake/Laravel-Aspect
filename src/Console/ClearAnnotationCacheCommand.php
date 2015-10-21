@@ -40,9 +40,12 @@ class ClearAnnotationCacheCommand extends Command
     public function fire()
     {
         $configure = $this->config->get('ytake-laravel-aop.annotation');
-        $driverConfig = $configure['drivers']['file'];
+        $driverConfig = $configure['drivers']['file'][$configure['default']];;
         if (isset($driverConfig['cache_dir'])) {
-            $this->filesystem->cleanDirectory($driverConfig['cache_dir']);
+            $files = $this->filesystem->glob($driverConfig['cache_dir'] . '/*');
+            foreach ($files as $file) {
+                $this->filesystem->delete($file);
+            }
         }
         $this->info('annotation cache clear!');
     }

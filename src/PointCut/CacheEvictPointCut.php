@@ -4,7 +4,7 @@ namespace Ytake\LaravelAspect\PointCut;
 
 use Ray\Aop\Matcher;
 use Ray\Aop\Pointcut;
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Container\Container;
 use Ytake\LaravelAspect\Interceptor\CacheEvictInterceptor;
 
 /**
@@ -16,11 +16,11 @@ class CacheEvictPointCut
     protected $annotation = \Ytake\LaravelAspect\Annotation\CacheEvict::class;
 
     /**
-     * @param Application $app
+     * @param Container $app
      *
      * @return Pointcut
      */
-    public function configure(Application $app)
+    public function configure(Container $app)
     {
         $cache = new CacheEvictInterceptor($app['cache']);
         $cache->setReader($app['aspect.annotation.reader']);

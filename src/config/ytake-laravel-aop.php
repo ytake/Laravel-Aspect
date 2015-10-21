@@ -27,14 +27,9 @@ return [
     'annotation' => [
         /**
          * choose annotation reader
-         * 'array'(default), 'file'(file cache), 'cache'(apc)
+         * 'array'(default), 'file'(file cache)
          */
         'default' => env('ASPECT_DRIVER', 'array'),
-
-        /**
-         * only file, cache driver
-         */
-        'debug' => true,
 
         'drivers' => [
             'file' => [
@@ -42,10 +37,6 @@ return [
                 //
                 'debug' => true,
             ],
-            'cache' => [
-                //
-                'debug' => true,
-            ]
         ],
     ],
 ];

@@ -2,6 +2,7 @@
 
 namespace Ytake\LaravelAspect;
 
+use Ray\Aop\Bind;
 use Illuminate\Support\Manager;
 
 /**
@@ -19,6 +20,7 @@ class AspectManager extends Manager
     {
         return new RayAspectKernel(
             $this->app,
+            new Bind(),
             $this->getConfigure('ray')
         );
     }

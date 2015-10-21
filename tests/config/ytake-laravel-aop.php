@@ -1,17 +1,42 @@
 <?php
 
 return [
-    'default' => 'ray',
-    /**
-     *
-     */
-    'aop' => [
-        'ray' => [
-            'cache_dir' => __DIR__ . '/../storage',
+
+    'aspect' => [
+        /**
+         * choose aop library
+         * "ray"(Ray.Aop), "none"(for testing)
+         */
+        'default' => 'ray',
+
+        /**
+         *
+         */
+        'drivers'     => [
+            'ray'  => [
+                // string Path to the cache directory where compiled classes will be stored
+                'cache_dir' => __DIR__ . '/../storage/aop',
+            ],
+            'none' => [
+                // for testing driver
+                // no use aspect
+            ]
         ],
-        'none' => [
-            // for testing driver
-            // no use aspect
-        ]
+    ],
+
+    'annotation' => [
+        /**
+         * choose annotation reader
+         * 'array'(default), 'file'(file cache)
+         */
+        'default' => 'array',
+
+        'drivers' => [
+            'file' => [
+                'cache_dir' => __DIR__ . '/../storage/annotation',
+                //
+                'debug' => true,
+            ],
+        ],
     ],
 ];

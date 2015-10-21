@@ -21,12 +21,9 @@ class AspectClearCacheCommandTest extends \TestCase
         $this->command->setLaravel(new MockApplication());
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testCacheClearFile()
     {
-        $cache = new \__Test\AspectCacheable;
+        $cache = $this->app->make(\__Test\AspectCacheable::class);
         $cache->namedMultipleNameAndKey(1000, 'testing');
 
         $output = new \Symfony\Component\Console\Output\BufferedOutput();
@@ -34,12 +31,12 @@ class AspectClearCacheCommandTest extends \TestCase
             new \Symfony\Component\Console\Input\ArrayInput([]),
             $output
         );
-        $this->assertSame('aspect/annotation cache clear!', trim($output->fetch()));
+        $this->assertSame('aspect code cache clear!', trim($output->fetch()));
 
         $configure = $this->app['config']->get('ytake-laravel-aop');
-        $driverConfig = $configure['aop'][$configure['default']];
-        if(isset($driverConfig['cacheDir'])) {
-            $files = $this->app['filesystem']->files($driverConfig['cacheDir']);
+        $driverConfig = $configure['aspect']['drivers'][$configure['aspect']['default']];
+        if (isset($driverConfig['cache_dir'])) {
+            $files = $this->app['filesystem']->files($driverConfig['cache_dir']);
             $this->assertCount(0, $files);
         }
     }
@@ -51,9 +48,8 @@ class AspectClearCacheCommandTest extends \TestCase
     {
         $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
-        /** @var \Ytake\LaravelAspect\GoAspect $aspect */
-        $aspect = $this->manager->driver('go');
-        $aspect->register();
+        $aspect = $this->manager->driver('ray');
+        $aspect->register(\__Test\CacheableModule::class);
     }
 
     protected function tearDown()
@@ -78,6 +74,7 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
      * Get or check the current application environment.
      *
      * @param  mixed
+     *
      * @return string
      */
     public function environment()
@@ -111,6 +108,7 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
      * @param  \Illuminate\Support\ServiceProvider|string $provider
      * @param  array                                      $options
      * @param  bool                                       $force
+     *
      * @return \Illuminate\Support\ServiceProvider
      */
     public function register($provider, $options = [], $force = false)
@@ -123,6 +121,7 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
      *
      * @param  string $provider
      * @param  string $service
+     *
      * @return void
      */
     public function registerDeferredProvider($provider, $service = null)
@@ -144,6 +143,7 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
      * Register a new boot listener.
      *
      * @param  mixed $callback
+     *
      * @return void
      */
     public function booting($callback)
@@ -155,6 +155,7 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
      * Register a new "booted" listener.
      *
      * @param  mixed $callback
+     *
      * @return void
      */
     public function booted($callback)

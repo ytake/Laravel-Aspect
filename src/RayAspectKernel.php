@@ -10,7 +10,6 @@ use PhpParser\Lexer;
 use PhpParser\BuilderFactory;
 use PhpParser\PrettyPrinter\Standard;
 use Illuminate\Contracts\Container\Container;
-use Ytake\LaravelAspect\Modules\AspectModule;
 
 /**
  * Class RayAspectKernel
@@ -26,15 +25,20 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var Compiler  */
     protected $compiler;
 
+    /** @var Bind  */
+    protected $bind;
+
     /**
      * @param Container $app
+     * @param Bind      $bind
      * @param array     $configure
      */
-    public function __construct(Container $app, array $configure)
+    public function __construct(Container $app, Bind $bind, array $configure)
     {
         $this->app = $app;
         $this->configure = $configure;
         $this->compiler = $this->getCompiler();
+        $this->bind = $bind;
     }
 
     /**
@@ -45,7 +49,7 @@ class RayAspectKernel implements AspectDriverInterface
         if (class_exists($module)) {
 
         }
-        (new $module($this->app, new Bind()))->setCompiler($this->compiler)->add();
+        (new $module($this->app, $this->bind))->setCompiler($this->compiler)->add();
     }
 
     /**

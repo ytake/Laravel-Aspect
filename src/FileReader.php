@@ -2,15 +2,12 @@
 
 namespace Ytake\LaravelAspect;
 
+use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Annotations\AnnotationReader;
-use Doctrine\Common\Annotations\FileCacheReader;
+use Doctrine\Common\Cache\FilesystemCache;
 
 /**
  * Class FileReader
- *
- * @deprecated the FileCacheReader is deprecated and will be removed
- *             in version 2.0.0 of doctrine/annotations. Please use the
- *             {@see \Doctrine\Common\Annotations\CachedReader} instead.
  */
 class FileReader implements AnnotationReadable
 {
@@ -26,13 +23,13 @@ class FileReader implements AnnotationReadable
     }
 
     /**
-     * @return FileCacheReader
+     * @return CachedReader
      */
     public function getReader()
     {
-        return new FileCacheReader(
+        return new CachedReader(
             new AnnotationReader(),
-            $this->config['cache_dir'],
+            new FilesystemCache($this->config['cache_dir']),
             $this->config['debug']
         );
     }

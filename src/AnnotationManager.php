@@ -16,7 +16,7 @@ class AnnotationManager extends Manager
      */
     public function getDefaultDriver()
     {
-        return 'file';
+        return 'array';
     }
 
     /**
@@ -33,14 +33,6 @@ class AnnotationManager extends Manager
     protected function createFileDriver()
     {
         return new FileReader($this->getConfigure('file'));
-    }
-
-    /**
-     * @return AnnotationReader
-     */
-    protected function createCacheDriver()
-    {
-        return new AnnotationReader();
     }
 
     /**
