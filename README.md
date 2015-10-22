@@ -72,7 +72,7 @@ $ php artisan ytake:aspect-clear-cache
 
 ## Annotations
 
-### @Transactional(Around Advice)
+### @Transactional
 for database transaction(illuminate/database)
 
 * option
@@ -93,7 +93,7 @@ public function save(array $params)
 }
 ```
 
-### @Cacheable(After Advice)
+### @Cacheable
 for cache(illuminate/cache)
 
 * option
@@ -121,7 +121,7 @@ public function namedMultipleKey($id, $value)
 }
 ```
 
-### @CacheEvict(After Advice)
+### @CacheEvict
 for cache(illuminate/cache) / remove cache
 
 * option
@@ -147,7 +147,7 @@ public function removeCache()
 }
 ```
 
-### @CachePut(After Advice)
+### @CachePut
 for cache(illuminate/cache) / cache put
 
 * option
@@ -171,6 +171,10 @@ public function throwExceptionCache()
     return 'testing';
 }
 ```
+
+### @Loggable
+
+soon
 
 ### Annotation Cache Driver
 
