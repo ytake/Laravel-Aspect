@@ -1,5 +1,5 @@
 # Laravel-Aspect
-for laravel framework(use Go!Aop Framework)
+for laravel framework
 
 [![Build Status](http://img.shields.io/travis/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://travis-ci.org/ytake/Laravel-Aspect)
 [![Coverage Status](http://img.shields.io/coveralls/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://coveralls.io/r/ytake/Laravel-Aspect?branch=master)
@@ -13,7 +13,7 @@ for laravel framework(use Go!Aop Framework)
 [![Latest Version](http://img.shields.io/packagist/v/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
 [![Total Downloads](http://img.shields.io/packagist/dt/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
 
-## usage
+## usage 
 
 ### install 
 
@@ -39,6 +39,33 @@ $ composer require ytake/laravel-aspect
     // added Artisan Command
     \Ytake\LaravelAspect\ConsoleServiceProvider::class,
 ]
+```
+
+### publish aspect module class
+
+```bash
+$ php artisan ytake:aspect-module-publish
+```
+more command options [--help]
+
+### aspect kernel boot
+
+added serviceProvider Class
+
+```php
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * @return void
+     */
+    public function boot()
+    {
+        /** @var \Ytake\LaravelAspect\AspectManager $aspect */
+        $aspect = $this->app['aspect.manager'];
+        $aspect->register(\App\Modules\CacheableModule::class);
+    }
+    
+}
 ```
 
 ### publish configure
@@ -69,7 +96,7 @@ $ php artisan ytake:aspect-clear-cache
 
 ## Annotations
 
-### @Transactional(Around Advice)
+### @Transactional
 for database transaction(illuminate/database)
 
 * option
@@ -90,7 +117,7 @@ public function save(array $params)
 }
 ```
 
-### @Cacheable(After Advice)
+### @Cacheable
 for cache(illuminate/cache)
 
 * option
@@ -118,7 +145,7 @@ public function namedMultipleKey($id, $value)
 }
 ```
 
-### @CacheEvict(After Advice)
+### @CacheEvict
 for cache(illuminate/cache) / remove cache
 
 * option
@@ -144,7 +171,7 @@ public function removeCache()
 }
 ```
 
-### @CachePut(After Advice)
+### @CachePut
 for cache(illuminate/cache) / cache put
 
 * option
@@ -169,22 +196,37 @@ public function throwExceptionCache()
 }
 ```
 
-## add Interceptors
+### @Loggable
 
-your service provider's
+soon
+
+### Annotation Cache Driver
+
+chose array driver or file cache driver
+
+use config/ytake-laravel-aspect.php file
 
 ```php
-public function boot() 
-{
-    $this->app['aspect.annotation.register']->registerAnnotations([
-        app_path() . '/Annotation/Finder.php',
-    ]);
-    
-    $this->app['aspect.manager']->setAspects([
-        \App\Interceptor\SampleInterceptor::class
-    ]);
-}
+    'annotation' => [
+        /**
+         * choose annotation reader
+         * 'array'(default), 'file'(file cache)
+         */
+        'default' => env('ASPECT_ANNOTATION_DRIVER', 'array'),
+
+        'drivers' => [
+            'file' => [
+                'cache_dir' => storage_path('framework/annotation'),
+                //
+                'debug' => env('ASPECT_ANNOTATION_DEBUG', true),
+            ],
+        ],
+    ],
 ```
+
+## add Interceptors
+
+soon
 
 ## for testing
 use none driver

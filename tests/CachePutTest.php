@@ -14,12 +14,9 @@ class CachePutTest extends \TestCase
         $this->resolveManager();
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testCachePutReturnUpdatedValue()
     {
-        $cache = new \__Test\AspectCachePut;
+        $cache = $this->app->make(\__Test\AspectCachePut::class);
         $this->app['cache']->add('singleKey:1000', 1, 120);
         $result = $cache->singleKey(1000);
         $this->assertSame(1000, $result);
@@ -27,12 +24,11 @@ class CachePutTest extends \TestCase
     }
 
     /**
-     * @runInSeparateProcess
      * @expectedException \InvalidArgumentException
      */
     public function testCacheableGenerateCacheNameSingleKey()
     {
-        $cache = new \__Test\AspectCachePut;
+        $cache = $this->app->make(\__Test\AspectCachePut::class);
         $cache->throwExceptionCache();
     }
 
@@ -43,8 +39,7 @@ class CachePutTest extends \TestCase
     {
         $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
-        /** @var \Ytake\LaravelAop\GoAspect $aspect */
-        $aspect = $this->manager->driver('go');
-        $aspect->register();
+        $aspect = $this->manager->driver('ray');
+        $aspect->register(\__Test\CachePutModule::class);
     }
 }

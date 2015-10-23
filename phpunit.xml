@@ -20,6 +20,7 @@
             <directory>./src</directory>
             <exclude>
                 <directory>./src/config</directory>
+                <directory>./src/data</directory>
                 <file>./src/AspectServiceProvider.php</file>
                 <file>./src/CompileServiceProvider.php</file>
                 <file>./src/ConsoleServiceProvider.php</file>

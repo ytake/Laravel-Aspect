@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -7,6 +8,16 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ * Copyright (c) 2015 Yuuki Takezawa
+ *
+ *
+ * CodeGenMethod Class, CodeGen Class is:
+ * Copyright (c) 2012-2015, The Ray Project for PHP
+ *
+ * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 
 namespace Ytake\LaravelAspect\Console;
@@ -17,10 +28,6 @@ use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 /**
  * Class ClearCacheCommand
- *
- * @package Ytake\LaravelAspect\Console
- * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
- * @license http://opensource.org/licenses/MIT MIT
  */
 class ClearCacheCommand extends Command
 {
@@ -28,7 +35,7 @@ class ClearCacheCommand extends Command
     protected $name = 'ytake:aspect-clear-cache';
 
     /** @var string */
-    protected $description = 'compiles all known templates';
+    protected $description = 'Flush the application aspect code cache';
 
     /** @var ConfigRepository */
     protected $config;
@@ -52,12 +59,14 @@ class ClearCacheCommand extends Command
      */
     public function fire()
     {
-        $configure = $this->config->get('ytake-laravel-aop');
-
-        $driverConfig = $configure['aop'][$configure['default']];
-        if (isset($driverConfig['cacheDir'])) {
-            $this->filesystem->cleanDirectory($driverConfig['cacheDir']);
+        $configure = $this->config->get('ytake-laravel-aop.aspect');
+        $driverConfig = $configure['drivers'][$configure['default']];
+        if (isset($driverConfig['cache_dir'])) {
+            $files = $this->filesystem->glob($driverConfig['cache_dir'] . '/*');
+            foreach ($files as $file) {
+                $this->filesystem->delete($file);
+            }
         }
-        $this->info('aspect/annotation cache clear!');
+        $this->info('aspect code cache clear!');
     }
 }

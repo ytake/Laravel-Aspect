@@ -2,9 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\DatabaseManager;
-use Illuminate\Database\Eloquent\QueueEntityResolver;
 use Illuminate\Database\Connectors\ConnectionFactory;
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 
 class TestCase extends \PHPUnit_Framework_TestCase
 {
@@ -61,6 +59,13 @@ class TestCase extends \PHPUnit_Framework_TestCase
         });
     }
 
+    protected function registerAnnotationReader()
+    {
+        $this->app->singleton('aspect.annotation.reader', function ($app) {
+            return (new \Ytake\LaravelAspect\AnnotationManager($app))->getReader();
+        });
+    }
+
     protected function createApplicationContainer()
     {
         $this->app = new \Illuminate\Container\Container;
@@ -70,11 +75,23 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $this->registerConfigure();
         $this->registerDatabase();
         $this->registerCache();
+        $this->registerAnnotationReader();
+        $this->app->singleton('aspect.manager', function ($app) {
+            return new \Ytake\LaravelAspect\AspectManager($app);
+        });
+        $this->app->bind(
+            \Illuminate\Container\Container::class,
+            function () {
+                return $this->app;
+            }
+        );
+        \Illuminate\Container\Container::setInstance($this->app);
     }
 
     protected function tearDown()
     {
-        $this->app['filesystem']->deleteDirectory(__DIR__ . '/storage');
+        // $this->app['filesystem']->cleanDirectory(__DIR__ . '/storage/aop');
+        // $this->app['filesystem']->cleanDirectory(__DIR__ . '/storage/annotation');
         $this->app = null;
     }
 }

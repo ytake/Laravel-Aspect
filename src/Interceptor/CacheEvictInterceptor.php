@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -7,43 +8,53 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ * Copyright (c) 2015 Yuuki Takezawa
+ *
+ *
+ * CodeGenMethod Class, CodeGen Class is:
+ * Copyright (c) 2012-2015, The Ray Project for PHP
+ *
+ * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 
-namespace Ytake\LaravelAspect\Aspect;
+namespace Ytake\LaravelAspect\Interceptor;
 
-use Go\Lang\Annotation\Around;
-use Go\Aop\Intercept\MethodInvocation;
+use Ray\Aop\MethodInvocation;
 
 /**
- * Class CachePutAspect
- *
- * @package Ytake\LaravelAspect\Aspect
- * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
- * @license http://opensource.org/licenses/MIT MIT
+ * Class CacheEvictInterceptor
  */
-class CachePutAspect extends AbstractCache
+class CacheEvictInterceptor extends AbstractCache
 {
     /**
-     * @Around("@annotation(Ytake\LaravelAspect\Annotation\CachePut)")
      * @param MethodInvocation $invocation
+     *
      * @return mixed
      */
-    public function afterMethodExecution(MethodInvocation $invocation)
+    public function invoke(MethodInvocation $invocation)
     {
-        $annotation = $invocation->getMethod()->getAnnotation('Ytake\LaravelAspect\Annotation\CachePut');
+        $result = $invocation->proceed();
+
+        $annotation = $this->reader
+            ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
 
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];
         }
         $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
+
         // detect use cache driver
         $cache = $this->detectCacheRepository($annotation);
 
-        if ($result = $invocation->proceed()) {
-            $cache->put(implode($this->join, $keys), $result, $annotation->lifetime);
+        if ($annotation->allEntries) {
+            $cache->flush();
         }
 
+        $cache->forget(implode($this->join, $keys));
         return $result;
     }
 }

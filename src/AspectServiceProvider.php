@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -7,6 +8,16 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ * Copyright (c) 2015 Yuuki Takezawa
+ *
+ *
+ * CodeGenMethod Class, CodeGen Class is:
+ * Copyright (c) 2012-2015, The Ray Project for PHP
+ *
+ * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 
 namespace Ytake\LaravelAspect;
@@ -15,26 +26,23 @@ use Illuminate\Support\ServiceProvider;
 
 /**
  * Class AspectServiceProvider
- *
- * @package Ytake\LaravelAspect
- * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
- * @license http://opensource.org/licenses/MIT MIT
  */
 class AspectServiceProvider extends ServiceProvider
 {
+    /** @var bool  */
+    protected $defer = true;
+
     /**
-     * @inheritdoc
+     * boot serivce
      */
     public function boot()
     {
         // register annotation
-        $this->app->make('aspect.annotation.register')->registerAspectAnnotations();
-        // annotation driver
-        $this->app->make('aspect.manager')->register();
+        $this->app['aspect.annotation.register']->registerAspectAnnotations();
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function register()
     {
@@ -45,7 +53,13 @@ class AspectServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($configPath, 'ytake-laravel-aop');
         $this->publishes([$configPath => config_path('ytake-laravel-aop.php')], 'aspect');
 
-        $this->registerAspectAnnotations();
+        $this->app->singleton('aspect.annotation.register', function () {
+            return new Annotation();
+        });
+
+        $this->app->singleton('aspect.annotation.reader', function ($app) {
+            return (new AnnotationManager($app))->getReader();
+        });
 
         $this->app->singleton('aspect.manager', function ($app) {
             return new AspectManager($app);
@@ -53,12 +67,14 @@ class AspectServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
-    protected function registerAspectAnnotations()
+    public function provides()
     {
-        $this->app->singleton('aspect.annotation.register', function () {
-            return new Annotation();
-        });
+        return [
+            'aspect.annotation.register',
+            'aspect.annotation.reader',
+            'aspect.manager'
+        ];
     }
 }

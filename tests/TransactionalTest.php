@@ -15,24 +15,20 @@ class TransactionalTest extends \TestCase
         $this->resolveManager();
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testTransactionalAssertString()
     {
-        $transactional = new \__Test\AspectTransactionalString;
+        $transactional = $this->app->make(\__Test\AspectTransactionalString::class);
         $this->assertContains('testing', $transactional->start());
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testTransactionalDatabase()
     {
-        $transactional = new \__Test\AspectTransactionalDatabase($this->app['db']);
+        $this->app->bind(\__Test\AspectTransactionalDatabase::class, function () {
+            return new \__Test\AspectTransactionalDatabase($this->app['db']);
+        });
+        $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
         $this->assertInternalType('array', $transactional->start());
         $this->assertInstanceOf('stdClass', $transactional->start()[0]);
-
     }
 
     /**
@@ -42,8 +38,7 @@ class TransactionalTest extends \TestCase
     {
         $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
-        /** @var \Ytake\LaravelAspect\GoAspect $aspect */
-        $aspect = $this->manager->driver('go');
-        $aspect->register();
+        $aspect = $this->manager->driver('ray');
+        $aspect->register(\__Test\TransactionalModule::class);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -7,30 +8,36 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ * Copyright (c) 2015 Yuuki Takezawa
+ *
+ *
+ * CodeGenMethod Class, CodeGen Class is:
+ * Copyright (c) 2012-2015, The Ray Project for PHP
+ *
+ * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 
-namespace Ytake\LaravelAspect\Aspect;
+namespace Ytake\LaravelAspect\Interceptor;
 
-use Go\Lang\Annotation\Around;
-use Go\Aop\Intercept\MethodInvocation;
+use Ray\Aop\MethodInvocation;
 
 /**
- * Class CacheableAspect
- *
- * @package Ytake\LaravelAspect\Aspect
- * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
- * @license http://opensource.org/licenses/MIT MIT
+ * Class CacheableInterceptor
  */
-class CacheableAspect extends AbstractCache
+class CacheableInterceptor extends AbstractCache
 {
     /**
-     * @Around("@annotation(Ytake\LaravelAspect\Annotation\Cacheable)")
      * @param MethodInvocation $invocation
      * @return mixed
      */
-    public function aroundMethodExecution(MethodInvocation $invocation)
+    public function invoke(MethodInvocation $invocation)
     {
-        $annotation = $invocation->getMethod()->getAnnotation('Ytake\LaravelAspect\Annotation\Cacheable');
+        $annotation = $this->reader
+            ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
+
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];
@@ -45,7 +52,6 @@ class CacheableAspect extends AbstractCache
         if ($result = $invocation->proceed()) {
             $cache->add($key, $result, $annotation->lifetime);
         }
-
         return $result;
     }
 }

@@ -18,12 +18,14 @@
   ],
   "require": {
     "php": ">=5.5.9",
-    "goaop/framework": "~0.0",
     "illuminate/console": "~5.0",
     "illuminate/filesystem": "~5.0",
     "illuminate/support": "~5.0",
     "illuminate/config": "~5.0",
-    "doctrine/annotations": "~1.0"
+    "illuminate/contracts": "~5.0",
+    "ray/aop": "~2.0",
+    "doctrine/annotations": "~1.0",
+    "doctrine/cache": "~1.0"
   },
   "require-dev": {
     "symfony/framework-bundle": "2.*",
@@ -41,7 +43,8 @@
   },
   "autoload-dev": {
     "files": [
-      "tests/TestCase.php"
+      "tests/TestCase.php",
+      "tests/helper.php"
     ],
     "psr-4": {
       "__Test\\": "tests/src"

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -7,45 +8,55 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ * Copyright (c) 2015 Yuuki Takezawa
+ *
+ *
+ * CodeGenMethod Class, CodeGen Class is:
+ * Copyright (c) 2012-2015, The Ray Project for PHP
+ *
+ * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 
-/**
- * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
- * @license http://opensource.org/licenses/MIT MIT
- */
 return [
 
-    /**
-     * choose aop library
-     * "go"(go-aop), "none"(for testing)
-     *
-     * @see https://github.com/goaop/framework
-     */
-    'default' => env('ASPECT_DRIVER', 'go'),
+    'aspect' => [
+        /**
+         * choose aop library
+         * "ray"(Ray.Aop), "none"(for testing)
+         */
+        'default' => env('ASPECT_DRIVER', 'ray'),
 
-    /**
-     *
-     */
-    'aop' => [
-        'go' => [
-            // boolean Determines whether or not kernel is in debug mode
-            'debug' => env('ASPECT_DEBUG', true),
-            // string Path to the application root directory.
-            'appDir' => app_path(),
-            // string Path to the cache directory where compiled classes will be stored
-            'cacheDir' => storage_path('framework/aop'),
-            // integer Binary mask of features
-            // 'features' => 0,
-            // array WhiteList of directories where aspects should be applied. Empty for everywhere.
-            'includePaths' => [
-               app_path()
+        /**
+         *
+         */
+        'drivers'     => [
+            'ray'  => [
+                // string Path to the cache directory where compiled classes will be stored
+                'cache_dir' => storage_path('framework/aop'),
             ],
-            // array BlackList of directories or files where aspects shouldn't be applied.
-            // 'excludePaths' => []
+            'none' => [
+                // for testing driver
+                // no use aspect
+            ]
         ],
-        'none' => [
-            // for testing driver
-            // no use aspect
-        ]
+    ],
+
+    'annotation' => [
+        /**
+         * choose annotation reader
+         * 'array'(default), 'file'(file cache)
+         */
+        'default' => env('ASPECT_ANNOTATION_DRIVER', 'array'),
+
+        'drivers' => [
+            'file' => [
+                'cache_dir' => storage_path('framework/annotation'),
+                //
+                'debug' => env('ASPECT_ANNOTATION_DEBUG', true),
+            ],
+        ],
     ],
 ];

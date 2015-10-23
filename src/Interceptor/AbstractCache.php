@@ -1,4 +1,5 @@
 <?php
+
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -7,36 +8,33 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license.
+ * Copyright (c) 2015 Yuuki Takezawa
+ *
+ *
+ * CodeGenMethod Class, CodeGen Class is:
+ * Copyright (c) 2012-2015, The Ray Project for PHP
+ *
+ * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 
-namespace Ytake\LaravelAspect\Aspect;
+namespace Ytake\LaravelAspect\Interceptor;
 
-use Go\Aop\Aspect;
-use Go\Aop\Intercept\MethodInvocation;
-use Illuminate\Contracts\Cache\Factory as CacheFactory;
+use Ray\Aop\MethodInvocation;
+use Ray\Aop\MethodInterceptor;
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
  * Class AbstractCache
- *
- * @package Ytake\LaravelAspect\Aspect
- * @author  yuuki.takezawa<yuuki.takezawa@comnect.jp.net>
- * @license http://opensource.org/licenses/MIT MIT
  */
-abstract class AbstractCache implements Aspect
+abstract class AbstractCache implements MethodInterceptor
 {
+    use AnnotationReaderTrait;
+
     /** @var string */
     protected $join = ":";
-
-    /** @var CacheFactory */
-    protected $cache;
-
-    /**
-     * @param CacheFactory $cache
-     */
-    public function __construct(CacheFactory $cache)
-    {
-        $this->cache = $cache;
-    }
 
     /**
      * @param                  $name
@@ -85,7 +83,7 @@ abstract class AbstractCache implements Aspect
      */
     protected function detectCacheRepository($annotation)
     {
-        $cache = $this->cache->store($annotation->driver);
+        $cache = app('cache')->store($annotation->driver);
         if (count($annotation->tags)) {
             $cache = $cache->tags($annotation->tags);
 

@@ -14,56 +14,41 @@ class CacheableTest extends \TestCase
         $this->resolveManager();
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testCacheableGenerateCacheNameSingleKey()
     {
-        $cache = new \__Test\AspectCacheable;
+        $cache = $this->app->make(\__Test\AspectCacheable::class);
         $result = $cache->singleKey(1000);
         $this->assertSame(1000, $result);
         $this->assertSame(1000, $this->app['cache']->get('singleKey:1000'));
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testCacheableGenerateCacheNameMultipleKey()
     {
-        $cache = new \__Test\AspectCacheable;
+        $cache = $this->app->make(\__Test\AspectCacheable::class);
         $result = $cache->multipleKey(1000, 'testing');
         $this->assertSame(1000, $result);
         $this->assertSame(1000, $this->app['cache']->get('multipleKey:1000:testing'));
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testCacheableCacheNameMultipleKey()
     {
-        $cache = new \__Test\AspectCacheable;
+        $cache = $this->app->make(\__Test\AspectCacheable::class);
         $result = $cache->namedMultipleKey(1000, 'testing');
         $this->assertSame(1000, $result);
         $this->assertSame(1000, $this->app['cache']->get('testing1:1000:testing'));
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testCacheableCacheNameMultipleNameAndKey()
     {
-        $cache = new \__Test\AspectCacheable;
+        $cache = $this->app->make(\__Test\AspectCacheable::class);
         $result = $cache->namedMultipleNameAndKey(1000, 'testing');
         $this->assertSame(1000, $result);
         $this->assertSame(1000, $this->app['cache']->tags(['testing1', 'testing2'])->get('namedMultipleNameAndKey:1000:testing'));
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testCacheableCacheObject()
     {
-        $cache = new \__Test\AspectCacheable;
+        $cache = $this->app->make(\__Test\AspectCacheable::class);
         $class = new \stdClass;
         $class->title = 'testing';
         $result = $cache->cachingKeyObject(1000, $class);
@@ -77,7 +62,7 @@ class CacheableTest extends \TestCase
     {
         $annotation = new \Ytake\LaravelAspect\Annotation;
         $annotation->registerAspectAnnotations();
-        $aspect = $this->manager->driver('go');
-        $aspect->register();
+        $aspect = $this->manager->driver('ray');
+        $aspect->register(\__Test\CacheableModule::class);
     }
 }
