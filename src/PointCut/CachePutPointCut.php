@@ -30,9 +30,9 @@ use Ytake\LaravelAspect\Interceptor\CachePutInterceptor;
 /**
  * Class CachePutPointCut
  */
-class CachePutPointCut implements PointCutable
+class CachePutPointCut extends CommonPointCut implements PointCutable
 {
-    /** @var   */
+    /** @var */
     protected $annotation = \Ytake\LaravelAspect\Annotation\CachePut::class;
 
     /**
@@ -42,13 +42,8 @@ class CachePutPointCut implements PointCutable
      */
     public function configure(Container $app)
     {
-        $cache = new CachePutInterceptor;
-        $cache->setReader($app['aspect.annotation.reader']);
-        $cache->setAnnotation($this->annotation);
-        return new Pointcut(
-            (new Matcher)->any(),
-            (new Matcher)->annotatedWith($this->annotation),
-            [$cache]
-        );
+        $this->setInterceptor(new CachePutInterceptor);
+
+        return $this->withAnnotatedAnyInterceptor($app);
     }
 }

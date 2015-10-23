@@ -24,26 +24,40 @@ namespace Ytake\LaravelAspect\PointCut;
 
 use Ray\Aop\Matcher;
 use Ray\Aop\Pointcut;
+use Ray\Aop\MethodInterceptor;
 use Illuminate\Container\Container;
-use Ytake\LaravelAspect\Interceptor\CacheableInterceptor;
 
 /**
- * Class CacheablePointCut
+ * Class CommonPointCut
  */
-class CacheablePointCut extends CommonPointCut implements PointCutable
+class CommonPointCut
 {
-    /** @var   */
-    protected $annotation = \Ytake\LaravelAspect\Annotation\Cacheable::class;
+    /** @var MethodInterceptor */
+    protected $interceptor;
+
+    /** @var string */
+    protected $annotation;
+
+    /**
+     * @param MethodInterceptor $interceptor
+     */
+    protected function setInterceptor(MethodInterceptor $interceptor)
+    {
+        $this->interceptor = $interceptor;
+    }
 
     /**
      * @param Container $app
-     *
      * @return Pointcut
      */
-    public function configure(Container $app)
+    protected function withAnnotatedAnyInterceptor(Container $app)
     {
-        $this->setInterceptor(new CacheableInterceptor);
-
-        return $this->withAnnotatedAnyInterceptor($app);
+        $this->interceptor->setReader($app['aspect.annotation.reader']);
+        $this->interceptor->setAnnotation($this->annotation);
+        return new Pointcut(
+            (new Matcher)->any(),
+            (new Matcher)->annotatedWith($this->annotation),
+            [$this->interceptor]
+        );
     }
 }

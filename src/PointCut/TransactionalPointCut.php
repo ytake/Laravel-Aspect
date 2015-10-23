@@ -30,9 +30,9 @@ use Ytake\LaravelAspect\Interceptor\TransactionalInterceptor;
 /**
  * Class TransactionalPointCut
  */
-class TransactionalPointCut implements PointCutable
+class TransactionalPointCut extends CommonPointCut implements PointCutable
 {
-    /** @var   */
+    /** @var */
     protected $annotation = \Ytake\LaravelAspect\Annotation\Transactional::class;
 
     /**
@@ -42,13 +42,8 @@ class TransactionalPointCut implements PointCutable
      */
     public function configure(Container $app)
     {
-        $cache = new TransactionalInterceptor;
-        $cache->setReader($app['aspect.annotation.reader']);
-        $cache->setAnnotation($this->annotation);
-        return new Pointcut(
-            (new Matcher)->any(),
-            (new Matcher)->annotatedWith($this->annotation),
-            [$cache]
-        );
+        $this->setInterceptor(new TransactionalInterceptor);
+
+        return $this->withAnnotatedAnyInterceptor($app);
     }
 }

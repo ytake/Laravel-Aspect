@@ -30,7 +30,7 @@ use Ytake\LaravelAspect\Interceptor\CacheEvictInterceptor;
 /**
  * Class CacheEvictExecution
  */
-class CacheEvictPointCut implements PointCutable
+class CacheEvictPointCut extends CommonPointCut implements PointCutable
 {
     /** @var string  */
     protected $annotation = \Ytake\LaravelAspect\Annotation\CacheEvict::class;
@@ -42,14 +42,8 @@ class CacheEvictPointCut implements PointCutable
      */
     public function configure(Container $app)
     {
-        $cache = new CacheEvictInterceptor;
-        $cache->setReader($app['aspect.annotation.reader']);
-        $cache->setAnnotation($this->annotation);
+        $this->setInterceptor(new CacheEvictInterceptor);
 
-        return new Pointcut(
-            (new Matcher)->any(),
-            (new Matcher)->annotatedWith($this->annotation),
-            [$cache]
-        );
+        return $this->withAnnotatedAnyInterceptor($app);
     }
 }
