@@ -1,0 +1,17 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyAspectModuleClass;
+
+/**
+ * Class DummyClass
+ */
+class DummyClass extends DummyModuleClass
+{
+    /** @var array */
+    protected $classes = [
+        // example
+        // \App\Services\AcmeServce::class
+    ];
+}

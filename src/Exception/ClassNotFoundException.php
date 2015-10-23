@@ -20,35 +20,20 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 
-namespace Ytake\LaravelAspect\PointCut;
-
-use Ray\Aop\Matcher;
-use Ray\Aop\Pointcut;
-use Illuminate\Container\Container;
-use Ytake\LaravelAspect\Interceptor\CacheableInterceptor;
+namespace Ytake\LaravelAspect\Exception;
 
 /**
- * Class CacheablePointCut
+ * Class ClassNotFoundException
  */
-class CacheablePointCut implements PointCutable
+class ClassNotFoundException extends \Exception
 {
-    /** @var   */
-    protected $annotation = \Ytake\LaravelAspect\Annotation\Cacheable::class;
-
     /**
-     * @param Container $app
-     *
-     * @return Pointcut
+     * @param string          $class
+     * @param int             $code
+     * @param \Exception|null $previous
      */
-    public function configure(Container $app)
+    public function __construct($class, $code = 500, \Exception $previous = null)
     {
-        $cache = new CacheableInterceptor;
-        $cache->setReader($app['aspect.annotation.reader']);
-        $cache->setAnnotation($this->annotation);
-        return new Pointcut(
-            (new Matcher)->any(),
-            (new Matcher)->annotatedWith($this->annotation),
-            [$cache]
-        );
+        parent::__construct('class not found at path: ' . $class, $code, $previous);
     }
 }

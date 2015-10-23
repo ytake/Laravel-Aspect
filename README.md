@@ -14,9 +14,6 @@ for laravel framework
 [![Total Downloads](http://img.shields.io/packagist/dt/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
 
 ## usage 
-### default aspect
-
-soon
 
 ### install 
 
@@ -42,6 +39,33 @@ $ composer require ytake/laravel-aspect
     // added Artisan Command
     \Ytake\LaravelAspect\ConsoleServiceProvider::class,
 ]
+```
+
+### publish aspect module class
+
+```bash
+$ php artisan ytake:aspect-module-publish
+```
+more command options [--help]
+
+### aspect kernel boot
+
+added serviceProvider Class
+
+```php
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * @return void
+     */
+    public function boot()
+    {
+        /** @var \Ytake\LaravelAspect\AspectManager $aspect */
+        $aspect = $this->app['aspect.manager'];
+        $aspect->register(\App\Modules\CacheableModule::class);
+    }
+    
+}
 ```
 
 ### publish configure
@@ -178,7 +202,27 @@ soon
 
 ### Annotation Cache Driver
 
-soon 
+chose array driver or file cache driver
+
+use config/ytake-laravel-aspect.php file
+
+```php
+    'annotation' => [
+        /**
+         * choose annotation reader
+         * 'array'(default), 'file'(file cache)
+         */
+        'default' => env('ASPECT_ANNOTATION_DRIVER', 'array'),
+
+        'drivers' => [
+            'file' => [
+                'cache_dir' => storage_path('framework/annotation'),
+                //
+                'debug' => env('ASPECT_ANNOTATION_DEBUG', true),
+            ],
+        ],
+    ],
+```
 
 ## add Interceptors
 
