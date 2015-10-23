@@ -107,7 +107,7 @@ class ModulePublishCommand extends Command
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return string
      */
     protected function getPath($name)
