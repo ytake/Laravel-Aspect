@@ -20,6 +20,7 @@ class CacheableTest extends \TestCase
         $result = $cache->singleKey(1000);
         $this->assertSame(1000, $result);
         $this->assertSame(1000, $this->app['cache']->get('singleKey:1000'));
+        $this->assertSame($result, $cache->singleKey(1000));
     }
 
     public function testCacheableGenerateCacheNameMultipleKey()

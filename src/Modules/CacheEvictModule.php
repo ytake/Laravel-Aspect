@@ -34,7 +34,7 @@ class CacheEvictModule extends AspectModule
 
     public function attach()
     {
-        $pointcut = $this->app->call([new CacheEvictPointCut, 'configure']);
+        $pointcut = (new CacheEvictPointCut)->configure($this->app);
         foreach ($this->classes as $class) {
             $this->instanceResolver($class, [$pointcut]);
         }

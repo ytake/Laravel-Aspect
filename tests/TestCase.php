@@ -34,7 +34,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
             "cache",
             $filesystem->getRequire(__DIR__ . '/config/cache.php')
         );
-        $this->app['filesystem'] = $filesystem;
+        $this->app['files'] = $filesystem;
     }
 
     protected function registerDatabase()
@@ -90,8 +90,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
-        // $this->app['filesystem']->cleanDirectory(__DIR__ . '/storage/aop');
-        // $this->app['filesystem']->cleanDirectory(__DIR__ . '/storage/annotation');
         $this->app = null;
     }
 }

@@ -34,7 +34,7 @@ class TransactionalModule extends AspectModule
 
     public function attach()
     {
-        $pointcut = $this->app->call([new TransactionalPointCut, 'configure']);
+        $pointcut = (new TransactionalPointCut)->configure($this->app);
         foreach ($this->classes as $class) {
             $this->instanceResolver($class, [$pointcut]);
         }
