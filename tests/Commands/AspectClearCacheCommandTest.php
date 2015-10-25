@@ -16,7 +16,7 @@ class AspectClearCacheCommandTest extends \TestCase
 
         $this->command = new \Ytake\LaravelAspect\Console\ClearCacheCommand(
             $this->app['config'],
-            $this->app['filesystem']
+            $this->app['files']
         );
         $this->command->setLaravel(new MockApplication());
     }
@@ -36,7 +36,7 @@ class AspectClearCacheCommandTest extends \TestCase
         $configure = $this->app['config']->get('ytake-laravel-aop');
         $driverConfig = $configure['aspect']['drivers'][$configure['aspect']['default']];
         if (isset($driverConfig['cache_dir'])) {
-            $files = $this->app['filesystem']->files($driverConfig['cache_dir']);
+            $files = $this->app['files']->files($driverConfig['cache_dir']);
             $this->assertCount(0, $files);
         }
     }

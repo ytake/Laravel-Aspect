@@ -22,8 +22,6 @@
 
 namespace Ytake\LaravelAspect\PointCut;
 
-use Ray\Aop\Matcher;
-use Ray\Aop\Pointcut;
 use Illuminate\Container\Container;
 use Ytake\LaravelAspect\Interceptor\CachePutInterceptor;
 
@@ -38,7 +36,7 @@ class CachePutPointCut extends CommonPointCut implements PointCutable
     /**
      * @param Container $app
      *
-     * @return Pointcut
+     * @return \Ray\Aop\Pointcut
      */
     public function configure(Container $app)
     {

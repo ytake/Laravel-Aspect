@@ -24,7 +24,6 @@ namespace Ytake\LaravelAspect;
 
 use Ray\Aop\Bind;
 use Ray\Aop\Compiler;
-use Ray\Aop\Matcher;
 use PhpParser\Parser;
 use PhpParser\Lexer;
 use PhpParser\BuilderFactory;
@@ -43,10 +42,10 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var array */
     protected $configure;
 
-    /** @var Compiler  */
+    /** @var Compiler */
     protected $compiler;
 
-    /** @var Bind  */
+    /** @var Bind */
     protected $bind;
 
     /**
@@ -58,12 +57,14 @@ class RayAspectKernel implements AspectDriverInterface
     {
         $this->app = $app;
         $this->configure = $configure;
+        $this->makeCompileDir();
         $this->compiler = $this->getCompiler();
         $this->bind = $bind;
     }
 
     /**
      * @param null $module
+     *
      * @throws ClassNotFoundException
      */
     public function register($module = null)
@@ -84,5 +85,19 @@ class RayAspectKernel implements AspectDriverInterface
             new BuilderFactory(),
             new Standard()
         ));
+    }
+
+    /**
+     * make source compile file directory
+     *
+     * @return void
+     */
+    protected function makeCompileDir()
+    {
+        /** @var \Illuminate\Filesystem\Filesystem $file */
+        $file = $this->app['files'];
+        if (!$file->exists($this->configure['cache_dir'])) {
+            $file->makeDirectory($this->configure['cache_dir'], 0777);
+        }
     }
 }
