@@ -25,7 +25,7 @@ namespace Ytake\LaravelAspect\PointCut;
 use Ray\Aop\Matcher;
 use Ray\Aop\Pointcut;
 use Ray\Aop\MethodInterceptor;
-use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\Container;
 
 /**
  * Class CommonPointCut
