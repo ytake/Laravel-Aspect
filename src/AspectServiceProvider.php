@@ -33,15 +33,6 @@ class AspectServiceProvider extends ServiceProvider
     protected $defer = true;
 
     /**
-     * boot serivce
-     */
-    public function boot()
-    {
-        // register annotation
-        $this->app['aspect.annotation.register']->registerAspectAnnotations();
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function register()
@@ -62,6 +53,8 @@ class AspectServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('aspect.manager', function ($app) {
+            // register annotation
+            $app['aspect.annotation.register']->registerAspectAnnotations();
             return new AspectManager($app);
         });
     }
