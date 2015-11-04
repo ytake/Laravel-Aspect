@@ -22,7 +22,7 @@
 
 namespace Ytake\LaravelAspect\PointCut;
 
-use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\Container;
 use Ytake\LaravelAspect\Interceptor\CachePutInterceptor;
 
 /**
