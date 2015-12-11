@@ -32,4 +32,7 @@ final class Transactional extends Annotation
 {
     /** @var null $connection  database connection */
     public $value = null;
+
+    /** @var string  */
+    public $expect = 'Illuminate\Database\QueryException';
 }

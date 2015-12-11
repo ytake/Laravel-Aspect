@@ -53,8 +53,16 @@ class TransactionalInterceptor implements MethodInterceptor
             $database->commit();
 
             return $result;
-        } catch (QueryException $exception) {
-            $database->rollBack();
+        } catch (\Exception $exception) {
+            // for default Exception
+            if($exception instanceof QueryException) {
+                $database->rollBack();
+                throw $exception;
+            }
+            if($exception instanceof $annotation->expect) {
+                $database->rollBack();
+                throw $exception;
+            }
             throw $exception;
         }
     }
