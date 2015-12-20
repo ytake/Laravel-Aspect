@@ -40,6 +40,11 @@ abstract class AspectModule
     /** @var CompilerInterface */
     protected $compiler;
 
+    protected static $pointcuts = [];
+
+    /** @var array  */
+    protected $resolve = [];
+
     /**
      * @param Application $app
      * @param Bind        $bind
@@ -56,28 +61,18 @@ abstract class AspectModule
     abstract public function attach();
 
     /**
-     * @param CompilerInterface $compiler
-     *
-     * @return $this
+     * @param       $class
      */
-    public function setCompiler(CompilerInterface $compiler)
+    protected function instanceResolver($class)
     {
-        $this->compiler = $compiler;
-        return $this;
+        $this->resolve[$class] = self::$pointcuts;
     }
 
     /**
-     * @param       $class
-     * @param array $pointcuts
+     * @return array
      */
-    protected function instanceResolver($class, array $pointcuts)
+    public function getResolver()
     {
-        $bind = $this->bind->bind($class, $pointcuts);
-        $compiledClass = $this->compiler->compile($class, $bind);
-        $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
-            $instance = $app->make($compiledClass);
-            $instance->bindings = $bind->getBindings();
-            return $instance;
-        });
+        return $this->resolve;
     }
 }

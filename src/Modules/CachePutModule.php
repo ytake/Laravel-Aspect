@@ -35,8 +35,9 @@ class CachePutModule extends AspectModule
     public function attach()
     {
         $pointcut = (new CachePutPointCut)->configure($this->app);
+        self::$pointcuts[] = $pointcut;
         foreach ($this->classes as $class) {
-            $this->instanceResolver($class, [$pointcut]);
+            $this->instanceResolver($class);
         }
     }
 }

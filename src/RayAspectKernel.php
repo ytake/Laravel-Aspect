@@ -48,6 +48,8 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var Bind */
     protected $bind;
 
+    protected $aspectResolver;
+
     /**
      * @param Container $app
      * @param Bind      $bind
@@ -72,7 +74,22 @@ class RayAspectKernel implements AspectDriverInterface
         if (!class_exists($module)) {
             throw new ClassNotFoundException($module);
         }
-        (new $module($this->app, $this->bind))->setCompiler($this->compiler)->attach();
+
+        $this->aspectResolver = (new $module($this->app, $this->bind));
+        $this->aspectResolver->attach();
+    }
+
+    public function boot()
+    {
+        foreach($this->aspectResolver->getResolver() as $class => $pointcuts) {
+            $bind = $this->bind->bind($class, $pointcuts);
+            $compiledClass = $this->compiler->compile($class, $bind);
+            $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
+                $instance = $app->make($compiledClass);
+                $instance->bindings = $bind->getBindings();
+                return $instance;
+            });
+        }
     }
 
     /**
