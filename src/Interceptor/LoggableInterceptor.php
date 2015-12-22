@@ -42,7 +42,7 @@ class LoggableInterceptor implements MethodInterceptor
     {
         $start = microtime(true);
         $result = $invocation->proceed();
-        $logFormat['context']['time'] = microtime(true) - $start;
+        $time = microtime(true) - $start;
         /** @var \Ytake\LaravelAspect\Annotation\Loggable $annotation */
         $annotation = $this->reader->getMethodAnnotation($invocation->getMethod(), $this->annotation);
         $logFormat = $this->logFormatter($annotation, $invocation);
@@ -51,6 +51,7 @@ class LoggableInterceptor implements MethodInterceptor
         if (!$annotation->skipResult) {
             $logFormat['context']['result'] = $result;
         }
+        $logFormat['context']['time'] = $time;
         /** Monolog\Logger */
         $logger->log($logFormat['level'], $logFormat['message'], $logFormat['context']);
 
