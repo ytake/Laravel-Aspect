@@ -35,7 +35,11 @@ return [
         'drivers'     => [
             'ray'  => [
                 // string Path to the cache directory where compiled classes will be stored
-                'cache_dir' => storage_path('framework/aop'),
+                'compile_dir' => storage_path('framework/aop/compile'),
+
+                'cache' => env('ASPECT_CACHEABLE', false),
+
+                'cache_dir' => storage_path('framework/aop/cache'),
             ],
             'none' => [
                 // for testing driver

@@ -17,12 +17,13 @@ class AspectMergeTest extends \TestCase
         $this->resolveManager();
     }
 
-    public function testA()
+    public function testCacheAspects()
     {
         /** @var \__Test\AspectMerge $cache */
         $cache = $this->app->make(\__Test\AspectMerge::class);
         $cache->caching(1);
         $result = $this->app['cache']->tags(['testing1', 'testing2'])->get('caching:1');
+        $this->assertNull($result);
     }
 
     /**

@@ -23,11 +23,8 @@
 namespace Ytake\LaravelAspect;
 
 use Ray\Aop\Bind;
-use Ray\Aop\Compiler;
-use PhpParser\Parser;
 use PhpParser\Lexer;
-use PhpParser\BuilderFactory;
-use PhpParser\PrettyPrinter\Standard;
+use Ray\Aop\Compiler;
 use Illuminate\Contracts\Container\Container;
 use Ytake\LaravelAspect\Exception\ClassNotFoundException;
 
@@ -45,23 +42,23 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var Compiler */
     protected $compiler;
 
-    /** @var Bind */
-    protected $bind;
+    /** @var bool */
+    protected $cacheable = false;
 
+    /** @var \Ytake\LaravelAspect\Modules\AspectModule */
     protected $aspectResolver;
 
     /**
      * @param Container $app
-     * @param Bind      $bind
-     * @param array     $configure
+     * @param array $configure
      */
-    public function __construct(Container $app, Bind $bind, array $configure)
+    public function __construct(Container $app, array $configure)
     {
         $this->app = $app;
         $this->configure = $configure;
         $this->makeCompileDir();
+        $this->makeCacheableDir();
         $this->compiler = $this->getCompiler();
-        $this->bind = $bind;
     }
 
     /**
@@ -74,15 +71,19 @@ class RayAspectKernel implements AspectDriverInterface
         if (!class_exists($module)) {
             throw new ClassNotFoundException($module);
         }
-
-        $this->aspectResolver = (new $module($this->app, $this->bind));
+        $this->aspectResolver = (new $module($this->app));
         $this->aspectResolver->attach();
     }
 
+    /**
+     * boot aspect kernel
+     */
     public function boot()
     {
-        foreach($this->aspectResolver->getResolver() as $class => $pointcuts) {
-            $bind = $this->bind->bind($class, $pointcuts);
+        foreach ($this->aspectResolver->getResolver() as $class => $pointcuts) {
+
+            $bind = (new AspectBind($this->cacheable, $this->configure['cache_dir']))
+                ->bind($class, $pointcuts);
             $compiledClass = $this->compiler->compile($class, $bind);
             $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
                 $instance = $app->make($compiledClass);
@@ -97,11 +98,7 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function getCompiler()
     {
-        return new Compiler($this->configure['cache_dir'], new CodeGen(
-            new Parser(new Lexer()),
-            new BuilderFactory(),
-            new Standard()
-        ));
+        return new Compiler($this->configure['compile_dir']);
     }
 
     /**
@@ -113,8 +110,25 @@ class RayAspectKernel implements AspectDriverInterface
     {
         /** @var \Illuminate\Filesystem\Filesystem $file */
         $file = $this->app['files'];
-        if (!$file->exists($this->configure['cache_dir'])) {
-            $file->makeDirectory($this->configure['cache_dir'], 0777);
+        if (!$file->exists($this->configure['compile_dir'])) {
+            $file->makeDirectory($this->configure['compile_dir'], 0777);
+        }
+    }
+
+    /**
+     * make aspect cache directory
+     *
+     * @return void
+     */
+    protected function makeCacheableDir()
+    {
+        if ($this->configure['cache']) {
+            /** @var \Illuminate\Filesystem\Filesystem $file */
+            $file = $this->app['files'];
+            if (!$file->exists($this->configure['cache_dir'])) {
+                $file->makeDirectory($this->configure['cache_dir'], 0777);
+            }
+            $this->cacheable = true;
         }
     }
 }

@@ -31,12 +31,12 @@ class CodeTemplate extends \Ray\Aop\FakeMock implements Ray\Aop\WeavedInterface
     public function returnSame($a)
     {
         if (isset($this->bindings[__FUNCTION__]) === false) {
-            return call_user_func_array([$this, 'parent::' . __FUNCTION__], func_get_args());
+            return call_user_func_array('parent::' . __FUNCTION__, func_get_args());
         }
 
         if ($this->isIntercepting === false) {
             $this->isIntercepting = true;
-            return call_user_func_array([$this, 'parent::' . __FUNCTION__], func_get_args());
+            return call_user_func_array('parent::' . __FUNCTION__, func_get_args());
         }
 
         $this->isIntercepting = false;

@@ -65,5 +65,6 @@ class CacheableTest extends \TestCase
         $annotation->registerAspectAnnotations();
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CacheableModule::class);
+        $aspect->boot();
     }
 }

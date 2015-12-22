@@ -36,8 +36,8 @@ class TransactionalInterceptor implements MethodInterceptor
 
     /**
      * @param MethodInvocation $invocation
-     *
      * @return object
+     * @throws \Exception
      */
     public function invoke(MethodInvocation $invocation)
     {

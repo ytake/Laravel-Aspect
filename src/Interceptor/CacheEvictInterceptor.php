@@ -52,10 +52,9 @@ class CacheEvictInterceptor extends AbstractCache
             $cache->flush();
             return $invocation->proceed();
         }
-
-        // var_dump('cacheEvict:invoke',$cache);
+        $result = $invocation->proceed();
         $cache->forget(implode($this->join, $keys));
 
-        return $invocation->proceed();
+        return $result;
     }
 }

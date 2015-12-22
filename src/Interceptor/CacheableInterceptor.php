@@ -49,8 +49,8 @@ class CacheableInterceptor extends AbstractCache
         if ($cache->has($key)) {
             return $cache->get($key);
         }
-        // var_dump('cacheable:invoke',$cache);
         $result = $invocation->proceed();
+
         if ($result) {
             $cache->add($key, $result, $annotation->lifetime);
         }

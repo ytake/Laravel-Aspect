@@ -40,5 +40,6 @@ class CacheEvictTest extends \TestCase
         $aspect = $this->app['aspect.manager']->driver('ray');
         $aspect->register(\__Test\CacheEvictModule::class);
         $aspect->register(\__Test\CacheableModule::class);
+        $aspect->boot();
     }
 }

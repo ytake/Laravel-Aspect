@@ -19,7 +19,6 @@
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect\Modules;
 
 use Ray\Aop\Bind;
@@ -40,19 +39,18 @@ abstract class AspectModule
     /** @var CompilerInterface */
     protected $compiler;
 
+    /** @var array  */
     protected static $pointcuts = [];
 
     /** @var array  */
-    protected $resolve = [];
+    protected static $resolve = [];
 
     /**
      * @param Application $app
-     * @param Bind        $bind
      */
-    public function __construct(Application $app, Bind $bind)
+    public function __construct(Application $app)
     {
         $this->app = $app;
-        $this->bind = $bind;
     }
 
     /**
@@ -61,11 +59,11 @@ abstract class AspectModule
     abstract public function attach();
 
     /**
-     * @param       $class
+     * @param string $class
      */
     protected function instanceResolver($class)
     {
-        $this->resolve[$class] = self::$pointcuts;
+        self::$resolve[$class] = self::$pointcuts;
     }
 
     /**
@@ -73,6 +71,6 @@ abstract class AspectModule
      */
     public function getResolver()
     {
-        return $this->resolve;
+        return self::$resolve;
     }
 }

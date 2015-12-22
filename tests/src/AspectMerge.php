@@ -11,12 +11,12 @@ use Ytake\LaravelAspect\Annotation\CacheEvict;
 /**
  * Class AspectMerge
  */
-class AspectMerge
+class AspectMerge implements AspectMergeInterface
 {
     /**
      *
-     * @Cacheable(tags={"testing1","testing2"},key={"#id"})
      * @CacheEvict(tags={"testing1","testing2"},key={"#id"})
+     * @Cacheable(tags={"testing1","testing2"},key={"#id"})
      * @param           $id
      * @return mixed
      */

@@ -41,5 +41,6 @@ class CachePutTest extends \TestCase
         $annotation->registerAspectAnnotations();
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CachePutModule::class);
+        $aspect->boot();
     }
 }
