@@ -8,9 +8,6 @@ class AspectBindTest extends TestCase
     /** @var \Illuminate\Filesystem\Filesystem */
     protected $file;
 
-    /** @var string  */
-    private $dir = __DIR__ . '/storage/tmp';
-
     public function setUp()
     {
         parent::setUp();
@@ -21,28 +18,36 @@ class AspectBindTest extends TestCase
     {
         $bind = new \Ytake\LaravelAspect\AspectBind(
             $this->file,
-            false,
-            $this->dir
+            $this->getDir(),
+            false
         );
         $this->assertInstanceOf(\Ray\Aop\Bind::class, $bind->bind(StubBindableClass::class, []));
-        $this->assertFalse($this->file->exists(__DIR__ . '/storage/tmp'));
+        $this->assertFalse($this->file->exists($this->getDir()));
     }
 
     public function testShouldReturnCacheableBindInstance()
     {
         $bind = new \Ytake\LaravelAspect\AspectBind(
             $this->file,
-            true,
-            $this->dir
+            $this->getDir(),
+            true
         );
         $this->assertInstanceOf(\Ray\Aop\Bind::class, $bind->bind(StubBindableClass::class, []));
-        $this->assertTrue($this->file->exists(__DIR__ . '/storage/tmp'));
+        $this->assertTrue($this->file->exists($this->getDir()));
     }
 
     public function tearDown()
     {
-        $this->file->deleteDirectory($this->dir);
+        $this->file->deleteDirectory($this->getDir());
         parent::tearDown();
+    }
+
+    /**
+     * @return string
+     */
+    protected function getDir()
+    {
+        return  __DIR__ . '/storage/tmp';
     }
 }
 

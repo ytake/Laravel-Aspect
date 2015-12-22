@@ -81,8 +81,7 @@ class RayAspectKernel implements AspectDriverInterface
     public function dispatch()
     {
         foreach ($this->aspectResolver->getResolver() as $class => $pointcuts) {
-
-            $bind = (new AspectBind($this->filesystem, $this->cacheable, $this->configure['cache_dir']))
+            $bind = (new AspectBind($this->filesystem, $this->configure['cache_dir'], $this->cacheable))
                 ->bind($class, $pointcuts);
             $compiledClass = $this->compiler->compile($class, $bind);
             $this->app->bind($class, function ($app) use ($bind, $compiledClass) {

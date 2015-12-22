@@ -40,10 +40,10 @@ class AspectBind
     /**
      * AspectBind constructor.
      * @param Filesystem $filesystem
+     * @param string $path
      * @param bool $cacheable
-     * @param $path
      */
-    public function __construct(Filesystem $filesystem, $cacheable = false, $path)
+    public function __construct(Filesystem $filesystem, $path, $cacheable = false)
     {
         $this->filesystem = $filesystem;
         $this->cacheable = $cacheable;
