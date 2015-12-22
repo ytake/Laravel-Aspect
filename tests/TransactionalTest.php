@@ -36,9 +36,8 @@ class TransactionalTest extends \TestCase
      */
     protected function resolveManager()
     {
-        $annotation = new \Ytake\LaravelAspect\Annotation;
-        $annotation->registerAspectAnnotations();
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\TransactionalModule::class);
+        $aspect->dispatch();
     }
 }

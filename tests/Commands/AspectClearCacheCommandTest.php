@@ -46,8 +46,6 @@ class AspectClearCacheCommandTest extends \TestCase
      */
     protected function resolveManager()
     {
-        $annotation = new \Ytake\LaravelAspect\Annotation;
-        $annotation->registerAspectAnnotations();
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CacheableModule::class);
     }

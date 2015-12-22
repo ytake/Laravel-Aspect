@@ -13,13 +13,7 @@
  * and is licensed under the MIT license.
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect;
 
 use Doctrine\Common\Annotations\AnnotationReader;

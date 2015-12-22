@@ -11,15 +11,10 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect\Console;
 
 use Illuminate\Support\Str;
@@ -49,10 +44,11 @@ class ModulePublishCommand extends Command
 
     /** @var array  package modules */
     protected $modules = [
-        'CacheableModule'     => \Ytake\LaravelAspect\Modules\CacheableModule::class,
-        'CacheEvictModule'    => \Ytake\LaravelAspect\Modules\CacheEvictModule::class,
-        'CachePutModule'      => \Ytake\LaravelAspect\Modules\CachePutModule::class,
+        'CacheableModule' => \Ytake\LaravelAspect\Modules\CacheableModule::class,
+        'CacheEvictModule' => \Ytake\LaravelAspect\Modules\CacheEvictModule::class,
+        'CachePutModule' => \Ytake\LaravelAspect\Modules\CachePutModule::class,
         'TransactionalModule' => \Ytake\LaravelAspect\Modules\TransactionalModule::class,
+        'LoggableModule' => \Ytake\LaravelAspect\Modules\LoggableModule::class,
     ];
 
     /**

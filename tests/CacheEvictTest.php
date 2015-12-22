@@ -35,11 +35,9 @@ class CacheEvictTest extends \TestCase
      */
     protected function resolveManager()
     {
-        $annotation = new \Ytake\LaravelAspect\Annotation;
-        $annotation->registerAspectAnnotations();
         $aspect = $this->app['aspect.manager']->driver('ray');
         $aspect->register(\__Test\CacheEvictModule::class);
         $aspect->register(\__Test\CacheableModule::class);
-        $aspect->boot();
+        $aspect->dispatch();
     }
 }

@@ -11,15 +11,10 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 return [
 
     'aspect' => [
@@ -30,15 +25,15 @@ return [
         'default' => env('ASPECT_DRIVER', 'ray'),
 
         /**
-         *
+         * for aspect driver options
          */
         'drivers'     => [
             'ray'  => [
-                // string Path to the cache directory where compiled classes will be stored
+                // string Path to the compiled directory where compiled classes will be stored
                 'compile_dir' => storage_path('framework/aop/compile'),
-
+                // aspect kernel cacheable
                 'cache' => env('ASPECT_CACHEABLE', false),
-
+                // string Path to the cache file directory where cache classes will be stored
                 'cache_dir' => storage_path('framework/aop/cache'),
             ],
             'none' => [
@@ -59,7 +54,7 @@ return [
             'file' => [
                 'cache_dir' => storage_path('framework/annotation'),
                 //
-                'debug' => env('ASPECT_ANNOTATION_DEBUG', true),
+                'debug' => env('ASPECT_ANNOTATION_DEBUG', false),
             ],
         ],
     ],

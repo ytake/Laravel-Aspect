@@ -13,13 +13,7 @@
  * and is licensed under the MIT license.
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect;
 
 use PhpParser\Lexer;
@@ -84,7 +78,7 @@ class RayAspectKernel implements AspectDriverInterface
     /**
      * boot aspect kernel
      */
-    public function boot()
+    public function dispatch()
     {
         foreach ($this->aspectResolver->getResolver() as $class => $pointcuts) {
 
@@ -114,9 +108,11 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function makeCompileDir()
     {
+        // @codeCoverageIgnoreStart
         if (!$this->filesystem->exists($this->configure['compile_dir'])) {
-            $this->filesystem->makeDirectory($this->configure['compile_dir'], 0777);
+            $this->filesystem->makeDirectory($this->configure['compile_dir'], 0777, true);
         }
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -127,9 +123,11 @@ class RayAspectKernel implements AspectDriverInterface
     protected function makeCacheableDir()
     {
         if ($this->configure['cache']) {
+            // @codeCoverageIgnoreStart
             if (!$this->filesystem->exists($this->configure['cache_dir'])) {
-                $this->filesystem->makeDirectory($this->configure['cache_dir'], 0777);
+                $this->filesystem->makeDirectory($this->configure['cache_dir'], 0777, true);
             }
+            // @@codeCoverageIgnoreEnd
             $this->cacheable = true;
         }
     }

@@ -31,12 +31,10 @@ class AspectMergeTest extends \TestCase
      */
     protected function resolveManager()
     {
-        $annotation = new \Ytake\LaravelAspect\Annotation;
-        $annotation->registerAspectAnnotations();
         /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CacheableModule::class);
         $aspect->register(\__Test\CacheEvictModule::class);
-        $aspect->boot();
+        $aspect->dispatch();
     }
 }

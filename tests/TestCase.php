@@ -72,6 +72,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $this->app->singleton('config', function () {
             return new \Illuminate\Config\Repository;
         });
+        $this->app->instance('log', $log = new \Illuminate\Log\Writer(
+            new \Monolog\Logger('testing'))
+        );
         $this->registerConfigure();
         $this->registerDatabase();
         $this->registerCache();
