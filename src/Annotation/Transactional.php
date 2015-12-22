@@ -11,20 +11,16 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
 
 /**
+ * Class Transactional
  * @Annotation
  * @Target("METHOD")
  */
@@ -32,4 +28,7 @@ final class Transactional extends Annotation
 {
     /** @var null $connection  database connection */
     public $value = null;
+
+    /** @var string  */
+    public $expect = 'Illuminate\Database\QueryException';
 }

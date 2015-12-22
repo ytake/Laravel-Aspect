@@ -10,7 +10,7 @@ class RayAspectKernelTest extends \TestCase
         $aspectConfigure = $this->app['config']->get('ytake-laravel-aop.aspect.drivers');
         $this->kernel = new \Ytake\LaravelAspect\RayAspectKernel(
             $this->app,
-            new \Ray\Aop\Bind(),
+            $this->app['files'],
             $aspectConfigure['ray']
         );
     }

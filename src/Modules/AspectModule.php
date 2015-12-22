@@ -11,15 +11,10 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect\Modules;
 
 use Ray\Aop\Bind;
@@ -40,14 +35,18 @@ abstract class AspectModule
     /** @var CompilerInterface */
     protected $compiler;
 
+    /** @var array  */
+    protected static $pointcuts = [];
+
+    /** @var array  */
+    protected static $resolve = [];
+
     /**
      * @param Application $app
-     * @param Bind        $bind
      */
-    public function __construct(Application $app, Bind $bind)
+    public function __construct(Application $app)
     {
         $this->app = $app;
-        $this->bind = $bind;
     }
 
     /**
@@ -56,28 +55,18 @@ abstract class AspectModule
     abstract public function attach();
 
     /**
-     * @param CompilerInterface $compiler
-     *
-     * @return $this
+     * @param string $class
      */
-    public function setCompiler(CompilerInterface $compiler)
+    protected function instanceResolver($class)
     {
-        $this->compiler = $compiler;
-        return $this;
+        self::$resolve[$class] = self::$pointcuts;
     }
 
     /**
-     * @param       $class
-     * @param array $pointcuts
+     * @return array
      */
-    protected function instanceResolver($class, array $pointcuts)
+    public function getResolver()
     {
-        $bind = $this->bind->bind($class, $pointcuts);
-        $compiledClass = $this->compiler->compile($class, $bind);
-        $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
-            $instance = $app->make($compiledClass);
-            $instance->bindings = $bind->getBindings();
-            return $instance;
-        });
+        return self::$resolve;
     }
 }

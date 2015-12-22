@@ -3,8 +3,6 @@ filter:
         - src/*
     excluded_paths:
         - tests/*
-        - src/data/*
-        - src/CodeGen*.php
 tools:
     php_code_sniffer:
         config:

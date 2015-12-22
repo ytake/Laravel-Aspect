@@ -11,15 +11,10 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
@@ -49,9 +44,12 @@ class CacheableInterceptor extends AbstractCache
         if ($cache->has($key)) {
             return $cache->get($key);
         }
-        if ($result = $invocation->proceed()) {
+        $result = $invocation->proceed();
+
+        if ($result) {
             $cache->add($key, $result, $annotation->lifetime);
         }
+
         return $result;
     }
 }

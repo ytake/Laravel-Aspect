@@ -11,30 +11,32 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect;
+namespace Ytake\LaravelAspect\PointCut;
+
+use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Interceptor\LoggableInterceptor;
 
 /**
- * Class NullAspectKernel
+ * Class LoggablePointCut
  */
-class NullAspectKernel implements AspectDriverInterface
+class LoggablePointCut extends CommonPointCut implements PointCutable
 {
-    /**
-     * @param null $module
-     */
-    public function register($module = null)
-    {
-        // nothing
-    }
+    /** @var string */
+    protected $annotation = \Ytake\LaravelAspect\Annotation\Loggable::class;
 
     /**
-     * boot aspect kernel
-     * @return void
+     * @param Container $app
+     *
+     * @return \Ray\Aop\Pointcut
      */
-    public function dispatch()
+    public function configure(Container $app)
     {
-        // nothing
+        $this->setInterceptor(new LoggableInterceptor);
+
+        return $this->withAnnotatedAnyInterceptor($app);
     }
 }

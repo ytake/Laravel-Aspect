@@ -11,30 +11,27 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect;
+namespace Ytake\LaravelAspect\Modules;
+
+use Ytake\LaravelAspect\PointCut\LoggablePointCut;
 
 /**
- * Class NullAspectKernel
+ * Class LoggableModule
  */
-class NullAspectKernel implements AspectDriverInterface
+class LoggableModule extends AspectModule
 {
-    /**
-     * @param null $module
-     */
-    public function register($module = null)
-    {
-        // nothing
-    }
+    /** @var array */
+    protected $classes = [];
 
-    /**
-     * boot aspect kernel
-     * @return void
-     */
-    public function dispatch()
+    public function attach()
     {
-        // nothing
+        self::$pointcuts[] = (new LoggablePointCut)->configure($this->app);
+        foreach ($this->classes as $class) {
+            $this->instanceResolver($class);
+        }
     }
 }

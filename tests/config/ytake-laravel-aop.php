@@ -15,7 +15,11 @@ return [
         'drivers'     => [
             'ray'  => [
                 // string Path to the cache directory where compiled classes will be stored
-                'cache_dir' => __DIR__ . '/../storage/aop',
+                'compile_dir' => __DIR__ . '/../storage/aop/compile',
+
+                'cache' => true,
+
+                'cache_dir' => __DIR__ . '/../storage/aop/cache',
             ],
             'none' => [
                 // for testing driver

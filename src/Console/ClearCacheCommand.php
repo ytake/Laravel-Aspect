@@ -11,15 +11,10 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect\Console;
 
 use Illuminate\Console\Command;
@@ -63,6 +58,12 @@ class ClearCacheCommand extends Command
         $driverConfig = $configure['drivers'][$configure['default']];
         if (isset($driverConfig['cache_dir'])) {
             $files = $this->filesystem->glob($driverConfig['cache_dir'] . '/*');
+            foreach ($files as $file) {
+                $this->filesystem->delete($file);
+            }
+        }
+        if (isset($driverConfig['compile_dir'])) {
+            $files = $this->filesystem->glob($driverConfig['compile_dir'] . '/*');
             foreach ($files as $file) {
                 $this->filesystem->delete($file);
             }

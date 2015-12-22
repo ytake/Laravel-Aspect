@@ -11,15 +11,10 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect\Modules;
 
 use Ytake\LaravelAspect\PointCut\CacheEvictPointCut;
@@ -34,9 +29,9 @@ class CacheEvictModule extends AspectModule
 
     public function attach()
     {
-        $pointcut = (new CacheEvictPointCut)->configure($this->app);
+        self::$pointcuts[] = (new CacheEvictPointCut)->configure($this->app);
         foreach ($this->classes as $class) {
-            $this->instanceResolver($class, [$pointcut]);
+            $this->instanceResolver($class);
         }
     }
 }
