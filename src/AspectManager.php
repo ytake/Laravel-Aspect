@@ -38,6 +38,7 @@ class AspectManager extends Manager
     {
         return new RayAspectKernel(
             $this->app,
+            $this->app['files'],
             $this->getConfigure('ray')
         );
     }

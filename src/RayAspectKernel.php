@@ -22,9 +22,9 @@
 
 namespace Ytake\LaravelAspect;
 
-use Ray\Aop\Bind;
 use PhpParser\Lexer;
 use Ray\Aop\Compiler;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container;
 use Ytake\LaravelAspect\Exception\ClassNotFoundException;
 
@@ -42,6 +42,9 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var Compiler */
     protected $compiler;
 
+    /** @var Filesystem */
+    protected $filesystem;
+
     /** @var bool */
     protected $cacheable = false;
 
@@ -49,12 +52,15 @@ class RayAspectKernel implements AspectDriverInterface
     protected $aspectResolver;
 
     /**
+     * RayAspectKernel constructor.
      * @param Container $app
+     * @param Filesystem $filesystem
      * @param array $configure
      */
-    public function __construct(Container $app, array $configure)
+    public function __construct(Container $app, Filesystem $filesystem, array $configure)
     {
         $this->app = $app;
+        $this->filesystem = $filesystem;
         $this->configure = $configure;
         $this->makeCompileDir();
         $this->makeCacheableDir();
@@ -82,7 +88,7 @@ class RayAspectKernel implements AspectDriverInterface
     {
         foreach ($this->aspectResolver->getResolver() as $class => $pointcuts) {
 
-            $bind = (new AspectBind($this->cacheable, $this->configure['cache_dir']))
+            $bind = (new AspectBind($this->filesystem, $this->cacheable, $this->configure['cache_dir']))
                 ->bind($class, $pointcuts);
             $compiledClass = $this->compiler->compile($class, $bind);
             $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
@@ -108,10 +114,8 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function makeCompileDir()
     {
-        /** @var \Illuminate\Filesystem\Filesystem $file */
-        $file = $this->app['files'];
-        if (!$file->exists($this->configure['compile_dir'])) {
-            $file->makeDirectory($this->configure['compile_dir'], 0777);
+        if (!$this->filesystem->exists($this->configure['compile_dir'])) {
+            $this->filesystem->makeDirectory($this->configure['compile_dir'], 0777);
         }
     }
 
@@ -123,10 +127,8 @@ class RayAspectKernel implements AspectDriverInterface
     protected function makeCacheableDir()
     {
         if ($this->configure['cache']) {
-            /** @var \Illuminate\Filesystem\Filesystem $file */
-            $file = $this->app['files'];
-            if (!$file->exists($this->configure['cache_dir'])) {
-                $file->makeDirectory($this->configure['cache_dir'], 0777);
+            if (!$this->filesystem->exists($this->configure['cache_dir'])) {
+                $this->filesystem->makeDirectory($this->configure['cache_dir'], 0777);
             }
             $this->cacheable = true;
         }

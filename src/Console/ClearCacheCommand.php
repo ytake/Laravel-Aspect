@@ -67,6 +67,12 @@ class ClearCacheCommand extends Command
                 $this->filesystem->delete($file);
             }
         }
+        if (isset($driverConfig['compile_dir'])) {
+            $files = $this->filesystem->glob($driverConfig['compile_dir'] . '/*');
+            foreach ($files as $file) {
+                $this->filesystem->delete($file);
+            }
+        }
         $this->info('aspect code cache clear!');
     }
 }
