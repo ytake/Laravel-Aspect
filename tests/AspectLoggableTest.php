@@ -35,6 +35,17 @@ class AspectLoggableTest extends \TestCase
         $this->assertContains('{"args":{"id":1},"result":1', $put);
     }
 
+    public function testSkipResultLogger()
+    {
+        $this->log->useFiles($this->getDir() . '/.testing.log');
+        /** @var \__Test\AspectLoggable $cache */
+        $cache = $this->app->make(\__Test\AspectLoggable::class);
+        $cache->skipResultLog(1);
+        $put = $this->file->get($this->getDir() . '/.testing.log');
+        $this->assertContains('Loggable:__Test\AspectLoggable.skipResultLog', $put);
+        $this->assertNotContains('"result":1', $put);
+    }
+
     public function tearDown()
     {
         $this->file->deleteDirectory($this->getDir());

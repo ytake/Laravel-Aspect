@@ -16,7 +16,6 @@
  */
 namespace Ytake\LaravelAspect;
 
-use PhpParser\Lexer;
 use Ray\Aop\Compiler;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container;

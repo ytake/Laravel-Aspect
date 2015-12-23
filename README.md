@@ -229,6 +229,12 @@ class AspectLoggable
 
 ```
 
+sample)
+
+```
+[2015-12-23 08:15:30] testing.INFO: Loggable:__Test\AspectLoggable.normalLog {"args":{"id":1},"result":1,"time":0.000259876251221}
+```
+
 ### Annotation Cache Driver
 
 chose array driver or file cache driver

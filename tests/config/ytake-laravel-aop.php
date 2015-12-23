@@ -17,7 +17,7 @@ return [
                 // string Path to the cache directory where compiled classes will be stored
                 'compile_dir' => __DIR__ . '/../storage/aop/compile',
 
-                'cache' => true,
+                'cache' => false,
 
                 'cache_dir' => __DIR__ . '/../storage/aop/cache',
             ],
