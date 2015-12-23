@@ -11,30 +11,27 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect;
+namespace Ytake\LaravelAspect\Annotation;
+
+use Monolog\Logger;
+use Doctrine\Common\Annotations\Annotation;
 
 /**
- * Class NullAspectKernel
+ * @Annotation
+ * @Target("METHOD")
  */
-class NullAspectKernel implements AspectDriverInterface
+final class Loggable extends Annotation
 {
-    /**
-     * @param null $module
-     */
-    public function register($module = null)
-    {
-        // nothing
-    }
+    /** @var int  Log level */
+    public $value = Logger::INFO;
 
-    /**
-     * boot aspect kernel
-     * @return void
-     */
-    public function dispatch()
-    {
-        // nothing
-    }
+    /** @var bool  */
+    public $skipResult = false;
+
+    /** @var string  */
+    public $name = 'Loggable';
 }

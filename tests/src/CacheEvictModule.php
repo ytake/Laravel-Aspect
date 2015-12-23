@@ -9,5 +9,6 @@ class CacheEvictModule extends \Ytake\LaravelAspect\Modules\CacheEvictModule
      */
     protected $classes = [
         \__Test\AspectCacheEvict::class,
+        \__Test\AspectMerge::class
     ];
 }

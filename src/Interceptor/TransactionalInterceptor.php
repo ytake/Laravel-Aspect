@@ -11,15 +11,10 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
@@ -36,8 +31,8 @@ class TransactionalInterceptor implements MethodInterceptor
 
     /**
      * @param MethodInvocation $invocation
-     *
      * @return object
+     * @throws \Exception
      */
     public function invoke(MethodInvocation $invocation)
     {
@@ -45,7 +40,7 @@ class TransactionalInterceptor implements MethodInterceptor
             ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
 
         $connection = $annotation->value;
-        /** @var  $database */
+        /** @var \Illuminate\Database\ConnectionInterface $database */
         $database = app('db')->connection($connection);
         $database->beginTransaction();
         try {
@@ -53,8 +48,16 @@ class TransactionalInterceptor implements MethodInterceptor
             $database->commit();
 
             return $result;
-        } catch (QueryException $exception) {
-            $database->rollBack();
+        } catch (\Exception $exception) {
+            // for default Exception
+            if ($exception instanceof QueryException) {
+                $database->rollBack();
+                throw $exception;
+            }
+            if ($exception instanceof $annotation->expect) {
+                $database->rollBack();
+                throw $exception;
+            }
             throw $exception;
         }
     }

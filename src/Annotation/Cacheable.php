@@ -11,15 +11,10 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
+ *
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
@@ -30,7 +25,7 @@ use Doctrine\Common\Annotations\Annotation;
  */
 final class Cacheable extends Annotation
 {
-    /** @var null|string[] $value cache key, if use array tagging */
+    /** @var null|string[] $value cache key */
     public $key = null;
 
     /** @var null */
@@ -42,6 +37,6 @@ final class Cacheable extends Annotation
     /** @var int $lifetime cache life time */
     public $lifetime = 120;
 
-    /** @var array $tags */
+    /** @var array $tags if use array tagging */
     public $tags = [];
 }

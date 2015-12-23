@@ -13,13 +13,7 @@
  * and is licensed under the MIT license.
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect;
 
 use Illuminate\Support\ServiceProvider;
@@ -44,17 +38,12 @@ class AspectServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($configPath, 'ytake-laravel-aop');
         $this->publishes([$configPath => config_path('ytake-laravel-aop.php')], 'aspect');
 
-        $this->app->singleton('aspect.annotation.register', function () {
-            return new Annotation();
-        });
-
         $this->app->singleton('aspect.annotation.reader', function ($app) {
             return (new AnnotationManager($app))->getReader();
         });
 
         $this->app->singleton('aspect.manager', function ($app) {
             // register annotation
-            $app['aspect.annotation.register']->registerAspectAnnotations();
             return new AspectManager($app);
         });
     }
@@ -68,6 +57,41 @@ class AspectServiceProvider extends ServiceProvider
             'aspect.annotation.register',
             'aspect.annotation.reader',
             'aspect.manager'
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function compiles()
+    {
+        return [
+            base_path() . '/vendor/ytake/laravel-aspect/src/AspectServiceProvider.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/ConsoleServiceProvider.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/AnnotationManager.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/AnnotationReadable.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/ArrayReader.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/AspectBind.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/AspectDriverInterface.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/FileReader.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/NullAspectKernel.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/RayAspectKernel.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/CacheablePointCut.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/CacheEvictPointCut.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/CachePutPointCut.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/LoggablePointCut.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/PointCutable.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/TransactionalPointCut.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/CacheableModule.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/CacheEvictModule.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/CachePutModule.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/LoggableModule.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/TransactionalModule.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/CacheableInterceptor.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/CacheEvictInterceptor.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/CachePutInterceptor.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/LoggableInterceptor.php',
+            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/TransactionalInterceptor.php',
         ];
     }
 }

@@ -9,6 +9,7 @@ class CacheableModule extends \Ytake\LaravelAspect\Modules\CacheableModule
      */
     protected $classes = [
         \__Test\AspectCacheable::class,
-        \__Test\AspectCacheEvict::class
+        \__Test\AspectCacheEvict::class,
+        \__Test\AspectMerge::class
     ];
 }

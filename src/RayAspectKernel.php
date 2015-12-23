@@ -13,21 +13,11 @@
  * and is licensed under the MIT license.
  * Copyright (c) 2015 Yuuki Takezawa
  *
- *
- * CodeGenMethod Class, CodeGen Class is:
- * Copyright (c) 2012-2015, The Ray Project for PHP
- *
- * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-
 namespace Ytake\LaravelAspect;
 
-use Ray\Aop\Bind;
 use Ray\Aop\Compiler;
-use PhpParser\Parser;
-use PhpParser\Lexer;
-use PhpParser\BuilderFactory;
-use PhpParser\PrettyPrinter\Standard;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container;
 use Ytake\LaravelAspect\Exception\ClassNotFoundException;
 
@@ -45,21 +35,29 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var Compiler */
     protected $compiler;
 
-    /** @var Bind */
-    protected $bind;
+    /** @var Filesystem */
+    protected $filesystem;
+
+    /** @var bool */
+    protected $cacheable = false;
+
+    /** @var \Ytake\LaravelAspect\Modules\AspectModule */
+    protected $aspectResolver;
 
     /**
+     * RayAspectKernel constructor.
      * @param Container $app
-     * @param Bind      $bind
-     * @param array     $configure
+     * @param Filesystem $filesystem
+     * @param array $configure
      */
-    public function __construct(Container $app, Bind $bind, array $configure)
+    public function __construct(Container $app, Filesystem $filesystem, array $configure)
     {
         $this->app = $app;
+        $this->filesystem = $filesystem;
         $this->configure = $configure;
         $this->makeCompileDir();
+        $this->makeCacheableDir();
         $this->compiler = $this->getCompiler();
-        $this->bind = $bind;
     }
 
     /**
@@ -72,7 +70,25 @@ class RayAspectKernel implements AspectDriverInterface
         if (!class_exists($module)) {
             throw new ClassNotFoundException($module);
         }
-        (new $module($this->app, $this->bind))->setCompiler($this->compiler)->attach();
+        $this->aspectResolver = (new $module($this->app));
+        $this->aspectResolver->attach();
+    }
+
+    /**
+     * boot aspect kernel
+     */
+    public function dispatch()
+    {
+        foreach ($this->aspectResolver->getResolver() as $class => $pointcuts) {
+            $bind = (new AspectBind($this->filesystem, $this->configure['cache_dir'], $this->cacheable))
+                ->bind($class, $pointcuts);
+            $compiledClass = $this->compiler->compile($class, $bind);
+            $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
+                $instance = $app->make($compiledClass);
+                $instance->bindings = $bind->getBindings();
+                return $instance;
+            });
+        }
     }
 
     /**
@@ -80,11 +96,7 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function getCompiler()
     {
-        return new Compiler($this->configure['cache_dir'], new CodeGen(
-            new Parser(new Lexer()),
-            new BuilderFactory(),
-            new Standard()
-        ));
+        return new Compiler($this->configure['compile_dir']);
     }
 
     /**
@@ -94,10 +106,27 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function makeCompileDir()
     {
-        /** @var \Illuminate\Filesystem\Filesystem $file */
-        $file = $this->app['files'];
-        if (!$file->exists($this->configure['cache_dir'])) {
-            $file->makeDirectory($this->configure['cache_dir'], 0777);
+        // @codeCoverageIgnoreStart
+        if (!$this->filesystem->exists($this->configure['compile_dir'])) {
+            $this->filesystem->makeDirectory($this->configure['compile_dir'], 0777, true);
+        }
+        // @codeCoverageIgnoreEnd
+    }
+
+    /**
+     * make aspect cache directory
+     *
+     * @return void
+     */
+    protected function makeCacheableDir()
+    {
+        if ($this->configure['cache']) {
+            // @codeCoverageIgnoreStart
+            if (!$this->filesystem->exists($this->configure['cache_dir'])) {
+                $this->filesystem->makeDirectory($this->configure['cache_dir'], 0777, true);
+            }
+            // @@codeCoverageIgnoreEnd
+            $this->cacheable = true;
         }
     }
 }

@@ -23,6 +23,7 @@
     "illuminate/support": "~5.0",
     "illuminate/config": "~5.0",
     "illuminate/contracts": "~5.0",
+    "illuminate/log": "~5.0",
     "ray/aop": "~2.0",
     "doctrine/annotations": "~1.0",
     "doctrine/cache": "~1.0"

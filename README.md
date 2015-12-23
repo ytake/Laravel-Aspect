@@ -1,5 +1,5 @@
 # Laravel-Aspect
-for laravel framework
+aspect-oriented programming Package for laravel framework
 
 [![Build Status](http://img.shields.io/travis/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://travis-ci.org/ytake/Laravel-Aspect)
 [![Coverage Status](http://img.shields.io/coveralls/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://coveralls.io/r/ytake/Laravel-Aspect?branch=master)
@@ -25,8 +25,8 @@ $ composer require ytake/laravel-aspect
  ```json
    "require": {
     "php": ">=5.5.9",
-    "laravel/framework": "5.1.*",
-    "ytake/laravel-aspect": "~0.0"
+    "laravel/framework": "5.*",
+    "ytake/laravel-aspect": "~1.0"
   },
  ```
 
@@ -63,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
         /** @var \Ytake\LaravelAspect\AspectManager $aspect */
         $aspect = $this->app['aspect.manager'];
         $aspect->register(\App\Modules\CacheableModule::class);
+        $aspect->dispatch();
     }
     
 }
@@ -104,6 +105,7 @@ for database transaction(illuminate/database)
 | params | description |
 |-----|-------|
 | value | database connection |
+| expect | expect exception |
 
 ```php
 use Ytake\LaravelAspect\Annotation\Transactional;
@@ -198,7 +200,40 @@ public function throwExceptionCache()
 
 ### @Loggable
 
-soon
+for logger(illuminate/log, monolog)
+
+* option
+
+| params | description |
+|-----|-------|
+| value | log level (default: \Monolog\Logger::INFO) should Monolog Constants |
+| skipResult | method result output to log |
+| name |log name prefix(default: Loggable) |
+
+
+```php
+use Ytake\LaravelAspect\Annotation\Loggable;
+
+class AspectLoggable
+{
+    /**
+     * @Loggable
+     * @param null $id
+     * @return null
+     */
+    public function normalLog($id = null)
+    {
+        return $id;
+    }
+}
+
+```
+
+sample)
+
+```
+[2015-12-23 08:15:30] testing.INFO: Loggable:__Test\AspectLoggable.normalLog {"args":{"id":1},"result":1,"time":0.000259876251221}
+```
 
 ### Annotation Cache Driver
 
