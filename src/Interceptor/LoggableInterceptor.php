@@ -69,7 +69,7 @@ class LoggableInterceptor implements MethodInterceptor
         $context = [];
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
-            $context['args'][$parameter->getName()] = $arguments[$parameter->getPosition()];
+            $context['args'][$parameter->name] = $arguments[$parameter->getPosition()];
         }
 
         return [
@@ -78,7 +78,7 @@ class LoggableInterceptor implements MethodInterceptor
                 $this->format,
                 $annotation->name,
                 $invocation->getMethod()->class,
-                $invocation->getMethod()->getName()
+                $invocation->getMethod()->name
             ),
             'context' => $context,
         ];

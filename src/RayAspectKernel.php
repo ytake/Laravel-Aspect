@@ -106,11 +106,7 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function makeCompileDir()
     {
-        // @codeCoverageIgnoreStart
-        if (!$this->filesystem->exists($this->configure['compile_dir'])) {
-            $this->filesystem->makeDirectory($this->configure['compile_dir'], 0777, true);
-        }
-        // @codeCoverageIgnoreEnd
+        $this->makeDirectories($this->configure['compile_dir'], 0777);
     }
 
     /**
@@ -121,12 +117,21 @@ class RayAspectKernel implements AspectDriverInterface
     protected function makeCacheableDir()
     {
         if ($this->configure['cache']) {
-            // @codeCoverageIgnoreStart
-            if (!$this->filesystem->exists($this->configure['cache_dir'])) {
-                $this->filesystem->makeDirectory($this->configure['cache_dir'], 0777, true);
-            }
-            // @@codeCoverageIgnoreEnd
+            $this->makeDirectories($this->configure['cache_dir'], 0777);
             $this->cacheable = true;
         }
+    }
+
+    /**
+     * @param string $dir
+     * @param int $mode
+     */
+    private function makeDirectories($dir, $mode = 0777)
+    {
+        // @codeCoverageIgnoreStart
+        if (!$this->filesystem->exists($dir)) {
+            $this->filesystem->makeDirectory($dir, $mode, true);
+        }
+        // @@codeCoverageIgnoreEnd
     }
 }
