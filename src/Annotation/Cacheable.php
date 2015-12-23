@@ -25,7 +25,7 @@ use Doctrine\Common\Annotations\Annotation;
  */
 final class Cacheable extends Annotation
 {
-    /** @var null|string[] $value cache key, if use array tagging */
+    /** @var null|string[] $value cache key */
     public $key = null;
 
     /** @var null */
@@ -37,6 +37,6 @@ final class Cacheable extends Annotation
     /** @var int $lifetime cache life time */
     public $lifetime = 120;
 
-    /** @var array $tags */
+    /** @var array $tags if use array tagging */
     public $tags = [];
 }

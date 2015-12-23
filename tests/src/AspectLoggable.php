@@ -18,4 +18,14 @@ class AspectLoggable
     {
         return $id;
     }
+
+    /**
+     * @Loggable(skipResult=true)
+     * @param null $id
+     * @return null
+     */
+    public function skipResultLog($id = null)
+    {
+        return $id;
+    }
 }
