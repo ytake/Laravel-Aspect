@@ -62,12 +62,16 @@ abstract class AbstractCache implements MethodInterceptor
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
             // exclude object
             if (in_array('#' . $parameter->name, $annotation->key)) {
-                if (!is_object($arguments[$parameter->getPosition()])) {
-                    $keys[] = $arguments[$parameter->getPosition()];
+                if (isset($arguments[$parameter->getPosition()])) {
+                    if (!is_object($arguments[$parameter->getPosition()])) {
+                        $keys[] = $arguments[$parameter->getPosition()];
+                    }
+                }
+                if (!isset($arguments[$parameter->getPosition()])) {
+                    $keys[] = $parameter->getDefaultValue();
                 }
             }
         }
-
         return $keys;
     }
 
