@@ -17,6 +17,7 @@
  */
 namespace Ytake\LaravelAspect\Modules;
 
+use Ytake\LaravelAspect\PointCut\PointCutable;
 use Ytake\LaravelAspect\PointCut\TransactionalPointCut;
 
 /**
@@ -27,11 +28,11 @@ class TransactionalModule extends AspectModule
     /** @var array */
     protected $classes = [];
 
-    public function attach()
+    /**
+     * @return PointCutable
+     */
+    protected function registerPointCut()
     {
-        self::$pointcuts[] = (new TransactionalPointCut)->configure($this->app);
-        foreach ($this->classes as $class) {
-            $this->instanceResolver($class);
-        }
+        return new TransactionalPointCut;
     }
 }
