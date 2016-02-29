@@ -19,6 +19,7 @@ namespace Ytake\LaravelAspect\Modules;
 
 use Ray\Aop\Bind;
 use Ray\Aop\CompilerInterface;
+use Ytake\LaravelAspect\PointCut\PointCutable;
 use Illuminate\Contracts\Container\Container as Application;
 
 /**
@@ -50,9 +51,27 @@ abstract class AspectModule
     }
 
     /**
+     * attach pointcut
      * @return void
      */
-    abstract public function attach();
+    public function attach()
+    {
+        // public attach
+        if($this->registerPointCut() instanceof PointCutable) {
+            self::$pointcuts[] = $this->registerPointCut()->configure($this->app);
+            foreach ($this->classes as $class) {
+                $this->instanceResolver($class);
+            }
+        }
+    }
+
+    /**
+     * @return PointCutable
+     */
+    protected function registerPointCut()
+    {
+        // register pointcut
+    }
 
     /**
      * @param string $class
