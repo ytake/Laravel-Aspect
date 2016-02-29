@@ -57,7 +57,7 @@ abstract class AspectModule
     public function attach()
     {
         // public attach
-        if($this->registerPointCut() instanceof PointCutable) {
+        if ($this->registerPointCut() instanceof PointCutable) {
             self::$pointcuts[] = $this->registerPointCut()->configure($this->app);
             foreach ($this->classes as $class) {
                 $this->instanceResolver($class);
