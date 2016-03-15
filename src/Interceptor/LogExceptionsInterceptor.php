@@ -22,9 +22,9 @@ use Ray\Aop\MethodInterceptor;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
- * Class LoggableInterceptor
+ * Class LogExceptionsInterceptor
  */
-class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
+class LogExceptionsInterceptor extends AbstractLogger implements MethodInterceptor
 {
     use AnnotationReaderTrait;
 
@@ -36,20 +36,23 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
      */
     public function invoke(MethodInvocation $invocation)
     {
-        $start = microtime(true);
-        $result = $invocation->proceed();
-        $time = microtime(true) - $start;
-        /** @var \Ytake\LaravelAspect\Annotation\Loggable $annotation */
-        $annotation = $this->reader->getMethodAnnotation($invocation->getMethod(), $this->annotation);
-        $logFormat = $this->logFormatter($annotation, $invocation);
-        /** @var \Monolog\Logger $logger */
-        $logger = app('log')->getMonoLog();
-        if (!$annotation->skipResult) {
-            $logFormat['context']['result'] = $result;
+        try {
+            $result = $invocation->proceed();
+        } catch (\Exception $exception) {
+            /** @var \Ytake\LaravelAspect\Annotation\LogExceptions $annotation */
+            $annotation = $this->reader->getMethodAnnotation($invocation->getMethod(), $this->annotation);
+
+            if ($exception instanceof $annotation->expect) {
+                $logFormat = $this->logFormatter($annotation, $invocation);
+                /** @var \Monolog\Logger $logger */
+                $logger = app('log')->getMonoLog();
+                /** Monolog\Logger */
+                $logFormat['context']['code'] = $exception->getCode();
+                $logFormat['context']['error_message'] = $exception->getMessage();
+                $logger->log($logFormat['level'], $logFormat['message'], $logFormat['context']);
+            }
+            throw $exception;
         }
-        $logFormat['context']['time'] = $time;
-        /** Monolog\Logger */
-        $logger->log($logFormat['level'], $logFormat['message'], $logFormat['context']);
 
         return $result;
     }

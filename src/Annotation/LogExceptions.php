@@ -15,24 +15,23 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Modules;
+namespace Ytake\LaravelAspect\Annotation;
 
-use Ytake\LaravelAspect\PointCut\PointCutable;
-use Ytake\LaravelAspect\PointCut\CacheablePointCut;
+use Monolog\Logger;
+use Doctrine\Common\Annotations\Annotation;
 
 /**
- * Class CacheableModule
+ * @Annotation
+ * @Target("METHOD")
  */
-class CacheableModule extends AspectModule
+final class LogExceptions extends Annotation implements LoggableAnnotate
 {
-    /** @var array */
-    protected $classes = [];
+    /** @var int  Log level */
+    public $value = Logger::ERROR;
 
-    /**
-     * @return PointCutable
-     */
-    protected function registerPointCut()
-    {
-        return new CacheablePointCut;
-    }
+    /** @var string  */
+    public $expect = '\Exception';
+
+    /** @var string  */
+    public $name = 'LogExceptions';
 }

@@ -15,24 +15,28 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Modules;
+namespace Ytake\LaravelAspect\PointCut;
 
-use Ytake\LaravelAspect\PointCut\PointCutable;
-use Ytake\LaravelAspect\PointCut\CacheablePointCut;
+use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Interceptor\LogExceptionsInterceptor;
 
 /**
- * Class CacheableModule
+ * Class LogExceptionsPointCut
  */
-class CacheableModule extends AspectModule
+class LogExceptionsPointCut extends CommonPointCut implements PointCutable
 {
-    /** @var array */
-    protected $classes = [];
+    /** @var string */
+    protected $annotation = \Ytake\LaravelAspect\Annotation\LogExceptions::class;
 
     /**
-     * @return PointCutable
+     * @param Container $app
+     *
+     * @return \Ray\Aop\Pointcut
      */
-    protected function registerPointCut()
+    public function configure(Container $app)
     {
-        return new CacheablePointCut;
+        $this->setInterceptor(new LogExceptionsInterceptor);
+
+        return $this->withAnnotatedAnyInterceptor($app);
     }
 }

@@ -12,6 +12,6 @@ class DummyClass extends DummyModuleClass
     /** @var array */
     protected $classes = [
         // example
-        // \App\Services\AcmeServce::class
+        // \App\Services\AcmeService::class
     ];
 }

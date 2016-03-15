@@ -21,7 +21,9 @@ class AspectLoggableTest extends \TestCase
         $this->resolveManager();
         $this->log = $this->app['log'];
         $this->file = $this->app['files'];
-        $this->file->makeDirectory($this->getDir());
+        if (!$this->file->exists($this->getDir())) {
+            $this->file->makeDirectory($this->getDir());
+        }
     }
 
     public function testDefaultLogger()
