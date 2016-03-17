@@ -42,6 +42,9 @@ abstract class AspectModule
     /** @var array  */
     protected static $resolve = [];
 
+    /** @var array */
+    protected $classes = [];
+
     /**
      * @param Application $app
      */
