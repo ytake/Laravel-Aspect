@@ -11,7 +11,8 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
- * Copyright (c) 2015 Yuuki Takezawa
+ *
+ * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
 namespace Ytake\LaravelAspect;
@@ -111,7 +112,7 @@ class RayAspectKernel implements AspectDriverInterface
 
     /**
      * make aspect cache directory
-     *
+     * @codeCoverageIgnore
      * @return void
      */
     protected function makeCacheableDir()
@@ -132,6 +133,6 @@ class RayAspectKernel implements AspectDriverInterface
         if (!$this->filesystem->exists($dir)) {
             $this->filesystem->makeDirectory($dir, $mode, true);
         }
-        // @@codeCoverageIgnoreEnd
+        // @codeCoverageIgnoreEnd
     }
 }

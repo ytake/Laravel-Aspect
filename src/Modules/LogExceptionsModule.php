@@ -17,22 +17,21 @@
  */
 namespace Ytake\LaravelAspect\Modules;
 
-use Ytake\LaravelAspect\PointCut\PointCutable;
-use Ytake\LaravelAspect\PointCut\CacheablePointCut;
+use Ytake\LaravelAspect\PointCut\LogExceptionsPointCut;
 
 /**
- * Class CacheableModule
+ * Class LogExceptions
  */
-class CacheableModule extends AspectModule
+class LogExceptionsModule extends AspectModule
 {
     /** @var array */
     protected $classes = [];
 
     /**
-     * @return PointCutable
+     * @return LogExceptionsPointCut
      */
     protected function registerPointCut()
     {
-        return new CacheablePointCut;
+        return new LogExceptionsPointCut;
     }
 }

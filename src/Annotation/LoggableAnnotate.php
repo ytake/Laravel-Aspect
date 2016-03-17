@@ -15,24 +15,11 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Modules;
-
-use Ytake\LaravelAspect\PointCut\PointCutable;
-use Ytake\LaravelAspect\PointCut\CacheablePointCut;
+namespace Ytake\LaravelAspect\Annotation;
 
 /**
- * Class CacheableModule
+ * Interface LoggableAnnotate
  */
-class CacheableModule extends AspectModule
+interface LoggableAnnotate
 {
-    /** @var array */
-    protected $classes = [];
-
-    /**
-     * @return PointCutable
-     */
-    protected function registerPointCut()
-    {
-        return new CacheablePointCut;
-    }
 }

@@ -12,7 +12,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015 Yuuki Takezawa
+ * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
 namespace Ytake\LaravelAspect\Annotation;
@@ -24,7 +24,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class Loggable extends Annotation
+final class Loggable extends Annotation implements LoggableAnnotate
 {
     /** @var int  Log level */
     public $value = Logger::INFO;
