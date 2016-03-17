@@ -73,6 +73,25 @@ class AspectLogExceptionsTest extends \TestCase
         }
     }
 
+    public function testShouldNotPutExceptionLoggerFile()
+    {
+        $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
+        /** @var \__Test\AspectLogExceptions $logger */
+        $logger = $this->app->make(\__Test\AspectLogExceptions::class);
+        try {
+            $logger->expectNoException();
+        } catch (\Ytake\LaravelAspect\Exception\FileNotFoundException $e) {
+            $this->assertFileNotExists($this->getDir() . '/.testing.exceptions.log');
+        }
+    }
+
+    public function testShouldNotThrowableException()
+    {
+        /** @var \__Test\AspectLogExceptions $logger */
+        $logger = $this->app->make(\__Test\AspectLogExceptions::class);
+        $this->assertSame(1, $logger->noException());
+    }
+
     public function tearDown()
     {
         $this->file->deleteDirectory($this->getDir());

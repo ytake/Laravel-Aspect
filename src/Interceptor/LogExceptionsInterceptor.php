@@ -53,7 +53,8 @@ class LogExceptionsInterceptor extends AbstractLogger implements MethodIntercept
             }
             throw $exception;
         }
-
+        // @codeCoverageIgnoreStart
         return $result;
+        // @codeCoverageIgnoreEnd
     }
 }

@@ -22,5 +22,4 @@ namespace Ytake\LaravelAspect\Annotation;
  */
 interface LoggableAnnotate
 {
-
 }

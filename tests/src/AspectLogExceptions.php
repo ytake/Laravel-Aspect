@@ -35,7 +35,7 @@ class AspectLogExceptions
      */
     public function expectNoException()
     {
-        throw new FileNotFoundException;
+        throw new FileNotFoundException(__DIR__);
     }
 
     /**

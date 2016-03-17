@@ -66,6 +66,7 @@ abstract class AspectModule
     }
 
     /**
+     * @codeCoverageIgnore
      * @return PointCutable
      */
     protected function registerPointCut()
