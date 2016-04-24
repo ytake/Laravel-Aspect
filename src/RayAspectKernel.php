@@ -95,7 +95,6 @@ class RayAspectKernel implements AspectDriverInterface
 
                 return $instance;
             });
-
         }
     }
 
