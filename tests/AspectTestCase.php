@@ -4,7 +4,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Connectors\ConnectionFactory;
 
-class TestCase extends \PHPUnit_Framework_TestCase
+/**
+ * Class AspectTestCase
+ */
+class AspectTestCase extends \PHPUnit_Framework_TestCase
 {
     /** @var \Illuminate\Container\Container $app */
     protected $app;
@@ -73,6 +76,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
             return new \Illuminate\Config\Repository;
         });
         $this->app->instance('log', $log = new \Illuminate\Log\Writer(
+            new \Monolog\Logger('testing'))
+        );
+        $this->app->instance('Psr\Log\LoggerInterface', $log = new \Illuminate\Log\Writer(
             new \Monolog\Logger('testing'))
         );
         $this->registerConfigure();

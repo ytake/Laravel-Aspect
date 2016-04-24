@@ -1,6 +1,6 @@
 <?php
 
-class RayAspectKernelTest extends \TestCase
+class RayAspectKernelTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\RayAspectKernel */
     protected $kernel;

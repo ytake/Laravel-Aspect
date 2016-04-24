@@ -1,6 +1,6 @@
 <?php
 
-class AnnotationManagerTest extends \TestCase
+class AnnotationManagerTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AnnotationManager $manager */
     protected $manager;

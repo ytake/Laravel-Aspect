@@ -1,6 +1,6 @@
 <?php
 
-class TransactionalTest extends \TestCase
+class TransactionalTest extends \AspectTestCase
 {
 
     /** @var \Ytake\LaravelAspect\AspectManager $manager */

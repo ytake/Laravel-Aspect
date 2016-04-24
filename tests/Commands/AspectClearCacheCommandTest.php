@@ -1,6 +1,6 @@
 <?php
 
-class AspectClearCacheCommandTest extends \TestCase
+class AspectClearCacheCommandTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;

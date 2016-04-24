@@ -44,7 +44,7 @@
   },
   "autoload-dev": {
     "files": [
-      "tests/TestCase.php",
+      "tests/AspectTestCase.php",
       "tests/helper.php"
     ],
     "psr-4": {

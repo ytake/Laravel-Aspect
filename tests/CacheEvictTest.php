@@ -1,6 +1,6 @@
 <?php
 
-class CacheEvictTest extends \TestCase
+class CacheEvictTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;

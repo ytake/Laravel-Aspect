@@ -47,9 +47,10 @@ class RayAspectKernel implements AspectDriverInterface
 
     /**
      * RayAspectKernel constructor.
-     * @param Container $app
+     *
+     * @param Container  $app
      * @param Filesystem $filesystem
-     * @param array $configure
+     * @param array      $configure
      */
     public function __construct(Container $app, Filesystem $filesystem, array $configure)
     {
@@ -84,9 +85,14 @@ class RayAspectKernel implements AspectDriverInterface
             $bind = (new AspectBind($this->filesystem, $this->configure['cache_dir'], $this->cacheable))
                 ->bind($class, $pointcuts);
             $compiledClass = $this->compiler->compile($class, $bind);
+
+            if (isset($this->app->contextual[$class])) {
+                $this->resolveContextualBindings($class, $compiledClass);
+            }
             $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
                 $instance = $app->make($compiledClass);
                 $instance->bindings = $bind->getBindings();
+
                 return $instance;
             });
         }
@@ -112,6 +118,7 @@ class RayAspectKernel implements AspectDriverInterface
 
     /**
      * make aspect cache directory
+     *
      * @codeCoverageIgnore
      * @return void
      */
@@ -125,7 +132,7 @@ class RayAspectKernel implements AspectDriverInterface
 
     /**
      * @param string $dir
-     * @param int $mode
+     * @param int    $mode
      */
     private function makeDirectories($dir, $mode = 0777)
     {
@@ -134,5 +141,18 @@ class RayAspectKernel implements AspectDriverInterface
             $this->filesystem->makeDirectory($dir, $mode, true);
         }
         // @codeCoverageIgnoreEnd
+    }
+
+    /**
+     * @param string $class
+     * @param string $compiledClass
+     */
+    protected function resolveContextualBindings($class, $compiledClass)
+    {
+        foreach ($this->app->contextual[$class] as $abstract => $concrete) {
+            $this->app->when($compiledClass)
+                ->needs($abstract)
+                ->give($concrete);
+        }
     }
 }

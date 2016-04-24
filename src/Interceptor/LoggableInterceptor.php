@@ -17,6 +17,7 @@
  */
 namespace Ytake\LaravelAspect\Interceptor;
 
+use Illuminate\Log\Writer;
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
@@ -42,8 +43,10 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
         /** @var \Ytake\LaravelAspect\Annotation\Loggable $annotation */
         $annotation = $this->reader->getMethodAnnotation($invocation->getMethod(), $this->annotation);
         $logFormat = $this->logFormatter($annotation, $invocation);
-        /** @var \Monolog\Logger $logger */
-        $logger = app('log')->getMonoLog();
+        $logger = app('Psr\Log\LoggerInterface');
+        if ($logger instanceof Writer) {
+            $logger = $logger->getMonolog();
+        }
         if (!$annotation->skipResult) {
             $logFormat['context']['result'] = $result;
         }
