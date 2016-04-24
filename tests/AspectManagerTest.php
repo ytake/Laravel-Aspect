@@ -1,6 +1,6 @@
 <?php
 
-class AspectManagerTest extends \TestCase
+class AspectManagerTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;

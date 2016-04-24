@@ -1,6 +1,6 @@
 <?php
 
-class CachePutTest extends \TestCase
+class CachePutTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;

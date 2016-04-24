@@ -3,7 +3,7 @@
 /**
  * Class AspectBindTest
  */
-class AspectBindTest extends TestCase
+class AspectBindTest extends AspectTestCase
 {
     /** @var \Illuminate\Filesystem\Filesystem */
     protected $file;

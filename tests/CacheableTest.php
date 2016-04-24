@@ -1,6 +1,6 @@
 <?php
 
-class CacheableTest extends \TestCase
+class CacheableTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;

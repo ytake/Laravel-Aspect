@@ -3,7 +3,7 @@
 /**
  * AspectMergeTest.php
  */
-class AspectMergeTest extends \TestCase
+class AspectMergeTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;

@@ -3,7 +3,7 @@
 /**
  * Class AspectLogExceptionsTest
  */
-class AspectLogExceptionsTest extends \TestCase
+class AspectLogExceptionsTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
@@ -19,7 +19,7 @@ class AspectLogExceptionsTest extends \TestCase
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
-        $this->log = $this->app['log'];
+        $this->log = $this->app['Psr\Log\LoggerInterface'];
         $this->file = $this->app['files'];
         if (!$this->file->exists($this->getDir())) {
             $this->file->makeDirectory($this->getDir());
