@@ -11,5 +11,6 @@ class LogExceptionsModule extends Loggable
      */
     protected $classes = [
         \__Test\AspectLogExceptions::class,
+        \__Test\AnnotationStub::class
     ];
 }

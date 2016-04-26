@@ -42,5 +42,11 @@ return [
                 'debug' => true,
             ],
         ],
+
+        'ignores' => [
+            // global Ignored Annotations
+            'Get',
+            'Resource'
+        ],
     ],
 ];
