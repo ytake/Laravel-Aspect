@@ -57,5 +57,20 @@ return [
                 'debug' => env('ASPECT_ANNOTATION_DEBUG', false),
             ],
         ],
+
+        'ignores' => [
+            // global Ignored Annotations
+            'Hears',
+            'Get',
+            'Post',
+            'Put',
+            'Patch',
+            'Options',
+            'Delete',
+            'Any',
+            'Middleware',
+            'Resource',
+            'Controller'
+        ],
     ],
 ];

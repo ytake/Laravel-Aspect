@@ -36,10 +36,10 @@ abstract class AspectModule
     /** @var CompilerInterface */
     protected $compiler;
 
-    /** @var array  */
+    /** @var array */
     protected static $pointcuts = [];
 
-    /** @var array  */
+    /** @var array */
     protected static $resolve = [];
 
     /** @var array */
@@ -55,6 +55,7 @@ abstract class AspectModule
 
     /**
      * attach pointcut
+     *
      * @return void
      */
     public function attach()
