@@ -26,6 +26,9 @@ return [
                 // no use aspect
             ]
         ],
+        'module_compile' => [
+            'compile_dir' => __DIR__ . '/../storage/aop/module',
+        ],
     ],
 
     'annotation' => [

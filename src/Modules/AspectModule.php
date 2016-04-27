@@ -19,6 +19,7 @@ namespace Ytake\LaravelAspect\Modules;
 
 use Ray\Aop\Bind;
 use Ray\Aop\CompilerInterface;
+use Ytake\LaravelAspect\ModuleCompiler;
 use Ytake\LaravelAspect\PointCut\PointCutable;
 use Illuminate\Contracts\Container\Container as Application;
 
@@ -36,10 +37,10 @@ abstract class AspectModule
     /** @var CompilerInterface */
     protected $compiler;
 
-    /** @var array  */
+    /** @var array */
     protected static $pointcuts = [];
 
-    /** @var array  */
+    /** @var array */
     protected static $resolve = [];
 
     /** @var array */
@@ -55,6 +56,7 @@ abstract class AspectModule
 
     /**
      * attach pointcut
+     *
      * @return void
      */
     public function attach()
@@ -66,6 +68,9 @@ abstract class AspectModule
                 $this->instanceResolver($class);
             }
         }
+        $compiler = $this->compiler();
+        $compiledModule = $compiler->getCompilerDir() . '/' . $compiler->getFileName(static::class);
+        $compiler->putCompiledFile($compiledModule, self::$resolve);
     }
 
     /**
@@ -90,6 +95,20 @@ abstract class AspectModule
      */
     public function getResolver()
     {
+        $compiler = $this->compiler();
+        $compiledModule = $compiler->getCompilerDir() . '/' . $compiler->getFileName(static::class);
+        if (file_exists($compiledModule)) {
+            return $compiler->unserializeCompiledFile($compiledModule);
+        }
+
         return self::$resolve;
+    }
+
+    /**
+     * @return ModuleCompiler
+     */
+    protected function compiler()
+    {
+        return new ModuleCompiler($this->app['config']);
     }
 }

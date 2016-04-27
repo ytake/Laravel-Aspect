@@ -49,7 +49,7 @@ class AnnotationManager extends Manager
      */
     protected function createFileDriver()
     {
-        $this->ignoredAnnotations($this->app['config']->get('ytake-laravel-aop.annotation.ignores'));
+        $this->ignoredAnnotations($this->app['config']->get('ytake-laravel-aop.annotation.ignores', []));
         return new FileReader($this->getConfigure('file'));
     }
 
