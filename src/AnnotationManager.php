@@ -40,7 +40,7 @@ class AnnotationManager extends Manager
      */
     protected function createArrayDriver()
     {
-        $this->ignoredAnnotations($this->app['config']->get('ytake-laravel-aop.annotation.ignores'));
+        $this->ignoredAnnotations($this->app['config']->get('ytake-laravel-aop.annotation.ignores', []));
         return new ArrayReader();
     }
 

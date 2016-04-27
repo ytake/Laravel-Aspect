@@ -41,9 +41,6 @@ return [
                 // no use aspect
             ]
         ],
-        'module_compile' => [
-            'compile_dir' => storage_path('framework/aop/module'),
-        ],
     ],
 
     'annotation' => [
