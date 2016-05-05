@@ -15,7 +15,7 @@ use Ytake\LaravelAspect\Annotation\Cacheable;
 class AspectCacheable
 {
     /**
-     * @Cacheable(key="#id")
+     * @Cacheable(key="#id",driver="null")
      * @param null $id
      * @return null
      */
@@ -25,7 +25,7 @@ class AspectCacheable
     }
 
     /**
-     * @Cacheable(key={"#id","#value"})
+     * @Cacheable(key={"#id","#value"},driver="array")
      * @param $id
      * @param $value
      * @return mixed

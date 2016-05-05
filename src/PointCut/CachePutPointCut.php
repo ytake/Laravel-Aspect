@@ -18,6 +18,7 @@
 namespace Ytake\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Annotation\CachePut;
 use Ytake\LaravelAspect\Interceptor\CachePutInterceptor;
 
 /**
@@ -26,7 +27,7 @@ use Ytake\LaravelAspect\Interceptor\CachePutInterceptor;
 class CachePutPointCut extends CommonPointCut implements PointCutable
 {
     /** @var */
-    protected $annotation = \Ytake\LaravelAspect\Annotation\CachePut::class;
+    protected $annotation = CachePut::class;
 
     /**
      * @param Container $app
@@ -35,7 +36,9 @@ class CachePutPointCut extends CommonPointCut implements PointCutable
      */
     public function configure(Container $app)
     {
-        $this->setInterceptor(new CachePutInterceptor);
+        $interceptor = new CachePutInterceptor;
+        $interceptor->setCache($app['Illuminate\Contracts\Cache\Factory']);
+        $this->setInterceptor($interceptor);
 
         return $this->withAnnotatedAnyInterceptor($app);
     }
