@@ -18,6 +18,7 @@
 namespace Ytake\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Annotation\Transactional;
 use Ytake\LaravelAspect\Interceptor\TransactionalInterceptor;
 
 /**
@@ -25,8 +26,8 @@ use Ytake\LaravelAspect\Interceptor\TransactionalInterceptor;
  */
 class TransactionalPointCut extends CommonPointCut implements PointCutable
 {
-    /** @var */
-    protected $annotation = \Ytake\LaravelAspect\Annotation\Transactional::class;
+    /** @var string */
+    protected $annotation = Transactional::class;
 
     /**
      * @param Container $app
@@ -35,7 +36,9 @@ class TransactionalPointCut extends CommonPointCut implements PointCutable
      */
     public function configure(Container $app)
     {
-        $this->setInterceptor(new TransactionalInterceptor);
+        $interceptor = new TransactionalInterceptor;
+        $interceptor->setDatabaseManager($app['Illuminate\Database\DatabaseManager']);
+        $this->setInterceptor($interceptor);
 
         return $this->withAnnotatedAnyInterceptor($app);
     }

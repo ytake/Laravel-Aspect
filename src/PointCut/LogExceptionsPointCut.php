@@ -18,6 +18,7 @@
 namespace Ytake\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Annotation\LogExceptions;
 use Ytake\LaravelAspect\Interceptor\LogExceptionsInterceptor;
 
 /**
@@ -26,7 +27,7 @@ use Ytake\LaravelAspect\Interceptor\LogExceptionsInterceptor;
 class LogExceptionsPointCut extends CommonPointCut implements PointCutable
 {
     /** @var string */
-    protected $annotation = \Ytake\LaravelAspect\Annotation\LogExceptions::class;
+    protected $annotation = LogExceptions::class;
 
     /**
      * @param Container $app
@@ -35,7 +36,9 @@ class LogExceptionsPointCut extends CommonPointCut implements PointCutable
      */
     public function configure(Container $app)
     {
-        $this->setInterceptor(new LogExceptionsInterceptor);
+        $interceptor = new LogExceptionsInterceptor;
+        $interceptor->setLogger($app['Psr\Log\LoggerInterface']);
+        $this->setInterceptor($interceptor);
 
         return $this->withAnnotatedAnyInterceptor($app);
     }

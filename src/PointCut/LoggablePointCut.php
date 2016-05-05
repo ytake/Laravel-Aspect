@@ -18,6 +18,7 @@
 namespace Ytake\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Annotation\Loggable;
 use Ytake\LaravelAspect\Interceptor\LoggableInterceptor;
 
 /**
@@ -26,7 +27,7 @@ use Ytake\LaravelAspect\Interceptor\LoggableInterceptor;
 class LoggablePointCut extends CommonPointCut implements PointCutable
 {
     /** @var string */
-    protected $annotation = \Ytake\LaravelAspect\Annotation\Loggable::class;
+    protected $annotation = Loggable::class;
 
     /**
      * @param Container $app
@@ -35,7 +36,9 @@ class LoggablePointCut extends CommonPointCut implements PointCutable
      */
     public function configure(Container $app)
     {
-        $this->setInterceptor(new LoggableInterceptor);
+        $interceptor = new LoggableInterceptor;
+        $interceptor->setLogger($app['Psr\Log\LoggerInterface']);
+        $this->setInterceptor($interceptor);
 
         return $this->withAnnotatedAnyInterceptor($app);
     }

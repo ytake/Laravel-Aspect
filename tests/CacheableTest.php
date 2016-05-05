@@ -5,8 +5,6 @@ class CacheableTest extends \AspectTestCase
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
 
-    protected static $instance;
-
     protected function setUp()
     {
         parent::setUp();
@@ -16,11 +14,22 @@ class CacheableTest extends \AspectTestCase
 
     public function testCacheableGenerateCacheNameSingleKey()
     {
+        /** @var \Illuminate\Cache\CacheManager $manager */
         $cache = $this->app->make(\__Test\AspectCacheable::class);
         $result = $cache->singleKey(1000);
         $this->assertSame(1000, $result);
-        $this->assertSame(1000, $this->app['cache']->get('singleKey:1000'));
-        $this->assertSame($result, $cache->singleKey(1000));
+        // null cache driver always return null
+        $this->assertNull($this->app['cache']->get('singleKey:1000'));
+
+        $result = $cache->multipleKey(1000, 'testing');
+        $this->assertSame(1000, $result);
+        $this->assertSame(1000, $this->app['cache']->get('multipleKey:1000:testing'));
+        $manager = $this->app['cache'];
+        $this->assertSame('array', $manager->getDefaultDriver());
+
+        $result = $cache->multipleKey(1000, 'testing');
+        $this->assertSame(1000, $result);
+        $this->assertNull($this->app['cache']->get('singleKey:1000'));
     }
 
     public function testCacheableGenerateCacheNameMultipleKey()

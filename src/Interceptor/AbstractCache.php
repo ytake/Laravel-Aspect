@@ -19,6 +19,7 @@ namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
+use Illuminate\Contracts\Cache\Factory;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
@@ -30,6 +31,9 @@ abstract class AbstractCache implements MethodInterceptor
 
     /** @var string */
     protected $join = ":";
+
+    /** @var Factory  */
+    protected static $factory;
 
     /**
      * @param                  $name
@@ -83,7 +87,7 @@ abstract class AbstractCache implements MethodInterceptor
     protected function detectCacheRepository($annotation)
     {
         /** @var \Illuminate\Contracts\Cache\Repository $cache */
-        $cache = app('cache')->store($annotation->driver);
+        $cache = self::$factory->store($annotation->driver);
         if (count($annotation->tags)) {
             $cache = $cache->tags($annotation->tags);
 
@@ -91,5 +95,14 @@ abstract class AbstractCache implements MethodInterceptor
         }
 
         return $cache;
+    }
+
+    /**
+     * set cache instance
+     * @param Factory $factory
+     */
+    public function setCache(Factory $factory)
+    {
+        self::$factory = $factory;
     }
 }

@@ -17,6 +17,7 @@
  */
 namespace Ytake\LaravelAspect\Interceptor;
 
+use Psr\Log\LoggerInterface;
 use Ray\Aop\MethodInvocation;
 use Ytake\LaravelAspect\Annotation\LoggableAnnotate;
 
@@ -27,6 +28,9 @@ class AbstractLogger
 {
     /** @var string */
     protected $format = "%s:%s.%s";
+
+    /** @var LoggerInterface  */
+    protected static $logger;
 
     /**
      * @param LoggableAnnotate $annotation
@@ -52,5 +56,13 @@ class AbstractLogger
             ),
             'context' => $context,
         ];
+    }
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        self::$logger = $logger;
     }
 }

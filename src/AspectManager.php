@@ -21,7 +21,8 @@ use Illuminate\Support\Manager;
 
 /**
  * Class AspectManager
- * @method void register() register(string $module)
+ * @method void register(string $module)
+ * @method void dispatch()
  */
 class AspectManager extends Manager
 {

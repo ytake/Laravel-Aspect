@@ -45,7 +45,7 @@ class LogExceptionsInterceptor extends AbstractLogger implements MethodIntercept
 
             if ($exception instanceof $annotation->expect) {
                 $logFormat = $this->logFormatter($annotation, $invocation);
-                $logger = app('Psr\Log\LoggerInterface');
+                $logger = self::$logger;
                 if ($logger instanceof Writer) {
                     $logger = $logger->getMonolog();
                 }

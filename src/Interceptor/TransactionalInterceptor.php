@@ -20,6 +20,7 @@ namespace Ytake\LaravelAspect\Interceptor;
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
 use Illuminate\Database\QueryException;
+use Illuminate\Database\DatabaseManager;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
@@ -28,6 +29,9 @@ use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 class TransactionalInterceptor implements MethodInterceptor
 {
     use AnnotationReaderTrait;
+
+    /** @var DatabaseManager  */
+    protected static $databaseManager;
 
     /**
      * @param MethodInvocation $invocation
@@ -41,7 +45,7 @@ class TransactionalInterceptor implements MethodInterceptor
 
         $connection = $annotation->value;
         /** @var \Illuminate\Database\ConnectionInterface $database */
-        $database = app('db')->connection($connection);
+        $database = self::$databaseManager->connection($connection);
         $database->beginTransaction();
         try {
             $result = $invocation->proceed();
@@ -60,5 +64,13 @@ class TransactionalInterceptor implements MethodInterceptor
             }
             throw $exception;
         }
+    }
+
+    /**
+     * @param DatabaseManager $databaseManager
+     */
+    public function setDatabaseManager(DatabaseManager $databaseManager)
+    {
+        self::$databaseManager = $databaseManager;
     }
 }

@@ -49,6 +49,7 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         $this->app->singleton('db', function ($app) {
             return new DatabaseManager($app, $app['db.factory']);
         });
+        $this->app->alias('db', DatabaseManager::class);
     }
 
     protected function registerCache()
@@ -60,6 +61,7 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         $this->app->singleton('cache.store', function ($app) {
             return $app['cache']->driver();
         });
+        $this->app->alias('cache', \Illuminate\Contracts\Cache\Factory::class);
     }
 
     protected function registerAnnotationReader()
