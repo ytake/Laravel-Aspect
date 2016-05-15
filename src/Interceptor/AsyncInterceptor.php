@@ -15,18 +15,33 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\PointCut;
+namespace Ytake\LaravelAspect\Interceptor;
 
-use Illuminate\Contracts\Container\Container;
+use Ray\Aop\MethodInvocation;
+use Ray\Aop\MethodInterceptor;
 
 /**
- * Interface PointCutable
+ * Class AsyncInterceptor
+ *
+ * @codeCoverageIgnore
  */
-interface PointCutable
+class AsyncInterceptor implements MethodInterceptor
 {
     /**
-     * @param Container $app
-     * @return \Ray\Aop\Pointcut
+     * @param MethodInvocation $invocation
+     *
+     * @return object
+     * @throws \Exception
      */
-    public function configure(Container $app);
+    public function invoke(MethodInvocation $invocation)
+    {
+        $pid = pcntl_fork();
+        if ($pid === -1) {
+            throw new \RuntimeException('pcntl_fork() returned -1');
+        } elseif ($pid) {
+            return null;
+        } else {
+            $invocation->proceed();
+        }
+    }
 }

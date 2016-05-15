@@ -15,18 +15,29 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\PointCut;
+namespace Ytake\LaravelAspect\Modules;
 
-use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\PointCut\PointCutable;
+use Ytake\LaravelAspect\PointCut\AsyncPointCut;
 
 /**
- * Interface PointCutable
+ * Class AsyncModule
  */
-interface PointCutable
+class AsyncModule extends AspectModule
 {
+    /** @var array */
+    protected $classes = [];
+
     /**
-     * @param Container $app
-     * @return \Ray\Aop\Pointcut
+     * @return PointCutable
      */
-    public function configure(Container $app);
+    protected function registerPointCut()
+    {
+        // @codeCoverageIgnoreStart
+        if (!extension_loaded('pcntl')) {
+            throw new \LogicException("Asynchronous Execution requires pcntl extensions to be installed");
+        }
+        // @codeCoverageIgnoreEnd
+        return new AsyncPointCut;
+    }
 }

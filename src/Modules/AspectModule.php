@@ -17,8 +17,6 @@
  */
 namespace Ytake\LaravelAspect\Modules;
 
-use Ray\Aop\Bind;
-use Ray\Aop\CompilerInterface;
 use Ytake\LaravelAspect\PointCut\PointCutable;
 use Illuminate\Contracts\Container\Container as Application;
 
@@ -30,12 +28,6 @@ abstract class AspectModule
     /** @var Application */
     protected $app;
 
-    /** @var Bind */
-    protected $bind;
-
-    /** @var CompilerInterface */
-    protected $compiler;
-
     /** @var array */
     protected static $pointcuts = [];
 
@@ -46,6 +38,8 @@ abstract class AspectModule
     protected $classes = [];
 
     /**
+     * AspectModule constructor.
+     *
      * @param Application $app
      */
     public function __construct(Application $app)

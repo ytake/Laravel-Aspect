@@ -50,6 +50,7 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
             return new DatabaseManager($app, $app['db.factory']);
         });
         $this->app->alias('db', DatabaseManager::class);
+        $this->app->bind('Illuminate\Database\ConnectionResolverInterface', DatabaseManager::class);
     }
 
     protected function registerCache()

@@ -15,18 +15,14 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\PointCut;
+namespace Ytake\LaravelAspect\Annotation;
 
-use Illuminate\Contracts\Container\Container;
+use Doctrine\Common\Annotations\Annotation;
 
 /**
- * Interface PointCutable
+ * @Annotation
+ * @Target("METHOD")
  */
-interface PointCutable
+final class Async extends Annotation
 {
-    /**
-     * @param Container $app
-     * @return \Ray\Aop\Pointcut
-     */
-    public function configure(Container $app);
 }
