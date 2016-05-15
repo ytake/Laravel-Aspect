@@ -63,7 +63,7 @@ class RayAspectKernel implements AspectDriverInterface
     }
 
     /**
-     * @param null $module
+     * @param null|string $module
      *
      * @throws ClassNotFoundException
      */

@@ -24,6 +24,7 @@ use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Class ModulePublishCommand
+ * @codeCoverageIgnore
  */
 class ModulePublishCommand extends Command
 {
@@ -44,11 +45,12 @@ class ModulePublishCommand extends Command
 
     /** @var array  package modules */
     protected $modules = [
-        'CacheableModule' => \Ytake\LaravelAspect\Modules\CacheableModule::class,
-        'CacheEvictModule' => \Ytake\LaravelAspect\Modules\CacheEvictModule::class,
-        'CachePutModule' => \Ytake\LaravelAspect\Modules\CachePutModule::class,
-        'TransactionalModule' => \Ytake\LaravelAspect\Modules\TransactionalModule::class,
-        'LoggableModule' => \Ytake\LaravelAspect\Modules\LoggableModule::class,
+        'CacheableModule' => 'Ytake\LaravelAspect\Modules\CacheableModule',
+        'CacheEvictModule' => 'Ytake\LaravelAspect\Modules\CacheEvictModule',
+        'CachePutModule' => 'Ytake\LaravelAspect\Modules\CachePutModule',
+        'TransactionalModule' => 'Ytake\LaravelAspect\Modules\TransactionalModule',
+        'LoggableModule' => 'Ytake\LaravelAspect\Modules\LoggableModule',
+        'LogExceptionsModule' => 'Ytake\LaravelAspect\Modules\LogExceptionsModule',
     ];
 
     /**

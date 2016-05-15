@@ -198,7 +198,7 @@ public function throwExceptionCache()
 }
 ```
 
-### @Loggable
+### @Loggable / @LogExceptions
 
 for logger(illuminate/log, monolog)
 
@@ -235,6 +235,52 @@ sample)
 [2015-12-23 08:15:30] testing.INFO: Loggable:__Test\AspectLoggable.normalLog {"args":{"id":1},"result":1,"time":0.000259876251221}
 ```
 
+#### About @LogExceptions
+**Also, take a look at @Loggable. This annotation does the same, but also logs non-exceptional situations.**
+
+```php
+use Ytake\LaravelAspect\Annotation\LogExceptions;
+
+class AspectLoggable
+{
+    /**
+     * @LogExceptions
+     * @param null $id
+     * @return null
+     */
+    public function dispatchLogExceptions()
+    {
+        return $this->__toString();
+    }
+}
+
+```
+
+### @Async
+Methods annotated with @Async will return immediately to its caller while its operation executes asynchronously.
+
+Methods annotated with @Async must strictly have a void
+
+**required pcntl extension**
+[PHP:PCNTL - Process Control](http://php.net/manual/en/book.pcntl.php)
+
+```php
+use Ytake\LaravelAspect\Annotation\Async;
+
+class AspectAsync
+{
+    /**
+     * @Async
+     * @param null $id
+     */
+    public function asyncProcess()
+    {
+        sleep(10);
+    }
+}
+
+```
+
 ### Annotation Cache Driver
 
 chose array driver or file cache driver
@@ -258,10 +304,6 @@ use config/ytake-laravel-aspect.php file
         ],
     ],
 ```
-
-## add Interceptors
-
-soon
 
 ## for testing
 use none driver

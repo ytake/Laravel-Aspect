@@ -22,6 +22,7 @@ use Ray\Aop\MethodInterceptor;
 
 /**
  * Class AsyncInterceptor
+ * @codeCoverageIgnore
  */
 class AsyncInterceptor implements MethodInterceptor
 {

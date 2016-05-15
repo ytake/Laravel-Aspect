@@ -30,11 +30,12 @@ class TransactionalInterceptor implements MethodInterceptor
 {
     use AnnotationReaderTrait;
 
-    /** @var DatabaseManager  */
+    /** @var DatabaseManager */
     protected static $databaseManager;
 
     /**
      * @param MethodInvocation $invocation
+     *
      * @return object
      * @throws \Exception
      */
@@ -47,6 +48,7 @@ class TransactionalInterceptor implements MethodInterceptor
         /** @var \Illuminate\Database\ConnectionInterface $database */
         $database = self::$databaseManager->connection($connection);
         $database->beginTransaction();
+
         try {
             $result = $invocation->proceed();
             $database->commit();

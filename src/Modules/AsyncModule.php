@@ -33,9 +33,11 @@ class AsyncModule extends AspectModule
      */
     protected function registerPointCut()
     {
+        // @codeCoverageIgnoreStart
         if (!extension_loaded('pcntl')) {
             throw new \LogicException("Asynchronous Execution requires pcntl extensions to be installed");
         }
+        // @codeCoverageIgnoreEnd
         return new AsyncPointCut;
     }
 }

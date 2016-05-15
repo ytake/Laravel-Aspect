@@ -23,12 +23,37 @@ class TransactionalTest extends \AspectTestCase
 
     public function testTransactionalDatabase()
     {
-        $this->app->bind(\__Test\AspectTransactionalDatabase::class, function () {
-            return new \__Test\AspectTransactionalDatabase($this->app['db']);
-        });
         $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
         $this->assertInternalType('array', $transactional->start());
         $this->assertInstanceOf('stdClass', $transactional->start()[0]);
+    }
+
+    /**
+     * @expectedException \Illuminate\Database\QueryException
+     */
+    public function testTransactionalDatabaseThrowException()
+    {
+        /** @var \__Test\AspectTransactionalDatabase $transactional */
+        $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
+        try {
+            $transactional->error();
+        } catch (\Illuminate\Database\QueryException $e) {
+             $this->assertNull($this->app['db']->connection()->table("tests")->where('test', 'testing')->first());
+        }
+    }
+
+    /**
+     * @expectedException \Illuminate\Database\QueryException
+     */
+    public function testTransactionalDatabaseThrowLogicException()
+    {
+        /** @var \__Test\AspectTransactionalDatabase $transactional */
+        $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
+        try {
+            $transactional->errorException();
+        } catch (\LogicException $e) {
+            $this->assertNull($this->app['db']->connection()->table("tests")->where('test', 'testing')->first());
+        }
     }
 
     /**
