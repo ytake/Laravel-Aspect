@@ -22,12 +22,14 @@ use Ray\Aop\MethodInterceptor;
 
 /**
  * Class AsyncInterceptor
+ *
  * @codeCoverageIgnore
  */
 class AsyncInterceptor implements MethodInterceptor
 {
     /**
      * @param MethodInvocation $invocation
+     *
      * @return object
      * @throws \Exception
      */
@@ -36,7 +38,7 @@ class AsyncInterceptor implements MethodInterceptor
         $pid = pcntl_fork();
         if ($pid === -1) {
             throw new \RuntimeException('pcntl_fork() returned -1');
-        } else if ($pid) {
+        } elseif ($pid) {
             return null;
         } else {
             $invocation->proceed();
