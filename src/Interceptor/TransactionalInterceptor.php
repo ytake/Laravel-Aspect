@@ -64,6 +64,7 @@ class TransactionalInterceptor implements MethodInterceptor
                 $database->rollBack();
                 throw $exception;
             }
+            $database->rollBack();
             throw $exception;
         }
     }

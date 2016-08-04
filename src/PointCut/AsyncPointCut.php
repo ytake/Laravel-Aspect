@@ -17,8 +17,6 @@
  */
 namespace Ytake\LaravelAspect\PointCut;
 
-use Ray\Aop\Matcher;
-use Ray\Aop\Pointcut;
 use Illuminate\Contracts\Container\Container;
 use Ytake\LaravelAspect\Annotation\Async;
 use Ytake\LaravelAspect\Interceptor\AsyncInterceptor;
@@ -41,17 +39,5 @@ class AsyncPointCut extends CommonPointCut implements PointCutable
         $this->setInterceptor(new AsyncInterceptor);
 
         return $this->withAnnotatedAnyInterceptor($app);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function withAnnotatedAnyInterceptor(Container $app)
-    {
-        return new Pointcut(
-            (new Matcher)->any(),
-            (new Matcher)->annotatedWith($this->annotation),
-            [$this->interceptor]
-        );
     }
 }
