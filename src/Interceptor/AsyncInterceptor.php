@@ -19,6 +19,8 @@ namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
+use Ytake\LaravelAspect\Annotation\Async;
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
  * Class AsyncInterceptor
@@ -27,6 +29,8 @@ use Ray\Aop\MethodInterceptor;
  */
 class AsyncInterceptor implements MethodInterceptor
 {
+    use AnnotationReaderTrait;
+
     /**
      * @param MethodInvocation $invocation
      *
@@ -35,13 +39,28 @@ class AsyncInterceptor implements MethodInterceptor
      */
     public function invoke(MethodInvocation $invocation)
     {
-        $pid = pcntl_fork();
-        if ($pid === -1) {
-            throw new \RuntimeException('pcntl_fork() returned -1');
-        } elseif ($pid) {
-            return null;
-        } else {
-            $invocation->proceed();
+        /** @var Async $annotation */
+        $annotation = $this->reader
+            ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
+        $stack = [];
+        for ($i = 1; $i <= $annotation->process; $i++) {
+            $pid = pcntl_fork();
+            if ($pid === -1) {
+                throw new \RuntimeException('pcntl_fork() returned -1');
+            } elseif ($pid) {
+                $stack[$pid] = true;
+                if (count($stack) >= $annotation->process) {
+                    unset($stack[pcntl_waitpid(-1, $status, WUNTRACED)]);
+                }
+
+                return null;
+            } else {
+                $invocation->proceed();
+                exit;
+            }
+        }
+        while (count($stack) > 0) {
+            unset($stack[pcntl_waitpid(-1, $status, WUNTRACED)]);
         }
     }
 }

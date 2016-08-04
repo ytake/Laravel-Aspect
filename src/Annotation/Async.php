@@ -25,4 +25,6 @@ use Doctrine\Common\Annotations\Annotation;
  */
 final class Async extends Annotation
 {
+    /** @var int $process */
+    public $process = 1;
 }
