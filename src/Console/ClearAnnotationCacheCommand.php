@@ -62,6 +62,10 @@ class ClearAnnotationCacheCommand extends Command
                 $this->filesystem->deleteDirectory($directory);
             }
         }
+        if ($configure['default'] === 'apcu') {
+            // clear cache
+            apcu_clear_cache();
+        }
         $this->info('annotation cache clear!');
     }
 }

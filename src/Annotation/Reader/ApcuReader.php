@@ -15,20 +15,37 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect;
+namespace Ytake\LaravelAspect\Annotation\Reader;
 
+use Doctrine\Common\Cache\ApcuCache;
+use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Annotations\AnnotationReader;
 
 /**
- * Class ArrayReader
+ * Class ApcuReader
  */
-class ArrayReader implements AnnotationReadable
+class ApcuReader implements AnnotationReadable
 {
+    /** @var string[] */
+    protected $config;
+
     /**
-     * @return AnnotationReader
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * @return CachedReader
      */
     public function getReader()
     {
-        return new AnnotationReader();
+        return new CachedReader(
+            new AnnotationReader(),
+            new ApcuCache(),
+            (bool) $this->config['debug']
+        );
     }
 }

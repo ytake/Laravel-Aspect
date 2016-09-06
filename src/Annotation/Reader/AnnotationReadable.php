@@ -15,37 +15,17 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect;
+namespace Ytake\LaravelAspect\Annotation\Reader;
 
-use Doctrine\Common\Cache\FilesystemCache;
-use Doctrine\Common\Annotations\CachedReader;
-use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader as DoctrineAnnotationReader;
 
 /**
- * Class FileReader
+ * Interface AnnotationReadable
  */
-class FileReader implements AnnotationReadable
+interface AnnotationReadable
 {
-    /** @var string[] */
-    protected $config;
-
     /**
-     * @param array $config
+     * @return DoctrineAnnotationReader
      */
-    public function __construct(array $config)
-    {
-        $this->config = $config;
-    }
-
-    /**
-     * @return CachedReader
-     */
-    public function getReader()
-    {
-        return new CachedReader(
-            new AnnotationReader(),
-            new FilesystemCache($this->config['cache_dir']),
-            (bool) $this->config['debug']
-        );
-    }
+    public function getReader();
 }
