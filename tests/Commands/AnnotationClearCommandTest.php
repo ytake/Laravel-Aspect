@@ -42,22 +42,6 @@ class AnnotationClearCommandTest extends \AspectTestCase
         }
     }
 
-    public function testAnnotationCacheClearApcu()
-    {
-        $this->app['config']->set('ytake-laravel-aop.annotation.default', 'apcu');
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
-        $this->resolveManager();
-        $this->proceed();
-        $this->assertTrue(apcu_exists("[__Test\\AspectCacheable#cachingKeyObject@[Annot]][1]"));
-        $output = new \Symfony\Component\Console\Output\BufferedOutput();
-        $this->command->run(
-            new \Symfony\Component\Console\Input\ArrayInput(['driver' => 'apcu']),
-            $output
-        );
-        $this->assertSame('annotation cache clear!', trim($output->fetch()));
-        $this->assertFalse(apcu_exists("[__Test\\AspectCacheable#cachingKeyObject@[Annot]][1]"));
-    }
-
     /**
      *
      */

@@ -28,6 +28,7 @@
     </filter>
     <logging>
         <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+        <log type="coverage-clover" target="tests/logs/clover.xml"/>
     </logging>
     <php>
         <includePath>./tests</includePath>

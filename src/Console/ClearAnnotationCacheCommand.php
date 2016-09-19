@@ -24,6 +24,8 @@ use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Class ClearAnnotationCacheCommand
+ *
+ * @codeCoverageIgnore
  */
 class ClearAnnotationCacheCommand extends Command
 {
@@ -64,10 +66,12 @@ class ClearAnnotationCacheCommand extends Command
                 $this->filesystem->deleteDirectory($directory);
             }
         }
+        // @codeCoverageIgnoreStart
         if ($driver === 'apcu') {
             // clear cache
             apcu_clear_cache();
         }
+        // @codeCoverageIgnoreEnd
         $this->info('annotation cache clear!');
     }
 
