@@ -17,6 +17,7 @@
  */
 namespace Ytake\LaravelAspect\Annotation\Reader;
 
+use Doctrine\Common\Cache\ApcCache;
 use Doctrine\Common\Cache\ApcuCache;
 use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Annotations\AnnotationReader;
@@ -42,9 +43,10 @@ class ApcuReader implements AnnotationReadable
      */
     public function getReader()
     {
+        $extension = (extension_loaded('apcu')) ? new ApcuCache : new ApcCache;
         return new CachedReader(
             new AnnotationReader(),
-            new ApcuCache(),
+            $extension,
             (bool) $this->config['debug']
         );
     }
