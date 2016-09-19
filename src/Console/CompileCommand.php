@@ -19,7 +19,6 @@ namespace Ytake\LaravelAspect\Console;
 
 use Illuminate\Console\Command;
 use Ytake\LaravelAspect\AspectManager;
-use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Class ClearCacheCommand
@@ -53,20 +52,5 @@ class CompileCommand extends Command
     {
         $this->aspectManager->dispatch();
         $this->info('class files compiled!');
-    }
-
-    /**
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            [
-                'driver',
-                InputArgument::OPTIONAL,
-                'The name of the driver you would like to compile.',
-                $this->aspectManager->getDefaultDriver(),
-            ],
-        ];
     }
 }

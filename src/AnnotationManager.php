@@ -17,9 +17,9 @@
  */
 namespace Ytake\LaravelAspect;
 
-use Doctrine\Common\Cache\ApcuCache;
 use Illuminate\Support\Manager;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Ytake\LaravelAspect\Annotation\Reader\ApcuReader;
 use Ytake\LaravelAspect\Annotation\Reader\FileReader;
 use Ytake\LaravelAspect\Annotation\Reader\ArrayReader;
 
@@ -60,13 +60,13 @@ class AnnotationManager extends Manager
     }
 
     /**
-     * @return ApcuCache
+     * @return ApcuReader
      */
     protected function createApcuDriver()
     {
         $this->ignoredAnnotations($this->app['config']->get('ytake-laravel-aop.annotation.ignores', []));
 
-        return new ApcuCache($this->getConfigure('file'));
+        return new ApcuReader($this->getConfigure('file'));
     }
 
     /**

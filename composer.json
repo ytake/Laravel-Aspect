@@ -29,9 +29,9 @@
     "doctrine/cache": "~1.0"
   },
   "require-dev": {
-    "symfony/framework-bundle": "2.*",
-    "symfony/console": "2.*",
-    "phpunit/phpunit": "4.*",
+    "symfony/framework-bundle": "~2.0|~3.0",
+    "symfony/console": "~2.0|~3.0",
+    "phpunit/phpunit": "~4.0|~5.0",
     "mockery/mockery": "*",
     "satooshi/php-coveralls": "*",
     "illuminate/database": "~5.0",
@@ -45,13 +45,15 @@
   "autoload-dev": {
     "files": [
       "tests/AspectTestCase.php",
-      "tests/helper.php"
+      "tests/helper.php",
+      "tests/MockApplication.php"
     ],
     "psr-4": {
       "__Test\\": "tests/src"
     }
   },
   "suggest": {
-    "ext-pcntl": "*"
+    "ext-pcntl": "*",
+    "ext-apcu": "The extension required to Annotation cache"
   }
 }

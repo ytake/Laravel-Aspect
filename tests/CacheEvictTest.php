@@ -14,6 +14,7 @@ class CacheEvictTest extends \AspectTestCase
 
     public function testGenerateCacheNameRemoveNullKey()
     {
+        /** @var \__Test\AspectCacheEvict $cache */
         $cache = $this->app->make(\__Test\AspectCacheEvict::class);
         $cache->singleCacheDelete();
         $this->assertNull($this->app['cache']->get('singleCacheDelete'));

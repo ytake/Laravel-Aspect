@@ -16,7 +16,7 @@ use Ytake\LaravelAspect\Annotation\CacheEvict;
 class AspectCacheEvict
 {
     /**
-     * @CacheEvict
+     * @CacheEvict(cacheName="singleCacheDelete")
      * @return string
      */
     public function singleCacheDelete()
