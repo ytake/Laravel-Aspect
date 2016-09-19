@@ -19,6 +19,9 @@ namespace Ytake\LaravelAspect;
 
 use Illuminate\Support\Manager;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Ytake\LaravelAspect\Annotation\Reader\ApcuReader;
+use Ytake\LaravelAspect\Annotation\Reader\FileReader;
+use Ytake\LaravelAspect\Annotation\Reader\ArrayReader;
 
 /**
  * Class AnnotationManager
@@ -28,6 +31,7 @@ class AnnotationManager extends Manager
 {
     /**
      * default annotation reader(no caching other than in memory [in php arrays])
+     *
      * @return string
      */
     public function getDefaultDriver()
@@ -41,6 +45,7 @@ class AnnotationManager extends Manager
     protected function createArrayDriver()
     {
         $this->ignoredAnnotations($this->app['config']->get('ytake-laravel-aop.annotation.ignores', []));
+
         return new ArrayReader();
     }
 
@@ -50,22 +55,36 @@ class AnnotationManager extends Manager
     protected function createFileDriver()
     {
         $this->ignoredAnnotations($this->app['config']->get('ytake-laravel-aop.annotation.ignores', []));
+
         return new FileReader($this->getConfigure('file'));
     }
 
     /**
+     * @return ApcuReader
+     */
+    protected function createApcuDriver()
+    {
+        $this->ignoredAnnotations($this->app['config']->get('ytake-laravel-aop.annotation.ignores', []));
+
+        return new ApcuReader($this->getConfigure('file'));
+    }
+
+    /**
      * @param string $driver
+     *
      * @return string[]
      */
     protected function getConfigure($driver)
     {
         $annotationConfigure = $this->app['config']->get('ytake-laravel-aop.annotation.drivers');
+        $annotationConfigure[$driver]['debug'] = $this->app['config']->get('ytake-laravel-aop.annotation.debug', false);
 
         return $annotationConfigure[$driver];
     }
 
     /**
      * Add a new annotation to the globally ignored annotation names with regard to exception handling.
+     *
      * @param array $ignores
      */
     private function ignoredAnnotations(array $ignores = [])

@@ -15,17 +15,20 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect;
+namespace Ytake\LaravelAspect\Annotation\Reader;
 
-use Doctrine\Common\Annotations\Reader;
+use Doctrine\Common\Annotations\AnnotationReader;
 
 /**
- * Interface AnnotationReadable
+ * Class ArrayReader
  */
-interface AnnotationReadable
+class ArrayReader implements AnnotationReadable
 {
     /**
-     * @return Reader
+     * @return AnnotationReader
      */
-    public function getReader();
+    public function getReader()
+    {
+        return new AnnotationReader();
+    }
 }

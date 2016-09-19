@@ -24,6 +24,7 @@ use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Class ModulePublishCommand
+ *
  * @codeCoverageIgnore
  */
 class ModulePublishCommand extends Command
@@ -34,9 +35,6 @@ class ModulePublishCommand extends Command
     /** @var string */
     protected $description = 'Publish any aspect modules from ytake/laravel-aspect';
 
-    /** @var string  module stub file path */
-    protected $stub = __DIR__ . '/stub/ModuleStub.stub';
-
     /** @var Filesystem */
     protected $filesystem;
 
@@ -45,11 +43,11 @@ class ModulePublishCommand extends Command
 
     /** @var array  package modules */
     protected $modules = [
-        'CacheableModule' => 'Ytake\LaravelAspect\Modules\CacheableModule',
-        'CacheEvictModule' => 'Ytake\LaravelAspect\Modules\CacheEvictModule',
-        'CachePutModule' => 'Ytake\LaravelAspect\Modules\CachePutModule',
+        'CacheableModule'     => 'Ytake\LaravelAspect\Modules\CacheableModule',
+        'CacheEvictModule'    => 'Ytake\LaravelAspect\Modules\CacheEvictModule',
+        'CachePutModule'      => 'Ytake\LaravelAspect\Modules\CachePutModule',
         'TransactionalModule' => 'Ytake\LaravelAspect\Modules\TransactionalModule',
-        'LoggableModule' => 'Ytake\LaravelAspect\Modules\LoggableModule',
+        'LoggableModule'      => 'Ytake\LaravelAspect\Modules\LoggableModule',
         'LogExceptionsModule' => 'Ytake\LaravelAspect\Modules\LogExceptionsModule',
     ];
 
@@ -73,20 +71,20 @@ class ModulePublishCommand extends Command
             if ($this->filesystem->exists($path)) {
                 continue;
             }
-            $stub = $this->filesystem->get($this->stub);
+            $stub = $this->filesystem->get($this->stub());
             $extendClassName = $this->getExtendsClassName($module);
             $source = str_replace(
                 [
                     'DummyNamespace',
                     'DummyClass',
                     'DummyAspectModuleClass',
-                    'DummyModuleClass'
+                    'DummyModuleClass',
                 ],
                 [
                     $this->laravel->getNamespace() . $this->argument('module_dir'),
                     $className,
                     $module . ' as ' . $extendClassName,
-                    $extendClassName
+                    $extendClassName,
                 ], $stub);
             $this->makeDirectory($path);
             $this->filesystem->put($path, $source);
@@ -106,6 +104,7 @@ class ModulePublishCommand extends Command
 
     /**
      * @param string $name
+     *
      * @return string
      */
     protected function getPath($name)
@@ -119,6 +118,7 @@ class ModulePublishCommand extends Command
      * Parse the name and format according to the root namespace.
      *
      * @param  string $name
+     *
      * @return string
      */
     protected function parseClassName($name, $moduleDirectory = null)
@@ -142,6 +142,7 @@ class ModulePublishCommand extends Command
      * added custom aspect module, override package modules
      *
      * @param $module
+     *
      * @return $this
      */
     protected function addModule($module)
@@ -155,6 +156,7 @@ class ModulePublishCommand extends Command
      * Build the directory for the class if necessary.
      *
      * @param  string $path
+     *
      * @return string
      */
     protected function makeDirectory($path)
@@ -166,6 +168,7 @@ class ModulePublishCommand extends Command
 
     /**
      * @param $module
+     *
      * @return string
      */
     protected function getExtendsClassName($module)
@@ -174,5 +177,14 @@ class ModulePublishCommand extends Command
         $extendClassName = "Package{$shortName}";
 
         return $extendClassName;
+    }
+
+    /**
+     * @return string
+     */
+    protected function stub()
+    {
+        /** module stub file path */
+        return __DIR__ . '/stub/ModuleStub.stub';
     }
 }

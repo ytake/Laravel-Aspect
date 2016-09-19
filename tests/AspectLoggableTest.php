@@ -21,8 +21,8 @@ class AspectLoggableTest extends \AspectTestCase
         $this->resolveManager();
         $this->log = $this->app['Psr\Log\LoggerInterface'];
         $this->file = $this->app['files'];
-        if (!$this->file->exists($this->getDir())) {
-            $this->file->makeDirectory($this->getDir());
+        if (!$this->app['files']->exists($this->getDir())) {
+            $this->app['files']->makeDirectory($this->getDir());
         }
     }
 
@@ -32,7 +32,7 @@ class AspectLoggableTest extends \AspectTestCase
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLoggable::class);
         $cache->normalLog(1);
-        $put = $this->file->get($this->getDir() . '/.testing.log');
+        $put = $this->app['files']->get($this->getDir() . '/.testing.log');
         $this->assertContains('Loggable:__Test\AspectLoggable.normalLog', $put);
         $this->assertContains('{"args":{"id":1},"result":1', $put);
     }
@@ -43,14 +43,14 @@ class AspectLoggableTest extends \AspectTestCase
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLoggable::class);
         $cache->skipResultLog(1);
-        $put = $this->file->get($this->getDir() . '/.testing.log');
+        $put = $this->app['files']->get($this->getDir() . '/.testing.log');
         $this->assertContains('Loggable:__Test\AspectLoggable.skipResultLog', $put);
         $this->assertNotContains('"result":1', $put);
     }
 
     public function tearDown()
     {
-        $this->file->deleteDirectory($this->getDir());
+        $this->app['files']->deleteDirectory($this->getDir());
         parent::tearDown();
     }
 
@@ -62,6 +62,8 @@ class AspectLoggableTest extends \AspectTestCase
         /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\LoggableModule::class);
+        $aspect->register(\__Test\CacheEvictModule::class);
+        $aspect->register(\__Test\CacheableModule::class);
         $aspect->dispatch();
     }
 

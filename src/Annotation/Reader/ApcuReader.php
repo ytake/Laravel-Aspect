@@ -15,16 +15,17 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect;
+namespace Ytake\LaravelAspect\Annotation\Reader;
 
-use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\Common\Cache\ApcCache;
+use Doctrine\Common\Cache\ApcuCache;
 use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Annotations\AnnotationReader;
 
 /**
- * Class FileReader
+ * Class ApcuReader
  */
-class FileReader implements AnnotationReadable
+class ApcuReader implements AnnotationReadable
 {
     /** @var string[] */
     protected $config;
@@ -42,9 +43,10 @@ class FileReader implements AnnotationReadable
      */
     public function getReader()
     {
+        $extension = (extension_loaded('apcu')) ? new ApcuCache : new ApcCache;
         return new CachedReader(
             new AnnotationReader(),
-            new FilesystemCache($this->config['cache_dir']),
+            $extension,
             (bool) $this->config['debug']
         );
     }

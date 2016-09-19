@@ -19,7 +19,7 @@ class AnnotationManagerTest extends \AspectTestCase
     public function testDefaultDriverInstance()
     {
         $this->assertInstanceOf(
-            \Ytake\LaravelAspect\ArrayReader::class,
+            \Ytake\LaravelAspect\Annotation\Reader\ArrayReader::class,
             $this->manager->driver()
         );
     }
@@ -27,12 +27,16 @@ class AnnotationManagerTest extends \AspectTestCase
     public function testAnnotationDriverInstance()
     {
         $this->assertInstanceOf(
-            \Ytake\LaravelAspect\ArrayReader::class,
+            \Ytake\LaravelAspect\Annotation\Reader\ArrayReader::class,
             $this->manager->driver('array')
         );
         $this->assertInstanceOf(
-            \Ytake\LaravelAspect\FileReader::class,
+            \Ytake\LaravelAspect\Annotation\Reader\FileReader::class,
             $this->manager->driver('file')
+        );
+        $this->assertInstanceOf(
+            \Ytake\LaravelAspect\Annotation\Reader\ApcuReader::class,
+            $this->manager->driver('apcu')
         );
     }
 
@@ -47,6 +51,11 @@ class AnnotationManagerTest extends \AspectTestCase
         $this->assertInstanceOf(
             \Doctrine\Common\Annotations\AnnotationReader::class,
             $arrayReader->getReader()
+        );
+        $apcuReader = $this->manager->driver('apcu');
+        $this->assertInstanceOf(
+            \Doctrine\Common\Annotations\CachedReader::class,
+            $apcuReader->getReader()
         );
     }
 }

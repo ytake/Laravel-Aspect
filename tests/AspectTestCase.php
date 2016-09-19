@@ -99,9 +99,4 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         );
         \Illuminate\Container\Container::setInstance($this->app);
     }
-
-    protected function tearDown()
-    {
-        $this->app = null;
-    }
 }

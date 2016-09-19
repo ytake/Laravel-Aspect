@@ -20,9 +20,12 @@ namespace Ytake\LaravelAspect\Console;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
+use Symfony\Component\Console\Input\InputArgument;
 
 /**
  * Class ClearAnnotationCacheCommand
+ *
+ * @codeCoverageIgnore
  */
 class ClearAnnotationCacheCommand extends Command
 {
@@ -32,7 +35,7 @@ class ClearAnnotationCacheCommand extends Command
     /** @var string */
     protected $description = 'Flush the application annotation cache';
 
-    /** @var ConfigRepository */
+    /** @var array */
     protected $config;
 
     /** @var Filesystem */
@@ -45,7 +48,7 @@ class ClearAnnotationCacheCommand extends Command
     public function __construct(ConfigRepository $config, Filesystem $filesystem)
     {
         parent::__construct();
-        $this->config = $config;
+        $this->config = $config->get('ytake-laravel-aop.annotation');
         $this->filesystem = $filesystem;
     }
 
@@ -54,14 +57,36 @@ class ClearAnnotationCacheCommand extends Command
      */
     public function fire()
     {
-        $configure = $this->config->get('ytake-laravel-aop.annotation');
-        if ($configure['default'] === 'file') {
-            $driverConfig = $configure['drivers']['file'];
+        /** @var string $driver */
+        $driver = $this->argument('driver');
+        if ($driver === 'file') {
+            $driverConfig = $this->config['drivers']['file'];
             $directories = $this->filesystem->glob($driverConfig['cache_dir'] . '/*');
             foreach ($directories as $directory) {
                 $this->filesystem->deleteDirectory($directory);
             }
         }
+        // @codeCoverageIgnoreStart
+        if ($driver === 'apcu') {
+            // clear cache
+            apcu_clear_cache();
+        }
+        // @codeCoverageIgnoreEnd
         $this->info('annotation cache clear!');
+    }
+
+    /**
+     * @return array
+     */
+    protected function getArguments()
+    {
+        return [
+            [
+                'driver',
+                InputArgument::OPTIONAL,
+                'The name of the driver you would like to clear.',
+                $this->config['default'],
+            ],
+        ];
     }
 }
