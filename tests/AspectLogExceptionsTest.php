@@ -21,8 +21,8 @@ class AspectLogExceptionsTest extends \AspectTestCase
         $this->resolveManager();
         $this->log = $this->app['Psr\Log\LoggerInterface'];
         $this->file = $this->app['files'];
-        if (!$this->file->exists($this->getDir())) {
-            $this->file->makeDirectory($this->getDir());
+        if (!$this->app['files']->exists($this->getDir())) {
+            $this->app['files']->makeDirectory($this->getDir());
         }
     }
 
@@ -36,7 +36,7 @@ class AspectLogExceptionsTest extends \AspectTestCase
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLogExceptions::class);
         $cache->normalLog(1);
-        $this->file->deleteDirectory($this->getDir());
+        $this->app['files']->deleteDirectory($this->getDir());
     }
 
     public function testShouldBeLogger()
@@ -47,11 +47,11 @@ class AspectLogExceptionsTest extends \AspectTestCase
         try {
             $cache->normalLog(1);
         } catch (\Exception $e) {
-            $put = $this->file->get($this->getDir() . '/.testing.exceptions.log');
+            $put = $this->app['files']->get($this->getDir() . '/.testing.exceptions.log');
             $this->assertContains('LogExceptions:__Test\AspectLogExceptions.normalLog', $put);
             $this->assertContains('"code":0,"error_message":"', $put);
         }
-        $this->file->deleteDirectory($this->getDir());
+        $this->app['files']->deleteDirectory($this->getDir());
     }
 
     public function testNoException()
@@ -69,11 +69,11 @@ class AspectLogExceptionsTest extends \AspectTestCase
         try {
             $cache->expectException();
         } catch (\LogicException $e) {
-            $put = $this->file->get($this->getDir() . '/.testing.exceptions.log');
+            $put = $this->app['files']->get($this->getDir() . '/.testing.exceptions.log');
             $this->assertContains('LogExceptions:__Test\AspectLogExceptions.expectException', $put);
             $this->assertContains('"code":0,"error_message":"', $put);
         }
-        $this->file->deleteDirectory($this->getDir());
+        $this->app['files']->deleteDirectory($this->getDir());
     }
 
     public function testShouldNotPutExceptionLoggerFile()
@@ -86,7 +86,7 @@ class AspectLogExceptionsTest extends \AspectTestCase
         } catch (\Ytake\LaravelAspect\Exception\FileNotFoundException $e) {
             $this->assertFileNotExists($this->getDir() . '/.testing.exceptions.log');
         }
-        $this->file->deleteDirectory($this->getDir());
+        $this->app['files']->deleteDirectory($this->getDir());
     }
 
     public function testShouldNotThrowableException()
