@@ -105,6 +105,7 @@ class AspectLogExceptionsTest extends \AspectTestCase
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\LogExceptionsModule::class);
         $aspect->register(\__Test\CacheEvictModule::class);
+        $aspect->register(\__Test\CacheableModule::class);
         $aspect->dispatch();
     }
 
