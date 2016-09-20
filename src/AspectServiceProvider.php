@@ -25,7 +25,15 @@ use Illuminate\Support\ServiceProvider;
 class AspectServiceProvider extends ServiceProvider
 {
     /** @var bool  */
-    protected $defer = true;
+    protected $defer = false;
+
+    /**
+     * boot aspect kernel
+     */
+    public function boot()
+    {
+        $this->app['aspect.manager']->dispatch();
+    }
 
     /**
      * {@inheritdoc}

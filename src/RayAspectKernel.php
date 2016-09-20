@@ -60,6 +60,7 @@ class RayAspectKernel implements AspectDriverInterface
         $this->makeCompileDir();
         $this->makeCacheableDir();
         $this->compiler = $this->getCompiler();
+        $this->registerAspectModule();
     }
 
     /**
@@ -81,6 +82,10 @@ class RayAspectKernel implements AspectDriverInterface
      */
     public function dispatch()
     {
+        if (is_null($this->aspectResolver)) {
+            return;
+        }
+
         foreach ($this->aspectResolver->getResolver() as $class => $pointcuts) {
             $bind = (new AspectBind($this->filesystem, $this->configure['cache_dir'], $this->cacheable))
                 ->bind($class, $pointcuts);
@@ -141,6 +146,18 @@ class RayAspectKernel implements AspectDriverInterface
             $this->filesystem->makeDirectory($dir, $mode, true);
         }
         // @codeCoverageIgnoreEnd
+    }
+
+    /**
+     * register Aspect Module
+     */
+    protected function registerAspectModule()
+    {
+        if (isset($this->configure['modules'])) {
+            foreach ($this->configure['modules'] as $module) {
+                $this->register($module);
+            }
+        }
     }
 
     /**
