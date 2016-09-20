@@ -41,6 +41,10 @@ return [
                 // no use aspect
             ]
         ],
+        'modules' => [
+            // append modules
+            // \App\Modules\CacheableModule::class,
+        ],
     ],
 
     'annotation' => [

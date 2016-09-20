@@ -63,6 +63,7 @@ class AspectManager extends Manager
     protected function getConfigure($driver)
     {
         $aspectConfigure = $this->app['config']->get('ytake-laravel-aop.aspect.drivers');
+        $aspectConfigure[$driver]['modules'] = $this->app['config']->get('ytake-laravel-aop.aspect.modules', []);
 
         return $aspectConfigure[$driver];
     }
