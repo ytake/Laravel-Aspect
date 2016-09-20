@@ -153,8 +153,10 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function registerAspectModule()
     {
-        foreach ($this->configure['modules'] as $module) {
-            $this->register($module);
+        if (isset($this->configure['modules'])) {
+            foreach ($this->configure['modules'] as $module) {
+                $this->register($module);
+            }
         }
     }
 
