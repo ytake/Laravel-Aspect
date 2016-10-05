@@ -48,7 +48,7 @@ class CacheEvictInterceptor extends AbstractCache
             return $invocation->proceed();
         }
         $result = $invocation->proceed();
-        $cache->forget(implode($this->join, $keys));
+        $cache->forget($this->recursiveImplode($this->join, $keys));
 
         return $result;
     }
