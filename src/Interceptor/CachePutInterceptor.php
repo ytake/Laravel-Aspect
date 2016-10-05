@@ -43,7 +43,7 @@ class CachePutInterceptor extends AbstractCache
         $cache = $this->detectCacheRepository($annotation);
 
         if ($result = $invocation->proceed()) {
-            $cache->put(implode($this->join, $keys), $result, $annotation->lifetime);
+            $cache->put($this->recursiveImplode($this->join, $keys), $result, $annotation->lifetime);
         }
 
         return $result;

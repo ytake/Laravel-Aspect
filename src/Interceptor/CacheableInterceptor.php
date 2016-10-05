@@ -37,10 +37,11 @@ class CacheableInterceptor extends AbstractCache
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];
         }
+
         $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
         // detect use cache driver
         $cache = $this->detectCacheRepository($annotation);
-        $key = implode($this->join, $keys);
+        $key = $this->recursiveImplode($this->join, $keys);
         if ($cache->has($key)) {
             return $cache->get($key);
         }

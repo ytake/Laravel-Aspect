@@ -32,7 +32,7 @@ abstract class AbstractCache implements MethodInterceptor
     /** @var string */
     protected $join = ":";
 
-    /** @var Factory  */
+    /** @var Factory */
     protected static $factory;
 
     /**
@@ -76,6 +76,7 @@ abstract class AbstractCache implements MethodInterceptor
                 }
             }
         }
+
         return $keys;
     }
 
@@ -99,10 +100,36 @@ abstract class AbstractCache implements MethodInterceptor
 
     /**
      * set cache instance
+     *
      * @param Factory $factory
      */
     public function setCache(Factory $factory)
     {
         self::$factory = $factory;
+    }
+
+    /**
+     * @param string $glue
+     * @param array  $array
+     * @return string
+     */
+    protected function recursiveImplode($glue, array $array)
+    {
+        $return = '';
+        $index = 0;
+        $count = count($array);
+        foreach ($array as $row) {
+            if (is_array($row)) {
+                $return .= $this->recursiveImplode($glue, $row);
+            } else {
+                $return .= (is_object($row)) ? get_class($row) : $row;
+            }
+            if ($index < $count - 1) {
+                $return .= $glue;
+            }
+            ++$index;
+        }
+
+        return $return;
     }
 }
