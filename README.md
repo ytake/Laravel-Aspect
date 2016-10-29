@@ -83,7 +83,7 @@ config/ytake-laravel-aop.php
 
 use classes property
 
-```
+```php
 namespace App\Modules;
 
 use Ytake\LaravelAspect\Modules\CacheableModule as PackageCacheableModule;
@@ -102,7 +102,7 @@ class CacheableModule extends PackageCacheableModule
 
 example
 
-```
+```php
 
 namespace YourApplication\Services;
 
