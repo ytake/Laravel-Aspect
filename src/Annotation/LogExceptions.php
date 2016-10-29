@@ -24,14 +24,14 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class LogExceptions extends Annotation implements LoggableAnnotate
+final class LogExceptions extends LoggableAnnotate
 {
     /** @var int  Log level */
     public $value = Logger::ERROR;
 
-    /** @var string  */
+    /** @var string */
     public $expect = '\Exception';
 
-    /** @var string  */
+    /** @var string */
     public $name = 'LogExceptions';
 }

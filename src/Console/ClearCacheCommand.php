@@ -57,17 +57,22 @@ class ClearCacheCommand extends Command
         $configure = $this->config->get('ytake-laravel-aop.aspect');
         $driverConfig = $configure['drivers'][$configure['default']];
         if (isset($driverConfig['cache_dir'])) {
-            $files = $this->filesystem->glob($driverConfig['cache_dir'] . '/*');
-            foreach ($files as $file) {
-                $this->filesystem->delete($file);
-            }
+            $this->removeFiles($driverConfig['cache_dir']);
         }
         if (isset($driverConfig['compile_dir'])) {
-            $files = $this->filesystem->glob($driverConfig['compile_dir'] . '/*');
-            foreach ($files as $file) {
-                $this->filesystem->delete($file);
-            }
+            $this->removeFiles($driverConfig['compile_dir']);
         }
         $this->info('aspect code cache clear!');
+    }
+
+    /**
+     * @param string $dir
+     */
+    protected function removeFiles($dir)
+    {
+        $files = $this->filesystem->glob($dir . '/*');
+        foreach ($files as $file) {
+            $this->filesystem->delete($file);
+        }
     }
 }

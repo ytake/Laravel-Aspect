@@ -56,7 +56,7 @@ abstract class AspectModule
     {
         // public attach
         if ($this->registerPointCut() instanceof PointCutable) {
-            self::$pointcuts[] = $this->registerPointCut()->configure($this->app);
+            static::$pointcuts[] = $this->registerPointCut()->configure($this->app);
             foreach ($this->classes as $class) {
                 $this->instanceResolver($class);
             }
@@ -77,7 +77,7 @@ abstract class AspectModule
      */
     protected function instanceResolver($class)
     {
-        self::$resolve[$class] = self::$pointcuts;
+        static::$resolve[$class] = static::$pointcuts;
     }
 
     /**
@@ -85,6 +85,6 @@ abstract class AspectModule
      */
     public function getResolver()
     {
-        return self::$resolve;
+        return static::$resolve;
     }
 }

@@ -22,6 +22,7 @@ class CacheEvictTest extends \AspectTestCase
 
     public function testCacheableAndRemove()
     {
+        /** @var \__Test\AspectCacheEvict $cache */
         $cache = $this->app->make(\__Test\AspectCacheEvict::class);
         $cache->cached(1, 2);
         $this->assertNotNull($this->app['cache']->tags(['testing1'])->get('testing:1:2'));

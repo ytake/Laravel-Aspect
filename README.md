@@ -13,6 +13,8 @@ aspect-oriented programming Package for laravel framework
 [![Latest Version](http://img.shields.io/packagist/v/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
 [![Total Downloads](http://img.shields.io/packagist/dt/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
 
+This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com/jcabi/jcabi-aspects).
+
 ## usage 
 
 ### install 
@@ -48,27 +50,6 @@ $ php artisan ytake:aspect-module-publish
 ```
 more command options [--help]
 
-### aspect kernel boot
-
-added serviceProvider Class
-
-```php
-class AppServiceProvider extends ServiceProvider
-{
-    /**
-     * @return void
-     */
-    public function boot()
-    {
-        /** @var \Ytake\LaravelAspect\AspectManager $aspect */
-        $aspect = $this->app['aspect.manager'];
-        $aspect->register(\App\Modules\CacheableModule::class);
-        $aspect->dispatch();
-    }
-    
-}
-```
-
 ### publish configure
 
 * basic
@@ -89,6 +70,62 @@ $ php artisan vendor:publish --tag=aspect
 $ php artisan vendor:publish --provider="Ytake\LaravelAspect\AspectServiceProvider"
 ```
 
+### register aspect module 
+
+config/ytake-laravel-aop.php
+
+```php
+        'modules' => [
+            // append modules
+            // \App\Modules\CacheableModule::class,
+        ],
+```
+
+use classes property
+
+```
+namespace App\Modules;
+
+use Ytake\LaravelAspect\Modules\CacheableModule as PackageCacheableModule;
+
+/**
+ * Class CacheableModule
+ */
+class CacheableModule extends PackageCacheableModule
+{
+    /** @var array */
+    protected $classes = [
+        \YourApplication\Services\SampleService::class
+    ];
+}
+```
+
+example
+
+```
+
+namespace YourApplication\Services;
+
+use Ytake\LaravelAspect\Annotation\Cacheable;
+
+class SampleService
+{
+    /**
+     * @Cacheable(cacheName="testing1",key={"#id"})
+     */
+    public function action($id) 
+    {
+        return $this;
+    }
+}
+```
+
+*notice*
+ - Must use a service container
+ - Classes must be non-final
+ - Methods must be public
+ 
+ 
 ## Cache Clear Command
 
 ```bash

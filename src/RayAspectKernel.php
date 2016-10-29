@@ -21,13 +21,14 @@ use Ray\Aop\Compiler;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container;
 use Ytake\LaravelAspect\Exception\ClassNotFoundException;
+use Ytake\LaravelAspect\Modules\AspectModule;
 
 /**
  * Class RayAspectKernel
  */
 class RayAspectKernel implements AspectDriverInterface
 {
-    /** @var Container */
+    /** @var Container|\Illuminate\Container\Container */
     protected $app;
 
     /** @var array */
@@ -42,8 +43,11 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var bool */
     protected $cacheable = false;
 
-    /** @var \Ytake\LaravelAspect\Modules\AspectModule */
+    /** @var AspectModule */
     protected $aspectResolver;
+
+    /** @var AspectModule[] */
+    protected $registerModules = [];
 
     /**
      * RayAspectKernel constructor.
@@ -78,14 +82,13 @@ class RayAspectKernel implements AspectDriverInterface
     }
 
     /**
-     * boot aspect kernel
+     * weaving
      */
-    public function dispatch()
+    public function weave()
     {
         if (is_null($this->aspectResolver)) {
             return;
         }
-
         foreach ($this->aspectResolver->getResolver() as $class => $pointcuts) {
             $bind = (new AspectBind($this->filesystem, $this->configure['cache_dir'], $this->cacheable))
                 ->bind($class, $pointcuts);
@@ -94,13 +97,22 @@ class RayAspectKernel implements AspectDriverInterface
             if (isset($this->app->contextual[$class])) {
                 $this->resolveContextualBindings($class, $compiledClass);
             }
-            $this->app->bind($class, function ($app) use ($bind, $compiledClass) {
+            $this->app->bind($class, function (Container $app) use ($bind, $compiledClass) {
                 $instance = $app->make($compiledClass);
                 $instance->bindings = $bind->getBindings();
 
                 return $instance;
             });
         }
+    }
+
+    /**
+     * @deprecated
+     * boot aspect kernel
+     */
+    public function dispatch()
+    {
+        $this->weave();
     }
 
     /**

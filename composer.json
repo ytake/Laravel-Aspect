@@ -35,7 +35,13 @@
     "mockery/mockery": "*",
     "satooshi/php-coveralls": "*",
     "illuminate/database": "~5.0",
-    "illuminate/cache": "~5.0"
+    "illuminate/cache": "~5.0",
+    "sebastian/phpcpd": "*",
+    "phploc/phploc": "*",
+    "pdepend/pdepend" : "^2.2.4",
+    "phpmd/phpmd": "@stable",
+    "squizlabs/php_codesniffer": "~2.7",
+    "phpmetrics/phpmetrics": "^1.10.0"
   },
   "autoload": {
     "psr-4": {
@@ -55,5 +61,14 @@
   "suggest": {
     "ext-pcntl": "*",
     "ext-apcu": "The extension required to Annotation cache"
+  },
+  "scripts": {
+    "quality-assurance": [
+      "./vendor/bin/phpunit",
+      "./vendor/bin/phpcpd src/",
+      "./vendor/bin/phploc src/ --log-xml=tests/logs/quality-assurance/phploc.xml",
+      "./vendor/bin/phpmetrics --report-cli --report-html=tests/logs/quality-assurance/report.html ./src --ignore-errors"
+    ],
+    "phpcs": "./vendor/bin/phpcs src/ --report-full --report-source --standard=PSR2 --colors"
   }
 }
