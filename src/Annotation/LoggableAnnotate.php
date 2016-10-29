@@ -17,9 +17,13 @@
  */
 namespace Ytake\LaravelAspect\Annotation;
 
+use Doctrine\Common\Annotations\Annotation;
+
 /**
- * Interface LoggableAnnotate
+ * Class LoggableAnnotate
  */
-interface LoggableAnnotate
+abstract class LoggableAnnotate extends Annotation
 {
+    /** @var string  */
+    public $name = 'Logger';
 }

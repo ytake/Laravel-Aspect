@@ -32,7 +32,7 @@ class AspectServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['aspect.manager']->dispatch();
+        $this->app['aspect.manager']->weave();
     }
 
     /**
