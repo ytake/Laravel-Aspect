@@ -9,8 +9,8 @@ before_script:
     - if [[ $TRAVIS_PHP_VERSION =~ 5.[56] ]] ; then echo yes | pecl install apcu-4.0.11; fi;
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]] ; then echo yes | pecl install apcu; fi;
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]] ; then echo yes | pecl install apcu_bc; fi;
-    - echo 'apc.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-    - echo 'apc.enabled = 1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+    - if [[ $TRAVIS_PHP_VERSION != hhvm ]] echo 'apc.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini; fi;
+    - if [[ $TRAVIS_PHP_VERSION != hhvm ]] echo 'apc.enabled = 1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini; fi;
     - composer self-update
     - composer install --prefer-source
 script:
