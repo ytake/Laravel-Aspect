@@ -35,7 +35,7 @@ class NullAspectKernel implements AspectDriverInterface
      */
     public function weave()
     {
-        // nothing    
+        // nothing
     }
 
     /**
