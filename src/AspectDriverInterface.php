@@ -24,13 +24,19 @@ interface AspectDriverInterface
 {
     /**
      * @param null $module
+     *
      * @return void
      */
     public function register($module = null);
 
     /**
+     * weaving
+     */
+    public function weave();
+
+    /**
+     * @deprecated
      * boot aspect kernel
-     * @return void
      */
     public function dispatch();
 }

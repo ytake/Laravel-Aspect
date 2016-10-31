@@ -31,8 +31,16 @@ class NullAspectKernel implements AspectDriverInterface
     }
 
     /**
+     * weaving
+     */
+    public function weave()
+    {
+        // nothing
+    }
+
+    /**
+     * @deprecated
      * boot aspect kernel
-     * @return void
      */
     public function dispatch()
     {
