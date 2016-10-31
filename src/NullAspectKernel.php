@@ -37,7 +37,7 @@ class NullAspectKernel implements AspectDriverInterface
     {
         // nothing    
     }
-    
+
     /**
      * @deprecated
      * boot aspect kernel
