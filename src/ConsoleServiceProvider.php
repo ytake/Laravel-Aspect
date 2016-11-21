@@ -21,7 +21,6 @@ use Illuminate\Support\ServiceProvider;
 use Ytake\LaravelAspect\Console\ClearCacheCommand;
 use Ytake\LaravelAspect\Console\CompileCommand;
 use Ytake\LaravelAspect\Console\ModulePublishCommand;
-use Ytake\LaravelAspect\Console\ClearAnnotationCacheCommand;
 
 /**
  * Class AspectServiceProvider
@@ -52,9 +51,6 @@ class ConsoleServiceProvider extends ServiceProvider
         $this->app->singleton('command.ytake.aspect.clear-cache', function ($app) {
             return new ClearCacheCommand($app['config'], $app['files']);
         });
-        $this->app->singleton('command.ytake.aspect.annotation.clear-cache', function ($app) {
-            return new ClearAnnotationCacheCommand($app['config'], $app['files']);
-        });
         $this->app->singleton('command.ytake.aspect.module-publish', function ($app) {
             return new ModulePublishCommand($app['files']);
         });
@@ -63,7 +59,6 @@ class ConsoleServiceProvider extends ServiceProvider
         });
         $this->commands([
             'command.ytake.aspect.clear-cache',
-            'command.ytake.aspect.annotation.clear-cache',
             'command.ytake.aspect.module-publish',
             'command.ytake.aspect.compile'
         ]);
@@ -76,7 +71,6 @@ class ConsoleServiceProvider extends ServiceProvider
     {
         return [
             'command.ytake.aspect.clear-cache',
-            'command.ytake.aspect.annotation.clear-cache',
             'command.ytake.aspect.module-publish',
             'command.ytake.aspect.compile'
         ];

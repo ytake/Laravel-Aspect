@@ -15,39 +15,40 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Annotation\Reader;
+namespace Ytake\LaravelAspect;
 
-use Doctrine\Common\Cache\ApcCache;
-use Doctrine\Common\Cache\ApcuCache;
-use Doctrine\Common\Annotations\CachedReader;
 use Doctrine\Common\Annotations\AnnotationReader;
 
 /**
- * Class ApcuReader
+ * Class AnnotationConfiguration
  */
-class ApcuReader implements AnnotationReadable
+class AnnotationConfiguration
 {
-    /** @var string[] */
-    protected $config;
+    /** @var array */
+    protected $configuration;
 
     /**
-     * @param array $config
+     * AnnotationConfiguration constructor.
+     *
+     * @param array $configuration
      */
-    public function __construct(array $config)
+    public function __construct(array $configuration)
     {
-        $this->config = $config;
+        $this->configuration = $configuration;
     }
 
     /**
-     * @return CachedReader
+     * Add a new annotation to the globally ignored annotation names with regard to exception handling.
      */
-    public function getReader()
+    public function ignoredAnnotations()
     {
-        $extension = (extension_loaded('apcu')) ? new ApcuCache : new ApcCache;
-        return new CachedReader(
-            new AnnotationReader(),
-            $extension,
-            (bool) $this->config['debug']
-        );
+        if (isset($this->configuration['ignores'])) {
+            $ignores = $this->configuration['ignores'];
+            if (count($ignores)) {
+                foreach ($ignores as $ignore) {
+                    AnnotationReader::addGlobalIgnoredName($ignore);
+                }
+            }
+        }
     }
 }

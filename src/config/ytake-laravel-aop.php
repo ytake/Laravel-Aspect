@@ -48,20 +48,6 @@ return [
     ],
 
     'annotation' => [
-        /**
-         * choose annotation reader
-         * 'array'(default), 'file'(file cache), apcu
-         */
-        'default' => env('ASPECT_ANNOTATION_DRIVER', 'array'),
-
-        'debug' => env('ASPECT_ANNOTATION_DEBUG', false),
-
-        'drivers' => [
-            'file' => [
-                'cache_dir' => storage_path('framework/annotation'),
-            ],
-        ],
-
         'ignores' => [
             // global Ignored Annotations
             'Hears',

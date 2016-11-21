@@ -29,19 +29,6 @@ return [
     ],
 
     'annotation' => [
-        /**
-         * choose annotation reader
-         * 'array'(default), 'file'(file cache)
-         */
-        'default' => 'array',
-
-        'drivers' => [
-            'file' => [
-                'cache_dir' => __DIR__ . '/../storage/annotation',
-                //
-                'debug' => true,
-            ],
-        ],
         'ignores' => [
             // global Ignored Annotations
             'Get',

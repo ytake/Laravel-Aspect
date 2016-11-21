@@ -40,8 +40,7 @@ class AsyncInterceptor implements MethodInterceptor
     public function invoke(MethodInvocation $invocation)
     {
         /** @var Async $annotation */
-        $annotation = $this->reader
-            ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
         $stack = [];
         for ($i = 1; $i <= $annotation->process; $i++) {
             $pid = pcntl_fork();

@@ -22,7 +22,7 @@ use Illuminate\Support\Manager;
 /**
  * Class AspectManager
  * @method void register(string $module)
- * @method void dispatch()
+ * @method void weave()
  */
 class AspectManager extends Manager
 {

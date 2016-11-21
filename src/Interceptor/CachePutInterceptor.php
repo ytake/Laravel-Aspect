@@ -25,15 +25,13 @@ use Ray\Aop\MethodInvocation;
 class CachePutInterceptor extends AbstractCache
 {
     /**
-     * @param MethodInvocation $invocation
+     * @param MethodInvocation|\Ray\Aop\ReflectiveMethodInvocation $invocation
      *
      * @return mixed
      */
     public function invoke(MethodInvocation $invocation)
     {
-        $annotation = $this->reader
-            ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
-
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];
@@ -41,8 +39,8 @@ class CachePutInterceptor extends AbstractCache
         $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
         // detect use cache driver
         $cache = $this->detectCacheRepository($annotation);
-
-        if ($result = $invocation->proceed()) {
+        $result = $invocation->proceed();
+        if ($result !== null) {
             $cache->put($this->recursiveImplode($this->join, $keys), $result, $annotation->lifetime);
         }
 

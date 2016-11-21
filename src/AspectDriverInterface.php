@@ -33,10 +33,4 @@ interface AspectDriverInterface
      * weaving
      */
     public function weave();
-
-    /**
-     * @deprecated
-     * boot aspect kernel
-     */
-    public function dispatch();
 }

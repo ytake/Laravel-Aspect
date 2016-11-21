@@ -31,9 +31,7 @@ class CacheEvictInterceptor extends AbstractCache
      */
     public function invoke(MethodInvocation $invocation)
     {
-        $annotation = $this->reader
-            ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
-
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];
@@ -45,6 +43,7 @@ class CacheEvictInterceptor extends AbstractCache
 
         if ($annotation->allEntries) {
             $cache->flush();
+
             return $invocation->proceed();
         }
         $result = $invocation->proceed();
