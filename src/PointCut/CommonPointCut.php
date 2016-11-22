@@ -47,9 +47,7 @@ class CommonPointCut
      */
     protected function withAnnotatedAnyInterceptor(Container $app)
     {
-        $this->interceptor->setReader($app['aspect.annotation.reader']);
         $this->interceptor->setAnnotation($this->annotation);
-
         return new Pointcut(
             (new Matcher)->any(),
             (new Matcher)->annotatedWith($this->annotation),

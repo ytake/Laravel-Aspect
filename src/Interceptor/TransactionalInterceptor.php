@@ -41,19 +41,16 @@ class TransactionalInterceptor implements MethodInterceptor
      */
     public function invoke(MethodInvocation $invocation)
     {
-        $annotation = $this->reader
-            ->getMethodAnnotation($invocation->getMethod(), $this->annotation);
-
-        $connection = $annotation->value;
         /** @var \Illuminate\Database\ConnectionInterface $database */
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
+        $connection = $annotation->value;
+
         $database = self::$databaseManager->connection($connection);
         $database->beginTransaction();
 
         try {
             $result = $invocation->proceed();
             $database->commit();
-
-            return $result;
         } catch (\Exception $exception) {
             // for default Exception
             if ($exception instanceof QueryException) {
@@ -67,6 +64,7 @@ class TransactionalInterceptor implements MethodInterceptor
             $database->rollBack();
             throw $exception;
         }
+        return $result;
     }
 
     /**

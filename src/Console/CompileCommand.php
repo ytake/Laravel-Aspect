@@ -50,7 +50,7 @@ class CompileCommand extends Command
      */
     public function fire()
     {
-        $this->aspectManager->dispatch();
+        $this->aspectManager->weave();
         $this->info('class files compiled!');
     }
 }

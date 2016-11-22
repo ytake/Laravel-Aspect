@@ -65,13 +65,6 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         $this->app->alias('cache', \Illuminate\Contracts\Cache\Factory::class);
     }
 
-    protected function registerAnnotationReader()
-    {
-        $this->app->singleton('aspect.annotation.reader', function ($app) {
-            return (new \Ytake\LaravelAspect\AnnotationManager($app))->getReader();
-        });
-    }
-
     protected function createApplicationContainer()
     {
         $this->app = new \Illuminate\Container\Container;
@@ -87,7 +80,10 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         $this->registerConfigure();
         $this->registerDatabase();
         $this->registerCache();
-        $this->registerAnnotationReader();
+        $annotationConfiguration = new \Ytake\LaravelAspect\AnnotationConfiguration(
+            $this->app['config']->get('ytake-laravel-aop.annotation')
+        );
+        $annotationConfiguration->ignoredAnnotations();
         $this->app->singleton('aspect.manager', function ($app) {
             return new \Ytake\LaravelAspect\AspectManager($app);
         });

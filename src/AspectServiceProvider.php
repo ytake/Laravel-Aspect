@@ -24,7 +24,7 @@ use Illuminate\Support\ServiceProvider;
  */
 class AspectServiceProvider extends ServiceProvider
 {
-    /** @var bool  */
+    /** @var bool */
     protected $defer = false;
 
     /**
@@ -47,11 +47,12 @@ class AspectServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($configPath, 'ytake-laravel-aop');
         $this->publishes([$configPath => config_path('ytake-laravel-aop.php')], 'aspect');
 
-        $this->app->singleton('aspect.annotation.reader', function ($app) {
-            return (new AnnotationManager($app))->getReader();
-        });
-
         $this->app->singleton('aspect.manager', function ($app) {
+            $annotationConfiguration = new AnnotationConfiguration(
+                $app['config']->get('ytake-laravel-aop.annotation')
+            );
+            $annotationConfiguration->ignoredAnnotations();
+
             // register annotation
             return new AspectManager($app);
         });
@@ -63,9 +64,7 @@ class AspectServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'aspect.annotation.register',
-            'aspect.annotation.reader',
-            'aspect.manager'
+            'aspect.manager',
         ];
     }
 
@@ -77,13 +76,8 @@ class AspectServiceProvider extends ServiceProvider
         return [
             base_path() . '/vendor/ytake/laravel-aspect/src/AspectServiceProvider.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/ConsoleServiceProvider.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/AnnotationManager.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Annotation/Reader/AnnotationReadable.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Annotation/Reader/ApcuReader.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Annotation/Reader/ArrayReader.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/AspectBind.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/AspectDriverInterface.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Annotation/Reader/FileReader.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/NullAspectKernel.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/RayAspectKernel.php',
             base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/CacheablePointCut.php',

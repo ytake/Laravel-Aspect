@@ -32,7 +32,7 @@ abstract class AbstractCache implements MethodInterceptor
     /** @var string */
     protected $join = ":";
 
-    /** @var Factory */
+    /** @var Factory|\Illuminate\Cache\CacheManager */
     protected static $factory;
 
     /**
@@ -87,8 +87,10 @@ abstract class AbstractCache implements MethodInterceptor
      */
     protected function detectCacheRepository($annotation)
     {
+        $cacheFactory = self::$factory;
         /** @var \Illuminate\Contracts\Cache\Repository $cache */
-        $cache = self::$factory->store($annotation->driver);
+        $driver = (is_null($annotation->driver)) ? $cacheFactory->getDefaultDriver() : $annotation->driver;
+        $cache = $cacheFactory->store($driver);
         if (count($annotation->tags)) {
             $cache = $cache->tags($annotation->tags);
 
@@ -111,6 +113,7 @@ abstract class AbstractCache implements MethodInterceptor
     /**
      * @param string $glue
      * @param array  $array
+     *
      * @return string
      */
     protected function recursiveImplode($glue, array $array)

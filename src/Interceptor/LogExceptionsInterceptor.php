@@ -37,12 +37,11 @@ class LogExceptionsInterceptor extends AbstractLogger implements MethodIntercept
      */
     public function invoke(MethodInvocation $invocation)
     {
+        /** @var \Ytake\LaravelAspect\Annotation\LogExceptions $annotation */
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
         try {
             $result = $invocation->proceed();
         } catch (\Exception $exception) {
-            /** @var \Ytake\LaravelAspect\Annotation\LogExceptions $annotation */
-            $annotation = $this->reader->getMethodAnnotation($invocation->getMethod(), $this->annotation);
-
             if ($exception instanceof $annotation->expect) {
                 $logFormat = $this->logFormatter($annotation, $invocation);
                 $logger = self::$logger;
@@ -56,6 +55,7 @@ class LogExceptionsInterceptor extends AbstractLogger implements MethodIntercept
             }
             throw $exception;
         }
+
         // @codeCoverageIgnoreStart
         return $result;
         // @codeCoverageIgnoreEnd
