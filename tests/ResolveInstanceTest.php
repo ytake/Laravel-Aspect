@@ -11,17 +11,16 @@ class ResolveInstanceTest extends AspectTestCase
     protected function setUp()
     {
         parent::setUp();
-
-        $this->app->bind('a', ResolveMockClass::class);
-
-        $this->app->bind(ResolveMockInterface::class, ResolveMockClass::class);
-
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
     }
 
     public function testShouldReturnBindingConcreteClass()
     {
+        $this->app->bind('a', ResolveMockClass::class);
+
+        $this->app->bind(ResolveMockInterface::class, ResolveMockClass::class);
+
         $resolve = $this->app->make(ResolveMockInterface::class);
         $resolve->get();
         $this->assertSame(
@@ -31,7 +30,15 @@ class ResolveInstanceTest extends AspectTestCase
         $this->assertInstanceOf(get_class($resolve), $this->app->make('a'));
     }
 
+    public function testShouldReturnSameInstanceForShared()
+    {
+        $this->app->singleton(ResolveMockInterface::class, ResolveMockClass::class);
+        $resolve = $this->app->make(ResolveMockInterface::class);
+        $this->assertSame($resolve, $this->app->make(ResolveMockInterface::class));
+    }
+
     /**
+     *
      *
      */
     protected function resolveManager()
