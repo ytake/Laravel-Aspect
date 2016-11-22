@@ -38,6 +38,6 @@ class AsyncPointCut extends CommonPointCut implements PointCutable
     {
         $this->setInterceptor(new AsyncInterceptor);
 
-        return $this->withAnnotatedAnyInterceptor($app);
+        return $this->withAnnotatedAnyInterceptor();
     }
 }

@@ -40,6 +40,6 @@ class LoggablePointCut extends CommonPointCut implements PointCutable
         $interceptor->setLogger($app['Psr\Log\LoggerInterface']);
         $this->setInterceptor($interceptor);
 
-        return $this->withAnnotatedAnyInterceptor($app);
+        return $this->withAnnotatedAnyInterceptor();
     }
 }

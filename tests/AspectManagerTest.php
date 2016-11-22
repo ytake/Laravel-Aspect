@@ -25,11 +25,13 @@ class AspectManagerTest extends \AspectTestCase
 
     public function testCreateNullDriverInstance()
     {
+        /** @var \Ytake\LaravelAspect\NullAspectKernel $driver */
         $driver = $this->manager->driver('none');
         $this->assertInstanceOf(\Ytake\LaravelAspect\NullAspectKernel::class, $driver);
         $this->assertNull($driver->register());
         $class = new \ReflectionClass($driver);
         $this->assertSame(0, count($class->getProperties()));
         $this->assertNull($driver->dispatch());
+        $this->assertNull($driver->weave());
     }
 }

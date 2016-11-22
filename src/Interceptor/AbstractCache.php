@@ -17,6 +17,7 @@
  */
 namespace Ytake\LaravelAspect\Interceptor;
 
+use Illuminate\Cache\CacheManager;
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
 use Illuminate\Contracts\Cache\Factory;
@@ -87,9 +88,10 @@ abstract class AbstractCache implements MethodInterceptor
      */
     protected function detectCacheRepository($annotation)
     {
+        /** @var Factory|CacheManager $cacheFactory */
         $cacheFactory = self::$factory;
-        /** @var \Illuminate\Contracts\Cache\Repository $cache */
         $driver = (is_null($annotation->driver)) ? $cacheFactory->getDefaultDriver() : $annotation->driver;
+        /** @var \Illuminate\Contracts\Cache\Repository $cache */
         $cache = $cacheFactory->store($driver);
         if (count($annotation->tags)) {
             $cache = $cache->tags($annotation->tags);

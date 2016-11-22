@@ -40,6 +40,6 @@ class TransactionalPointCut extends CommonPointCut implements PointCutable
         $interceptor->setDatabaseManager($app['Illuminate\Database\DatabaseManager']);
         $this->setInterceptor($interceptor);
 
-        return $this->withAnnotatedAnyInterceptor($app);
+        return $this->withAnnotatedAnyInterceptor();
     }
 }
