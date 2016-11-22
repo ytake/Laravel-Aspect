@@ -42,10 +42,9 @@ class CommonPointCut
     }
 
     /**
-     * @param Container $app
      * @return Pointcut
      */
-    protected function withAnnotatedAnyInterceptor(Container $app)
+    protected function withAnnotatedAnyInterceptor()
     {
         $this->interceptor->setAnnotation($this->annotation);
         return new Pointcut(

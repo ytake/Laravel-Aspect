@@ -40,6 +40,6 @@ class CachePutPointCut extends CommonPointCut implements PointCutable
         $interceptor->setCache($app['Illuminate\Contracts\Cache\Factory']);
         $this->setInterceptor($interceptor);
 
-        return $this->withAnnotatedAnyInterceptor($app);
+        return $this->withAnnotatedAnyInterceptor();
     }
 }
