@@ -13,16 +13,16 @@ use Ytake\LaravelAspect\Annotation\PostConstruct;
 class AspectPostConstruct
 {
     /** @var int  */
-    protected $a;
+    protected $index;
 
     /**
      * AspectPostConstruct constructor.
      *
-     * @param int $a
+     * @param int $index
      */
-    public function __construct($a = 1)
+    public function __construct($index = 1)
     {
-        $this->a = $a;
+        $this->index = $index;
     }
 
     /**
@@ -30,7 +30,7 @@ class AspectPostConstruct
      */
     public function initialize()
     {
-        $this->a += 1;
+        $this->index += 1;
     }
 
     /**
@@ -38,6 +38,6 @@ class AspectPostConstruct
      */
     public function getA()
     {
-        return $this->a;
+        return $this->index;
     }
 }

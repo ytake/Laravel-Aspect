@@ -43,16 +43,15 @@ class AnnotationScanMatcher extends AbstractMatcher
      */
     public function matchesClass(\ReflectionClass $class, array $arguments)
     {
-        $i = 0;
+        $count = 0;
         $annotation = $arguments[0];
         foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
             $match = $this->reader->getMethodAnnotation($reflectionMethod, $annotation);
             if ($match) {
-                $i++;
+                $count++;
             }
         }
-
-        if ($i > 1) {
+        if ($count > 1) {
             return false;
         }
 
@@ -64,16 +63,16 @@ class AnnotationScanMatcher extends AbstractMatcher
      */
     public function matchesMethod(\ReflectionMethod $method, array $arguments)
     {
-        $i = 0;
+        $count = 0;
         $annotation = $arguments[0];
         $reflectionClass = new \ReflectionClass($method->class);
         foreach ($reflectionClass->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
             $match = $this->reader->getMethodAnnotation($reflectionMethod, $annotation);
             if ($match) {
-                $i++;
+                $count++;
             }
         }
-        if ($i > 1) {
+        if ($count > 1) {
             return false;
         }
 

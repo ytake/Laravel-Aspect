@@ -13,16 +13,16 @@ use Ytake\LaravelAspect\Annotation\PostConstruct;
 class FailedPostConstruct
 {
     /** @var int  */
-    protected $a;
+    protected $index;
 
     /**
      * FailedPostConstruct constructor.
      *
-     * @param int $a
+     * @param int $index
      */
-    public function __construct($a = 1)
+    public function __construct($index = 1)
     {
-        $this->a = $a;
+        $this->index = $index;
     }
 
     /**
@@ -30,7 +30,7 @@ class FailedPostConstruct
      */
     public function initialize()
     {
-        $this->a += 1;
+        $this->index += 1;
     }
 
     /**
@@ -46,6 +46,6 @@ class FailedPostConstruct
      */
     public function getA()
     {
-        return $this->a;
+        return $this->index;
     }
 }
