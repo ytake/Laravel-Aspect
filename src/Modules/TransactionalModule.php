@@ -31,7 +31,7 @@ class TransactionalModule extends AspectModule
     /**
      * @return PointCutable
      */
-    protected function registerPointCut()
+    public function registerPointCut()
     {
         return new TransactionalPointCut;
     }

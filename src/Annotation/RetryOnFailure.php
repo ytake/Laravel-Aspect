@@ -17,19 +17,27 @@
  */
 namespace Ytake\LaravelAspect\Annotation;
 
-/**
- * Class AnnotationReaderTrait
- */
-trait AnnotationReaderTrait
-{
-    /** @var string */
-    protected $annotation;
+use Doctrine\Common\Annotations\Annotation;
 
-    /**
-     * @param string $annotation
-     */
-    public function setAnnotation($annotation)
-    {
-        $this->annotation = $annotation;
-    }
+/**
+ * Class RetryOnFailure
+ *
+ * @Annotation
+ * @Target("METHOD")
+ */
+final class RetryOnFailure extends Annotation
+{
+    /** @var int  How many times to retry. */
+    public $attempts = 0;
+
+    /** @var int  Delay between attempts. */
+    public $delay = 0;
+
+    /** @var string[]  When to retry (in case of what exception types). */
+    public $types = [
+        \Exception::class,
+    ];
+
+    /** @var string  Exception types to ignore. */
+    public $ignore = \Exception::class;
 }

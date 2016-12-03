@@ -51,7 +51,9 @@
     "files": [
       "tests/AspectTestCase.php",
       "tests/helper.php",
-      "tests/MockApplication.php"
+      "tests/MockApplication.php",
+      "tests/ResolveMockInterface.php",
+      "tests/ResolveMockClass.php"
     ],
     "psr-4": {
       "__Test\\": "tests/src"

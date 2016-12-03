@@ -15,21 +15,24 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Annotation;
+namespace Ytake\LaravelAspect\Modules;
+
+use Ytake\LaravelAspect\PointCut\PointCutable;
+use Ytake\LaravelAspect\PointCut\RetryOnFailurePointCut;
 
 /**
- * Class AnnotationReaderTrait
+ * Class RetryOnFailureModule
  */
-trait AnnotationReaderTrait
+class RetryOnFailureModule extends AspectModule
 {
-    /** @var string */
-    protected $annotation;
+    /** @var array */
+    protected $classes = [];
 
     /**
-     * @param string $annotation
+     * @return PointCutable
      */
-    public function setAnnotation($annotation)
+    public function registerPointCut()
     {
-        $this->annotation = $annotation;
+        return new RetryOnFailurePointCut;
     }
 }

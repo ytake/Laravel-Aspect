@@ -20,8 +20,8 @@ namespace Ytake\LaravelAspect;
 use Ray\Aop\Compiler;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container;
-use Ytake\LaravelAspect\Exception\ClassNotFoundException;
 use Ytake\LaravelAspect\Modules\AspectModule;
+use Ytake\LaravelAspect\Exception\ClassNotFoundException;
 
 /**
  * Class RayAspectKernel
@@ -49,6 +49,12 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var AspectModule[] */
     protected $registerModules = [];
 
+    /** @var AspectModule[] */
+    protected $modules = [];
+
+    /** @var string */
+    private $mapFile = 'aspect.map.serialize';
+
     /**
      * RayAspectKernel constructor.
      *
@@ -63,7 +69,6 @@ class RayAspectKernel implements AspectDriverInterface
         $this->configure = $configure;
         $this->makeCompileDir();
         $this->makeCacheableDir();
-        $this->compiler = $this->getCompiler();
         $this->registerAspectModule();
     }
 
@@ -77,8 +82,7 @@ class RayAspectKernel implements AspectDriverInterface
         if (!class_exists($module)) {
             throw new ClassNotFoundException($module);
         }
-        $this->aspectResolver = (new $module($this->app));
-        $this->aspectResolver->attach();
+        $this->modules[] = new $module;
     }
 
     /**
@@ -86,23 +90,15 @@ class RayAspectKernel implements AspectDriverInterface
      */
     public function weave()
     {
-        if (is_null($this->aspectResolver)) {
+        if (!count($this->modules)) {
             return;
         }
-        foreach ($this->aspectResolver->getResolver() as $class => $pointcuts) {
+        $compiler = $this->getCompiler();
+        $container = $this->containerAdaptor($this->app);
+        foreach ($this->aspectConfiguration() as $class => $pointcuts) {
             $bind = (new AspectBind($this->filesystem, $this->configure['cache_dir'], $this->cacheable))
                 ->bind($class, $pointcuts);
-            $compiledClass = $this->compiler->compile($class, $bind);
-
-            if (isset($this->app->contextual[$class])) {
-                $this->resolveContextualBindings($class, $compiledClass);
-            }
-            $this->app->bind($class, function (Container $app) use ($bind, $compiledClass) {
-                $instance = $app->make($compiledClass);
-                $instance->bindings = $bind->getBindings();
-
-                return $instance;
-            });
+            $container->intercept($class, $bind, $compiler->compile($class, $bind));
         }
     }
 
@@ -116,6 +112,16 @@ class RayAspectKernel implements AspectDriverInterface
     }
 
     /**
+     * @param Container $container
+     *
+     * @return ContainerInterceptor
+     */
+    protected function containerAdaptor(Container $container)
+    {
+        return new ContainerInterceptor($container);
+    }
+
+    /**
      * @return Compiler
      */
     protected function getCompiler()
@@ -125,24 +131,21 @@ class RayAspectKernel implements AspectDriverInterface
 
     /**
      * make source compile file directory
-     *
-     * @return void
      */
     protected function makeCompileDir()
     {
-        $this->makeDirectories($this->configure['compile_dir'], 0777);
+        $this->makeDirectories($this->configure['compile_dir'], 0775);
     }
 
     /**
      * make aspect cache directory
      *
      * @codeCoverageIgnore
-     * @return void
      */
     protected function makeCacheableDir()
     {
         if ($this->configure['cache']) {
-            $this->makeDirectories($this->configure['cache_dir'], 0777);
+            $this->makeDirectories($this->configure['cache_dir'], 0775);
             $this->cacheable = true;
         }
     }
@@ -173,15 +176,32 @@ class RayAspectKernel implements AspectDriverInterface
     }
 
     /**
-     * @param string $class
-     * @param string $compiledClass
+     * @return string[]
+     * @codeCoverageIgnore
      */
-    protected function resolveContextualBindings($class, $compiledClass)
+    protected function aspectConfiguration()
     {
-        foreach ($this->app->contextual[$class] as $abstract => $concrete) {
-            $this->app->when($compiledClass)
-                ->needs($abstract)
-                ->give($concrete);
+        $map = [];
+        $file = $this->configure['cache_dir'] . "/{$this->mapFile}";
+        if ($this->configure['cache']) {
+            if ($this->filesystem->exists($file)) {
+                foreach ($this->modules as $module) {
+                    $module->registerPointCut()->configure($this->app);
+                }
+
+                return unserialize($this->filesystem->get($file));
+            }
         }
+        foreach ($this->modules as $module) {
+            $pointcut = $module->registerPointCut()->configure($this->app);
+            foreach ($module->target() as $class) {
+                $map[$class][] = $pointcut;
+            }
+        }
+        if ($this->configure['cache']) {
+            $this->filesystem->put($file, serialize($map));
+        }
+
+        return $map;
     }
 }

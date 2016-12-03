@@ -15,21 +15,29 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Annotation;
+namespace Ytake\LaravelAspect\PointCut;
+
+use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Annotation\RetryOnFailure;
+use Ytake\LaravelAspect\Interceptor\RetryOnFailureInterceptor;
 
 /**
- * Class AnnotationReaderTrait
+ * Class RetryOnFailurePointCut
  */
-trait AnnotationReaderTrait
+class RetryOnFailurePointCut extends CommonPointCut implements PointCutable
 {
     /** @var string */
-    protected $annotation;
+    protected $annotation = RetryOnFailure::class;
 
     /**
-     * @param string $annotation
+     * @param Container $app
+     *
+     * @return \Ray\Aop\Pointcut
      */
-    public function setAnnotation($annotation)
+    public function configure(Container $app)
     {
-        $this->annotation = $annotation;
+        $this->setInterceptor(new RetryOnFailureInterceptor);
+
+        return $this->withAnnotatedAnyInterceptor();
     }
 }

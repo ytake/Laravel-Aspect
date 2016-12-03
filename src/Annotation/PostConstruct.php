@@ -17,19 +17,13 @@
  */
 namespace Ytake\LaravelAspect\Annotation;
 
-/**
- * Class AnnotationReaderTrait
- */
-trait AnnotationReaderTrait
-{
-    /** @var string */
-    protected $annotation;
+use Doctrine\Common\Annotations\Annotation;
 
-    /**
-     * @param string $annotation
-     */
-    public function setAnnotation($annotation)
-    {
-        $this->annotation = $annotation;
-    }
+/**
+ * Class PostConstruct
+ * @Annotation
+ * @Target("METHOD")
+ */
+final class PostConstruct extends Annotation
+{
 }

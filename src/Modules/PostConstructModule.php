@@ -15,21 +15,24 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Annotation;
+namespace Ytake\LaravelAspect\Modules;
+
+use Ytake\LaravelAspect\PointCut\PointCutable;
+use Ytake\LaravelAspect\PointCut\PostConstructPointCut;
 
 /**
- * Class AnnotationReaderTrait
+ * Class PostConstructModule
  */
-trait AnnotationReaderTrait
+class PostConstructModule extends AspectModule
 {
-    /** @var string */
-    protected $annotation;
+    /** @var array */
+    protected $classes = [];
 
     /**
-     * @param string $annotation
+     * @return PointCutable
      */
-    public function setAnnotation($annotation)
+    public function registerPointCut()
     {
-        $this->annotation = $annotation;
+        return new PostConstructPointCut;
     }
 }

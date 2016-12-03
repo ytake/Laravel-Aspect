@@ -30,7 +30,7 @@ class LogExceptionsModule extends AspectModule
     /**
      * @return LogExceptionsPointCut
      */
-    protected function registerPointCut()
+    public function registerPointCut()
     {
         return new LogExceptionsPointCut;
     }

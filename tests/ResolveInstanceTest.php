@@ -37,34 +37,43 @@ class ResolveInstanceTest extends AspectTestCase
         $this->assertSame($resolve, $this->app->make(ResolveMockInterface::class));
     }
 
-    /**
-     *
-     *
-     */
+    public function testShouldResolveContextualBinding()
+    {
+        $log = $this->app['Psr\Log\LoggerInterface'];
+        $log->useFiles($this->getDir() . '/.testing.log');
+        if (!$this->app['files']->exists($this->getDir())) {
+            $this->app['files']->makeDirectory($this->getDir());
+        }
+        $this->app->when(\__Test\AspectContextualBinding::class)
+            ->needs(ResolveMockInterface::class)
+            ->give(ResolveMockClass::class);
+        /** @var  \Ytake\LaravelAspect\AspectManager $aspectManager */
+        $aspectManager = $this->app['aspect.manager'];
+        $driver = $aspectManager->driver('ray');
+        $driver->register(\__Test\CacheableModule::class);
+        $driver->register(\__Test\LoggableModule::class);
+        $driver->weave();
+        /** @var \__Test\AspectContextualBinding $concrete */
+        $concrete = $this->app->make(\__Test\AspectContextualBinding::class);
+        $result = $concrete->testing();
+        sleep(1);
+        $this->assertSame($result, $concrete->testing());
+        $this->app['files']->deleteDirectory($this->getDir());
+    }
+
     protected function resolveManager()
     {
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CacheableModule::class);
-        $aspect->dispatch();
+        $aspect->register(\__Test\LoggableModule::class);
+        $aspect->weave();
     }
-}
 
-interface ResolveMockInterface
-{
-
-}
-
-class ResolveMockClass implements ResolveMockInterface
-{
     /**
-     * @\Ytake\LaravelAspect\Annotation\Cacheable(
-     *     cacheName="testing.resolve.instance",
-     *     driver="array"
-     * )
-     * @return int
+     * @return string
      */
-    public function get()
+    protected function getDir()
     {
-        return time();
+        return  __DIR__ . '/storage/log';
     }
 }

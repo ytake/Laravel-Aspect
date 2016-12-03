@@ -10,7 +10,7 @@ class TransactionalModule extends Transactional
      * @var array
      */
     protected $classes = [
-        \__Test\AspectTransactionalDatabase::class,
-        \__Test\AspectTransactionalString::class
+        AspectTransactionalDatabase::class,
+        AspectTransactionalString::class
     ];
 }

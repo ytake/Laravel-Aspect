@@ -15,21 +15,13 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Annotation;
 
-/**
- * Class AnnotationReaderTrait
- */
-trait AnnotationReaderTrait
-{
-    /** @var string */
-    protected $annotation;
-
-    /**
-     * @param string $annotation
-     */
-    public function setAnnotation($annotation)
-    {
-        $this->annotation = $annotation;
-    }
-}
+require_once 'Async.php';
+require_once 'Cacheable.php';
+require_once 'CacheEvict.php';
+require_once 'CachePut.php';
+require_once 'LogExceptions.php';
+require_once 'Loggable.php';
+require_once 'PostConstruct.php';
+require_once 'RetryOnFailure.php';
+require_once 'Transactional.php';

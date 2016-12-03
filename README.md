@@ -137,6 +137,8 @@ $ php artisan ytake:aspect-clear-cache
 ### @Transactional
 for database transaction(illuminate/database)
 
+you must use the TransactionalModule
+
 * option
 
 | params | description |
@@ -158,6 +160,8 @@ public function save(array $params)
 
 ### @Cacheable
 for cache(illuminate/cache)
+
+you must use the CacheableModule
 
 * option
 
@@ -187,6 +191,8 @@ public function namedMultipleKey($id, $value)
 ### @CacheEvict
 for cache(illuminate/cache) / remove cache
 
+you must use the CacheEvictModule
+
 * option
 
 | params | description |
@@ -213,6 +219,8 @@ public function removeCache()
 ### @CachePut
 for cache(illuminate/cache) / cache put
 
+you must use the CachePutModule
+
 * option
 
 | params | description |
@@ -238,6 +246,8 @@ public function throwExceptionCache()
 ### @Loggable / @LogExceptions
 
 for logger(illuminate/log, monolog)
+
+you must use the LoggableModule / LogExceptionsModule
 
 * option
 
@@ -288,6 +298,87 @@ class AspectLoggable
     public function dispatchLogExceptions()
     {
         return $this->__toString();
+    }
+}
+
+```
+
+### @PostConstruct
+The PostConstruct annotation is used on a method that needs to be executed after dependency injection is done to perform any initialization.
+
+you must use the PostConstructModule
+
+```php
+use Ytake\LaravelAspect\Annotation\PostConstruct;
+
+class Something
+{
+    protected $abstract;
+    
+    protected $counter = 0;
+    
+    public function __construct(ExampleInterface $abstract)
+    {
+        $this->abstract = $abstract;
+    }
+    
+    /**
+     * @PostConstruct
+     */
+    public function init()
+    {
+        $this->counter += 1;
+    }
+    
+    /**
+     * @return int
+     */
+    public function returning()
+    {
+        return $this->counter;
+    }
+}
+
+```
+
+**The method MUST NOT have any parameters**
+
+### @RetryOnFailure
+
+Retry the method in case of exception.
+
+you must use the RetryOnFailureModule.
+
+* option
+
+| params | description |
+|-----|-------|
+| attempts (int) | How many times to retry. (default: 0) |
+| delay (int) | Delay between attempts. (default: 0 / sleep(0) ) |
+| types (array) | When to retry (in case of what exception types). (default: <\Exception::class> ) |
+| ignore (string) | Exception types to ignore. (default: \Exception ) |
+
+```php
+use Ytake\LaravelAspect\Annotation\RetryOnFailure;
+
+class ExampleRetryOnFailure
+{
+    /** @var int */
+    public $counter = 0;
+
+    /**
+     * @RetryOnFailure(
+     *     types={
+     *         LogicException::class,
+     *     },
+     *     attempts=3,
+     *     ignore=Exception::class
+     * )
+     */
+    public function ignoreException()
+    {
+        $this->counter += 1;
+        throw new \Exception;
     }
 }
 

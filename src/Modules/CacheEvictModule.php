@@ -31,7 +31,7 @@ class CacheEvictModule extends AspectModule
     /**
      * @return PointCutable
      */
-    protected function registerPointCut()
+    public function registerPointCut()
     {
         return new CacheEvictPointCut;
     }
