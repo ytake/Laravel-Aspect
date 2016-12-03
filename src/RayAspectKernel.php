@@ -185,6 +185,10 @@ class RayAspectKernel implements AspectDriverInterface
         $file = $this->configure['cache_dir'] . "/{$this->mapFile}";
         if ($this->configure['cache']) {
             if ($this->filesystem->exists($file)) {
+                foreach ($this->modules as $module) {
+                    $module->registerPointCut()->configure($this->app);
+                }
+
                 return unserialize($this->filesystem->get($file));
             }
         }
