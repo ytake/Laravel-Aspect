@@ -6,7 +6,7 @@ use Ytake\LaravelAspect\Matcher\AnnotationScanMatcher;
 /**
  * Class AnnotationScanMatcherTest
  */
-class AnnotationScanMatcherTest extends \PHPUnit_Framework_TestCase
+class AnnotationScanMatcherTest extends \AspectTestCase
 {
     /** @var AnnotationScanMatcher */
     private $matcher;
