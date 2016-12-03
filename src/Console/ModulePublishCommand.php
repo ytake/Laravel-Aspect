@@ -49,6 +49,8 @@ class ModulePublishCommand extends Command
         'TransactionalModule' => 'Ytake\LaravelAspect\Modules\TransactionalModule',
         'LoggableModule'      => 'Ytake\LaravelAspect\Modules\LoggableModule',
         'LogExceptionsModule' => 'Ytake\LaravelAspect\Modules\LogExceptionsModule',
+        'PostConstructModule' => 'Ytake\LaravelAspect\Modules\PostConstructModule',
+        'RetryOnFailureModule' => 'Ytake\LaravelAspect\Modules\RetryOnFailureModule',
     ];
 
     /**

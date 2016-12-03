@@ -23,4 +23,34 @@ class RayAspectKernelTest extends \AspectTestCase
     {
         $this->kernel->register('NotFoundClass');
     }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testShouldThrowExceptionNotFoundClass()
+    {
+        $this->kernel->register(StubLoggableModule::class);
+        $this->kernel->register(StubTransactionalModule::class);
+        $this->kernel->weave();
+    }
+}
+
+/**
+ * Class StubLoggableModule
+ */
+class StubLoggableModule extends \Ytake\LaravelAspect\Modules\LoggableModule
+{
+    protected $classes = [
+        'testing',
+    ];
+}
+
+/**
+ * Class StubTransactionalModule
+ */
+class StubTransactionalModule extends \Ytake\LaravelAspect\Modules\TransactionalModule
+{
+    protected $classes = [
+        'testing'
+    ];
 }

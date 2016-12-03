@@ -18,73 +18,26 @@
 namespace Ytake\LaravelAspect\Modules;
 
 use Ytake\LaravelAspect\PointCut\PointCutable;
-use Illuminate\Contracts\Container\Container as Application;
 
 /**
  * Class AspectModule
  */
 abstract class AspectModule
 {
-    /** @var Application */
-    protected $app;
-
-    /** @var array */
-    protected static $pointcuts = [];
-
-    /** @var array */
-    protected static $resolve = [];
-
     /** @var array */
     protected $classes = [];
-
-    /**
-     * AspectModule constructor.
-     *
-     * @param Application $app
-     */
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
-    }
-
-    /**
-     * attach pointcut
-     *
-     * @return void
-     */
-    public function attach()
-    {
-        // public attach
-        if ($this->registerPointCut() instanceof PointCutable) {
-            static::$pointcuts[] = $this->registerPointCut()->configure($this->app);
-            foreach ($this->classes as $class) {
-                $this->instanceResolver($class);
-            }
-        }
-    }
 
     /**
      * @codeCoverageIgnore
      * @return PointCutable
      */
-    protected function registerPointCut()
-    {
-        // register pointcut
-    }
+    abstract public function registerPointCut();
 
     /**
-     * @param string $class
+     * @return string[]
      */
-    protected function instanceResolver($class)
+    public function target()
     {
-        static::$resolve[$class] = static::$pointcuts;
-    }
-
-    /**
-     * @return array
-     */
-    public function getResolver()
-    {
-        return static::$resolve;
+        return $this->classes;
     }
 }

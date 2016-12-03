@@ -11,5 +11,6 @@ class LoggableModule extends Loggable
      */
     protected $classes = [
         \__Test\AspectLoggable::class,
+        \__Test\AspectContextualBinding::class,
     ];
 }

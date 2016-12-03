@@ -57,13 +57,15 @@ class TransactionalInterceptor implements MethodInterceptor
                 $database->rollBack();
                 throw $exception;
             }
-            if ($exception instanceof $annotation->expect) {
+            $expect = ltrim($annotation->expect, '\\');
+            if ($exception instanceof $expect) {
                 $database->rollBack();
                 throw $exception;
             }
             $database->rollBack();
             throw $exception;
         }
+
         return $result;
     }
 

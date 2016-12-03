@@ -17,39 +17,27 @@
  */
 namespace Ytake\LaravelAspect\PointCut;
 
-use Ray\Aop\Matcher;
-use Ray\Aop\Pointcut;
-use Ray\Aop\MethodInterceptor;
+use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Annotation\RetryOnFailure;
+use Ytake\LaravelAspect\Interceptor\RetryOnFailureInterceptor;
 
 /**
- * Class CommonPointCut
+ * Class RetryOnFailurePointCut
  */
-class CommonPointCut
+class RetryOnFailurePointCut extends CommonPointCut implements PointCutable
 {
-    /** @var MethodInterceptor */
-    protected $interceptor;
-
     /** @var string */
-    protected $annotation;
+    protected $annotation = RetryOnFailure::class;
 
     /**
-     * @param MethodInterceptor $interceptor
+     * @param Container $app
+     *
+     * @return \Ray\Aop\Pointcut
      */
-    protected function setInterceptor(MethodInterceptor $interceptor)
+    public function configure(Container $app)
     {
-        $this->interceptor = $interceptor;
-    }
+        $this->setInterceptor(new RetryOnFailureInterceptor);
 
-    /**
-     * @return Pointcut
-     */
-    protected function withAnnotatedAnyInterceptor()
-    {
-        $this->interceptor->setAnnotation($this->annotation);
-        return new Pointcut(
-            (new Matcher)->any(),
-            (new Matcher)->annotatedWith($this->annotation),
-            [$this->interceptor]
-        );
+        return $this->withAnnotatedAnyInterceptor();
     }
 }

@@ -19,37 +19,29 @@ namespace Ytake\LaravelAspect\PointCut;
 
 use Ray\Aop\Matcher;
 use Ray\Aop\Pointcut;
-use Ray\Aop\MethodInterceptor;
+use Illuminate\Contracts\Container\Container;
+use Ytake\LaravelAspect\Annotation\PostConstruct;
+use Ytake\LaravelAspect\Matcher\AnnotationScanMatcher;
 
 /**
- * Class CommonPointCut
+ * Class PostConstructPointCut
  */
-class CommonPointCut
+class PostConstructPointCut extends CommonPointCut implements PointCutable
 {
-    /** @var MethodInterceptor */
-    protected $interceptor;
-
-    /** @var string */
-    protected $annotation;
+    /** @var string  */
+    protected $annotation = PostConstruct::class;
 
     /**
-     * @param MethodInterceptor $interceptor
+     * @param Container $app
+     *
+     * @return \Ray\Aop\Pointcut
      */
-    protected function setInterceptor(MethodInterceptor $interceptor)
+    public function configure(Container $app)
     {
-        $this->interceptor = $interceptor;
-    }
-
-    /**
-     * @return Pointcut
-     */
-    protected function withAnnotatedAnyInterceptor()
-    {
-        $this->interceptor->setAnnotation($this->annotation);
         return new Pointcut(
+            new AnnotationScanMatcher($this->annotation),
             (new Matcher)->any(),
-            (new Matcher)->annotatedWith($this->annotation),
-            [$this->interceptor]
+            []
         );
     }
 }

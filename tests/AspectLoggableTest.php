@@ -64,7 +64,7 @@ class AspectLoggableTest extends \AspectTestCase
         $aspect->register(\__Test\LoggableModule::class);
         $aspect->register(\__Test\CacheEvictModule::class);
         $aspect->register(\__Test\CacheableModule::class);
-        $aspect->dispatch();
+        $aspect->weave();
     }
 
     /**
