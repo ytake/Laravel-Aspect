@@ -13,6 +13,7 @@ class AnnotationScanMatcherTest extends \AspectTestCase
 
     protected function setUp()
     {
+        parent::setUp();
         $this->matcher = new AnnotationScanMatcher;
     }
 
