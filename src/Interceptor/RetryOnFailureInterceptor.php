@@ -42,29 +42,29 @@ class RetryOnFailureInterceptor implements MethodInterceptor
     {
         /** @var RetryOnFailure $annotation */
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
-        if (static::$attempt === null) {
-            static::$attempt = $annotation->attempts;
+        if (self::$attempt === null) {
+            self::$attempt = $annotation->attempts;
         }
         try {
-            static::$attempt--;
+            self::$attempt--;
 
             return $invocation->proceed();
         } catch (\Exception $e) {
             if (ltrim($annotation->ignore, '\\') === get_class($e)) {
-                static::$attempt = null;
+                self::$attempt = null;
                 throw $e;
             }
             $pass = array_filter($annotation->types, function ($values) use ($e) {
                 return ltrim($values, '\\') === get_class($e);
             });
             if ($pass !== false) {
-                if (static::$attempt > 0) {
+                if (self::$attempt > 0) {
                     sleep($annotation->delay);
 
                     return $invocation->proceed();
                 }
             }
-            static::$attempt = null;
+            self::$attempt = null;
             throw $e;
         }
     }

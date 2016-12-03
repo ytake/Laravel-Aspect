@@ -25,7 +25,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class RetryOnFailure
+final class RetryOnFailure extends Annotation
 {
     /** @var int  How many times to retry. */
     public $attempts = 0;

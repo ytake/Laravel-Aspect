@@ -45,7 +45,10 @@ class CommonPointCut
      */
     protected function withAnnotatedAnyInterceptor()
     {
-        $this->interceptor->setAnnotation($this->annotation);
+        if (method_exists($this->interceptor, 'setAnnotation')) {
+            $this->interceptor->setAnnotation($this->annotation);
+        }
+
         return new Pointcut(
             (new Matcher)->any(),
             (new Matcher)->annotatedWith($this->annotation),

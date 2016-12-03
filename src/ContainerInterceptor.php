@@ -18,7 +18,7 @@
 namespace Ytake\LaravelAspect;
 
 use Ray\Aop\Bind;
-use Illuminate\Contracts\Container\Container;
+use Illuminate\Container\Container;
 use Ytake\LaravelAspect\Annotation\PostConstruct;
 
 /**
@@ -27,7 +27,7 @@ use Ytake\LaravelAspect\Annotation\PostConstruct;
 final class ContainerInterceptor
 {
     /** @var Container */
-    protected $container;
+    private $container;
 
     /**
      * ContainerInterceptor constructor.
@@ -68,7 +68,7 @@ final class ContainerInterceptor
      * @param string $class
      * @param string $compiledClass
      */
-    protected function resolveContextualBindings($class, $compiledClass)
+    private function resolveContextualBindings($class, $compiledClass)
     {
         foreach ($this->container->contextual[$class] as $abstract => $concrete) {
             $this->container->when($compiledClass)
