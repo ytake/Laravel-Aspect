@@ -382,7 +382,6 @@ class ExampleRetryOnFailure
     }
 }
 
-
 ```
 
 ### @Async

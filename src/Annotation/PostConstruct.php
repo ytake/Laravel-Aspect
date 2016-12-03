@@ -24,5 +24,4 @@ namespace Ytake\LaravelAspect\Annotation;
  */
 final class PostConstruct
 {
-
 }
