@@ -18,6 +18,7 @@
 namespace Ytake\LaravelAspect;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 
 /**
  * Class AnnotationConfiguration
@@ -27,6 +28,7 @@ class AnnotationConfiguration
     /** @var array */
     protected $configuration;
 
+
     /**
      * AnnotationConfiguration constructor.
      *
@@ -35,6 +37,7 @@ class AnnotationConfiguration
     public function __construct(array $configuration)
     {
         $this->configuration = $configuration;
+        $this->registerAnnotations();
     }
 
     /**
@@ -50,5 +53,10 @@ class AnnotationConfiguration
                 }
             }
         }
+    }
+
+    protected function registerAnnotations()
+    {
+        AnnotationRegistry::registerFile(__DIR__ . '/Annotation/RequireAnnotation.php');
     }
 }
