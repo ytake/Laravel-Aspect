@@ -18,6 +18,7 @@
 namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
+use Ytake\LaravelAspect\Annotation\Cacheable;
 
 /**
  * Class CacheableInterceptor
@@ -31,12 +32,12 @@ class CacheableInterceptor extends AbstractCache
      */
     public function invoke(MethodInvocation $invocation)
     {
+        /** @var Cacheable $annotation */
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];
         }
-
         $keys = $this->detectCacheKeys($invocation, $annotation, $keys);
         // detect use cache driver
         $cache = $this->detectCacheRepository($annotation);
@@ -45,8 +46,14 @@ class CacheableInterceptor extends AbstractCache
             return $cache->get($key);
         }
         $result = $invocation->proceed();
+        if (!$annotation->negative) {
+            if ($result) {
+                $cache->add($key, $result, $annotation->lifetime);
+            }
 
-        if ($result) {
+            return $result;
+        }
+        if (!$result) {
             $cache->add($key, $result, $annotation->lifetime);
         }
 

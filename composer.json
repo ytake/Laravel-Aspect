@@ -24,6 +24,8 @@
     "illuminate/config": "~5.0",
     "illuminate/contracts": "~5.0",
     "illuminate/log": "~5.0",
+    "illuminate/routing": "~5.0",
+    "illuminate/http": "~5.0",
     "ray/aop": "~2.0",
     "doctrine/annotations": "~1.0"
   },
@@ -35,6 +37,7 @@
     "satooshi/php-coveralls": "*",
     "illuminate/database": "~5.0",
     "illuminate/cache": "~5.0",
+    "illuminate/view": "~5.0",
     "sebastian/phpcpd": "*",
     "phploc/phploc": "*",
     "pdepend/pdepend" : "^2.2.4",

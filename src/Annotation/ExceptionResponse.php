@@ -15,14 +15,22 @@
  * Copyright (c) 2015-2016 Yuuki Takezawa
  *
  */
+namespace Ytake\LaravelAspect\Annotation;
 
-require_once 'Async.php';
-require_once 'Cacheable.php';
-require_once 'CacheEvict.php';
-require_once 'CachePut.php';
-require_once 'LogExceptions.php';
-require_once 'Loggable.php';
-require_once 'PostConstruct.php';
-require_once 'RetryOnFailure.php';
-require_once 'Transactional.php';
-require_once 'ExceptionResponse.php';
+use Doctrine\Common\Annotations\Annotation;
+
+/**
+ * @Annotation
+ * @Target("METHOD")
+ */
+final class ExceptionResponse extends Annotation
+{
+    /** @var string  */
+    public $action = '';
+
+    /** @var string  */
+    public $expect = '\Exception';
+
+    /** @var string */
+    public $messageProvide;
+}
