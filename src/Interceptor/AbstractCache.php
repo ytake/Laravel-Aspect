@@ -56,8 +56,8 @@ abstract class AbstractCache implements MethodInterceptor
 
     /**
      * @param MethodInvocation $invocation
-     * @param                  $annotation
-     * @param                  $keys
+     * @param \stdClass        $annotation
+     * @param array            $keys
      *
      * @return array
      */

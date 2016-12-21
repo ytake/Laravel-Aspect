@@ -25,4 +25,3 @@ require_once 'Loggable.php';
 require_once 'PostConstruct.php';
 require_once 'RetryOnFailure.php';
 require_once 'Transactional.php';
-require_once 'ExceptionResponse.php';
