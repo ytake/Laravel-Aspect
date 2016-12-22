@@ -43,13 +43,13 @@ class ModulePublishCommand extends Command
 
     /** @var array  package modules */
     protected $modules = [
-        'CacheableModule'     => 'Ytake\LaravelAspect\Modules\CacheableModule',
-        'CacheEvictModule'    => 'Ytake\LaravelAspect\Modules\CacheEvictModule',
-        'CachePutModule'      => 'Ytake\LaravelAspect\Modules\CachePutModule',
-        'TransactionalModule' => 'Ytake\LaravelAspect\Modules\TransactionalModule',
-        'LoggableModule'      => 'Ytake\LaravelAspect\Modules\LoggableModule',
-        'LogExceptionsModule' => 'Ytake\LaravelAspect\Modules\LogExceptionsModule',
-        'PostConstructModule' => 'Ytake\LaravelAspect\Modules\PostConstructModule',
+        'CacheableModule'      => 'Ytake\LaravelAspect\Modules\CacheableModule',
+        'CacheEvictModule'     => 'Ytake\LaravelAspect\Modules\CacheEvictModule',
+        'CachePutModule'       => 'Ytake\LaravelAspect\Modules\CachePutModule',
+        'TransactionalModule'  => 'Ytake\LaravelAspect\Modules\TransactionalModule',
+        'LoggableModule'       => 'Ytake\LaravelAspect\Modules\LoggableModule',
+        'LogExceptionsModule'  => 'Ytake\LaravelAspect\Modules\LogExceptionsModule',
+        'PostConstructModule'  => 'Ytake\LaravelAspect\Modules\PostConstructModule',
         'RetryOnFailureModule' => 'Ytake\LaravelAspect\Modules\RetryOnFailureModule',
     ];
 

@@ -43,8 +43,18 @@ class AnnotationScanMatcher extends AbstractMatcher
      */
     public function matchesClass(\ReflectionClass $class, array $arguments)
     {
+        return $this->has($class, $arguments[0]);
+    }
+
+    /**
+     * @param \ReflectionClass $class
+     * @param                  $annotation
+     *
+     * @return bool
+     */
+    private function has(\ReflectionClass $class, $annotation)
+    {
         $count = 0;
-        $annotation = $arguments[0];
         foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
             $match = $this->reader->getMethodAnnotation($reflectionMethod, $annotation);
             if ($match) {
@@ -63,19 +73,8 @@ class AnnotationScanMatcher extends AbstractMatcher
      */
     public function matchesMethod(\ReflectionMethod $method, array $arguments)
     {
-        $count = 0;
-        $annotation = $arguments[0];
-        $reflectionClass = new \ReflectionClass($method->class);
-        foreach ($reflectionClass->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
-            $match = $this->reader->getMethodAnnotation($reflectionMethod, $annotation);
-            if ($match) {
-                $count++;
-            }
-        }
-        if ($count > 1) {
-            return false;
-        }
+        $class = new \ReflectionClass($method->class);
 
-        return true;
+        return $this->has($class, $arguments[0]);
     }
 }

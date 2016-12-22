@@ -176,7 +176,7 @@ class RayAspectKernel implements AspectDriverInterface
     }
 
     /**
-     * @return string[]
+     * @return array
      * @codeCoverageIgnore
      */
     protected function aspectConfiguration()

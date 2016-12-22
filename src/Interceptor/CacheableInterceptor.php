@@ -53,7 +53,7 @@ class CacheableInterceptor extends AbstractCache
 
             return $result;
         }
-        if (!$result) {
+        if (is_null($result)) {
             $cache->add($key, $result, $annotation->lifetime);
         }
 

@@ -172,6 +172,7 @@ you must use the CacheableModule
 | driver | Accessing Cache Driver(store) |
 | lifetime | cache lifetime (default: 120min) |
 | tags | Storing Tagged Cache Items |
+| negative(bool) | for null value (default: false) |
 
 ```php
 use Ytake\LaravelAspect\Annotation\Cacheable;
