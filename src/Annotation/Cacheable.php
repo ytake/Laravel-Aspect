@@ -39,4 +39,7 @@ final class Cacheable extends Annotation
 
     /** @var array $tags if use array tagging */
     public $tags = [];
+
+    /** @var bool  */
+    public $negative = false;
 }

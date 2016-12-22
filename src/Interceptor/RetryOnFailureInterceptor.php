@@ -29,7 +29,7 @@ class RetryOnFailureInterceptor implements MethodInterceptor
 {
     use AnnotationReaderTrait;
 
-    /** @var int|null */
+    /** @var array|null */
     private static $attempt = null;
 
     /**
@@ -42,30 +42,44 @@ class RetryOnFailureInterceptor implements MethodInterceptor
     {
         /** @var RetryOnFailure $annotation */
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
-        if (self::$attempt === null) {
-            self::$attempt = $annotation->attempts;
+        $key = $this->keyName($invocation);
+
+        if (isset(self::$attempt[$key]) === false) {
+            self::$attempt[$key] = $annotation->attempts;
         }
+
         try {
-            self::$attempt--;
+            self::$attempt[$key]--;
 
             return $invocation->proceed();
         } catch (\Exception $e) {
             if (ltrim($annotation->ignore, '\\') === get_class($e)) {
-                self::$attempt = null;
+                self::$attempt[$key] = null;
                 throw $e;
             }
+
             $pass = array_filter($annotation->types, function ($values) use ($e) {
                 return ltrim($values, '\\') === get_class($e);
             });
             if ($pass !== false) {
-                if (self::$attempt > 0) {
+                if (self::$attempt[$key] > 0) {
                     sleep($annotation->delay);
 
                     return $invocation->proceed();
                 }
             }
-            self::$attempt = null;
+            self::$attempt[$key] = null;
             throw $e;
         }
+    }
+
+    /**
+     * @param MethodInvocation $invocation
+     *
+     * @return string
+     */
+    protected function keyName(MethodInvocation $invocation)
+    {
+        return $invocation->getMethod()->class . "$" . $invocation->getMethod()->getName();
     }
 }

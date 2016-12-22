@@ -35,6 +35,7 @@
     "satooshi/php-coveralls": "*",
     "illuminate/database": "~5.0",
     "illuminate/cache": "~5.0",
+    "illuminate/view": "~5.0",
     "sebastian/phpcpd": "*",
     "phploc/phploc": "*",
     "pdepend/pdepend" : "^2.2.4",

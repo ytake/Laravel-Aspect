@@ -17,11 +17,15 @@
  */
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Illuminate\Cache\CacheManager;
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
+use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Factory;
+use Doctrine\Common\Annotations\Annotation;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Annotation\Cacheable;
+use Ytake\LaravelAspect\Annotation\CacheEvict;
+use Ytake\LaravelAspect\Annotation\CachePut;
 
 /**
  * Class AbstractCache
@@ -55,13 +59,13 @@ abstract class AbstractCache implements MethodInterceptor
     }
 
     /**
-     * @param MethodInvocation $invocation
-     * @param                  $annotation
-     * @param                  $keys
+     * @param MethodInvocation                         $invocation
+     * @param Annotation|Cacheable|CacheEvict|CachePut $annotation
+     * @param array                                    $keys
      *
      * @return array
      */
-    protected function detectCacheKeys(MethodInvocation $invocation, $annotation, $keys)
+    protected function detectCacheKeys(MethodInvocation $invocation, Annotation $annotation, array $keys)
     {
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
@@ -91,7 +95,7 @@ abstract class AbstractCache implements MethodInterceptor
         /** @var Factory|CacheManager $cacheFactory */
         $cacheFactory = self::$factory;
         $driver = (is_null($annotation->driver)) ? $cacheFactory->getDefaultDriver() : $annotation->driver;
-        /** @var \Illuminate\Contracts\Cache\Repository $cache */
+        /** @var \Illuminate\Contracts\Cache\Repository|\Illuminate\Cache\TaggableStore $cache */
         $cache = $cacheFactory->store($driver);
         if (count($annotation->tags)) {
             $cache = $cache->tags($annotation->tags);

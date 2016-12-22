@@ -65,6 +65,14 @@ class CacheableTest extends \AspectTestCase
         $this->assertSame(1000, $result);
     }
 
+    public function testShouldBeNullForNegativeCache()
+    {
+        /** @var \__Test\AspectCacheable $cache */
+        $cache = $this->app->make(\__Test\AspectCacheable::class);
+        $this->assertNull($cache->negativeCache());
+        $this->assertNull($this->app['cache']->get('negative'));
+    }
+
     /**
      *
      */

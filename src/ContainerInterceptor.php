@@ -18,7 +18,7 @@
 namespace Ytake\LaravelAspect;
 
 use Ray\Aop\Bind;
-use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\Container;
 use Ytake\LaravelAspect\Annotation\PostConstruct;
 
 /**
@@ -26,7 +26,7 @@ use Ytake\LaravelAspect\Annotation\PostConstruct;
  */
 final class ContainerInterceptor
 {
-    /** @var Container */
+    /** @var Container|\Illuminate\Container\Container */
     private $container;
 
     /**
