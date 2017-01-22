@@ -20,8 +20,11 @@ This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com
 ### install 
 
 ```bash
-$ composer require ytake/laravel-aspect
+$ composer require --no-update ytake/laravel-aspect && composer update
+# or hhvm
+$ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(which composer) update
 ```
+
  or
  
  ```json
