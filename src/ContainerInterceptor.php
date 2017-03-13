@@ -46,6 +46,10 @@ final class ContainerInterceptor
      */
     public function intercept($abstract, Bind $bind, $className)
     {
+        if ($abstract === $className) {
+            return false;
+        }
+        
         if (isset($this->container->contextual[$abstract])) {
             $this->resolveContextualBindings($abstract, $className);
         }
