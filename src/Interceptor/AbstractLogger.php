@@ -43,11 +43,12 @@ class AbstractLogger
         $context = [];
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
-            $context['args'][$parameter->name] = $arguments[$parameter->getPosition()];
+            $context['args'][$parameter->name] =
+                !isset($arguments[$parameter->getPosition()]) ? $parameter->getDefaultValue() : $arguments[$parameter->getPosition()];
         }
 
         return [
-            'level' => $annotation->value,
+            'level'   => $annotation->value,
             'message' => sprintf(
                 $this->format,
                 $annotation->name,
