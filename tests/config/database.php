@@ -11,9 +11,11 @@ return [
             'driver' => 'sqlite',
             'database' => ':memory:',
             'prefix' => '',
-            'options' => [
-                PDO::ATTR_PERSISTENT => true,
-            ]
+        ],
+        'testing_second' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
         ],
     ],
 

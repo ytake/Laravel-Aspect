@@ -12,15 +12,18 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2016 Yuuki Takezawa
+ * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
-use Illuminate\Database\QueryException;
 use Illuminate\Database\DatabaseManager;
+use Ytake\LaravelAspect\Transaction\Runner;
+use Ytake\LaravelAspect\Transaction\Execute;
+use Ytake\LaravelAspect\Transaction\TransactionInvoker;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
@@ -41,32 +44,20 @@ class TransactionalInterceptor implements MethodInterceptor
      */
     public function invoke(MethodInvocation $invocation)
     {
-        /** @var \Illuminate\Database\ConnectionInterface $database */
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
-        $connection = $annotation->value;
-
-        $database = self::$databaseManager->connection($connection);
-        $database->beginTransaction();
-
-        try {
-            $result = $invocation->proceed();
-            $database->commit();
-        } catch (\Exception $exception) {
-            // for default Exception
-            if ($exception instanceof QueryException) {
-                $database->rollBack();
-                throw $exception;
-            }
-            $expect = ltrim($annotation->expect, '\\');
-            if ($exception instanceof $expect) {
-                $database->rollBack();
-                throw $exception;
-            }
-            $database->rollBack();
-            throw $exception;
+        // database connection name
+        $connections = $annotation->value;
+        if (!is_array($connections)) {
+            $connections = [$connections];
         }
+        $processes = [];
+        foreach ($connections as $connection) {
+            $processes[] = new TransactionInvoker($connection);
+        }
+        $processes[] = new Execute($invocation);
+        $runner = new Runner($processes);
 
-        return $result;
+        return $runner(self::$databaseManager, ltrim($annotation->expect, '\\'));
     }
 
     /**

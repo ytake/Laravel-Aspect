@@ -38,7 +38,7 @@ class TransactionalTest extends \AspectTestCase
         try {
             $transactional->error();
         } catch (\Illuminate\Database\QueryException $e) {
-             $this->assertNull($this->app['db']->connection()->table("tests")->where('test', 'testing')->first());
+            $this->assertNull($this->app['db']->connection()->table("tests")->where('test', 'testing')->first());
         }
     }
 
@@ -54,6 +54,43 @@ class TransactionalTest extends \AspectTestCase
         } catch (\LogicException $e) {
             $this->assertNull($this->app['db']->connection()->table("tests")->where('test', 'testing')->first());
         }
+    }
+
+    public function testShouldReturnAppendRecord()
+    {
+        /** @var \__Test\AspectTransactionalDatabase $transactional */
+        $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
+        // return method
+        $this->assertTrue($transactional->appendRecord(['test' => 'testing']));
+        $result = $this->app['db']->connection()->table("tests")->where('test', 'testing')->first();
+        $this->assertObjectHasAttribute('test', $result);
+    }
+
+    /**
+     * @expectedException \Illuminate\Database\QueryException
+     */
+    public function testTransactionalMultipleDatabaseThrowException()
+    {
+        /** @var \__Test\AspectTransactionalDatabase $transactional */
+        $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
+        try {
+            $transactional->multipleDatabaseAppendRecordException();
+        } catch (\Illuminate\Database\QueryException $e) {
+            $this->assertNull($this->app['db']->connection()->table("tests")->where('test', 'testing')->first());
+            $this->assertNull($this->app['db']->connection('testing_second')->table("tests")->where('test',
+                'testing')->first());
+        }
+    }
+
+    public function testShouldReturnStringTransactionalMultipleDatabase()
+    {
+        /** @var \__Test\AspectTransactionalDatabase $transactional */
+        $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
+        $this->assertSame('transaction test', $transactional->multipleDatabaseAppendRecord());
+        $result = $this->app['db']->connection()->table("tests")->where('test', 'testing')->first();
+        $this->assertObjectHasAttribute('test', $result);
+        $result = $this->app['db']->connection('testing_second')->table("tests")->where('test', 'testing second')->first();
+        $this->assertObjectHasAttribute('test', $result);
     }
 
     /**

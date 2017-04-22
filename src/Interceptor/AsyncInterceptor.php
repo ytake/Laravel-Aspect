@@ -12,7 +12,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2016 Yuuki Takezawa
+ * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
 namespace Ytake\LaravelAspect\Interceptor;
@@ -24,7 +24,7 @@ use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
  * Class AsyncInterceptor
- *
+ * @deprecated
  * @codeCoverageIgnore
  */
 class AsyncInterceptor implements MethodInterceptor

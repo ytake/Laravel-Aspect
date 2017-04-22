@@ -15,42 +15,39 @@
  * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Console;
 
-use Illuminate\Console\Command;
-use Ytake\LaravelAspect\AspectManager;
+namespace Ytake\LaravelAspect\Transaction;
+
+use Ray\Aop\MethodInvocation;
+use Illuminate\Database\DatabaseManager;
 
 /**
- * Class ClearCacheCommand
+ * Class Execute
  */
-class CompileCommand extends Command
+final class Execute implements Runnable
 {
-    /** @var string */
-    protected $name = 'ytake:aspect-compile';
-
-    /** @var string */
-    protected $description = 'compiles all known classes';
-
-    /** @var AspectManager */
-    protected $aspectManager;
+    /** @var MethodInvocation */
+    private $invocation;
 
     /**
-     * CompileCommand constructor.
+     * Execute constructor.
      *
-     * @param AspectManager $aspectManager
+     * @param MethodInvocation $invocation
      */
-    public function __construct(AspectManager $aspectManager)
+    public function __construct(MethodInvocation $invocation)
     {
-        parent::__construct();
-        $this->aspectManager = $aspectManager;
+        $this->invocation = $invocation;
     }
 
     /**
-     * @return void
+     * @param DatabaseManager $databaseManager
+     * @param string          $exceptionName
+     * @param callable        $invoker
+     *
+     * @return object
      */
-    public function fire()
+    public function __invoke(DatabaseManager $databaseManager, $exceptionName, callable $invoker)
     {
-        $this->aspectManager->weave();
-        $this->info('class files compiled!');
+        return $this->invocation->proceed();
     }
 }

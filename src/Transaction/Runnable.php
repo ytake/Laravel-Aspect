@@ -15,30 +15,23 @@
  * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Modules;
 
-use Ytake\LaravelAspect\PointCut\PointCutable;
-use Ytake\LaravelAspect\PointCut\AsyncPointCut;
+namespace Ytake\LaravelAspect\Transaction;
+
+use Illuminate\Database\DatabaseManager;
 
 /**
- * Class AsyncModule
- * @deprecated
+ * Interface Runnable
  */
-class AsyncModule extends AspectModule
+interface Runnable
 {
-    /** @var array */
-    protected $classes = [];
-
     /**
-     * @return PointCutable
+     * @param DatabaseManager $databaseManager
+     * @param string          $exceptionName
+     * @param callable        $invoker
+     *
+     * @return mixed
+     * @throws \Exception
      */
-    public function registerPointCut()
-    {
-        // @codeCoverageIgnoreStart
-        if (!extension_loaded('pcntl')) {
-            throw new \LogicException("Asynchronous Execution requires pcntl extensions to be installed");
-        }
-        // @codeCoverageIgnoreEnd
-        return new AsyncPointCut;
-    }
+    public function __invoke(DatabaseManager $databaseManager, $exceptionName, callable $invoker);
 }

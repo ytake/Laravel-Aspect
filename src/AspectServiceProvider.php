@@ -12,7 +12,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2016 Yuuki Takezawa
+ * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
 namespace Ytake\LaravelAspect;
@@ -65,37 +65,6 @@ class AspectServiceProvider extends ServiceProvider
     {
         return [
             'aspect.manager',
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function compiles()
-    {
-        return [
-            base_path() . '/vendor/ytake/laravel-aspect/src/AspectServiceProvider.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/ConsoleServiceProvider.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/AspectBind.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/AspectDriverInterface.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/NullAspectKernel.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/RayAspectKernel.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/CacheablePointCut.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/CacheEvictPointCut.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/CachePutPointCut.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/LoggablePointCut.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/PointCutable.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/PointCut/TransactionalPointCut.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/CacheableModule.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/CacheEvictModule.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/CachePutModule.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/LoggableModule.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Modules/TransactionalModule.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/CacheableInterceptor.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/CacheEvictInterceptor.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/CachePutInterceptor.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/LoggableInterceptor.php',
-            base_path() . '/vendor/ytake/laravel-aspect/src/Interceptor/TransactionalInterceptor.php',
         ];
     }
 }
