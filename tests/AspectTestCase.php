@@ -77,6 +77,8 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         $this->app->instance('Psr\Log\LoggerInterface', $log = new \Illuminate\Log\Writer(
             new \Monolog\Logger('testing'))
         );
+        $eventProvider = new \Illuminate\Events\EventServiceProvider($this->app);
+        $eventProvider->register();
         $this->registerConfigure();
         $this->registerDatabase();
         $this->registerCache();

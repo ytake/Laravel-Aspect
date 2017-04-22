@@ -146,7 +146,7 @@ you must use the TransactionalModule
 
 | params | description |
 |-----|-------|
-| value | database connection |
+| value (or array) | database connection |
 | expect | expect exception |
 
 ```php
@@ -157,7 +157,21 @@ use Ytake\LaravelAspect\Annotation\Transactional;
  */
 public function save(array $params)
 {
-    return $this->eloquent->save($params)
+    return $this->eloquent->save($params);
+}
+```
+
+#### Multiple Transaction
+```php
+use Ytake\LaravelAspect\Annotation\Transactional;
+
+/**
+ * @Transactional({"master", "second_master"})
+ */
+public function save(array $params)
+{
+    $this->eloquent->save($params);
+    $this->query->save($params);
 }
 ```
 

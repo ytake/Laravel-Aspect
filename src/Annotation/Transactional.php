@@ -12,7 +12,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2016 Yuuki Takezawa
+ * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
 namespace Ytake\LaravelAspect\Annotation;
@@ -26,7 +26,7 @@ use Doctrine\Common\Annotations\Annotation;
  */
 final class Transactional extends Annotation
 {
-    /** @var null $connection  database connection */
+    /** @var null|string|array $value  database connection names */
     public $value = null;
 
     /** @var string  */
