@@ -10,7 +10,8 @@ class LoggableModule extends Loggable
      * @var array
      */
     protected $classes = [
-        \__Test\AspectLoggable::class,
-        \__Test\AspectContextualBinding::class,
+        AspectLoggable::class,
+        AspectContextualBinding::class,
+        AspectMessageDriven::class,
     ];
 }

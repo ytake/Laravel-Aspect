@@ -402,6 +402,70 @@ class ExampleRetryOnFailure
 
 ```
 
+### @MessageDriven
+
+Annotation for a Message Queue(illuminate/queue. illuminate/bus).
+
+you must use the MessageDrivenModule.
+
+* option
+
+| params | description |
+|-----|-------|
+| value (Delayed) | \Ytake\LaravelAspect\Annotation\LazyQueue or \Ytake\LaravelAspect\Annotation\EagerQueue (default: EagerQueue)|
+| onQueue (string) | To specify the queue. (default: null) ) |
+| mappedName (string) | queue connection. (default: null/ default queue driver) |
+
+```php
+use Ytake\LaravelAspect\Annotation\EagerQueue;
+use Ytake\LaravelAspect\Annotation\LazyQueue;
+use Ytake\LaravelAspect\Annotation\Loggable;
+use Ytake\LaravelAspect\Annotation\MessageDriven;
+
+/**
+ * Class AspectMessageDriven
+ */
+class AspectMessageDriven
+{
+    /**
+     * @Loggable
+     * @MessageDriven(
+     *     @LazyQueue(3),
+     *     onQueue="message"
+     * )
+     * @return void
+     */
+    public function exec($param)
+    {
+        echo $param;
+    }
+
+    /**
+     * @MessageDriven(
+     *     @EagerQueue
+     * )
+     * @param string $message
+     */
+    public function eagerExec($message)
+    {
+        $this->logWith($message);
+    }
+
+    /**
+     * @Loggable(name="Queued")
+     * @param string $message
+     *
+     * @return string
+     */
+    public function logWith($message)
+    {
+        return "Hello $message";
+    }
+}
+
+```
+
+
 ### @Async
 Methods annotated with @Async will return immediately to its caller while its operation executes asynchronously.
 

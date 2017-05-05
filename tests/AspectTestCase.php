@@ -37,6 +37,10 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
             "cache",
             $filesystem->getRequire(__DIR__ . '/config/cache.php')
         );
+        $this->app['config']->set(
+            'queue',
+            $filesystem->getRequire(__DIR__ . '/config/queue.php')
+        );
         $this->app['files'] = $filesystem;
     }
 
@@ -79,6 +83,12 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         );
         $eventProvider = new \Illuminate\Events\EventServiceProvider($this->app);
         $eventProvider->register();
+        $busServiceProvider = new \Illuminate\Bus\BusServiceProvider($this->app);
+        $busServiceProvider->register();
+        $queueServiceProvider = new \Illuminate\Queue\QueueServiceProvider($this->app);
+        $queueServiceProvider->register();
+        $this->app->alias('queue', \Illuminate\Contracts\Queue\Factory::class);
+        $this->app->alias('events', \Illuminate\Contracts\Events\Dispatcher::class);
         $this->registerConfigure();
         $this->registerDatabase();
         $this->registerCache();
@@ -96,5 +106,13 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
             }
         );
         \Illuminate\Container\Container::setInstance($this->app);
+    }
+
+    /**
+     * @return string
+     */
+    protected function logDir()
+    {
+        return  __DIR__ . '/storage/log';
     }
 }

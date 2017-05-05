@@ -27,6 +27,8 @@
     "illuminate/database": "~5.0",
     "illuminate/cache": "~5.0",
     "illuminate/events": "~5.0",
+    "illuminate/bus": "~5.0",
+    "illuminate/queue": "~5.0",
     "ray/aop": "~2.0",
     "nikic/php-parser": "^1.0|^2.0",
     "doctrine/annotations": "~1.0"
