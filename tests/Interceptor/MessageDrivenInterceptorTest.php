@@ -36,25 +36,30 @@ class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
 
     public function getArguments()
     {
-        // TODO: Implement getArguments() method.
+        return new \Ray\Aop\Arguments(['argument' => 'this']);
     }
 
     public function proceed()
     {
-        return $this->intercept()->exec();
+        return $this->intercept()->exec('this');
     }
 
     public function getThis()
     {
-        return new \ReflectionClass(\__Test\AspectMessageDriven::class);
+        return new \__Test\AspectMessageDriven;
     }
 
     public function getMethod()
     {
-        $reflectionClass = $this->getThis();
+        $reflectionClass = new \ReflectionClass(\__Test\AspectMessageDriven::class);
         $this->reflectionMethod = $reflectionClass->getMethod('exec');
 
         return $this;
+    }
+
+    public function getName()
+    {
+        return $this->reflectionMethod->getName();
     }
 
     public function getAnnotation($name)

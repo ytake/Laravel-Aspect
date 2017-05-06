@@ -41,6 +41,13 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
             'queue',
             $filesystem->getRequire(__DIR__ . '/config/queue.php')
         );
+        $this->app['config']->set(
+            'app',
+            [
+                'key'    => 'base64:vL6wZyxF+/4DhgKiNoA3k80pwdX2VwvLDSig9juMk8g=',
+                'cipher' => 'AES-256-CBC',
+            ]
+        );
         $this->app['files'] = $filesystem;
     }
 
@@ -87,6 +94,8 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         $busServiceProvider->register();
         $queueServiceProvider = new \Illuminate\Queue\QueueServiceProvider($this->app);
         $queueServiceProvider->register();
+        $encryptionServiceProvider = new \Illuminate\Encryption\EncryptionServiceProvider($this->app);
+        $encryptionServiceProvider->register();
         $this->app->alias('queue', \Illuminate\Contracts\Queue\Factory::class);
         $this->app->alias('events', \Illuminate\Contracts\Events\Dispatcher::class);
         $this->registerConfigure();
@@ -113,6 +122,6 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
      */
     protected function logDir()
     {
-        return  __DIR__ . '/storage/log';
+        return __DIR__ . '/storage/log';
     }
 }
