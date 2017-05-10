@@ -32,6 +32,7 @@ class MessageDrivenFunctionalTest extends AspectTestCase
 
     public function testShouldBeLazyQueue()
     {
+        $this->expectOutputString('this');
         $this->log->useFiles($this->logDir() . '/.testing.log');
         /** @var AspectMessageDriven $concrete */
         $concrete = $this->app->make(AspectMessageDriven::class);
