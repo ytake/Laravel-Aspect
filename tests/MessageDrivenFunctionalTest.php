@@ -32,13 +32,13 @@ class MessageDrivenFunctionalTest extends AspectTestCase
 
     public function testShouldBeLazyQueue()
     {
-        $this->expectOutputString('this');
         $this->log->useFiles($this->logDir() . '/.testing.log');
         /** @var AspectMessageDriven $concrete */
         $concrete = $this->app->make(AspectMessageDriven::class);
         $concrete->exec('this');
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
         $this->assertContains('Loggable:__Test\AspectMessageDriven.exec {"args":{"param":"this"}', $put);
+        $this->assertContains('Queued:__Test\AspectMessageDriven.logWith', $put);
     }
 
     public function testShouldBeEagerQueue()

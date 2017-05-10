@@ -15,6 +15,7 @@
  * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Console;
 
 use Illuminate\Support\Str;
@@ -51,6 +52,7 @@ class ModulePublishCommand extends Command
         'LogExceptionsModule'  => 'Ytake\LaravelAspect\Modules\LogExceptionsModule',
         'PostConstructModule'  => 'Ytake\LaravelAspect\Modules\PostConstructModule',
         'RetryOnFailureModule' => 'Ytake\LaravelAspect\Modules\RetryOnFailureModule',
+        'MessageDrivenModule'  => 'Ytake\LaravelAspect\Modules\MessageDrivenModule',
     ];
 
     /**

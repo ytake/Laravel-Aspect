@@ -22,7 +22,7 @@ class AspectMessageDriven
      */
     public function exec($param)
     {
-        echo $param;
+        $this->logWith($param);
     }
 
     /**
