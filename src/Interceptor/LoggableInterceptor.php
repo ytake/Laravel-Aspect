@@ -43,7 +43,7 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
         $result = $invocation->proceed();
         $time = microtime(true) - $start;
         $logFormat = $this->logFormatter($annotation, $invocation);
-        $logger = self::$logger;
+        $logger = static::$logger;
         if ($logger instanceof Writer) {
             $logger = $logger->getMonolog();
         }

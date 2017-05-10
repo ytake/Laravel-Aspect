@@ -321,6 +321,49 @@ class AspectLoggable
 
 ```
 
+#### About @QueryLog
+
+for database query logger(illuminate/log, monolog, illuminate/database)
+
+```php
+
+use Ytake\LaravelAspect\Annotation\QueryLog;
+use Illuminate\Database\ConnectionResolverInterface;
+
+/**
+ * Class AspectQueryLog
+ */
+class AspectQueryLog
+{
+    /** @var ConnectionResolverInterface */
+    protected $db;
+
+    /**
+     * @param ConnectionResolverInterface $db
+     */
+    public function __construct(ConnectionResolverInterface $db)
+    {
+        $this->db = $db;
+    }
+
+    /**
+     * @QueryLog
+     */
+    public function multipleDatabaseAppendRecord()
+    {
+        $this->db->connection()->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
+        $this->db->connection('testing_second')->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
+        $this->db->connection()->table("tests")->insert(['test' => 'testing']);
+        $this->db->connection('testing_second')->table("tests")->insert(['test' => 'testing second']);
+    }
+}
+
+```
+
+```
+testing.INFO: QueryLog:AspectQueryLog.multipleDatabaseAppendRecord {"queries":[{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)","bindings":[],"time":0.58,"connectionName":"testing"},{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)","bindings":[],"time":0.31,"connectionName":"testing_second"} ...
+```
+
 ### @PostConstruct
 The PostConstruct annotation is used on a method that needs to be executed after dependency injection is done to perform any initialization.
 

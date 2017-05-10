@@ -54,7 +54,7 @@ class MessageDrivenInterceptor implements MethodInterceptor
                 ->onConnection($annotation->mappedName);
         }
 
-        static::$dispatcher->dispatch($command);
+        return static::$dispatcher->dispatch($command);
     }
 
     /**

@@ -19,16 +19,16 @@
 namespace Ytake\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
-use Ytake\LaravelAspect\Annotation\MessageDriven;
-use Ytake\LaravelAspect\Interceptor\MessageDrivenInterceptor;
+use Ytake\LaravelAspect\Annotation\QueryLog;
+use Ytake\LaravelAspect\Interceptor\QueryLogInterceptor;
 
 /**
- * Class MessageDrivenPointCut
+ * Class QueryLogPointCut
  */
-class MessageDrivenPointCut extends CommonPointCut implements PointCutable
+class QueryLogPointCut extends CommonPointCut implements PointCutable
 {
     /** @var string */
-    protected $annotation = MessageDriven::class;
+    protected $annotation = QueryLog::class;
 
     /**
      * @param Container $app
@@ -37,8 +37,9 @@ class MessageDrivenPointCut extends CommonPointCut implements PointCutable
      */
     public function configure(Container $app)
     {
-        $interceptor = new MessageDrivenInterceptor;
-        $interceptor->setBusDispatcher($app['Illuminate\Contracts\Bus\Dispatcher']);
+        $interceptor = new QueryLogInterceptor;
+        $interceptor->setLogger($app['Psr\Log\LoggerInterface']);
+        $interceptor->setDispatcher($app['Illuminate\Contracts\Events\Dispatcher']);
         $this->setInterceptor($interceptor);
 
         return $this->withAnnotatedAnyInterceptor();
