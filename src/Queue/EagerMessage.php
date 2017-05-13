@@ -18,11 +18,12 @@
 namespace Ytake\LaravelAspect\Queue;
 
 use Ray\Aop\MethodInvocation;
+use Illuminate\Contracts\Bus\SelfHandling;
 
 /**
  * Class EagerMessage
  */
-final class EagerMessage
+final class EagerMessage implements SelfHandling
 {
     /** @var MethodInvocation */
     protected $methodInvocation;

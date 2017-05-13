@@ -32,7 +32,4 @@ final class MessageDriven extends Annotation
 
     /** @var null|string $value queue name(onQueue method) */
     public $onQueue = null;
-
-    /** @var null|string */
-    public $mappedName = null;
 }

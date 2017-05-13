@@ -44,7 +44,7 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         $this->app['config']->set(
             'app',
             [
-                'key'    => 'base64:vL6wZyxF+/4DhgKiNoA3k80pwdX2VwvLDSig9juMk8g=',
+                'key'    => 'qSaFhgd51jiyKGMIfkVzf1xilRh2wjql',
                 'cipher' => 'AES-256-CBC',
             ]
         );
@@ -94,13 +94,14 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         $busServiceProvider->register();
         $queueServiceProvider = new \Illuminate\Queue\QueueServiceProvider($this->app);
         $queueServiceProvider->register();
-        $encryptionServiceProvider = new \Illuminate\Encryption\EncryptionServiceProvider($this->app);
-        $encryptionServiceProvider->register();
-        $this->app->alias('queue', \Illuminate\Contracts\Queue\Factory::class);
-        $this->app->alias('events', \Illuminate\Contracts\Events\Dispatcher::class);
         $this->registerConfigure();
         $this->registerDatabase();
         $this->registerCache();
+        $this->app->alias('queue', \Illuminate\Contracts\Queue\Factory::class);
+        $this->app->alias('queue.connection', \Illuminate\Contracts\Queue\Queue::class);
+        $this->app->alias('events', \Illuminate\Contracts\Events\Dispatcher::class);
+        $encryptionServiceProvider = new \Illuminate\Encryption\EncryptionServiceProvider($this->app);
+        $encryptionServiceProvider->register();
         $annotationConfiguration = new \Ytake\LaravelAspect\AnnotationConfiguration(
             $this->app['config']->get('ytake-laravel-aop.annotation')
         );

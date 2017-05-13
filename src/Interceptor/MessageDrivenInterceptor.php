@@ -50,8 +50,7 @@ class MessageDrivenInterceptor implements MethodInterceptor
         if ($annotation->value instanceof LazyQueue) {
             $command = new LazyMessage($invocation);
             $command->onQueue($annotation->onQueue)
-                ->delay($annotation->value->delay())
-                ->onConnection($annotation->mappedName);
+                ->delay($annotation->value->delay());
         }
 
         return static::$dispatcher->dispatch($command);

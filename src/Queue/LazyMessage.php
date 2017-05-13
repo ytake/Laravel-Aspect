@@ -18,6 +18,7 @@
 
 namespace Ytake\LaravelAspect\Queue;
 
+use Illuminate\Contracts\Bus\SelfHandling;
 use Ray\Aop\MethodInvocation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Container\Container;
@@ -28,7 +29,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 /**
  * Class LazyMessage
  */
-class LazyMessage implements ShouldQueue
+class LazyMessage implements SelfHandling, ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
