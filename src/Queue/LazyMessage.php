@@ -51,14 +51,15 @@ class LazyMessage implements ShouldQueue
     public function handle(Container $container)
     {
         $class = new \ReflectionClass(get_class($this->methodInvocation->getThis()));
-        require_once $class->getFileName();
-        $method = $this->methodInvocation->getMethod()->getName();
-        $container->call(
-            [
-                $this->methodInvocation->getThis(),
-                $method,
-            ],
-            $this->methodInvocation->getArguments()->getArrayCopy()
-        );
+        if ($class->getFileName()) {
+            $method = $this->methodInvocation->getMethod()->getName();
+            $container->call(
+                [
+                    $this->methodInvocation->getThis(),
+                    $method,
+                ],
+                $this->methodInvocation->getArguments()->getArrayCopy()
+            );
+        }
     }
 }
