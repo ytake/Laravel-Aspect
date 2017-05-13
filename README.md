@@ -457,7 +457,6 @@ you must use the MessageDrivenModule.
 |-----|-------|
 | value (Delayed) | \Ytake\LaravelAspect\Annotation\LazyQueue or \Ytake\LaravelAspect\Annotation\EagerQueue (default: EagerQueue)|
 | onQueue (string) | To specify the queue. (default: null) ) |
-| mappedName (string) | queue connection. (default: null/ default queue driver) |
 
 ```php
 use Ytake\LaravelAspect\Annotation\EagerQueue;
