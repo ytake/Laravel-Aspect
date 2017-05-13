@@ -36,7 +36,15 @@ $ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(whic
  ```
 
 #### for laravel5.1, 5.2
-https://github.com/ytake/Laravel-Aspect/tree/master-laravel5-legacy
+[branch](https://github.com/ytake/Laravel-Aspect/tree/master-laravel5-legacy)
+
+ ```json
+   "require": {
+    "php": ">=5.5.9",
+    "laravel/framework": "5.*",
+    "ytake/laravel-aspect": "^1.6"
+  },
+ ```
 
 ### added serviceProvider
 
