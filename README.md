@@ -35,6 +35,9 @@ $ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(whic
   },
  ```
 
+#### for laravel5.1, 5.2
+https://github.com/ytake/Laravel-Aspect/tree/master-laravel5-legacy
+
 ### added serviceProvider
 
 ```php
