@@ -17,17 +17,24 @@
  */
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Illuminate\Log\Writer;
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
+use Illuminate\Contracts\Bus\Dispatcher;
+use Ytake\LaravelAspect\Queue\LazyMessage;
+use Ytake\LaravelAspect\Queue\EagerMessage;
+use Ytake\LaravelAspect\Annotation\LazyQueue;
+use Ytake\LaravelAspect\Annotation\MessageDriven;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
- * Class LoggableInterceptor
+ * Class MessageDrivenInterceptor
  */
-class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
+class MessageDrivenInterceptor implements MethodInterceptor
 {
     use AnnotationReaderTrait;
+
+    /** @var Dispatcher */
+    protected static $dispatcher;
 
     /**
      * @param MethodInvocation $invocation
@@ -37,23 +44,24 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
      */
     public function invoke(MethodInvocation $invocation)
     {
-        /** @var \Ytake\LaravelAspect\Annotation\Loggable $annotation */
+        /** @var MessageDriven $annotation */
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
-        $start = microtime(true);
-        $result = $invocation->proceed();
-        $time = number_format(microtime(true) - $start, 15);
-        $logFormat = $this->logFormatter($annotation, $invocation);
-        $logger = static::$logger;
-        if ($logger instanceof Writer) {
-            $logger = $logger->getMonolog();
+        $command = new EagerMessage($invocation);
+        if ($annotation->value instanceof LazyQueue) {
+            $command = new LazyMessage($invocation);
+            $command->onQueue($annotation->onQueue)
+                ->delay($annotation->value->delay())
+                ->onConnection($annotation->mappedName);
         }
-        if (!$annotation->skipResult) {
-            $logFormat['context']['result'] = $result;
-        }
-        $logFormat['context']['time'] = $time;
-        /** Monolog\Logger */
-        $logger->log($logFormat['level'], $logFormat['message'], $logFormat['context']);
 
-        return $result;
+        return static::$dispatcher->dispatch($command);
+    }
+
+    /**
+     * @param Dispatcher $dispatcher
+     */
+    public function setBusDispatcher(Dispatcher $dispatcher)
+    {
+        static::$dispatcher = $dispatcher;
     }
 }

@@ -1,9 +1,13 @@
 <?php
 
+use __Test\LoggableModule;
+use __Test\MessageDrivenModule;
+use __Test\AspectMessageDriven;
+
 /**
- * Class AspectLoggableTest
+ * Class MessageDrivenFunctionalTest
  */
-class AspectLoggableTest extends \AspectTestCase
+class MessageDrivenFunctionalTest extends AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
@@ -26,44 +30,43 @@ class AspectLoggableTest extends \AspectTestCase
         }
     }
 
-    public function testDefaultLogger()
+    public function testShouldBeLazyQueue()
     {
+        $this->expectOutputString('this');
         $this->log->useFiles($this->logDir() . '/.testing.log');
-        /** @var \__Test\AspectLoggable $cache */
-        $cache = $this->app->make(\__Test\AspectLoggable::class);
-        $cache->normalLog(1);
+        /** @var AspectMessageDriven $concrete */
+        $concrete = $this->app->make(AspectMessageDriven::class);
+        $concrete->exec('this');
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('Loggable:__Test\AspectLoggable.normalLog', $put);
-        $this->assertContains('{"args":{"id":1},"result":1', $put);
+        $this->assertContains('Loggable:__Test\AspectMessageDriven.exec {"args":{"param":"this"}', $put);
+        $this->assertContains('Queued:__Test\AspectMessageDriven.logWith', $put);
     }
 
-    public function testSkipResultLogger()
+    public function testShouldBeEagerQueue()
     {
         $this->log->useFiles($this->logDir() . '/.testing.log');
-        /** @var \__Test\AspectLoggable $cache */
-        $cache = $this->app->make(\__Test\AspectLoggable::class);
-        $cache->skipResultLog(1);
+        /** @var AspectMessageDriven $concrete */
+        $concrete = $this->app->make(AspectMessageDriven::class);
+        $concrete->eagerExec('testing');
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('Loggable:__Test\AspectLoggable.skipResultLog', $put);
-        $this->assertNotContains('"result":1', $put);
+        $this->assertContains('Queued:__Test\AspectMessageDriven.logWith', $put);
+    }
+
+    /**
+     * @before
+     */
+    protected function resolveManager()
+    {
+        /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
+        $aspect = $this->manager->driver('ray');
+        $aspect->register(MessageDrivenModule::class);
+        $aspect->register(LoggableModule::class);
+        $aspect->weave();
     }
 
     public function tearDown()
     {
         $this->app['files']->deleteDirectory($this->logDir());
         parent::tearDown();
-    }
-
-    /**
-     *
-     */
-    protected function resolveManager()
-    {
-        /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
-        $aspect = $this->manager->driver('ray');
-        $aspect->register(\__Test\LoggableModule::class);
-        $aspect->register(\__Test\CacheEvictModule::class);
-        $aspect->register(\__Test\CacheableModule::class);
-        $aspect->weave();
     }
 }

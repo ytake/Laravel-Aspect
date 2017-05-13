@@ -15,17 +15,15 @@
  * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
+namespace Ytake\LaravelAspect\Annotation;
 
-require_once 'Async.php';
-require_once 'Cacheable.php';
-require_once 'CacheEvict.php';
-require_once 'CachePut.php';
-require_once 'LogExceptions.php';
-require_once 'Loggable.php';
-require_once 'PostConstruct.php';
-require_once 'RetryOnFailure.php';
-require_once 'Transactional.php';
-require_once 'MessageDriven.php';
-require_once 'EagerQueue.php';
-require_once 'LazyQueue.php';
-require_once 'QueryLog.php';
+/**
+ * Interface Delayed
+ */
+interface Delayed
+{
+    /**
+     * @return int
+     */
+    public function delay();
+}

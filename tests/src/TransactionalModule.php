@@ -11,6 +11,7 @@ class TransactionalModule extends Transactional
      */
     protected $classes = [
         AspectTransactionalDatabase::class,
-        AspectTransactionalString::class
+        AspectTransactionalString::class,
+        AspectQueryLog::class
     ];
 }

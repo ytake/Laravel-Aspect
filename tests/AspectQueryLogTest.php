@@ -1,9 +1,11 @@
 <?php
 
+use __Test\AspectQueryLog;
+
 /**
- * Class AspectLoggableTest
+ * Class AspectQueryLogTest
  */
-class AspectLoggableTest extends \AspectTestCase
+class AspectQueryLogTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
@@ -29,23 +31,34 @@ class AspectLoggableTest extends \AspectTestCase
     public function testDefaultLogger()
     {
         $this->log->useFiles($this->logDir() . '/.testing.log');
-        /** @var \__Test\AspectLoggable $cache */
-        $cache = $this->app->make(\__Test\AspectLoggable::class);
-        $cache->normalLog(1);
+        /** @var AspectQueryLog $concrete */
+        $concrete = $this->app->make(AspectQueryLog::class);
+        $concrete->start();
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('Loggable:__Test\AspectLoggable.normalLog', $put);
-        $this->assertContains('{"args":{"id":1},"result":1', $put);
+        $this->assertContains('testing.INFO: QueryLog:__Test\AspectQueryLog.start', $put);
+        $this->assertContains('SELECT date(\'now\')', $put);
     }
 
-    public function testSkipResultLogger()
+    public function testTransactionalLogger()
     {
         $this->log->useFiles($this->logDir() . '/.testing.log');
-        /** @var \__Test\AspectLoggable $cache */
-        $cache = $this->app->make(\__Test\AspectLoggable::class);
-        $cache->skipResultLog(1);
+        /** @var AspectQueryLog $concrete */
+        $concrete = $this->app->make(AspectQueryLog::class);
+        $concrete->multipleDatabaseAppendRecord();
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('Loggable:__Test\AspectLoggable.skipResultLog', $put);
-        $this->assertNotContains('"result":1', $put);
+        $this->assertContains('testing.INFO: QueryLog:__Test\AspectQueryLog.multipleDatabaseAppendRecord', $put);
+        $this->assertContains('"queries":[{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)"', $put);
+    }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testExceptionalDatabaseLogger()
+    {
+        $this->log->useFiles($this->logDir() . '/.testing.log');
+        /** @var AspectQueryLog $concrete */
+        $concrete = $this->app->make(AspectQueryLog::class);
+        $concrete->appendRecord(['test' => 'testing']);
     }
 
     public function tearDown()
@@ -62,8 +75,8 @@ class AspectLoggableTest extends \AspectTestCase
         /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\LoggableModule::class);
-        $aspect->register(\__Test\CacheEvictModule::class);
-        $aspect->register(\__Test\CacheableModule::class);
+        $aspect->register(\__Test\QueryLogModule::class);
+        $aspect->register(\__Test\TransactionalModule::class);
         $aspect->weave();
     }
 }

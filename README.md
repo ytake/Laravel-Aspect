@@ -35,6 +35,17 @@ $ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(whic
   },
  ```
 
+#### for laravel5.1, 5.2
+[branch](https://github.com/ytake/Laravel-Aspect/tree/master-laravel5-legacy)
+
+ ```json
+   "require": {
+    "php": ">=5.5.9",
+    "laravel/framework": "5.*",
+    "ytake/laravel-aspect": "^1.6"
+  },
+ ```
+
 ### added serviceProvider
 
 ```php
@@ -128,11 +139,58 @@ class SampleService
  - Classes must be non-final
  - Methods must be public
  
+### for Lumen
+override `Ytake\LaravelAspect\AspectServiceProvider`
+
+```php
+use Ytake\LaravelAspect\AspectManager;
+use Ytake\LaravelAspect\AnnotationManager;
+use Ytake\LaravelAspect\AspectServiceProvider as AspectProvider;
+
+/**
+ * Class AspectServiceProvider
+ */
+final class AspectServiceProvider extends AspectProvider
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function register()
+    {
+        $this->app->configure('ytake-laravel-aop');
+        $this->app->singleton('aspect.manager', function ($app) {
+            $annotationConfiguration = new AnnotationConfiguration(
+                $app['config']->get('ytake-laravel-aop.annotation')
+            );
+            $annotationConfiguration->ignoredAnnotations();
+            // register annotation
+            return new AspectManager($app);
+        });
+    }
+}
+
+```
+
+bootstrap/app.php
  
+```php
+$app->register(App\Providers\AspectServiceProvider::class);
+
+if ($app->runningInConsole()) {
+    $app->register(Ytake\LaravelAspect\ConsoleServiceProvider::class);
+}
+```
+
 ## Cache Clear Command
 
 ```bash
 $ php artisan ytake:aspect-clear-cache
+```
+
+## PreCompile Command
+
+```bash
+$ php artisan ytake:aspect-compile
 ```
 
 ## Annotations
@@ -321,6 +379,49 @@ class AspectLoggable
 
 ```
 
+#### About @QueryLog
+
+for database query logger(illuminate/log, monolog, illuminate/database)
+
+```php
+
+use Ytake\LaravelAspect\Annotation\QueryLog;
+use Illuminate\Database\ConnectionResolverInterface;
+
+/**
+ * Class AspectQueryLog
+ */
+class AspectQueryLog
+{
+    /** @var ConnectionResolverInterface */
+    protected $db;
+
+    /**
+     * @param ConnectionResolverInterface $db
+     */
+    public function __construct(ConnectionResolverInterface $db)
+    {
+        $this->db = $db;
+    }
+
+    /**
+     * @QueryLog
+     */
+    public function multipleDatabaseAppendRecord()
+    {
+        $this->db->connection()->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
+        $this->db->connection('testing_second')->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
+        $this->db->connection()->table("tests")->insert(['test' => 'testing']);
+        $this->db->connection('testing_second')->table("tests")->insert(['test' => 'testing second']);
+    }
+}
+
+```
+
+```
+testing.INFO: QueryLog:AspectQueryLog.multipleDatabaseAppendRecord {"queries":[{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)","bindings":[],"time":0.58,"connectionName":"testing"},{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)","bindings":[],"time":0.31,"connectionName":"testing_second"} ...
+```
+
 ### @PostConstruct
 The PostConstruct annotation is used on a method that needs to be executed after dependency injection is done to perform any initialization.
 
@@ -401,6 +502,77 @@ class ExampleRetryOnFailure
 }
 
 ```
+
+### @MessageDriven
+
+Annotation for a Message Queue(illuminate/queue. illuminate/bus).
+
+you must use the MessageDrivenModule.
+
+* option
+
+| params | description |
+|-----|-------|
+| value (Delayed) | \Ytake\LaravelAspect\Annotation\LazyQueue or \Ytake\LaravelAspect\Annotation\EagerQueue (default: EagerQueue)|
+| onQueue (string) | To specify the queue. (default: null) ) |
+| mappedName (string) | queue connection. (default: null/ default queue driver) |
+
+```php
+use Ytake\LaravelAspect\Annotation\EagerQueue;
+use Ytake\LaravelAspect\Annotation\LazyQueue;
+use Ytake\LaravelAspect\Annotation\Loggable;
+use Ytake\LaravelAspect\Annotation\MessageDriven;
+
+/**
+ * Class AspectMessageDriven
+ */
+class AspectMessageDriven
+{
+    /**
+     * @Loggable
+     * @MessageDriven(
+     *     @LazyQueue(3),
+     *     onQueue="message"
+     * )
+     * @return void
+     */
+    public function exec($param)
+    {
+        echo $param;
+    }
+
+    /**
+     * @MessageDriven(
+     *     @EagerQueue
+     * )
+     * @param string $message
+     */
+    public function eagerExec($message)
+    {
+        $this->logWith($message);
+    }
+
+    /**
+     * @Loggable(name="Queued")
+     * @param string $message
+     *
+     * @return string
+     */
+    public function logWith($message)
+    {
+        return "Hello $message";
+    }
+}
+
+```
+
+#### LazyQueue
+
+Handle Class *Ytake\LaravelAspect\Queue\LazyMessage*  
+
+#### EagerQueue
+
+Handle Class *Ytake\LaravelAspect\Queue\EagerMessage*  
 
 ### @Async
 Methods annotated with @Async will return immediately to its caller while its operation executes asynchronously.

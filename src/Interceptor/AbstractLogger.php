@@ -64,6 +64,6 @@ class AbstractLogger
      */
     public function setLogger(LoggerInterface $logger)
     {
-        self::$logger = $logger;
+        static::$logger = $logger;
     }
 }
