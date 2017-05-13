@@ -68,14 +68,6 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
      */
     protected function subscribeQueryLog()
     {
-        static::$dispatcher->listen('illuminate.query', function ($query, $bindings, $time, $connectionName) {
-            $this->queryLogs[] = [
-                'query'          => $query,
-                'bindings'       => $bindings,
-                'time'           => $time,
-                'connectionName' => $connectionName,
-            ];
-        });
         static::$dispatcher->listen(QueryExecuted::class, function (QueryExecuted $executed) {
             $this->queryLogs[] = [
                 'query'          => $executed->sql,

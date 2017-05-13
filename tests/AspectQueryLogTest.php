@@ -46,7 +46,6 @@ class AspectQueryLogTest extends \AspectTestCase
         $concrete = $this->app->make(AspectQueryLog::class);
         $concrete->multipleDatabaseAppendRecord();
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        var_dump($put);
         $this->assertContains('testing.INFO: QueryLog:__Test\AspectQueryLog.multipleDatabaseAppendRecord', $put);
         $this->assertContains('"queries":[{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)"', $put);
     }

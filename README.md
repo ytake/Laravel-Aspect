@@ -128,11 +128,58 @@ class SampleService
  - Classes must be non-final
  - Methods must be public
  
+### for Lumen
+override `Ytake\LaravelAspect\AspectServiceProvider`
+
+```php
+use Ytake\LaravelAspect\AspectManager;
+use Ytake\LaravelAspect\AnnotationManager;
+use Ytake\LaravelAspect\AspectServiceProvider as AspectProvider;
+
+/**
+ * Class AspectServiceProvider
+ */
+final class AspectServiceProvider extends AspectProvider
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function register()
+    {
+        $this->app->configure('ytake-laravel-aop');
+        $this->app->singleton('aspect.manager', function ($app) {
+            $annotationConfiguration = new AnnotationConfiguration(
+                $app['config']->get('ytake-laravel-aop.annotation')
+            );
+            $annotationConfiguration->ignoredAnnotations();
+            // register annotation
+            return new AspectManager($app);
+        });
+    }
+}
+
+```
+
+bootstrap/app.php
  
+```php
+$app->register(App\Providers\AspectServiceProvider::class);
+
+if ($app->runningInConsole()) {
+    $app->register(Ytake\LaravelAspect\ConsoleServiceProvider::class);
+}
+```
+
 ## Cache Clear Command
 
 ```bash
 $ php artisan ytake:aspect-clear-cache
+```
+
+## PreCompile Command
+
+```bash
+$ php artisan ytake:aspect-compile
 ```
 
 ## Annotations
@@ -508,6 +555,13 @@ class AspectMessageDriven
 
 ```
 
+#### LazyQueue
+
+Handle Class *Ytake\LaravelAspect\Queue\LazyMessage*  
+
+#### EagerQueue
+
+Handle Class *Ytake\LaravelAspect\Queue\EagerMessage*  
 
 ### @Async
 Methods annotated with @Async will return immediately to its caller while its operation executes asynchronously.
