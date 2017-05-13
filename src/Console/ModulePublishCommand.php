@@ -53,6 +53,7 @@ class ModulePublishCommand extends Command
         'PostConstructModule'  => 'Ytake\LaravelAspect\Modules\PostConstructModule',
         'RetryOnFailureModule' => 'Ytake\LaravelAspect\Modules\RetryOnFailureModule',
         'MessageDrivenModule'  => 'Ytake\LaravelAspect\Modules\MessageDrivenModule',
+        'QueryLogModule'       => 'Ytake\LaravelAspect\Modules\QueryLogModule',
     ];
 
     /**
