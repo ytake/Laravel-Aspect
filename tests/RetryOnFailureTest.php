@@ -45,6 +45,6 @@ class RetryOnFailureTest extends AspectTestCase
     {
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\RetryOnFailureModule::class);
-        $aspect->dispatch();
+        $aspect->weave();
     }
 }

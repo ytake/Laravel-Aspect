@@ -98,8 +98,9 @@ class TransactionalTest extends \AspectTestCase
      */
     protected function resolveManager()
     {
+        /** @var \Ytake\LaravelAspect\AspectDriverInterface $aspect */
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\TransactionalModule::class);
-        $aspect->dispatch();
+        $aspect->weave();
     }
 }

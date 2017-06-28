@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -23,11 +24,11 @@ namespace Ytake\LaravelAspect;
 interface AspectDriverInterface
 {
     /**
-     * @param null $module
+     * @param string|null $module
      *
      * @return void
      */
-    public function register($module = null);
+    public function register(string $module = null);
 
     /**
      * weaving

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -44,7 +45,7 @@ final class Runner
      *
      * @return mixed
      */
-    public function __invoke(DatabaseManager $databaseManager, $exceptionName)
+    public function __invoke(DatabaseManager $databaseManager, string $exceptionName)
     {
         $invoke = array_shift($this->invoker);
         if (is_null($invoke)) {

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -46,7 +47,7 @@ final class Execute implements Runnable
      *
      * @return object
      */
-    public function __invoke(DatabaseManager $databaseManager, $exceptionName, callable $invoker)
+    public function __invoke(DatabaseManager $databaseManager, string $exceptionName, callable $invoker)
     {
         return $this->invocation->proceed();
     }

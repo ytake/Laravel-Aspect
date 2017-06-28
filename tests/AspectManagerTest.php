@@ -31,7 +31,6 @@ class AspectManagerTest extends \AspectTestCase
         $this->assertNull($driver->register());
         $class = new \ReflectionClass($driver);
         $this->assertSame(0, count($class->getProperties()));
-        $this->assertNull($driver->dispatch());
         $this->assertNull($driver->weave());
     }
 }

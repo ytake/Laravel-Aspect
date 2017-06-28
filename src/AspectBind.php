@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -15,10 +16,11 @@
  * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect;
 
-use Ray\Aop\Bind;
 use Illuminate\Filesystem\Filesystem;
+use Ray\Aop\Bind;
 
 /**
  * Class AspectBind
@@ -39,11 +41,12 @@ class AspectBind
 
     /**
      * AspectBind constructor.
+     *
      * @param Filesystem $filesystem
-     * @param string $path
-     * @param bool $cacheable
+     * @param string     $path
+     * @param bool       $cacheable
      */
-    public function __construct(Filesystem $filesystem, $path, $cacheable = false)
+    public function __construct(Filesystem $filesystem, string $path, bool $cacheable = false)
     {
         $this->filesystem = $filesystem;
         $this->cacheable = $cacheable;
@@ -51,11 +54,12 @@ class AspectBind
     }
 
     /**
-     * @param $class
+     * @param       $class
      * @param array $pointcuts
+     *
      * @return Bind
      */
-    public function bind($class, array $pointcuts)
+    public function bind(string $class, array $pointcuts): Bind
     {
         if (!$this->cacheable) {
             return (new Bind)->bind($class, $pointcuts);
@@ -67,13 +71,14 @@ class AspectBind
             $bind = (new Bind)->bind($class, $pointcuts);
             $this->filesystem->put($filePath, serialize($bind));
         }
+
         return unserialize(file_get_contents($filePath));
     }
 
     /**
-     * @param $path
+     * @param string $path
      */
-    private function makeCacheDir($path)
+    private function makeCacheDir(string $path)
     {
         if (!$this->filesystem->exists($path)) {
             $this->filesystem->makeDirectory($path, 0777, true);

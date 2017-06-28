@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -28,7 +29,7 @@ trait AnnotationReaderTrait
     /**
      * @param string $annotation
      */
-    public function setAnnotation($annotation)
+    public function setAnnotation(string $annotation)
     {
         $this->annotation = $annotation;
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -47,7 +48,7 @@ class TransactionInvoker implements Runnable
      * @return mixed
      * @throws \Exception
      */
-    public function __invoke(DatabaseManager $databaseManager, $exceptionName, callable $invoker)
+    public function __invoke(DatabaseManager $databaseManager, string $exceptionName, callable $invoker)
     {
         $database = $databaseManager->connection($this->connection);
         $database->beginTransaction();

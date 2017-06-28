@@ -31,12 +31,12 @@ abstract class AspectModule
      * @codeCoverageIgnore
      * @return PointCutable
      */
-    abstract public function registerPointCut();
+    abstract public function registerPointCut(): PointCutable;
 
     /**
      * @return string[]
      */
-    public function target()
+    public function target(): array
     {
         return $this->classes;
     }

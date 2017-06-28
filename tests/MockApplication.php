@@ -7,6 +7,16 @@
  */
 class MockApplication extends \Illuminate\Container\Container implements \Illuminate\Contracts\Foundation\Application
 {
+    public function runningInConsole()
+    {
+        return true;
+    }
+
+    public function getCachedPackagesPath()
+    {
+        return '';
+    }
+
     /**
      * Get the version number of the application.
      *

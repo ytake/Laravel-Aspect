@@ -35,6 +35,6 @@ class AspectMergeTest extends \AspectTestCase
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CacheableModule::class);
         $aspect->register(\__Test\CacheEvictModule::class);
-        $aspect->dispatch();
+        $aspect->weave();
     }
 }

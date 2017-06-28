@@ -18,6 +18,7 @@
 
 namespace Ytake\LaravelAspect\Modules;
 
+use Ytake\LaravelAspect\PointCut\PointCutable;
 use Ytake\LaravelAspect\PointCut\QueryLogPointCut;
 
 /**
@@ -29,9 +30,9 @@ class QueryLogModule extends AspectModule
     protected $classes = [];
 
     /**
-     * @return QueryLogPointCut
+     * @return PointCutable
      */
-    public function registerPointCut()
+    public function registerPointCut(): PointCutable
     {
         return new QueryLogPointCut;
     }

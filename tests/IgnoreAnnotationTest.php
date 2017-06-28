@@ -31,6 +31,6 @@ class IgnoreAnnotationTest extends AspectTestCase
         /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\LogExceptionsModule::class);
-        $aspect->dispatch();
+        $aspect->weave();
     }
 }
