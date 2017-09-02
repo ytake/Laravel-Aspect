@@ -32,7 +32,7 @@ class AsyncModule extends AspectModule
     /**
      * @return PointCutable
      */
-    public function registerPointCut()
+    public function registerPointCut(): PointCutable
     {
         // @codeCoverageIgnoreStart
         if (!extension_loaded('pcntl')) {

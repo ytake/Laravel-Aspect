@@ -80,6 +80,6 @@ class CacheableTest extends \AspectTestCase
     {
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CacheableModule::class);
-        $aspect->dispatch();
+        $aspect->weave();
     }
 }

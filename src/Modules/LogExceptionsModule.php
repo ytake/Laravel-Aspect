@@ -17,6 +17,7 @@
  */
 namespace Ytake\LaravelAspect\Modules;
 
+use Ytake\LaravelAspect\PointCut\PointCutable;
 use Ytake\LaravelAspect\PointCut\LogExceptionsPointCut;
 
 /**
@@ -28,9 +29,9 @@ class LogExceptionsModule extends AspectModule
     protected $classes = [];
 
     /**
-     * @return LogExceptionsPointCut
+     * @return PointCutable
      */
-    public function registerPointCut()
+    public function registerPointCut(): PointCutable
     {
         return new LogExceptionsPointCut;
     }

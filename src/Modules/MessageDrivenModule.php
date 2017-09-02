@@ -31,7 +31,7 @@ class MessageDrivenModule extends AspectModule
     /**
      * @return PointCutable
      */
-    public function registerPointCut()
+    public function registerPointCut(): PointCutable
     {
         return new MessageDrivenPointCut;
     }

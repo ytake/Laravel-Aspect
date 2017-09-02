@@ -23,9 +23,9 @@ namespace Ytake\LaravelAspect;
 class NullAspectKernel implements AspectDriverInterface
 {
     /**
-     * @param null $module
+     * @param string|null $module
      */
-    public function register($module = null)
+    public function register(string $module = null)
     {
         // nothing
     }
@@ -34,15 +34,6 @@ class NullAspectKernel implements AspectDriverInterface
      * weaving
      */
     public function weave()
-    {
-        // nothing
-    }
-
-    /**
-     * @deprecated
-     * boot aspect kernel
-     */
-    public function dispatch()
     {
         // nothing
     }

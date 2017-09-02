@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -15,6 +16,7 @@
  * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect;
 
 use Illuminate\Support\Manager;
@@ -27,11 +29,11 @@ use Illuminate\Support\Manager;
 class AspectManager extends Manager
 {
     /**
-     * for go-aop driver
+     * for ray aop driver
      *
-     * @return RayAspectKernel
+     * @return AspectDriverInterface
      */
-    protected function createRayDriver()
+    protected function createRayDriver(): AspectDriverInterface
     {
         return new RayAspectKernel(
             $this->app,
@@ -41,9 +43,9 @@ class AspectManager extends Manager
     }
 
     /**
-     * @return NullAspectKernel
+     * @return AspectDriverInterface
      */
-    protected function createNoneDriver()
+    protected function createNoneDriver(): AspectDriverInterface
     {
         return new NullAspectKernel();
     }
@@ -58,9 +60,10 @@ class AspectManager extends Manager
 
     /**
      * @param string $driver
+     *
      * @return string[]
      */
-    protected function getConfigure($driver)
+    protected function getConfigure(string $driver): array
     {
         $aspectConfigure = $this->app['config']->get('ytake-laravel-aop.aspect.drivers');
         $aspectConfigure[$driver]['modules'] = $this->app['config']->get('ytake-laravel-aop.aspect.modules', []);

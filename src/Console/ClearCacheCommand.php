@@ -52,7 +52,7 @@ class ClearCacheCommand extends Command
     /**
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $configure = $this->config->get('ytake-laravel-aop.aspect');
         $driverConfig = $configure['drivers'][$configure['default']];

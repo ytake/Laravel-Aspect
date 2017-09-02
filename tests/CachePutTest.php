@@ -46,6 +46,6 @@ class CachePutTest extends \AspectTestCase
     {
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CachePutModule::class);
-        $aspect->dispatch();
+        $aspect->weave();
     }
 }

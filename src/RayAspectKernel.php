@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -15,13 +16,14 @@
  * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect;
 
-use Ray\Aop\Compiler;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container;
-use Ytake\LaravelAspect\Modules\AspectModule;
+use Illuminate\Filesystem\Filesystem;
+use Ray\Aop\Compiler;
 use Ytake\LaravelAspect\Exception\ClassNotFoundException;
+use Ytake\LaravelAspect\Modules\AspectModule;
 
 /**
  * Class RayAspectKernel
@@ -73,11 +75,11 @@ class RayAspectKernel implements AspectDriverInterface
     }
 
     /**
-     * @param null|string $module
+     * @param string $module
      *
      * @throws ClassNotFoundException
      */
-    public function register($module = null)
+    public function register(string $module = null)
     {
         if (!class_exists($module)) {
             throw new ClassNotFoundException($module);
@@ -96,19 +98,10 @@ class RayAspectKernel implements AspectDriverInterface
         $compiler = $this->getCompiler();
         $container = $this->containerAdaptor($this->app);
         foreach ($this->aspectConfiguration() as $class => $pointcuts) {
-            $bind = (new AspectBind($this->filesystem, $this->configure['cache_dir'], $this->cacheable))
+            $bind = (new AspectBind($this->filesystem, strval($this->configure['cache_dir']), $this->cacheable))
                 ->bind($class, $pointcuts);
             $container->intercept($class, $bind, $compiler->compile($class, $bind));
         }
-    }
-
-    /**
-     * @deprecated
-     * boot aspect kernel
-     */
-    public function dispatch()
-    {
-        $this->weave();
     }
 
     /**
@@ -116,7 +109,7 @@ class RayAspectKernel implements AspectDriverInterface
      *
      * @return ContainerInterceptor
      */
-    protected function containerAdaptor(Container $container)
+    protected function containerAdaptor(Container $container): ContainerInterceptor
     {
         return new ContainerInterceptor($container);
     }
@@ -124,9 +117,9 @@ class RayAspectKernel implements AspectDriverInterface
     /**
      * @return Compiler
      */
-    protected function getCompiler()
+    protected function getCompiler(): Compiler
     {
-        return new Compiler($this->configure['compile_dir']);
+        return new Compiler((string)$this->configure['compile_dir']);
     }
 
     /**
@@ -134,7 +127,7 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function makeCompileDir()
     {
-        $this->makeDirectories($this->configure['compile_dir'], 0775);
+        $this->makeDirectories(strval($this->configure['compile_dir']), 0775);
     }
 
     /**
@@ -145,7 +138,7 @@ class RayAspectKernel implements AspectDriverInterface
     protected function makeCacheableDir()
     {
         if ($this->configure['cache']) {
-            $this->makeDirectories($this->configure['cache_dir'], 0775);
+            $this->makeDirectories(strval($this->configure['cache_dir']), 0775);
             $this->cacheable = true;
         }
     }
@@ -154,7 +147,7 @@ class RayAspectKernel implements AspectDriverInterface
      * @param string $dir
      * @param int    $mode
      */
-    private function makeDirectories($dir, $mode = 0777)
+    private function makeDirectories(string $dir, int $mode = 0777)
     {
         // @codeCoverageIgnoreStart
         if (!$this->filesystem->exists($dir)) {
@@ -179,7 +172,7 @@ class RayAspectKernel implements AspectDriverInterface
      * @return array
      * @codeCoverageIgnore
      */
-    protected function aspectConfiguration()
+    protected function aspectConfiguration(): array
     {
         $map = [];
         $file = $this->configure['cache_dir'] . "/{$this->mapFile}";

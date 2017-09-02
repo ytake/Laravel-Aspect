@@ -28,7 +28,6 @@ class AnnotationConfiguration
     /** @var array */
     protected $configuration;
 
-
     /**
      * AnnotationConfiguration constructor.
      *

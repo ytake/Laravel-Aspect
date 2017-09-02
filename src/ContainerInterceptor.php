@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -18,8 +19,8 @@
 
 namespace Ytake\LaravelAspect;
 
-use Ray\Aop\Bind;
 use Illuminate\Contracts\Container\Container;
+use Ray\Aop\Bind;
 use Ytake\LaravelAspect\Annotation\PostConstruct;
 
 /**
@@ -47,7 +48,7 @@ final class ContainerInterceptor
      *
      * @return bool
      */
-    public function intercept($abstract, Bind $bind, $className)
+    public function intercept(string $abstract, Bind $bind, string $className): bool
     {
         if ($abstract === $className) {
             return false;
@@ -69,13 +70,14 @@ final class ContainerInterceptor
 
             return $instance;
         });
+        return true;
     }
 
     /**
      * @param string $class
      * @param string $compiledClass
      */
-    private function resolveContextualBindings($class, $compiledClass)
+    private function resolveContextualBindings(string $class, string $compiledClass)
     {
         foreach ($this->container->contextual[$class] as $abstract => $concrete) {
             $this->container->when($compiledClass)

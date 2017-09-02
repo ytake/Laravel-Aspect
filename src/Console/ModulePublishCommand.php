@@ -68,7 +68,7 @@ class ModulePublishCommand extends Command
     /**
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         foreach ($this->modules as $className => $module) {
             $path = $this->getPath($this->parseClassName($className, $this->argument('module_dir')));

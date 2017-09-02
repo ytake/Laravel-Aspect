@@ -28,6 +28,6 @@ class AsyncTest extends \AspectTestCase
     {
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\AsyncModule::class);
-        $aspect->dispatch();
+        $aspect->weave();
     }
 }
