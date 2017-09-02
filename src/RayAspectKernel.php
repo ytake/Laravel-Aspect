@@ -16,13 +16,14 @@ declare(strict_types=1);
  * Copyright (c) 2015-2017 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect;
 
-use Ray\Aop\Compiler;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Container\Container;
-use Ytake\LaravelAspect\Modules\AspectModule;
+use Illuminate\Filesystem\Filesystem;
+use Ray\Aop\Compiler;
 use Ytake\LaravelAspect\Exception\ClassNotFoundException;
+use Ytake\LaravelAspect\Modules\AspectModule;
 
 /**
  * Class RayAspectKernel
@@ -118,7 +119,7 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function getCompiler(): Compiler
     {
-        return new Compiler($this->configure['compile_dir']);
+        return new Compiler((string)$this->configure['compile_dir']);
     }
 
     /**
