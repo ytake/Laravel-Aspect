@@ -1,7 +1,7 @@
 {
   "name": "ytake/laravel-aspect",
   "description": "Aspect Oriented Programming library for laravel framework, and lumen",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "license": "MIT",
   "keywords": [
     "laravel",
@@ -29,9 +29,9 @@
     "illuminate/events": "^5.5",
     "illuminate/bus": "^5.5",
     "illuminate/queue": "^5.5",
-    "ray/aop": "^2.0@stable",
-    "nikic/php-parser": "^2.0@stable",
-    "doctrine/annotations": "^1.0@stable"
+    "ray/aop": "^2.0",
+    "doctrine/annotations": "^1.2",
+    "nikic/php-parser": "^3.0"
   },
   "require-dev": {
     "symfony/framework-bundle": "~3.0",

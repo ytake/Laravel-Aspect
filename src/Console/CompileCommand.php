@@ -48,7 +48,7 @@ class CompileCommand extends Command
     /**
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $this->aspectManager->weave();
         $this->info('class files compiled!');

@@ -48,7 +48,7 @@ final class ContainerInterceptor
      *
      * @return bool
      */
-    public function intercept(string $abstract, Bind $bind, string $className)
+    public function intercept(string $abstract, Bind $bind, string $className): bool
     {
         if ($abstract === $className) {
             return false;
@@ -70,6 +70,7 @@ final class ContainerInterceptor
 
             return $instance;
         });
+        return true;
     }
 
     /**
