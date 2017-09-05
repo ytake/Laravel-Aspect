@@ -20,6 +20,9 @@ This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com
 ### install 
 
 ```bash
+# laravel5.5
+$ composer require ytake/laravel-aspect
+# laravel5.4, 5.3, 5.2
 $ composer require --no-update ytake/laravel-aspect && composer update
 # or hhvm
 $ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(which composer) update
@@ -31,9 +34,11 @@ $ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(whic
    "require": {
     "php": ">=5.5.9",
     "laravel/framework": "5.*",
-    "ytake/laravel-aspect": "~1.0"
+    "ytake/laravel-aspect": "^2.0"
   },
  ```
+
+*Supported Auto-Discovery(^Laravel5.5)*
 
 #### for laravel5.1, 5.2
 [branch](https://github.com/ytake/Laravel-Aspect/tree/master-laravel5-legacy)
@@ -42,7 +47,7 @@ $ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(whic
    "require": {
     "php": ">=5.5.9",
     "laravel/framework": "5.*",
-    "ytake/laravel-aspect": "^1.6"
+    "ytake/laravel-aspect": "^2.0"
   },
  ```
 
