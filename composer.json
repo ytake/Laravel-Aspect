@@ -73,5 +73,13 @@
       "./vendor/bin/phploc src/ --log-xml=tests/logs/quality-assurance/phploc.xml"
     ],
     "phpcs": "./vendor/bin/phpcs src/ --report-full --report-source --standard=PSR2 --colors"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ytake\\LaravelAspect\\AspectServiceProvider",
+        "Ytake\\LaravelAspect\\ConsoleServiceProvider"
+      ]
+    }
   }
 }
