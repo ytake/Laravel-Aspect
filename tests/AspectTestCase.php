@@ -7,7 +7,7 @@ use Illuminate\Database\Connectors\ConnectionFactory;
 /**
  * Class AspectTestCase
  */
-class AspectTestCase extends \PHPUnit_Framework_TestCase
+class AspectTestCase extends \PHPUnit\Framework\TestCase
 {
     /** @var \Illuminate\Container\Container $app */
     protected $app;
@@ -40,6 +40,10 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
         $this->app['config']->set(
             'queue',
             $filesystem->getRequire(__DIR__ . '/config/queue.php')
+        );
+        $this->app['config']->set(
+            'logging',
+            $filesystem->getRequire(__DIR__ . '/config/logging.php')
         );
         $this->app['config']->set(
             'app',
@@ -78,16 +82,21 @@ class AspectTestCase extends \PHPUnit_Framework_TestCase
 
     protected function createApplicationContainer()
     {
-        $this->app = new \Illuminate\Container\Container;
+        $this->app = new class() extends \Illuminate\Container\Container {
+            public function storagePath()
+            {
+                return __DIR__;
+            }
+        };
         $this->app->singleton('config', function () {
             return new \Illuminate\Config\Repository;
         });
-        $this->app->instance('log', $log = new \Illuminate\Log\Writer(
-            new \Monolog\Logger('testing'))
-        );
-        $this->app->instance('Psr\Log\LoggerInterface', $log = new \Illuminate\Log\Writer(
-            new \Monolog\Logger('testing'))
-        );
+        $logManager = new \Illuminate\Log\LogManager($this->app);
+        $logManager->extend('testing', function (\Illuminate\Log\LogManager $log) {
+            var_dump($log);
+        });
+        $this->app->instance('log', $logManager);
+        $this->app->instance('Psr\Log\LoggerInterface', $logManager);
         $eventProvider = new \Illuminate\Events\EventServiceProvider($this->app);
         $eventProvider->register();
         $busServiceProvider = new \Illuminate\Bus\BusServiceProvider($this->app);

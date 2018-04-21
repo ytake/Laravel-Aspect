@@ -12,11 +12,11 @@ class RetryOnFailureTest extends AspectTestCase
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->resolveManager();
     }
 
     public function testShouldThrowWithRetry()
     {
-        /** @var \__Test\AspectRetryOnFailure $concrete */
         $concrete = $this->app->make(\__Test\AspectRetryOnFailure::class);
         try {
             $concrete->call();
@@ -38,9 +38,6 @@ class RetryOnFailureTest extends AspectTestCase
         }
     }
 
-    /**
-     * @before
-     */
     protected function resolveManager()
     {
         $aspect = $this->manager->driver('ray');

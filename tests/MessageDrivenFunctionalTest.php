@@ -33,7 +33,6 @@ class MessageDrivenFunctionalTest extends AspectTestCase
     public function testShouldBeLazyQueue()
     {
         $this->expectOutputString('this');
-        $this->log->useFiles($this->logDir() . '/.testing.log');
         /** @var AspectMessageDriven $concrete */
         $concrete = $this->app->make(AspectMessageDriven::class);
         $concrete->exec('this');
@@ -44,7 +43,6 @@ class MessageDrivenFunctionalTest extends AspectTestCase
 
     public function testShouldBeEagerQueue()
     {
-        $this->log->useFiles($this->logDir() . '/.testing.log');
         /** @var AspectMessageDriven $concrete */
         $concrete = $this->app->make(AspectMessageDriven::class);
         $concrete->eagerExec('testing');
@@ -52,9 +50,6 @@ class MessageDrivenFunctionalTest extends AspectTestCase
         $this->assertContains('Queued:__Test\AspectMessageDriven.logWith', $put);
     }
 
-    /**
-     * @before
-     */
     protected function resolveManager()
     {
         /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */

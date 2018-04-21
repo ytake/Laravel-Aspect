@@ -3,7 +3,7 @@
 /**
  * Class RecursiveImplodeTest
  */
-class RecursiveImplodeTest extends \PHPUnit_Framework_TestCase
+class RecursiveImplodeTest extends \PHPUnit\Framework\TestCase
 {
     public function testShouldReturnImplodedString()
     {

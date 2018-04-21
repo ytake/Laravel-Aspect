@@ -12,6 +12,7 @@ class PostConstructTest extends \AspectTestCase
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->resolveManager();
     }
 
     public function testShouldProceedPostConstructSumVariable()
@@ -22,9 +23,6 @@ class PostConstructTest extends \AspectTestCase
         $this->assertSame(2, $class->getA());
     }
 
-    /**
-     * @before
-     */
     protected function resolveManager()
     {
         /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */

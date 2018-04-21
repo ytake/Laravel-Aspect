@@ -32,7 +32,7 @@ class AspectLogExceptionsTest extends \AspectTestCase
      */
     public function testDefaultLogger()
     {
-        $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
+        // $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLogExceptions::class);
         $cache->normalLog(1);
@@ -41,7 +41,7 @@ class AspectLogExceptionsTest extends \AspectTestCase
 
     public function testShouldBeLogger()
     {
-        $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
+         //$this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLogExceptions::class);
         try {
@@ -63,7 +63,7 @@ class AspectLogExceptionsTest extends \AspectTestCase
 
     public function testExpectException()
     {
-        $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
+        // $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
         /** @var \__Test\AspectLogExceptions $cache */
         $cache = $this->app->make(\__Test\AspectLogExceptions::class);
         try {
@@ -78,7 +78,7 @@ class AspectLogExceptionsTest extends \AspectTestCase
 
     public function testShouldNotPutExceptionLoggerFile()
     {
-        $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
+        // $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
         /** @var \__Test\AspectLogExceptions $logger */
         $logger = $this->app->make(\__Test\AspectLogExceptions::class);
         try {

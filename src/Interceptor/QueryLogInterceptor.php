@@ -18,7 +18,7 @@
 
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Illuminate\Log\Writer;
+use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
 use Ytake\LaravelAspect\Annotation\QueryLog;
@@ -53,11 +53,14 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
         $result = $invocation->proceed();
         $logFormat = $this->queryLogFormatter($annotation, $invocation);
         $logger = static::$logger;
-        if ($logger instanceof Writer) {
-            $logger = $logger->getMonolog();
+        if ($logger instanceof LogManager) {
+            if(!is_null($annotation->driver)) {
+                $logger = $logger->driver($annotation->driver);
+            }
+            $logger->addRecord($logFormat['level'], $logFormat['message'], $logFormat['context']);
         }
         /** Monolog\Logger */
-        $logger->log($logFormat['level'], $logFormat['message'], $logFormat['context']);
+        // $logger->log($logFormat['level'], $logFormat['message'], $logFormat['context']);
         $this->queryLogs = [];
 
         return $result;
