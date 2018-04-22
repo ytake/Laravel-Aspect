@@ -17,10 +17,22 @@ This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com
 
 ## usage 
 
+### Laravel version Compatibility
+
+ Laravel  | Package
+:---------|:----------
+ 5.0.x    | 1.x
+ 5.1.x    | 1.x
+ 5.2.x    | 1.x
+ 5.3.x    | 1.x
+ 5.4.x    | 1.x
+ 5.5.x    | 2.0.*
+ 5.6.x    | 2.1.*
+
 ### install 
 
 ```bash
-# laravel5.5
+# laravel5.5, 5.6
 $ composer require ytake/laravel-aspect
 # laravel5.4, 5.3, 5.2
 $ composer require --no-update ytake/laravel-aspect && composer update
@@ -40,16 +52,28 @@ $ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(whic
 
 *Supported Auto-Discovery(^Laravel5.5)*
 
-#### for laravel5.1, 5.2
+#### for Laravel5.1, 5.2
 [branch](https://github.com/ytake/Laravel-Aspect/tree/master-laravel5-legacy)
 
  ```json
    "require": {
     "php": ">=5.5.9",
     "laravel/framework": "5.*",
-    "ytake/laravel-aspect": "^2.0"
+    "ytake/laravel-aspect": "^1.0"
   },
  ```
+
+#### for Laravel5.6
+[Laravel-Aspect Supported Laravel5.6](https://github.com/ytake/Laravel-Aspect/blob/master-laravel5.6)
+
+ ```json
+   "require": {
+    "php": ">=7.1",
+    "laravel/framework": "^5.6",
+    "ytake/laravel-aspect": "^2.1"
+  },
+ ```
+ 
 
 ### added serviceProvider
 
