@@ -337,7 +337,7 @@ you must use the LoggableModule / LogExceptionsModule
 | value | log level (default: \Monolog\Logger::INFO) should Monolog Constants |
 | skipResult | method result output to log |
 | name |log name prefix(default: Loggable) |
-
+| driver | logger driver or channel name [docs](https://laravel.com/docs/5.6/logging#configuration) |
 
 ```php
 use Ytake\LaravelAspect\Annotation\Loggable;
@@ -345,7 +345,7 @@ use Ytake\LaravelAspect\Annotation\Loggable;
 class AspectLoggable
 {
     /**
-     * @Loggable
+     * @Loggable(driver="stack")
      * @param null $id
      * @return null
      */
@@ -372,7 +372,7 @@ use Ytake\LaravelAspect\Annotation\LogExceptions;
 class AspectLoggable
 {
     /**
-     * @LogExceptions
+     * @LogExceptions(driver="custom")
      * @param null $id
      * @return null
      */
@@ -410,7 +410,7 @@ class AspectQueryLog
     }
 
     /**
-     * @QueryLog
+     * @QueryLog(driver="custom")
      */
     public function multipleDatabaseAppendRecord()
     {
@@ -579,7 +579,7 @@ Handle Class *Ytake\LaravelAspect\Queue\LazyMessage*
 
 Handle Class *Ytake\LaravelAspect\Queue\EagerMessage*  
 
-### @Async
+### @Async deprecated
 Methods annotated with @Async will return immediately to its caller while its operation executes asynchronously.
 
 Methods annotated with @Async must strictly have a void
