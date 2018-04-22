@@ -40,7 +40,6 @@ class ResolveInstanceTest extends AspectTestCase
     public function testShouldResolveContextualBinding()
     {
         $log = $this->app['Psr\Log\LoggerInterface'];
-        $log->useFiles($this->getDir() . '/.testing.log');
         if (!$this->app['files']->exists($this->getDir())) {
             $this->app['files']->makeDirectory($this->getDir());
         }

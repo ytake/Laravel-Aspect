@@ -11,7 +11,7 @@ use Ytake\LaravelAspect\Exception\FileNotFoundException;
 class AspectLogExceptions
 {
     /**
-     * @LogExceptions
+     * @LogExceptions(driver="custom")
      * @param null $id
      * @return null
      * @throws \Exception
@@ -23,7 +23,7 @@ class AspectLogExceptions
     }
 
     /**
-     * @LogExceptions(expect="\LogicException")
+     * @LogExceptions(expect="\LogicException",driver="custom")
      */
     public function expectException()
     {

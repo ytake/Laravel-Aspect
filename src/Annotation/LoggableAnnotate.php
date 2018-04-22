@@ -26,4 +26,7 @@ abstract class LoggableAnnotate extends Annotation
 {
     /** @var string  */
     public $name = 'Logger';
+
+    /** @var string|null */
+    public $driver;
 }

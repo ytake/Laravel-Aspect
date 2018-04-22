@@ -33,4 +33,7 @@ final class QueryLog extends Annotation
 
     /** @var string  */
     public $name = 'QueryLog';
+
+    /** @var string|null */
+    public $driver;
 }

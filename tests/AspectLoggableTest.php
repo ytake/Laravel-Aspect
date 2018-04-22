@@ -28,7 +28,6 @@ class AspectLoggableTest extends \AspectTestCase
 
     public function testDefaultLogger()
     {
-        $this->log->useFiles($this->logDir() . '/.testing.log');
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLoggable::class);
         $cache->normalLog(1);
@@ -39,7 +38,6 @@ class AspectLoggableTest extends \AspectTestCase
 
     public function testSkipResultLogger()
     {
-        $this->log->useFiles($this->logDir() . '/.testing.log');
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLoggable::class);
         $cache->skipResultLog(1);

@@ -26,7 +26,7 @@ class AspectQueryLog
     }
 
     /**
-     * @QueryLog
+     * @QueryLog(driver="stack")
      * @Transactional
      *
      * @return string
@@ -37,7 +37,7 @@ class AspectQueryLog
     }
 
     /**
-     * @QueryLog
+     * @QueryLog(driver="stack")
      * @Transactional(value="testing")
      * @param array $record
      *
@@ -53,7 +53,7 @@ class AspectQueryLog
 
     /**
      * @Transactional({"testing", "testing_second"})
-     * @QueryLog
+     * @QueryLog(driver="stack")
      */
     public function multipleDatabaseAppendRecord()
     {

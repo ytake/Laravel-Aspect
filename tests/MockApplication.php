@@ -7,6 +7,11 @@
  */
 class MockApplication extends \Illuminate\Container\Container implements \Illuminate\Contracts\Foundation\Application
 {
+    public function runningUnitTests()
+    {
+        return true;
+    }
+
     public function runningInConsole()
     {
         return true;

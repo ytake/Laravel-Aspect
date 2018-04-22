@@ -30,23 +30,21 @@ class AspectQueryLogTest extends \AspectTestCase
 
     public function testDefaultLogger()
     {
-        $this->log->useFiles($this->logDir() . '/.testing.log');
         /** @var AspectQueryLog $concrete */
         $concrete = $this->app->make(AspectQueryLog::class);
         $concrete->start();
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('testing.INFO: QueryLog:__Test\AspectQueryLog.start', $put);
+        $this->assertContains('INFO: QueryLog:__Test\AspectQueryLog.start', $put);
         $this->assertContains('SELECT date(\'now\')', $put);
     }
 
     public function testTransactionalLogger()
     {
-        $this->log->useFiles($this->logDir() . '/.testing.log');
         /** @var AspectQueryLog $concrete */
         $concrete = $this->app->make(AspectQueryLog::class);
         $concrete->multipleDatabaseAppendRecord();
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('testing.INFO: QueryLog:__Test\AspectQueryLog.multipleDatabaseAppendRecord', $put);
+        $this->assertContains('INFO: QueryLog:__Test\AspectQueryLog.multipleDatabaseAppendRecord', $put);
         $this->assertContains('"queries":[{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)"', $put);
     }
 
@@ -55,7 +53,6 @@ class AspectQueryLogTest extends \AspectTestCase
      */
     public function testExceptionalDatabaseLogger()
     {
-        $this->log->useFiles($this->logDir() . '/.testing.log');
         /** @var AspectQueryLog $concrete */
         $concrete = $this->app->make(AspectQueryLog::class);
         $concrete->appendRecord(['test' => 'testing']);
