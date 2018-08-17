@@ -86,6 +86,14 @@ $ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(whic
 ]
 ```
 
+### for Lumen
+Add App\Providers\LumenAspectServiceProvider to your bootstrap/app.php file.
+
+```php
+$app->register(\App\Providers\LumenAspectServiceProvider::class);
+$app->register(\Ytake\LaravelAspect\ConsoleServiceProvider::class);
+```
+
 ### publish aspect module class
 
 ```bash

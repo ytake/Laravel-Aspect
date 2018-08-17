@@ -111,7 +111,7 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function containerAdaptor(Container $container): ContainerInterceptor
     {
-        return new ContainerInterceptor($container);
+        return new ContainerInterceptor($container, new AnnotateClass());
     }
 
     /**
