@@ -47,12 +47,17 @@ class MessageDrivenInterceptorTest extends \AspectTestCase
 
 class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
 {
+    public function getNamedArguments(): \ArrayObject
+    {
+        return new \ArrayObject();
+    }
+
     /** @var ReflectionMethod */
     protected $reflectionMethod;
 
     public function getArguments() :\ArrayObject
     {
-        return new \Ray\Aop\Arguments(['argument' => 'this']);
+        return new \ArrayObject(['argument' => 'this']);
     }
 
     public function proceed()
@@ -65,7 +70,7 @@ class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
         return new \__Test\AspectMessageDriven;
     }
 
-    public function getMethod() :\ReflectionMethod
+    public function getMethod(): \Ray\Aop\ReflectionMethod
     {
         $reflectionClass = new \ReflectionClass(\__Test\AspectMessageDriven::class);
         $reflectionMethod = new \Ray\Aop\ReflectionMethod(\__Test\AspectMessageDriven::class, 'exec');
