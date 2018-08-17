@@ -17,33 +17,38 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Ytake\LaravelAspect;
 
-use Ray\Aop\Matcher;
-use Ray\Aop\Pointcut;
-use Illuminate\Contracts\Container\Container;
+use Ray\Aop\WeavedInterface;
 use Ytake\LaravelAspect\Annotation\PostConstruct;
-use Ytake\LaravelAspect\Matcher\AnnotationScanMatcher;
+
+use function is_array;
+use function unserialize;
 
 /**
- * Class PostConstructPointCut
+ * Class AnnotateClass
  */
-class PostConstructPointCut extends CommonPointCut implements PointCutable
+final class AnnotateClass
 {
-    /** @var string */
-    protected $annotation = PostConstruct::class;
-
     /**
-     * @param Container $app
+     * @param WeavedInterface $weavedInstance
      *
-     * @return \Ray\Aop\Pointcut
+     * @return string
      */
-    public function configure(Container $app): Pointcut
+    public function getPostConstructMethod(WeavedInterface $weavedInstance): string
     {
-        return new Pointcut(
-            new AnnotationScanMatcher($this->annotation),
-            (new Matcher)->any(),
-            []
-        );
+        $methods = unserialize($weavedInstance->methodAnnotations);
+        if (!is_array($methods)) {
+            return '';
+        }
+        foreach ($methods as $method => $annotations) {
+            foreach ($annotations as $annotation) {
+                if ($annotation instanceof PostConstruct) {
+                    return $method;
+                }
+            }
+        }
+
+        return '';
     }
 }

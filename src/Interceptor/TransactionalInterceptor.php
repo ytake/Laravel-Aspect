@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,7 +13,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
 
@@ -25,6 +26,8 @@ use Ytake\LaravelAspect\Transaction\Runner;
 use Ytake\LaravelAspect\Transaction\Execute;
 use Ytake\LaravelAspect\Transaction\TransactionInvoker;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+
+use function is_array;
 
 /**
  * Class TransactionalInterceptor
@@ -57,14 +60,14 @@ class TransactionalInterceptor implements MethodInterceptor
         $processes[] = new Execute($invocation);
         $runner = new Runner($processes);
 
-        return $runner(self::$databaseManager, ltrim($annotation->expect, '\\'));
+        return $runner(static::$databaseManager, ltrim($annotation->expect, '\\'));
     }
 
     /**
      * @param DatabaseManager $databaseManager
      */
-    public function setDatabaseManager(DatabaseManager $databaseManager)
+    public function setDatabaseManager(DatabaseManager $databaseManager): void
     {
-        self::$databaseManager = $databaseManager;
+        static::$databaseManager = $databaseManager;
     }
 }

@@ -14,7 +14,7 @@ use Ytake\LaravelAspect\Annotation\Transactional;
 class AspectTransactionalString
 {
     /**
-     * @Transactional
+     * @Transactional(value="testing")
      *
      * @return string
      */

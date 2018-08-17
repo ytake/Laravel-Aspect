@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,9 +13,10 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\PointCut;
 
 use Ray\Aop\Matcher;
@@ -35,7 +37,7 @@ class CommonPointCut
     /**
      * @param MethodInterceptor $interceptor
      */
-    protected function setInterceptor(MethodInterceptor $interceptor)
+    protected function setInterceptor(MethodInterceptor $interceptor): void
     {
         $this->interceptor = $interceptor;
     }
@@ -43,7 +45,7 @@ class CommonPointCut
     /**
      * @return Pointcut
      */
-    protected function withAnnotatedAnyInterceptor()
+    protected function withAnnotatedAnyInterceptor(): PointCut
     {
         if (method_exists($this->interceptor, 'setAnnotation')) {
             $this->interceptor->setAnnotation($this->annotation);

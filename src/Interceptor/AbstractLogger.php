@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,39 +13,43 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Interceptor;
 
 use Psr\Log\LoggerInterface;
 use Ray\Aop\MethodInvocation;
 use Ytake\LaravelAspect\Annotation\LoggableAnnotate;
 
+use function sprintf;
+
 /**
  * Class AbstractLogger
  */
-class AbstractLogger
+abstract class AbstractLogger
 {
     /** @var string */
     protected $format = "%s:%s.%s";
 
-    /** @var LoggerInterface  */
+    /** @var LoggerInterface */
     protected static $logger;
 
     /**
      * @param LoggableAnnotate $annotation
      * @param MethodInvocation $invocation
      *
-     * @return string[]
+     * @return array
      */
-    protected function logFormatter(LoggableAnnotate $annotation, MethodInvocation $invocation)
+    protected function logFormatter(LoggableAnnotate $annotation, MethodInvocation $invocation): array
     {
         $context = [];
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
             $context['args'][$parameter->name] =
-                !isset($arguments[$parameter->getPosition()]) ? $parameter->getDefaultValue() : $arguments[$parameter->getPosition()];
+                !isset($arguments[$parameter->getPosition()]) ?
+                    $parameter->getDefaultValue() : $arguments[$parameter->getPosition()];
         }
 
         return [
@@ -62,7 +67,7 @@ class AbstractLogger
     /**
      * @param LoggerInterface $logger
      */
-    public function setLogger(LoggerInterface $logger)
+    public function setLogger(LoggerInterface $logger): void
     {
         static::$logger = $logger;
     }

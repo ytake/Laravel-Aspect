@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,12 +13,14 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
+use Ray\Aop\Pointcut;
 use Ytake\LaravelAspect\Annotation\Async;
 use Ytake\LaravelAspect\Interceptor\AsyncInterceptor;
 
@@ -35,7 +38,7 @@ class AsyncPointCut extends CommonPointCut implements PointCutable
      *
      * @return \Ray\Aop\Pointcut
      */
-    public function configure(Container $app)
+    public function configure(Container $app): Pointcut
     {
         $this->setInterceptor(new AsyncInterceptor);
 

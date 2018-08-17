@@ -13,7 +13,7 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
 
@@ -47,8 +47,11 @@ final class Execute implements Runnable
      *
      * @return object
      */
-    public function __invoke(DatabaseManager $databaseManager, string $exceptionName, callable $invoker)
-    {
+    public function __invoke(
+        DatabaseManager $databaseManager,
+        string $exceptionName,
+        callable $invoker
+    ) {
         return $this->invocation->proceed();
     }
 }
