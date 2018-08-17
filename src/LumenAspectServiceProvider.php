@@ -19,54 +19,27 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect;
 
-use Illuminate\Support\ServiceProvider;
+use Ytake\LaravelAspect\AspectServiceProvider as AspectProvider;
 
 /**
- * Class AspectServiceProvider
+ * Class LumenAspectServiceProvider
+ *
+ * @codeCoverageIgnore
  */
-class AspectServiceProvider extends ServiceProvider
+class LumenAspectServiceProvider extends AspectProvider
 {
-    /** @var bool */
-    protected $defer = false;
-
-    /**
-     * boot aspect kernel
-     */
-    public function boot(): void
-    {
-        $this->app['aspect.manager']->weave();
-    }
-
     /**
      * {@inheritdoc}
      */
     public function register(): void
     {
-        /**
-         * for package configure
-         */
-        $configPath = __DIR__ . '/config/ytake-laravel-aop.php';
-        $this->mergeConfigFrom($configPath, 'ytake-laravel-aop');
-        $this->publishes([$configPath => config_path('ytake-laravel-aop.php')], 'aspect');
-
+        $this->app->configure('ytake-laravel-aop');
         $this->app->singleton('aspect.manager', function ($app) {
             $annotationConfiguration = new AnnotationConfiguration(
                 $app['config']->get('ytake-laravel-aop.annotation')
             );
             $annotationConfiguration->ignoredAnnotations();
-
-            // register annotation
             return new AspectManager($app);
         });
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function provides()
-    {
-        return [
-            'aspect.manager',
-        ];
     }
 }
