@@ -32,5 +32,4 @@ interface PointCutable
      * @return \Ray\Aop\Pointcut
      */
     public function configure(Container $app): PointCut;
-
 }
