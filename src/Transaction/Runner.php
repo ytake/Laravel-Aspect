@@ -13,13 +13,16 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
 
 namespace Ytake\LaravelAspect\Transaction;
 
 use Illuminate\Database\DatabaseManager;
+
+use function array_shift;
+use function is_null;
 
 /**
  * Class Runner
@@ -43,7 +46,8 @@ final class Runner
      * @param DatabaseManager $databaseManager
      * @param string          $exceptionName
      *
-     * @return mixed
+     * @return \Closure|mixed
+     * @throws \Exception
      */
     public function __invoke(DatabaseManager $databaseManager, string $exceptionName)
     {

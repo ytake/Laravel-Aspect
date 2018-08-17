@@ -50,9 +50,14 @@ class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
     /** @var ReflectionMethod */
     protected $reflectionMethod;
 
-    public function getArguments() :\ArrayObject
+    public function getNamedArguments(): \ArrayObject
     {
-        return new \Ray\Aop\Arguments(['argument' => 'this']);
+    }
+
+
+    public function getArguments(): \ArrayObject
+    {
+        return new \ArrayObject(['argument' => 'this']);
     }
 
     public function proceed()
@@ -65,7 +70,11 @@ class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
         return new \__Test\AspectMessageDriven;
     }
 
-    public function getMethod() :\ReflectionMethod
+    /**
+     * @return \Ray\Aop\ReflectionMethod
+     * @throws ReflectionException
+     */
+    public function getMethod(): \Ray\Aop\ReflectionMethod
     {
         $reflectionClass = new \ReflectionClass(\__Test\AspectMessageDriven::class);
         $reflectionMethod = new \Ray\Aop\ReflectionMethod(\__Test\AspectMessageDriven::class, 'exec');
@@ -73,6 +82,7 @@ class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
             Container::getInstance()->make(\__Test\AspectMessageDriven::class),
             $reflectionClass->getMethod('exec')
         );
+
         return $reflectionMethod;
     }
 

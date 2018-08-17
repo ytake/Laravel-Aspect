@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,7 +13,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
 namespace Ytake\LaravelAspect;
@@ -30,23 +31,15 @@ class ConsoleServiceProvider extends ServiceProvider
     /** @var bool */
     protected $defer = true;
 
-    public function boot()
+    public function boot(): void
     {
         $this->registerCommands();
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function register()
-    {
-        // register bindings
-    }
-
-    /**
      * @return void
      */
-    protected function registerCommands()
+    protected function registerCommands(): void
     {
         $this->app->singleton('command.ytake.aspect.clear-cache', function ($app) {
             return new ClearCacheCommand($app['config'], $app['files']);

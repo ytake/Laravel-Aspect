@@ -12,9 +12,10 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect;
 
 use Doctrine\Common\Annotations\AnnotationReader;
@@ -42,7 +43,7 @@ class AnnotationConfiguration
     /**
      * Add a new annotation to the globally ignored annotation names with regard to exception handling.
      */
-    public function ignoredAnnotations()
+    public function ignoredAnnotations(): void
     {
         if (isset($this->configuration['ignores'])) {
             $ignores = $this->configuration['ignores'];
@@ -54,8 +55,8 @@ class AnnotationConfiguration
         }
     }
 
-    protected function registerAnnotations()
+    protected function registerAnnotations(): void
     {
-        AnnotationRegistry::registerFile(__DIR__ . '/Annotation/RequireAnnotation.php');
+        AnnotationRegistry::registerLoader('class_exists');
     }
 }

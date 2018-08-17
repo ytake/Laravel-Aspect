@@ -43,6 +43,7 @@ class AnnotationScanMatcher extends AbstractMatcher
      */
     public function matchesClass(\ReflectionClass $class, array $arguments)
     {
+
         return $this->has($class, $arguments[0]);
     }
 

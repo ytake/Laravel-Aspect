@@ -13,7 +13,7 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
 
@@ -24,6 +24,12 @@ use Illuminate\Filesystem\Filesystem;
 use Ray\Aop\Compiler;
 use Ytake\LaravelAspect\Exception\ClassNotFoundException;
 use Ytake\LaravelAspect\Modules\AspectModule;
+
+use function class_exists;
+use function count;
+use function strval;
+use function serialize;
+use function unserialize;
 
 /**
  * Class RayAspectKernel
@@ -63,6 +69,8 @@ class RayAspectKernel implements AspectDriverInterface
      * @param Container  $app
      * @param Filesystem $filesystem
      * @param array      $configure
+     *
+     * @throws ClassNotFoundException
      */
     public function __construct(Container $app, Filesystem $filesystem, array $configure)
     {
@@ -79,7 +87,7 @@ class RayAspectKernel implements AspectDriverInterface
      *
      * @throws ClassNotFoundException
      */
-    public function register(string $module = null)
+    public function register(string $module = null): void
     {
         if (!class_exists($module)) {
             throw new ClassNotFoundException($module);
@@ -89,8 +97,10 @@ class RayAspectKernel implements AspectDriverInterface
 
     /**
      * weaving
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function weave()
+    public function weave(): void
     {
         if (!count($this->modules)) {
             return;
@@ -111,7 +121,7 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function containerAdaptor(Container $container): ContainerInterceptor
     {
-        return new ContainerInterceptor($container);
+        return new ContainerInterceptor($container, new AnnotateClass());
     }
 
     /**
@@ -158,6 +168,8 @@ class RayAspectKernel implements AspectDriverInterface
 
     /**
      * register Aspect Module
+     *
+     * @throws ClassNotFoundException
      */
     protected function registerAspectModule()
     {
@@ -171,6 +183,8 @@ class RayAspectKernel implements AspectDriverInterface
     /**
      * @return array
      * @codeCoverageIgnore
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function aspectConfiguration(): array
     {

@@ -13,7 +13,7 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
 
@@ -54,12 +54,12 @@ class AspectBind
     }
 
     /**
-     * @param       $class
-     * @param array $pointcuts
+     * @param string $class
+     * @param array  $pointcuts
      *
-     * @return Bind
+     * @return mixed|\Ray\Aop\BindInterface
      */
-    public function bind(string $class, array $pointcuts): Bind
+    public function bind(string $class, array $pointcuts)
     {
         if (!$this->cacheable) {
             return (new Bind)->bind($class, $pointcuts);
@@ -78,7 +78,7 @@ class AspectBind
     /**
      * @param string $path
      */
-    private function makeCacheDir(string $path)
+    private function makeCacheDir(string $path): void
     {
         if (!$this->filesystem->exists($path)) {
             $this->filesystem->makeDirectory($path, 0777, true);

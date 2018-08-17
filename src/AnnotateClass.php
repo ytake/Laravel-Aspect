@@ -16,22 +16,39 @@ declare(strict_types=1);
  * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect;
 
+use Ray\Aop\WeavedInterface;
+use Ytake\LaravelAspect\Annotation\PostConstruct;
+
+use function is_array;
+use function unserialize;
+
 /**
- * Interface AspectDriverInterface
+ * Class AnnotateClass
  */
-interface AspectDriverInterface
+final class AnnotateClass
 {
     /**
-     * @param string|null $module
+     * @param WeavedInterface $weavedInstance
      *
-     * @return void
+     * @return string
      */
-    public function register(string $module = null): void;
+    public function getPostConstructMethod(WeavedInterface $weavedInstance): string
+    {
+        $methods = unserialize($weavedInstance->methodAnnotations);
+        if (!is_array($methods)) {
+            return '';
+        }
+        foreach ($methods as $method => $annotations) {
+            foreach ($annotations as $annotation) {
+                if ($annotation instanceof PostConstruct) {
+                    return $method;
+                }
+            }
+        }
 
-    /**
-     * weaving
-     */
-    public function weave(): void;
+        return '';
+    }
 }
