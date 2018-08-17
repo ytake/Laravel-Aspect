@@ -22,6 +22,11 @@ namespace Ytake\LaravelAspect;
 use Illuminate\Filesystem\Filesystem;
 use Ray\Aop\Bind;
 
+use function str_replace;
+use function serialize;
+use function unserialize;
+use function file_get_contents;
+
 /**
  * Class AspectBind
  */

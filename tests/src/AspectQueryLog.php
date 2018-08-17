@@ -27,7 +27,7 @@ class AspectQueryLog
 
     /**
      * @QueryLog(driver="stack")
-     * @Transactional
+     * @Transactional(value="testing")
      *
      * @return string
      */

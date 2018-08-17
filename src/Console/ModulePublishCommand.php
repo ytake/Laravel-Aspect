@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,7 +13,7 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
 
@@ -66,7 +67,8 @@ class ModulePublishCommand extends Command
     }
 
     /**
-     * @return void
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \ReflectionException
      */
     public function handle()
     {
@@ -112,7 +114,7 @@ class ModulePublishCommand extends Command
      *
      * @return string
      */
-    protected function getPath($name)
+    protected function getPath(string $name): string
     {
         $name = str_replace($this->laravel->getNamespace(), '', $name);
 
@@ -122,11 +124,12 @@ class ModulePublishCommand extends Command
     /**
      * Parse the name and format according to the root namespace.
      *
-     * @param  string $name
+     * @param string      $name
+     * @param string|null $moduleDirectory
      *
      * @return string
      */
-    protected function parseClassName($name, $moduleDirectory = null)
+    protected function parseClassName(string $name, string $moduleDirectory = null): string
     {
         $rootNamespace = $this->laravel->getNamespace();
 
@@ -145,12 +148,11 @@ class ModulePublishCommand extends Command
 
     /**
      * added custom aspect module, override package modules
+     * @param string $module
      *
-     * @param $module
-     *
-     * @return $this
+     * @return ModulePublishCommand
      */
-    protected function addModule($module)
+    protected function addModule(string $module): self
     {
         $this->modules[$module];
 
@@ -161,10 +163,8 @@ class ModulePublishCommand extends Command
      * Build the directory for the class if necessary.
      *
      * @param  string $path
-     *
-     * @return string
      */
-    protected function makeDirectory($path)
+    protected function makeDirectory(string $path): void
     {
         if (!$this->filesystem->isDirectory(dirname($path))) {
             $this->filesystem->makeDirectory(dirname($path), 0777, true, true);
@@ -172,11 +172,12 @@ class ModulePublishCommand extends Command
     }
 
     /**
-     * @param $module
+     * @param string $module
      *
      * @return string
+     * @throws \ReflectionException
      */
-    protected function getExtendsClassName($module)
+    protected function getExtendsClassName(string $module): string
     {
         $shortName = (new \ReflectionClass($module))->getShortName();
         $extendClassName = "Package{$shortName}";
@@ -187,7 +188,7 @@ class ModulePublishCommand extends Command
     /**
      * @return string
      */
-    protected function stub()
+    protected function stub(): string
     {
         /** module stub file path */
         return __DIR__ . '/stub/ModuleStub.stub';

@@ -16,6 +16,7 @@ declare(strict_types=1);
  * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Queue;
 
 use Ray\Aop\MethodInvocation;
@@ -38,9 +39,6 @@ final class EagerMessage
         $this->methodInvocation = $invocation;
     }
 
-    /**
-     *
-     */
     public function handle()
     {
         $this->methodInvocation->proceed();

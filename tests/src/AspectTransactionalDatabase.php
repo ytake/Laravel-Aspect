@@ -28,7 +28,7 @@ class AspectTransactionalDatabase
     }
 
     /**
-     * @Transactional
+     * @Transactional(value="testing")
      *
      * @return string
      */

@@ -33,9 +33,9 @@ class TransactionInvoker implements Runnable
     /**
      * TransactionInvoker constructor.
      *
-     * @param string $connection
+     * @param string|null $connection
      */
-    public function __construct(string $connection)
+    public function __construct($connection)
     {
         $this->connection = $connection;
     }

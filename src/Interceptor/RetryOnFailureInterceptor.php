@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,9 +13,10 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
@@ -22,10 +24,14 @@ use Ray\Aop\MethodInterceptor;
 use Ytake\LaravelAspect\Annotation\RetryOnFailure;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
+use function ltrim;
+use function get_class;
+use function sleep;
+
 /**
  * Class RetryOnFailureInterceptor
  */
-class RetryOnFailureInterceptor implements MethodInterceptor
+final class RetryOnFailureInterceptor implements MethodInterceptor
 {
     use AnnotationReaderTrait;
 
@@ -78,7 +84,7 @@ class RetryOnFailureInterceptor implements MethodInterceptor
      *
      * @return string
      */
-    protected function keyName(MethodInvocation $invocation)
+    protected function keyName(MethodInvocation $invocation): string
     {
         return $invocation->getMethod()->class . "$" . $invocation->getMethod()->getName();
     }

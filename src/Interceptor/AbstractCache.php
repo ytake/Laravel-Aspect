@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,11 +13,13 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Interceptor;
 
+use Illuminate\Contracts\Cache\Repository;
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
 use Illuminate\Cache\CacheManager;
@@ -26,6 +29,13 @@ use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Ytake\LaravelAspect\Annotation\Cacheable;
 use Ytake\LaravelAspect\Annotation\CacheEvict;
 use Ytake\LaravelAspect\Annotation\CachePut;
+
+use function in_array;
+use function is_array;
+use function is_object;
+use function is_null;
+use function count;
+use function get_class;
 
 /**
  * Class AbstractCache
@@ -41,12 +51,12 @@ abstract class AbstractCache implements MethodInterceptor
     protected static $factory;
 
     /**
-     * @param                  $name
+     * @param string|array     $name
      * @param MethodInvocation $invocation
      *
      * @return array
      */
-    protected function generateCacheName($name, MethodInvocation $invocation)
+    protected function generateCacheName($name, MethodInvocation $invocation): array
     {
         if (is_array($name)) {
             throw new \InvalidArgumentException('Invalid argument');
@@ -65,8 +75,11 @@ abstract class AbstractCache implements MethodInterceptor
      *
      * @return array
      */
-    protected function detectCacheKeys(MethodInvocation $invocation, Annotation $annotation, array $keys)
-    {
+    protected function detectCacheKeys(
+        MethodInvocation $invocation,
+        Annotation $annotation,
+        array $keys
+    ): array {
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
             // exclude object
@@ -90,7 +103,7 @@ abstract class AbstractCache implements MethodInterceptor
      *
      * @return \Illuminate\Contracts\Cache\Repository
      */
-    protected function detectCacheRepository($annotation)
+    protected function detectCacheRepository($annotation): Repository
     {
         /** @var Factory|CacheManager $cacheFactory */
         $cacheFactory = self::$factory;
@@ -111,9 +124,9 @@ abstract class AbstractCache implements MethodInterceptor
      *
      * @param Factory $factory
      */
-    public function setCache(Factory $factory)
+    public function setCache(Factory $factory): void
     {
-        self::$factory = $factory;
+        static::$factory = $factory;
     }
 
     /**
@@ -122,7 +135,7 @@ abstract class AbstractCache implements MethodInterceptor
      *
      * @return string
      */
-    protected function recursiveImplode($glue, array $array)
+    protected function recursiveImplode(string $glue, array $array): string
     {
         $return = '';
         $index = 0;

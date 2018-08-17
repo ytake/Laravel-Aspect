@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,13 +13,16 @@
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2017 Yuuki Takezawa
+ * Copyright (c) 2015-2018 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Matcher;
 
 use Ray\Aop\AbstractMatcher;
 use Doctrine\Common\Annotations\AnnotationReader;
+
+use function func_get_args;
 
 /**
  * Class AnnotationScanMatcher
@@ -43,7 +47,6 @@ class AnnotationScanMatcher extends AbstractMatcher
      */
     public function matchesClass(\ReflectionClass $class, array $arguments)
     {
-
         return $this->has($class, $arguments[0]);
     }
 
@@ -53,7 +56,7 @@ class AnnotationScanMatcher extends AbstractMatcher
      *
      * @return bool
      */
-    private function has(\ReflectionClass $class, $annotation)
+    private function has(\ReflectionClass $class, $annotation): bool
     {
         $count = 0;
         foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
@@ -70,9 +73,13 @@ class AnnotationScanMatcher extends AbstractMatcher
     }
 
     /**
-     * {@inheritdoc}
+     * @param \ReflectionMethod $method
+     * @param array             $arguments
+     *
+     * @return bool
+     * @throws \ReflectionException
      */
-    public function matchesMethod(\ReflectionMethod $method, array $arguments)
+    public function matchesMethod(\ReflectionMethod $method, array $arguments): bool
     {
         $class = new \ReflectionClass($method->class);
 
