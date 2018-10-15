@@ -19,10 +19,12 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect;
 
+use Ytake\LaravelAspect\Annotation;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 use function count;
+use function array_merge;
 
 /**
  * Class AnnotationConfiguration
@@ -30,16 +32,35 @@ use function count;
 class AnnotationConfiguration
 {
     /** @var array */
-    protected $configuration;
+    protected $configuration = [];
+
+    /** @var array */
+    protected $customAnnotations = [];
+
+    /** @var string[] */
+    private $annotations = [
+        Annotation\Cacheable::class,
+        Annotation\CacheEvict::class,
+        Annotation\CachePut::class,
+        Annotation\EagerQueue::class,
+        Annotation\LazyQueue::class,
+        Annotation\LogExceptions::class,
+        Annotation\Loggable::class,
+        Annotation\MessageDriven::class,
+        Annotation\PostConstruct::class,
+        Annotation\QueryLog::class,
+        Annotation\RetryOnFailure::class,
+        Annotation\Transactional::class,
+    ];
 
     /**
-     * AnnotationConfiguration constructor.
-     *
      * @param array $configuration
+     * @param array $customAnnotations
      */
-    public function __construct(array $configuration)
+    public function __construct(array $configuration, array $customAnnotations = [])
     {
         $this->configuration = $configuration;
+        $this->customAnnotations = $customAnnotations;
         $this->registerAnnotations();
     }
 
@@ -60,6 +81,18 @@ class AnnotationConfiguration
 
     protected function registerAnnotations(): void
     {
-        AnnotationRegistry::registerLoader('class_exists');
+        $this->annotations = array_merge(
+            $this->annotations,
+            $this->customAnnotations
+        );
+        if (isset($this->configuration['custom'])) {
+            $this->annotations = array_merge(
+                $this->annotations,
+                $this->configuration['custom']
+            );
+        }
+        foreach ($this->annotations as $annotation) {
+            AnnotationRegistry::loadAnnotationClass($annotation);
+        }
     }
 }

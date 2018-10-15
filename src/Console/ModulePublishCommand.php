@@ -24,6 +24,9 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputArgument;
 
+use function trim;
+use function str_replace;
+
 /**
  * Class ModulePublishCommand
  *
@@ -92,7 +95,9 @@ class ModulePublishCommand extends Command
                     $className,
                     $module . ' as ' . $extendClassName,
                     $extendClassName,
-                ], $stub);
+                ],
+                $stub
+            );
             $this->makeDirectory($path);
             $this->filesystem->put($path, $source);
             $this->info($path . ' created successfully.');
@@ -148,6 +153,7 @@ class ModulePublishCommand extends Command
 
     /**
      * added custom aspect module, override package modules
+     *
      * @param string $module
      *
      * @return ModulePublishCommand

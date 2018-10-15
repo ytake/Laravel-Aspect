@@ -62,5 +62,8 @@ return [
             'Resource',
             'Controller'
         ],
+        'custom' => [
+            // added your annotation class
+        ],
     ],
 ];

@@ -34,5 +34,8 @@ return [
             'Get',
             'Resource'
         ],
+        'custom' => [
+            // added your annotation class
+        ],
     ],
 ];

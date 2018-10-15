@@ -49,10 +49,16 @@ class AspectServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($configPath, 'ytake-laravel-aop');
         $this->publishes([$configPath => config_path('ytake-laravel-aop.php')], 'aspect');
 
-        $this->app->singleton('aspect.manager', function ($app) {
+        $this->app->singleton(AnnotationConfiguration::class, function ($app) {
             $annotationConfiguration = new AnnotationConfiguration(
                 $app['config']->get('ytake-laravel-aop.annotation')
             );
+
+            return $annotationConfiguration;
+        });
+        $this->app->singleton('aspect.manager', function ($app) {
+            /** @var AnnotationConfiguration $annotationConfiguration */
+            $annotationConfiguration = $app->make(AnnotationConfiguration::class);
             $annotationConfiguration->ignoredAnnotations();
 
             // register annotation

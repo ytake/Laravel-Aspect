@@ -35,11 +35,18 @@ class LumenAspectServiceProvider extends AspectProvider
     {
         $this->app->configure('ytake-laravel-aop');
         $this->app->singleton('aspect.manager', function ($app) {
+            /** @var AnnotationConfiguration $annotationConfiguration */
+            $annotationConfiguration = $app->make(AnnotationConfiguration::class);
+            $annotationConfiguration->ignoredAnnotations();
+            return new AspectManager($app);
+        });
+
+        $this->app->singleton(AnnotationConfiguration::class, function ($app) {
             $annotationConfiguration = new AnnotationConfiguration(
                 $app['config']->get('ytake-laravel-aop.annotation')
             );
-            $annotationConfiguration->ignoredAnnotations();
-            return new AspectManager($app);
+
+            return $annotationConfiguration;
         });
     }
 }

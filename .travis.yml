@@ -12,4 +12,4 @@ script:
     - ./vendor/bin/phpunit --coverage-clover tests/logs/clover.xml
     - chmod 777 tests/logs/clover.xml
 after_success:
-    - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7" ]]; then travis_retry php vendor/bin/coveralls; fi
+    - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then travis_retry php vendor/bin/coveralls; fi
