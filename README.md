@@ -16,10 +16,23 @@ This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com
 
 ## usage 
 
+### Laravel version Compatibility
+
+ Laravel  | Package
+:---------|:----------
+ 5.0.x    | 1.x
+ 5.1.x    | 1.x
+ 5.2.x    | 1.x
+ 5.3.x    | 1.x
+ 5.4.x    | 1.x
+ 5.5.x    | 2.0.*
+ 5.6.x    | 2.1.*
+ 5.7.x    | 3.0.*
+
 ### install 
 
 ```bash
-# laravel5.5
+# laravel5.5, 5.6, 5.7
 $ composer require ytake/laravel-aspect
 # laravel5.4, 5.3, 5.2
 $ composer require --no-update ytake/laravel-aspect && composer update
@@ -27,28 +40,30 @@ $ composer require --no-update ytake/laravel-aspect && composer update
 $ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(which composer) update
 ```
 
- or
- 
- ```json
-   "require": {
-    "php": ">=5.5.9",
-    "laravel/framework": "5.*",
-    "ytake/laravel-aspect": "^2.0"
-  },
- ```
-
 *Supported Auto-Discovery(^Laravel5.5)*
 
-#### for laravel5.1, 5.2
+#### for Laravel5.1, 5.2
 [branch](https://github.com/ytake/Laravel-Aspect/tree/master-laravel5-legacy)
 
  ```json
    "require": {
     "php": ">=5.5.9",
     "laravel/framework": "5.*",
-    "ytake/laravel-aspect": "^2.0"
+    "ytake/laravel-aspect": "^1.0"
   },
  ```
+
+#### for Laravel5.6
+[Laravel-Aspect Supported Laravel5.6](https://github.com/ytake/Laravel-Aspect/blob/master-laravel5.6)
+
+ ```json
+   "require": {
+    "php": ">=7.1.3",
+    "laravel/framework": "^5.7",
+    "ytake/laravel-aspect": "^3.0.0"
+  },
+ ```
+ 
 
 ### added serviceProvider
 
@@ -587,31 +602,6 @@ Handle Class *Ytake\LaravelAspect\Queue\LazyMessage*
 
 Handle Class *Ytake\LaravelAspect\Queue\EagerMessage*  
 
-### @Async deprecated
-Methods annotated with @Async will return immediately to its caller while its operation executes asynchronously.
-
-Methods annotated with @Async must strictly have a void
-
-**required pcntl extension**
-[PHP:PCNTL - Process Control](http://php.net/manual/en/book.pcntl.php)
-
-```php
-use Ytake\LaravelAspect\Annotation\Async;
-
-class AspectAsync
-{
-    /**
-     * @Async
-     * @param null $id
-     */
-    public function asyncProcess()
-    {
-        sleep(10);
-    }
-}
-
-```
-
 ### Ignore Annotations 
 use config/ytake-laravel-aspect.php file
 
@@ -633,6 +623,31 @@ default: LaravelCollective/annotations
             'Resource',
             'Controller'
         ],
+    ],
+```
+
+### Append Custom Annotations 
+
+```php
+    'annotation' => [
+        'ignores' => [
+            // global Ignored Annotations
+            'Hears',
+            'Get',
+            'Post',
+            'Put',
+            'Patch',
+            'Options',
+            'Delete',
+            'Any',
+            'Middleware',
+            'Resource',
+            'Controller'
+        ],
+        'custom' => [
+            \Acme\Annotations\Transactional::class
+            // etc...
+        ]
     ],
 ```
 
