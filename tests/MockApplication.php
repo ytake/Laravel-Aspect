@@ -121,9 +121,10 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
     /**
      * Get the base path of the Laravel installation.
      *
+     * @param  string  $path
      * @return string
      */
-    public function basePath()
+    public function basePath($path = '')
     {
         // TODO: Implement basePath() method.
     }
