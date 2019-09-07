@@ -1,7 +1,6 @@
 sudo: false
 language: php
 php:
-    - 7.1
     - 7.2
     - 7.3
 services: sqlite3
@@ -12,5 +11,3 @@ script:
     - chmod -R 777 tests/logs
     - ./vendor/bin/phpunit --coverage-clover tests/logs/clover.xml
     - chmod 777 tests/logs/clover.xml
-after_success:
-    - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then travis_retry php vendor/bin/coveralls; fi

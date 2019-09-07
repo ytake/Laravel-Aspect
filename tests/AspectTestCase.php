@@ -118,6 +118,10 @@ class AspectTestCase extends \PHPUnit\Framework\TestCase
             return new \Ytake\LaravelAspect\AspectManager($app);
         });
         $this->app->bind(
+            \Illuminate\Contracts\Container\Container::class,
+            \Illuminate\Container\Container::class
+        );
+        $this->app->bind(
             \Illuminate\Container\Container::class,
             function () {
                 return $this->app;
