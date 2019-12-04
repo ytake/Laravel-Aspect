@@ -20,7 +20,7 @@ declare(strict_types=1);
 namespace Ytake\LaravelAspect;
 
 use Illuminate\Contracts\Container\Container;
-use Ray\Aop\Bind;
+use Ray\Aop\BindInterface;
 use Ray\Aop\WeavedInterface;
 
 /**
@@ -46,12 +46,12 @@ final class ContainerInterceptor
 
     /**
      * @param string $abstract
-     * @param Bind   $bind
+     * @param BindInterface   $bind
      * @param string $className
      *
      * @return bool
      */
-    public function intercept(string $abstract, Bind $bind, string $className): bool
+    public function intercept(string $abstract, BindInterface $bind, string $className): bool
     {
         if ($abstract === $className) {
             return false;
