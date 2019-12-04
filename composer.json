@@ -29,7 +29,7 @@
     "illuminate/events": "^6.0",
     "illuminate/bus": "^6.0",
     "illuminate/queue": "^6.0",
-    "ray/aop": "^2.7.6",
+    "ray/aop": "^2.9",
     "doctrine/annotations": "^1.4",
     "nikic/php-parser": "^4.0",
     "psr/log": "~1.0"
