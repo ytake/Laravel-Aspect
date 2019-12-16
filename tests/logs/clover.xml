@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1567841386">
-  <project timestamp="1567841386">
+<coverage generated="1575439341">
+  <project timestamp="1575439341">
     <package name="Ytake\LaravelAspect">
       <file name="/var/www/html/src/AnnotateClass.php">
         <class name="Ytake\LaravelAspect\AnnotateClass" namespace="Ytake\LaravelAspect">
@@ -138,46 +138,50 @@
       </file>
       <file name="/var/www/html/src/RayAspectKernel.php">
         <class name="Ytake\LaravelAspect\RayAspectKernel" namespace="Ytake\LaravelAspect">
-          <metrics complexity="23" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="27" elements="37" coveredelements="33"/>
+          <metrics complexity="24" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="30" elements="41" coveredelements="36"/>
         </class>
-        <line num="75" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="43"/>
-        <line num="77" type="stmt" count="43"/>
-        <line num="78" type="stmt" count="43"/>
-        <line num="79" type="stmt" count="43"/>
-        <line num="80" type="stmt" count="43"/>
+        <line num="79" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="43"/>
         <line num="81" type="stmt" count="43"/>
         <line num="82" type="stmt" count="43"/>
         <line num="83" type="stmt" count="43"/>
-        <line num="90" type="method" name="register" visibility="public" complexity="2" crap="2" count="42"/>
-        <line num="92" type="stmt" count="42"/>
-        <line num="93" type="stmt" count="1"/>
-        <line num="95" type="stmt" count="41"/>
-        <line num="96" type="stmt" count="41"/>
-        <line num="103" type="method" name="weave" visibility="public" complexity="3" crap="3.01" count="40"/>
-        <line num="105" type="stmt" count="40"/>
-        <line num="106" type="stmt" count="0"/>
-        <line num="108" type="stmt" count="40"/>
+        <line num="84" type="stmt" count="43"/>
+        <line num="85" type="stmt" count="43"/>
+        <line num="86" type="stmt" count="43"/>
+        <line num="87" type="stmt" count="43"/>
+        <line num="94" type="method" name="register" visibility="public" complexity="2" crap="2" count="42"/>
+        <line num="96" type="stmt" count="42"/>
+        <line num="97" type="stmt" count="1"/>
+        <line num="99" type="stmt" count="41"/>
+        <line num="100" type="stmt" count="41"/>
+        <line num="107" type="method" name="weave" visibility="public" complexity="4" crap="4.07" count="40"/>
         <line num="109" type="stmt" count="40"/>
-        <line num="110" type="stmt" count="40"/>
-        <line num="111" type="stmt" count="40"/>
+        <line num="110" type="stmt" count="0"/>
         <line num="112" type="stmt" count="40"/>
-        <line num="113" type="stmt" count="39"/>
-        <line num="115" type="stmt" count="39"/>
-        <line num="122" type="method" name="containerAdaptor" visibility="protected" complexity="1" crap="1" count="40"/>
-        <line num="124" type="stmt" count="40"/>
-        <line num="130" type="method" name="getCompiler" visibility="protected" complexity="1" crap="1" count="40"/>
-        <line num="132" type="stmt" count="40"/>
-        <line num="138" type="method" name="makeCompileDir" visibility="protected" complexity="1" crap="1" count="43"/>
-        <line num="140" type="stmt" count="43"/>
-        <line num="141" type="stmt" count="43"/>
-        <line num="160" type="method" name="makeDirectories" visibility="private" complexity="2" crap="2" count="43"/>
-        <line num="167" type="stmt" count="43"/>
-        <line num="174" type="method" name="registerAspectModule" visibility="protected" complexity="3" crap="3.14" count="43"/>
-        <line num="176" type="stmt" count="43"/>
-        <line num="177" type="stmt" count="41"/>
-        <line num="178" type="stmt" count="0"/>
-        <line num="181" type="stmt" count="43"/>
-        <metrics loc="215" ncloc="134" classes="1" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="27" elements="37" coveredelements="33"/>
+        <line num="113" type="stmt" count="40"/>
+        <line num="114" type="stmt" count="40"/>
+        <line num="115" type="stmt" count="40"/>
+        <line num="116" type="stmt" count="40"/>
+        <line num="117" type="stmt" count="39"/>
+        <line num="118" type="stmt" count="0"/>
+        <line num="119" type="stmt" count="39"/>
+        <line num="120" type="stmt" count="39"/>
+        <line num="122" type="stmt" count="39"/>
+        <line num="129" type="method" name="containerAdaptor" visibility="protected" complexity="1" crap="1" count="40"/>
+        <line num="131" type="stmt" count="40"/>
+        <line num="137" type="method" name="getCompiler" visibility="protected" complexity="1" crap="1" count="40"/>
+        <line num="139" type="stmt" count="40"/>
+        <line num="145" type="method" name="makeCompileDir" visibility="protected" complexity="1" crap="1" count="43"/>
+        <line num="147" type="stmt" count="43"/>
+        <line num="148" type="stmt" count="43"/>
+        <line num="149" type="stmt" count="43"/>
+        <line num="168" type="method" name="makeDirectories" visibility="private" complexity="2" crap="2" count="43"/>
+        <line num="175" type="stmt" count="43"/>
+        <line num="182" type="method" name="registerAspectModule" visibility="protected" complexity="3" crap="3.14" count="43"/>
+        <line num="184" type="stmt" count="43"/>
+        <line num="185" type="stmt" count="41"/>
+        <line num="186" type="stmt" count="0"/>
+        <line num="189" type="stmt" count="43"/>
+        <metrics loc="223" ncloc="141" classes="1" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="30" elements="41" coveredelements="36"/>
       </file>
     </package>
     <package name="Ytake\LaravelAspect\Annotation">
@@ -953,6 +957,6 @@
     <file name="/var/www/html/src/Transaction/Runnable.php">
       <metrics loc="42" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="70" loc="4096" ncloc="2169" classes="53" methods="93" coveredmethods="84" conditionals="0" coveredconditionals="0" statements="431" coveredstatements="417" elements="524" coveredelements="501"/>
+    <metrics files="70" loc="4104" ncloc="2176" classes="53" methods="93" coveredmethods="84" conditionals="0" coveredconditionals="0" statements="435" coveredstatements="420" elements="528" coveredelements="504"/>
   </project>
 </coverage>

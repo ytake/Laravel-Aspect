@@ -29,6 +29,8 @@ return [
          */
         'drivers'     => [
             'ray'  => [
+                // If set to true, compile classes each time
+                'force_compile' => env('ASPECT_FORCE_COMPILE', false),
                 // string Path to the compiled directory where compiled classes will be stored
                 'compile_dir' => storage_path('framework/aop/compile'),
                 // aspect kernel cacheable

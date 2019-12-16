@@ -22,6 +22,7 @@ namespace Ytake\LaravelAspect;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Filesystem\Filesystem;
 use Ray\Aop\Compiler;
+use Ray\Aop\Weaver;
 use Ytake\LaravelAspect\Exception\ClassNotFoundException;
 use Ytake\LaravelAspect\Modules\AspectModule;
 
@@ -50,6 +51,9 @@ class RayAspectKernel implements AspectDriverInterface
 
     /** @var bool */
     protected $cacheable = false;
+
+    /** @var bool */
+    protected $forceCompile = false;
 
     /** @var AspectModule */
     protected $aspectResolver;
@@ -110,7 +114,10 @@ class RayAspectKernel implements AspectDriverInterface
         foreach ($this->aspectConfiguration() as $class => $pointcuts) {
             $bind = (new AspectBind($this->filesystem, strval($this->configure['cache_dir']), $this->cacheable))
                 ->bind($class, $pointcuts);
-            $container->intercept($class, $bind, $compiler->compile($class, $bind));
+            $weaved = $this->forceCompile
+                ? $compiler->compile($class, $bind)
+                : (new Weaver($bind, (string)$this->configure['compile_dir']))->weave($class);
+            $container->intercept($class, $bind, $weaved);
         }
     }
 
@@ -138,6 +145,7 @@ class RayAspectKernel implements AspectDriverInterface
     protected function makeCompileDir()
     {
         $this->makeDirectories(strval($this->configure['compile_dir']), 0775);
+        $this->forceCompile = (bool)$this->configure['force_compile'];
     }
 
     /**
