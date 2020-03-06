@@ -60,9 +60,9 @@ final class ContainerInterceptor
         if (isset($this->container->contextual[$abstract])) {
             $this->resolveContextualBindings($abstract, $className);
         }
-        $this->container->bind($abstract, function (Container $app) use ($bind, $className) {
+        $this->container->bind($abstract, function (Container $app, array $params = []) use ($bind, $className) {
             /** @var WeavedInterface $instance */
-            $instance = $app->make($className);
+            $instance = $app->make($className, $params);
             $instance->bindings = $bind->getBindings();
             $method = $this->annotateClass->getPostConstructMethod($instance);
             if (!empty($method)) {
