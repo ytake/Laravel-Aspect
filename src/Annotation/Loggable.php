@@ -26,7 +26,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class Loggable extends LoggableAnnotate
+class Loggable extends LoggableAnnotate
 {
     /** @var int  Log level */
     public $value = Logger::INFO;

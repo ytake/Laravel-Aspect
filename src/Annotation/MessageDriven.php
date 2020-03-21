@@ -27,7 +27,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class MessageDriven extends Annotation
+class MessageDriven extends Annotation
 {
     /** @var null|Delayed */
     public $value = null;

@@ -24,7 +24,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class CachePut extends Annotation
+class CachePut extends Annotation
 {
     /** @var null|string[] $value cache key, if use array tagging */
     public $key = null;
