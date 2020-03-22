@@ -25,7 +25,7 @@ use Doctrine\Common\Annotations\Annotation;
  *
  * @Annotation
  */
-final class LazyQueue extends Annotation implements Delayed
+class LazyQueue extends Annotation implements Delayed
 {
     /** @var int  Delayed Dispatching */
     public $value = 0;

@@ -25,7 +25,7 @@ use Doctrine\Common\Annotations\Annotation;
  *
  * @Annotation
  */
-final class EagerQueue extends Annotation implements Delayed
+class EagerQueue extends Annotation implements Delayed
 {
     /**
      * @return int

@@ -26,7 +26,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class Transactional extends Annotation
+class Transactional extends Annotation
 {
     /** @var null|string|array $value  database connection names */
     public $value = null;

@@ -26,6 +26,6 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class PostConstruct extends Annotation
+class PostConstruct extends Annotation
 {
 }

@@ -26,7 +26,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class LogExceptions extends LoggableAnnotate
+class LogExceptions extends LoggableAnnotate
 {
     /** @var int  Log level */
     public $value = Logger::ERROR;

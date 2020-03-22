@@ -27,7 +27,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
-final class QueryLog extends Annotation
+class QueryLog extends Annotation
 {
     /** @var int  Log level */
     public $value = Logger::INFO;
