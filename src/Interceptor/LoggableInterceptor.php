@@ -44,7 +44,7 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
     public function invoke(MethodInvocation $invocation)
     {
         /** @var \Ytake\LaravelAspect\Annotation\Loggable $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         $start = microtime(true);
         $result = $invocation->proceed();
         $time = number_format(microtime(true) - $start, 15);

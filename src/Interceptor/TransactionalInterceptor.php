@@ -47,7 +47,7 @@ class TransactionalInterceptor implements MethodInterceptor
      */
     public function invoke(MethodInvocation $invocation)
     {
-        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         // database connection name
         $connections = $annotation->value;
         if (!is_array($connections)) {

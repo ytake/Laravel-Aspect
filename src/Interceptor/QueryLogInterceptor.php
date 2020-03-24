@@ -52,7 +52,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     public function invoke(MethodInvocation $invocation)
     {
         /** @var \Ytake\LaravelAspect\Annotation\QueryLog $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         $this->subscribeQueryLog();
         $result = $invocation->proceed();
         $logFormat = $this->queryLogFormatter($annotation, $invocation);

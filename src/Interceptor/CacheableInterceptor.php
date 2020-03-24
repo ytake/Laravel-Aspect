@@ -38,7 +38,7 @@ class CacheableInterceptor extends AbstractCache
     public function invoke(MethodInvocation $invocation)
     {
         /** @var Cacheable $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];

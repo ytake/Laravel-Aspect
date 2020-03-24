@@ -46,7 +46,7 @@ class MessageDrivenInterceptor implements MethodInterceptor
     public function invoke(MethodInvocation $invocation)
     {
         /** @var MessageDriven $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         $command = new EagerMessage($invocation);
         if ($annotation->value instanceof LazyQueue) {
             $command = new LazyMessage($invocation);

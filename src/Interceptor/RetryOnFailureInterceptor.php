@@ -47,7 +47,7 @@ final class RetryOnFailureInterceptor implements MethodInterceptor
     public function invoke(MethodInvocation $invocation)
     {
         /** @var RetryOnFailure $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation($this->annotation);
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         $key = $this->keyName($invocation);
 
         if (isset(self::$attempt[$key]) === false) {
