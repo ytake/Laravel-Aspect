@@ -145,7 +145,7 @@ class RayAspectKernel implements AspectDriverInterface
     protected function makeCompileDir()
     {
         $this->makeDirectories(strval($this->configure['compile_dir']), 0775);
-        $this->forceCompile = (bool)$this->configure['force_compile'] ?? false;
+        $this->forceCompile = (bool)($this->configure['force_compile'] ?? false);
     }
 
     /**
