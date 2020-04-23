@@ -29,7 +29,7 @@ This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com
  5.6.x    | 2.1.*
  5.7.x    | 3.0.*
  6.0.x    | 4.0
- 7.x      | 5.0
+ 7.x      | 6.0
  
 ### install 
 
