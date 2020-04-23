@@ -18,7 +18,7 @@ class MessageDrivenFunctionalTest extends AspectTestCase
     /** @var \Illuminate\Filesystem\Filesystem */
     protected $file;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
@@ -37,8 +37,8 @@ class MessageDrivenFunctionalTest extends AspectTestCase
         $concrete = $this->app->make(AspectMessageDriven::class);
         $concrete->exec('this');
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('Loggable:__Test\AspectMessageDriven.exec {"args":{"param":"this"}', $put);
-        $this->assertContains('Queued:__Test\AspectMessageDriven.logWith', $put);
+        $this->assertStringContainsString('Loggable:__Test\AspectMessageDriven.exec {"args":{"param":"this"}', $put);
+        $this->assertStringContainsString('Queued:__Test\AspectMessageDriven.logWith', $put);
     }
 
     public function testShouldBeEagerQueue()
@@ -47,7 +47,7 @@ class MessageDrivenFunctionalTest extends AspectTestCase
         $concrete = $this->app->make(AspectMessageDriven::class);
         $concrete->eagerExec('testing');
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('Queued:__Test\AspectMessageDriven.logWith', $put);
+        $this->assertStringContainsString('Queued:__Test\AspectMessageDriven.logWith', $put);
     }
 
     protected function resolveManager()
@@ -59,7 +59,7 @@ class MessageDrivenFunctionalTest extends AspectTestCase
         $aspect->weave();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->app['files']->deleteDirectory($this->logDir());
         parent::tearDown();

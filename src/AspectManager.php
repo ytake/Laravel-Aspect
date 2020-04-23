@@ -13,7 +13,7 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2018 Yuuki Takezawa
+ * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
 
@@ -37,8 +37,8 @@ class AspectManager extends Manager
     protected function createRayDriver(): AspectDriverInterface
     {
         return new RayAspectKernel(
-            $this->app,
-            $this->app['files'],
+            $this->container,
+            $this->container['files'],
             $this->getConfigure('ray')
         );
     }
@@ -56,7 +56,7 @@ class AspectManager extends Manager
      */
     public function getDefaultDriver()
     {
-        return $this->app['config']->get('ytake-laravel-aop.aspect.default');
+        return $this->container['config']->get('ytake-laravel-aop.aspect.default');
     }
 
     /**
@@ -66,8 +66,8 @@ class AspectManager extends Manager
      */
     protected function getConfigure(string $driver): array
     {
-        $aspectConfigure = $this->app['config']->get('ytake-laravel-aop.aspect.drivers');
-        $aspectConfigure[$driver]['modules'] = $this->app['config']->get('ytake-laravel-aop.aspect.modules', []);
+        $aspectConfigure = $this->container['config']->get('ytake-laravel-aop.aspect.drivers');
+        $aspectConfigure[$driver]['modules'] = $this->container['config']->get('ytake-laravel-aop.aspect.modules', []);
 
         return $aspectConfigure[$driver];
     }

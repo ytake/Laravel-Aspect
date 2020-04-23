@@ -13,7 +13,7 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2018 Yuuki Takezawa
+ * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
 
@@ -32,13 +32,14 @@ class CacheableInterceptor extends AbstractCache
 {
     /**
      * @param MethodInvocation $invocation
-     *
      * @return mixed
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function invoke(MethodInvocation $invocation)
     {
         /** @var Cacheable $annotation */
-        $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
+        $annotation = $invocation->getMethod()->getAnnotation($this->annotation)
+            ?? new $this->annotation([]);
         $keys = $this->generateCacheName($annotation->cacheName, $invocation);
         if (!is_array($annotation->key)) {
             $annotation->key = [$annotation->key];

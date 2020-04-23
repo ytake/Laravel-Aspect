@@ -5,7 +5,7 @@ class AspectManagerTest extends \AspectTestCase
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
@@ -13,7 +13,7 @@ class AspectManagerTest extends \AspectTestCase
 
     public function testCreateDriverInstance()
     {
-        $this->assertInternalType('string', $this->manager->getDefaultDriver());
+        $this->assertIsString($this->manager->getDefaultDriver());
     }
 
     public function testCreateGoDriverInstance()

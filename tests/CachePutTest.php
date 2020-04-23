@@ -7,7 +7,7 @@ class CachePutTest extends \AspectTestCase
 
     protected static $instance;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
@@ -30,11 +30,9 @@ class CachePutTest extends \AspectTestCase
         $this->assertSame(1000, $this->app['cache']->get('singleKey:1000'));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testCacheableGenerateCacheNameSingleKey()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $cache = $this->app->make(\__Test\AspectCachePut::class);
         $cache->throwExceptionCache();
     }

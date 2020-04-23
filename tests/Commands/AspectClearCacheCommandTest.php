@@ -11,7 +11,7 @@ class AspectClearCacheCommandTest extends \AspectTestCase
     /** @var \Ytake\LaravelAspect\Console\ClearCacheCommand */
     protected $command;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
@@ -51,10 +51,5 @@ class AspectClearCacheCommandTest extends \AspectTestCase
     {
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CacheableModule::class);
-    }
-
-    protected function tearDown()
-    {
-
     }
 }

@@ -16,7 +16,7 @@ class AspectQueryLogTest extends \AspectTestCase
     /** @var \Illuminate\Filesystem\Filesystem */
     protected $file;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
@@ -34,8 +34,8 @@ class AspectQueryLogTest extends \AspectTestCase
         $concrete = $this->app->make(AspectQueryLog::class);
         $concrete->start();
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('INFO: QueryLog:__Test\AspectQueryLog.start', $put);
-        $this->assertContains('SELECT date(\'now\')', $put);
+        $this->assertStringContainsString('INFO: QueryLog:__Test\AspectQueryLog.start', $put);
+        $this->assertStringContainsString('SELECT date(\'now\')', $put);
     }
 
     public function testTransactionalLogger()
@@ -44,21 +44,19 @@ class AspectQueryLogTest extends \AspectTestCase
         $concrete = $this->app->make(AspectQueryLog::class);
         $concrete->multipleDatabaseAppendRecord();
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('INFO: QueryLog:__Test\AspectQueryLog.multipleDatabaseAppendRecord', $put);
-        $this->assertContains('"queries":[{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)"', $put);
+        $this->assertStringContainsString('INFO: QueryLog:__Test\AspectQueryLog.multipleDatabaseAppendRecord', $put);
+        $this->assertStringContainsString('"queries":[{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)"', $put);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testExceptionalDatabaseLogger()
     {
+        $this->expectException(\Exception::class);
         /** @var AspectQueryLog $concrete */
         $concrete = $this->app->make(AspectQueryLog::class);
         $concrete->appendRecord(['test' => 'testing']);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->app['files']->deleteDirectory($this->logDir());
         parent::tearDown();
