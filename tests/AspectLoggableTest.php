@@ -14,7 +14,7 @@ class AspectLoggableTest extends \AspectTestCase
     /** @var \Illuminate\Filesystem\Filesystem */
     protected $file;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
@@ -32,8 +32,8 @@ class AspectLoggableTest extends \AspectTestCase
         $cache = $this->app->make(\__Test\AspectLoggable::class);
         $cache->normalLog(1);
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('Loggable:__Test\AspectLoggable.normalLog', $put);
-        $this->assertContains('{"args":{"id":1},"result":1', $put);
+        $this->assertStringContainsString('Loggable:__Test\AspectLoggable.normalLog', $put);
+        $this->assertStringContainsString('{"args":{"id":1},"result":1', $put);
     }
 
     public function testSkipResultLogger()
@@ -42,11 +42,11 @@ class AspectLoggableTest extends \AspectTestCase
         $cache = $this->app->make(\__Test\AspectLoggable::class);
         $cache->skipResultLog(1);
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
-        $this->assertContains('Loggable:__Test\AspectLoggable.skipResultLog', $put);
-        $this->assertNotContains('"result":1', $put);
+        $this->assertStringContainsString('Loggable:__Test\AspectLoggable.skipResultLog', $put);
+        $this->assertStringNotContainsString('"result":1', $put);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->app['files']->deleteDirectory($this->logDir());
         parent::tearDown();

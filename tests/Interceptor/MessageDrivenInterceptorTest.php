@@ -1,14 +1,12 @@
 <?php
+declare(strict_types=1);
 
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Ytake\LaravelAspect\Annotation\MessageDriven;
 use Ytake\LaravelAspect\Interceptor\MessageDrivenInterceptor;
 
-/**
- * Class MessageDrivenInterceptorTest
- */
-class MessageDrivenInterceptorTest extends \AspectTestCase
+final class MessageDrivenInterceptorTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
@@ -16,7 +14,7 @@ class MessageDrivenInterceptorTest extends \AspectTestCase
     /** @var  MessageDrivenInterceptor */
     private $interceptor;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
@@ -24,14 +22,16 @@ class MessageDrivenInterceptorTest extends \AspectTestCase
         $this->interceptor = new MessageDrivenInterceptor;
     }
 
-    public function testShouldDispatchMethod()
+    public function testShouldDispatchMethod(): void
     {
         $this->expectOutputString('this');
         $this->interceptor->setBusDispatcher(
             $this->app->make(Dispatcher::class)
         );
         $this->interceptor->setAnnotation(MessageDriven::class);
-        $this->interceptor->invoke(new StubMessageDrivenInvocation());
+        $this->interceptor->invoke(
+            new StubMessageDrivenInvocation()
+        );
     }
 
     /**
@@ -52,8 +52,8 @@ class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
 
     public function getNamedArguments(): \ArrayObject
     {
+        return new \ArrayObject([]);
     }
-
 
     public function getArguments(): \ArrayObject
     {
@@ -67,19 +67,20 @@ class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
 
     public function getThis()
     {
-        return new \__Test\AspectMessageDriven;
+        return new \__Test\AspectMessageDriven();
     }
 
     /**
      * @return \Ray\Aop\ReflectionMethod
      * @throws ReflectionException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function getMethod(): \Ray\Aop\ReflectionMethod
     {
         $reflectionClass = new \ReflectionClass(\__Test\AspectMessageDriven::class);
         $reflectionMethod = new \Ray\Aop\ReflectionMethod(\__Test\AspectMessageDriven::class, 'exec');
         $reflectionMethod->setObject(
-            Container::getInstance()->make(\__Test\AspectMessageDriven::class),
+            Container::getInstance()->make(\__Test\AspectMessageDriven::class, []),
             $reflectionClass->getMethod('exec')
         );
 

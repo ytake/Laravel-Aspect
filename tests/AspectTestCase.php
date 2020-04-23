@@ -12,13 +12,12 @@ class AspectTestCase extends \PHPUnit\Framework\TestCase
     /** @var \Illuminate\Container\Container $app */
     protected $app;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->createApplicationContainer();
     }
 
     /**
-     * @return \Illuminate\Config\Repository
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     protected function registerConfigure()

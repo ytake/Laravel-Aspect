@@ -14,7 +14,7 @@ class AspectLogExceptionsTest extends \AspectTestCase
     /** @var \Illuminate\Filesystem\Filesystem */
     protected $file;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
@@ -27,11 +27,10 @@ class AspectLogExceptionsTest extends \AspectTestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function testDefaultLogger()
     {
+        $this->expectException(\Exception::class);
         // $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLogExceptions::class);
@@ -48,8 +47,8 @@ class AspectLogExceptionsTest extends \AspectTestCase
             $cache->normalLog(1);
         } catch (\Exception $e) {
             $put = $this->app['files']->get($this->getDir() . '/.testing.exceptions.log');
-            $this->assertContains('LogExceptions:__Test\AspectLogExceptions.normalLog', $put);
-            $this->assertContains('"code":0,"error_message":"', $put);
+            $this->assertStringContainsString('LogExceptions:__Test\AspectLogExceptions.normalLog', $put);
+            $this->assertStringContainsString('"code":0,"error_message":"', $put);
         }
         $this->app['files']->deleteDirectory($this->getDir());
     }
@@ -70,8 +69,8 @@ class AspectLogExceptionsTest extends \AspectTestCase
             $cache->expectException();
         } catch (\LogicException $e) {
             $put = $this->app['files']->get($this->getDir() . '/.testing.exceptions.log');
-            $this->assertContains('LogExceptions:__Test\AspectLogExceptions.expectException', $put);
-            $this->assertContains('"code":0,"error_message":"', $put);
+            $this->assertStringContainsString('LogExceptions:__Test\AspectLogExceptions.expectException', $put);
+            $this->assertStringContainsString('"code":0,"error_message":"', $put);
         }
         $this->app['files']->deleteDirectory($this->getDir());
     }

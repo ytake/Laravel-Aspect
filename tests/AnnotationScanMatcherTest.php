@@ -11,7 +11,7 @@ class AnnotationScanMatcherTest extends \AspectTestCase
     /** @var AnnotationScanMatcher */
     private $matcher;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->matcher = new AnnotationScanMatcher;

@@ -13,7 +13,7 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2018 Yuuki Takezawa
+ * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
 
@@ -51,8 +51,11 @@ class AspectBind
      * @param string     $path
      * @param bool       $cacheable
      */
-    public function __construct(Filesystem $filesystem, string $path, bool $cacheable = false)
-    {
+    public function __construct(
+        Filesystem $filesystem,
+        string $path,
+        bool $cacheable = false
+    ) {
         $this->filesystem = $filesystem;
         $this->cacheable = $cacheable;
         $this->path = $path;
@@ -60,9 +63,10 @@ class AspectBind
 
     /**
      * @param string $class
-     * @param array  $pointcuts
-     *
+     * @param array $pointcuts
      * @return mixed|\Ray\Aop\BindInterface
+     * @throws \Doctrine\Common\Annotations\AnnotationException
+     * @throws \ReflectionException
      */
     public function bind(string $class, array $pointcuts)
     {

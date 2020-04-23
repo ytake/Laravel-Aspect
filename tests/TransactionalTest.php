@@ -8,7 +8,7 @@ class TransactionalTest extends \AspectTestCase
 
     protected static $instance;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
@@ -18,21 +18,19 @@ class TransactionalTest extends \AspectTestCase
     public function testTransactionalAssertString()
     {
         $transactional = $this->app->make(\__Test\AspectTransactionalString::class);
-        $this->assertContains('testing', $transactional->start());
+        $this->assertStringContainsString('testing', $transactional->start());
     }
 
     public function testTransactionalDatabase()
     {
         $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
-        $this->assertInternalType('array', $transactional->start());
+        $this->assertIsArray($transactional->start());
         $this->assertInstanceOf('stdClass', $transactional->start()[0]);
     }
 
-    /**
-     * @expectedException \Illuminate\Database\QueryException
-     */
     public function testTransactionalDatabaseThrowException()
     {
+        $this->expectException(\Illuminate\Database\QueryException::class);
         /** @var \__Test\AspectTransactionalDatabase $transactional */
         $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
         try {
@@ -42,11 +40,9 @@ class TransactionalTest extends \AspectTestCase
         }
     }
 
-    /**
-     * @expectedException \Illuminate\Database\QueryException
-     */
     public function testTransactionalDatabaseThrowLogicException()
     {
+        $this->expectException(\Illuminate\Database\QueryException::class);
         /** @var \__Test\AspectTransactionalDatabase $transactional */
         $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
         try {
@@ -66,11 +62,9 @@ class TransactionalTest extends \AspectTestCase
         $this->assertObjectHasAttribute('test', $result);
     }
 
-    /**
-     * @expectedException \Illuminate\Database\QueryException
-     */
     public function testTransactionalMultipleDatabaseThrowException()
     {
+        $this->expectException(\Illuminate\Database\QueryException::class);
         /** @var \__Test\AspectTransactionalDatabase $transactional */
         $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
         try {

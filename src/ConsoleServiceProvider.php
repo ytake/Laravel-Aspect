@@ -13,11 +13,12 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2018 Yuuki Takezawa
+ * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
 namespace Ytake\LaravelAspect;
 
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 use Ytake\LaravelAspect\Console\CompileCommand;
 use Ytake\LaravelAspect\Console\ClearCacheCommand;
@@ -26,11 +27,8 @@ use Ytake\LaravelAspect\Console\ModulePublishCommand;
 /**
  * Class AspectServiceProvider
  */
-class ConsoleServiceProvider extends ServiceProvider
+class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    /** @var bool */
-    protected $defer = true;
-
     public function boot(): void
     {
         $this->registerCommands();

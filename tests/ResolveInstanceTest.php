@@ -8,7 +8,7 @@ class ResolveInstanceTest extends AspectTestCase
     /** @var \Ytake\LaravelAspect\AspectManager $manager */
     protected $manager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);

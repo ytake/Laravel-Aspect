@@ -13,7 +13,7 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2018 Yuuki Takezawa
+ * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
 
@@ -102,7 +102,9 @@ class RayAspectKernel implements AspectDriverInterface
     /**
      * weaving
      *
+     * @throws \Doctrine\Common\Annotations\AnnotationException
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \ReflectionException
      */
     public function weave(): void
     {
@@ -133,6 +135,7 @@ class RayAspectKernel implements AspectDriverInterface
 
     /**
      * @return Compiler
+     * @throws \Doctrine\Common\Annotations\AnnotationException
      */
     protected function getCompiler(): Compiler
     {

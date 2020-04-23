@@ -13,7 +13,7 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2018 Yuuki Takezawa
+ * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
 
@@ -54,7 +54,7 @@ class ClearCacheCommand extends Command
     /**
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $configure = $this->config->get('ytake-laravel-aop.aspect');
         $driverConfig = $configure['drivers'][$configure['default']];

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace __Test;
 
@@ -18,9 +19,10 @@ class AspectMessageDriven
      *     @LazyQueue(3),
      *     onQueue="message"
      * )
+     * @param string $param
      * @return void
      */
-    public function exec($param)
+    public function exec(string $param)
     {
         echo $param;
         $this->logWith($param);
@@ -32,7 +34,7 @@ class AspectMessageDriven
      * )
      * @param string $message
      */
-    public function eagerExec($message)
+    public function eagerExec(string $message)
     {
         $this->logWith($message);
     }
@@ -43,7 +45,7 @@ class AspectMessageDriven
      *
      * @return string
      */
-    public function logWith($message)
+    public function logWith(string $message)
     {
         return "Hello $message";
     }

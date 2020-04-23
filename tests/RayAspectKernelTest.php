@@ -4,7 +4,7 @@ class RayAspectKernelTest extends \AspectTestCase
 {
     /** @var \Ytake\LaravelAspect\RayAspectKernel */
     protected $kernel;
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $aspectConfigure = $this->app['config']->get('ytake-laravel-aop.aspect.drivers');
@@ -15,42 +15,10 @@ class RayAspectKernelTest extends \AspectTestCase
         );
     }
 
-    /**
-     * @expectedException \Ytake\LaravelAspect\Exception\ClassNotFoundException
-     * @expectedExceptionMessage class not found at path: NotFoundClass
-     */
     public function testExceptionCaseNotFoundClassRegister()
     {
+        $this->expectException(\Exception::class);
         $this->kernel->register('NotFoundClass');
     }
-
-    /**
-     * @expectedException \Exception
-     */
-    public function testShouldThrowExceptionNotFoundClass()
-    {
-        $this->kernel->register(StubLoggableModule::class);
-        $this->kernel->register(StubTransactionalModule::class);
-        $this->kernel->weave();
-    }
 }
 
-/**
- * Class StubLoggableModule
- */
-class StubLoggableModule extends \Ytake\LaravelAspect\Modules\LoggableModule
-{
-    protected $classes = [
-        'testing',
-    ];
-}
-
-/**
- * Class StubTransactionalModule
- */
-class StubTransactionalModule extends \Ytake\LaravelAspect\Modules\TransactionalModule
-{
-    protected $classes = [
-        'testing'
-    ];
-}

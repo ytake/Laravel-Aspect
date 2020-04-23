@@ -13,18 +13,22 @@ declare(strict_types=1);
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the MIT license.
  *
- * Copyright (c) 2015-2018 Yuuki Takezawa
+ * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
 
 namespace Ytake\LaravelAspect\Queue;
 
+use ReflectionClass;
 use Ray\Aop\MethodInvocation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Container\Container;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+
+use function get_class;
+use function array_values;
 
 /**
  * Class LazyMessage
@@ -53,15 +57,21 @@ class LazyMessage implements ShouldQueue
      */
     public function handle(Container $container)
     {
-        $class = new \ReflectionClass(get_class($this->methodInvocation->getThis()));
+        $class = new ReflectionClass(get_class($this->methodInvocation->getThis()));
         if ($class->getFileName()) {
             $method = $this->methodInvocation->getMethod()->getName();
+            $parameters = $this->methodInvocation->getMethod()->getParameters();
+            $array = array_values($this->methodInvocation->getArguments()->getArrayCopy());
+            $arguments = [];
+            foreach ($parameters as $k => $parameter) {
+                $arguments[$parameter->getName()] = $array[$k];
+            }
             $container->call(
                 [
                     $this->methodInvocation->getThis(),
                     $method,
                 ],
-                $this->methodInvocation->getArguments()->getArrayCopy()
+                $arguments
             );
         }
     }

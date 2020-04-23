@@ -1,329 +1,329 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1575439341">
-  <project timestamp="1575439341">
+<coverage generated="1587630875">
+  <project timestamp="1587630875">
     <package name="Ytake\LaravelAspect">
-      <file name="/var/www/html/src/AnnotateClass.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/AnnotateClass.php">
         <class name="Ytake\LaravelAspect\AnnotateClass" namespace="Ytake\LaravelAspect">
-          <metrics complexity="5" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="7" elements="9" coveredelements="7"/>
+          <metrics complexity="5" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="6" elements="9" coveredelements="6"/>
         </class>
-        <line num="38" type="method" name="getPostConstructMethod" visibility="public" complexity="5" crap="5.05" count="39"/>
-        <line num="40" type="stmt" count="39"/>
-        <line num="41" type="stmt" count="39"/>
+        <line num="38" type="method" name="getPostConstructMethod" visibility="public" complexity="5" crap="5.39" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
         <line num="42" type="stmt" count="0"/>
-        <line num="44" type="stmt" count="39"/>
-        <line num="45" type="stmt" count="39"/>
-        <line num="46" type="stmt" count="39"/>
-        <line num="47" type="stmt" count="1"/>
-        <line num="52" type="stmt" count="38"/>
-        <metrics loc="54" ncloc="31" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="7" elements="9" coveredelements="7"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="1"/>
+        <metrics loc="54" ncloc="31" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="6" elements="9" coveredelements="6"/>
       </file>
-      <file name="/var/www/html/src/AnnotationConfiguration.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/AnnotationConfiguration.php">
         <class name="Ytake\LaravelAspect\AnnotationConfiguration" namespace="Ytake\LaravelAspect">
           <metrics complexity="8" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="23" coveredelements="23"/>
         </class>
-        <line num="60" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="48"/>
-        <line num="62" type="stmt" count="48"/>
-        <line num="63" type="stmt" count="48"/>
-        <line num="64" type="stmt" count="48"/>
-        <line num="65" type="stmt" count="48"/>
-        <line num="70" type="method" name="ignoredAnnotations" visibility="public" complexity="4" crap="4" count="48"/>
-        <line num="72" type="stmt" count="48"/>
-        <line num="73" type="stmt" count="48"/>
-        <line num="74" type="stmt" count="48"/>
-        <line num="75" type="stmt" count="48"/>
-        <line num="76" type="stmt" count="48"/>
-        <line num="80" type="stmt" count="48"/>
-        <line num="82" type="method" name="registerAnnotations" visibility="protected" complexity="3" crap="3" count="48"/>
-        <line num="84" type="stmt" count="48"/>
-        <line num="85" type="stmt" count="48"/>
-        <line num="86" type="stmt" count="48"/>
-        <line num="88" type="stmt" count="48"/>
-        <line num="89" type="stmt" count="48"/>
-        <line num="90" type="stmt" count="48"/>
-        <line num="91" type="stmt" count="48"/>
-        <line num="94" type="stmt" count="48"/>
-        <line num="95" type="stmt" count="48"/>
-        <line num="97" type="stmt" count="48"/>
-        <metrics loc="98" ncloc="70" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="23" coveredelements="23"/>
-      </file>
-      <file name="/var/www/html/src/AspectBind.php">
-        <class name="Ytake\LaravelAspect\AspectBind" namespace="Ytake\LaravelAspect">
-          <metrics complexity="6" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="19" coveredelements="19"/>
-        </class>
-        <line num="54" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="42"/>
-        <line num="56" type="stmt" count="42"/>
-        <line num="57" type="stmt" count="42"/>
-        <line num="58" type="stmt" count="42"/>
-        <line num="59" type="stmt" count="42"/>
-        <line num="67" type="method" name="bind" visibility="public" complexity="3" crap="3" count="42"/>
-        <line num="69" type="stmt" count="42"/>
-        <line num="70" type="stmt" count="41"/>
+        <line num="60" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="62" type="stmt" count="1"/>
+        <line num="63" type="stmt" count="1"/>
+        <line num="64" type="stmt" count="1"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="70" type="method" name="ignoredAnnotations" visibility="public" complexity="4" crap="4" count="1"/>
         <line num="72" type="stmt" count="1"/>
         <line num="73" type="stmt" count="1"/>
         <line num="74" type="stmt" count="1"/>
         <line num="75" type="stmt" count="1"/>
         <line num="76" type="stmt" count="1"/>
-        <line num="77" type="stmt" count="1"/>
         <line num="80" type="stmt" count="1"/>
-        <line num="86" type="method" name="makeCacheDir" visibility="private" complexity="2" crap="2" count="1"/>
-        <line num="88" type="stmt" count="1"/>
-        <line num="89" type="stmt" count="1"/>
-        <line num="91" type="stmt" count="1"/>
-        <metrics loc="92" ncloc="54" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="19" coveredelements="19"/>
-      </file>
-      <file name="/var/www/html/src/AspectManager.php">
-        <class name="Ytake\LaravelAspect\AspectManager" namespace="Ytake\LaravelAspect">
-          <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="13" coveredelements="13"/>
-        </class>
-        <line num="37" type="method" name="createRayDriver" visibility="protected" complexity="1" crap="1" count="41"/>
-        <line num="39" type="stmt" count="41"/>
-        <line num="40" type="stmt" count="41"/>
-        <line num="41" type="stmt" count="41"/>
-        <line num="42" type="stmt" count="41"/>
-        <line num="49" type="method" name="createNoneDriver" visibility="protected" complexity="1" crap="1" count="1"/>
-        <line num="51" type="stmt" count="1"/>
-        <line num="57" type="method" name="getDefaultDriver" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="59" type="stmt" count="1"/>
-        <line num="67" type="method" name="getConfigure" visibility="protected" complexity="1" crap="1" count="41"/>
-        <line num="69" type="stmt" count="41"/>
-        <line num="70" type="stmt" count="41"/>
-        <line num="72" type="stmt" count="41"/>
-        <metrics loc="74" ncloc="37" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="9" elements="13" coveredelements="13"/>
-      </file>
-      <file name="/var/www/html/src/ContainerInterceptor.php">
-        <class name="Ytake\LaravelAspect\ContainerInterceptor" namespace="Ytake\LaravelAspect">
-          <metrics complexity="7" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="20" elements="24" coveredelements="22"/>
-        </class>
-        <line num="41" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="40"/>
-        <line num="43" type="stmt" count="40"/>
-        <line num="44" type="stmt" count="40"/>
-        <line num="45" type="stmt" count="40"/>
-        <line num="54" type="method" name="intercept" visibility="public" complexity="4" crap="4.01" count="39"/>
-        <line num="56" type="stmt" count="39"/>
-        <line num="57" type="stmt" count="0"/>
-        <line num="60" type="stmt" count="39"/>
-        <line num="61" type="stmt" count="1"/>
-        <line num="65" type="stmt" count="39"/>
-        <line num="66" type="stmt" count="39"/>
-        <line num="67" type="stmt" count="39"/>
-        <line num="68" type="stmt" count="39"/>
-        <line num="69" type="stmt" count="1"/>
-        <line num="70" type="stmt" count="1"/>
-        <line num="73" type="stmt" count="39"/>
-        <line num="74" type="stmt" count="39"/>
-        <line num="76" type="stmt" count="39"/>
-        <line num="83" type="method" name="resolveContextualBindings" visibility="private" complexity="2" crap="2" count="1"/>
+        <line num="82" type="method" name="registerAnnotations" visibility="protected" complexity="3" crap="3" count="1"/>
+        <line num="84" type="stmt" count="1"/>
         <line num="85" type="stmt" count="1"/>
         <line num="86" type="stmt" count="1"/>
-        <line num="87" type="stmt" count="1"/>
         <line num="88" type="stmt" count="1"/>
+        <line num="89" type="stmt" count="1"/>
         <line num="90" type="stmt" count="1"/>
-        <metrics loc="91" ncloc="55" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="20" elements="24" coveredelements="22"/>
+        <line num="91" type="stmt" count="1"/>
+        <line num="94" type="stmt" count="1"/>
+        <line num="95" type="stmt" count="1"/>
+        <line num="97" type="stmt" count="1"/>
+        <metrics loc="98" ncloc="70" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="23" coveredelements="23"/>
       </file>
-      <file name="/var/www/html/src/LumenAspectServiceProvider.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/AspectBind.php">
+        <class name="Ytake\LaravelAspect\AspectBind" namespace="Ytake\LaravelAspect">
+          <metrics complexity="6" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="6" elements="19" coveredelements="7"/>
+        </class>
+        <line num="54" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="59" type="stmt" count="1"/>
+        <line num="67" type="method" name="bind" visibility="public" complexity="3" crap="7.23" count="1"/>
+        <line num="69" type="stmt" count="1"/>
+        <line num="70" type="stmt" count="1"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="86" type="method" name="makeCacheDir" visibility="private" complexity="2" crap="6" count="0"/>
+        <line num="88" type="stmt" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="91" type="stmt" count="0"/>
+        <metrics loc="92" ncloc="54" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="6" elements="19" coveredelements="7"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/AspectManager.php">
+        <class name="Ytake\LaravelAspect\AspectManager" namespace="Ytake\LaravelAspect">
+          <metrics complexity="4" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="7" elements="13" coveredelements="9"/>
+        </class>
+        <line num="37" type="method" name="createRayDriver" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="49" type="method" name="createNoneDriver" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="57" type="method" name="getDefaultDriver" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="67" type="method" name="getConfigure" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="69" type="stmt" count="1"/>
+        <line num="70" type="stmt" count="1"/>
+        <line num="72" type="stmt" count="1"/>
+        <metrics loc="74" ncloc="37" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="7" elements="13" coveredelements="9"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/ContainerInterceptor.php">
+        <class name="Ytake\LaravelAspect\ContainerInterceptor" namespace="Ytake\LaravelAspect">
+          <metrics complexity="7" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="12" elements="24" coveredelements="13"/>
+        </class>
+        <line num="41" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="54" type="method" name="intercept" visibility="public" complexity="4" crap="4.47" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="1"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="66" type="stmt" count="1"/>
+        <line num="67" type="stmt" count="1"/>
+        <line num="68" type="stmt" count="1"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="1"/>
+        <line num="74" type="stmt" count="1"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="83" type="method" name="resolveContextualBindings" visibility="private" complexity="2" crap="6" count="0"/>
+        <line num="85" type="stmt" count="0"/>
+        <line num="86" type="stmt" count="0"/>
+        <line num="87" type="stmt" count="0"/>
+        <line num="88" type="stmt" count="0"/>
+        <line num="90" type="stmt" count="0"/>
+        <metrics loc="91" ncloc="55" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="12" elements="24" coveredelements="13"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/LumenAspectServiceProvider.php">
         <class name="Ytake\LaravelAspect\LumenAspectServiceProvider" namespace="Ytake\LaravelAspect">
           <metrics complexity="1" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="52" ncloc="28" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/NullAspectKernel.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/NullAspectKernel.php">
         <class name="Ytake\LaravelAspect\NullAspectKernel" namespace="Ytake\LaravelAspect">
-          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
         </class>
-        <line num="30" type="method" name="register" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="33" type="stmt" count="1"/>
-        <line num="38" type="method" name="weave" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="41" type="stmt" count="1"/>
-        <metrics loc="42" ncloc="14" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+        <line num="30" type="method" name="register" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="33" type="stmt" count="0"/>
+        <line num="38" type="method" name="weave" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <metrics loc="42" ncloc="14" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/RayAspectKernel.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/RayAspectKernel.php">
         <class name="Ytake\LaravelAspect\RayAspectKernel" namespace="Ytake\LaravelAspect">
-          <metrics complexity="24" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="30" elements="41" coveredelements="36"/>
+          <metrics complexity="24" methods="8" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="29" elements="41" coveredelements="34"/>
         </class>
-        <line num="79" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="43"/>
-        <line num="81" type="stmt" count="43"/>
-        <line num="82" type="stmt" count="43"/>
-        <line num="83" type="stmt" count="43"/>
-        <line num="84" type="stmt" count="43"/>
-        <line num="85" type="stmt" count="43"/>
-        <line num="86" type="stmt" count="43"/>
-        <line num="87" type="stmt" count="43"/>
-        <line num="94" type="method" name="register" visibility="public" complexity="2" crap="2" count="42"/>
-        <line num="96" type="stmt" count="42"/>
-        <line num="97" type="stmt" count="1"/>
-        <line num="99" type="stmt" count="41"/>
-        <line num="100" type="stmt" count="41"/>
-        <line num="107" type="method" name="weave" visibility="public" complexity="4" crap="4.07" count="40"/>
-        <line num="109" type="stmt" count="40"/>
+        <line num="79" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="81" type="stmt" count="1"/>
+        <line num="82" type="stmt" count="1"/>
+        <line num="83" type="stmt" count="1"/>
+        <line num="84" type="stmt" count="1"/>
+        <line num="85" type="stmt" count="1"/>
+        <line num="86" type="stmt" count="1"/>
+        <line num="87" type="stmt" count="1"/>
+        <line num="94" type="method" name="register" visibility="public" complexity="2" crap="2.06" count="1"/>
+        <line num="96" type="stmt" count="1"/>
+        <line num="97" type="stmt" count="0"/>
+        <line num="99" type="stmt" count="1"/>
+        <line num="100" type="stmt" count="1"/>
+        <line num="107" type="method" name="weave" visibility="public" complexity="4" crap="4.07" count="1"/>
+        <line num="109" type="stmt" count="1"/>
         <line num="110" type="stmt" count="0"/>
-        <line num="112" type="stmt" count="40"/>
-        <line num="113" type="stmt" count="40"/>
-        <line num="114" type="stmt" count="40"/>
-        <line num="115" type="stmt" count="40"/>
-        <line num="116" type="stmt" count="40"/>
-        <line num="117" type="stmt" count="39"/>
+        <line num="112" type="stmt" count="1"/>
+        <line num="113" type="stmt" count="1"/>
+        <line num="114" type="stmt" count="1"/>
+        <line num="115" type="stmt" count="1"/>
+        <line num="116" type="stmt" count="1"/>
+        <line num="117" type="stmt" count="1"/>
         <line num="118" type="stmt" count="0"/>
-        <line num="119" type="stmt" count="39"/>
-        <line num="120" type="stmt" count="39"/>
-        <line num="122" type="stmt" count="39"/>
-        <line num="129" type="method" name="containerAdaptor" visibility="protected" complexity="1" crap="1" count="40"/>
-        <line num="131" type="stmt" count="40"/>
-        <line num="137" type="method" name="getCompiler" visibility="protected" complexity="1" crap="1" count="40"/>
-        <line num="139" type="stmt" count="40"/>
-        <line num="145" type="method" name="makeCompileDir" visibility="protected" complexity="1" crap="1" count="43"/>
-        <line num="147" type="stmt" count="43"/>
-        <line num="148" type="stmt" count="43"/>
-        <line num="149" type="stmt" count="43"/>
-        <line num="168" type="method" name="makeDirectories" visibility="private" complexity="2" crap="2" count="43"/>
-        <line num="175" type="stmt" count="43"/>
-        <line num="182" type="method" name="registerAspectModule" visibility="protected" complexity="3" crap="3.14" count="43"/>
-        <line num="184" type="stmt" count="43"/>
-        <line num="185" type="stmt" count="41"/>
+        <line num="119" type="stmt" count="1"/>
+        <line num="120" type="stmt" count="1"/>
+        <line num="122" type="stmt" count="1"/>
+        <line num="129" type="method" name="containerAdaptor" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="131" type="stmt" count="1"/>
+        <line num="137" type="method" name="getCompiler" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="139" type="stmt" count="1"/>
+        <line num="145" type="method" name="makeCompileDir" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="147" type="stmt" count="1"/>
+        <line num="148" type="stmt" count="1"/>
+        <line num="149" type="stmt" count="1"/>
+        <line num="168" type="method" name="makeDirectories" visibility="private" complexity="2" crap="2" count="1"/>
+        <line num="175" type="stmt" count="1"/>
+        <line num="182" type="method" name="registerAspectModule" visibility="protected" complexity="3" crap="3.14" count="1"/>
+        <line num="184" type="stmt" count="1"/>
+        <line num="185" type="stmt" count="1"/>
         <line num="186" type="stmt" count="0"/>
-        <line num="189" type="stmt" count="43"/>
-        <metrics loc="223" ncloc="141" classes="1" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="30" elements="41" coveredelements="36"/>
+        <line num="189" type="stmt" count="1"/>
+        <metrics loc="223" ncloc="141" classes="1" methods="8" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="29" elements="41" coveredelements="34"/>
       </file>
     </package>
     <package name="Ytake\LaravelAspect\Annotation">
-      <file name="/var/www/html/src/Annotation/AnnotationReaderTrait.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/AnnotationReaderTrait.php">
         <class name="AnnotationReaderTrait" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
         </class>
-        <line num="32" type="method" name="setAnnotation" visibility="public" complexity="1" crap="1" count="39"/>
-        <line num="34" type="stmt" count="39"/>
-        <line num="35" type="stmt" count="39"/>
+        <line num="32" type="method" name="setAnnotation" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <line num="35" type="stmt" count="1"/>
         <metrics loc="36" ncloc="14" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
       </file>
-      <file name="/var/www/html/src/Annotation/CacheEvict.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/CacheEvict.php">
         <class name="Ytake\LaravelAspect\Annotation\CacheEvict" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="43" ncloc="19" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/CachePut.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/CachePut.php">
         <class name="Ytake\LaravelAspect\Annotation\CachePut" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="43" ncloc="19" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/Cacheable.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/Cacheable.php">
         <class name="Ytake\LaravelAspect\Annotation\Cacheable" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="46" ncloc="21" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/EagerQueue.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/EagerQueue.php">
         <class name="Ytake\LaravelAspect\Annotation\EagerQueue" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
         </class>
-        <line num="33" type="method" name="delay" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="33" type="method" name="delay" visibility="public" complexity="1" crap="2" count="0"/>
         <line num="35" type="stmt" count="0"/>
         <metrics loc="37" ncloc="14" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/LazyQueue.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/LazyQueue.php">
         <class name="Ytake\LaravelAspect\Annotation\LazyQueue" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
         </class>
-        <line num="36" type="method" name="delay" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="38" type="stmt" count="2"/>
+        <line num="36" type="method" name="delay" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="38" type="stmt" count="1"/>
         <metrics loc="40" ncloc="16" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </file>
-      <file name="/var/www/html/src/Annotation/LogExceptions.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/LogExceptions.php">
         <class name="Ytake\LaravelAspect\Annotation\LogExceptions" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="39" ncloc="17" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/Loggable.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/Loggable.php">
         <class name="Ytake\LaravelAspect\Annotation\Loggable" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="39" ncloc="17" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/LoggableAnnotate.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/LoggableAnnotate.php">
         <class name="Ytake\LaravelAspect\Annotation\LoggableAnnotate" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="34" ncloc="14" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/MessageDriven.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/MessageDriven.php">
         <class name="Ytake\LaravelAspect\Annotation\MessageDriven" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="40" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/PostConstruct.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/PostConstruct.php">
         <class name="Ytake\LaravelAspect\Annotation\PostConstruct" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="31" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/QueryLog.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/QueryLog.php">
         <class name="Ytake\LaravelAspect\Annotation\QueryLog" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="40" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/RetryOnFailure.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/RetryOnFailure.php">
         <class name="Ytake\LaravelAspect\Annotation\RetryOnFailure" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="45" ncloc="20" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Annotation/Transactional.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/Transactional.php">
         <class name="Ytake\LaravelAspect\Annotation\Transactional" namespace="Ytake\LaravelAspect\Annotation">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="36" ncloc="14" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
     </package>
-    <file name="/var/www/html/src/Annotation/Delayed.php">
+    <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Annotation/Delayed.php">
       <metrics loc="30" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <file name="/var/www/html/src/AspectDriverInterface.php">
+    <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/AspectDriverInterface.php">
       <metrics loc="37" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
     <package name="Ytake\LaravelAspect\Console">
-      <file name="/var/www/html/src/Console/ClearCacheCommand.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Console/ClearCacheCommand.php">
         <class name="Ytake\LaravelAspect\Console\ClearCacheCommand" namespace="Ytake\LaravelAspect\Console">
-          <metrics complexity="6" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="19" coveredelements="19"/>
+          <metrics complexity="6" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="19" coveredelements="0"/>
         </class>
-        <line num="47" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="49" type="stmt" count="1"/>
-        <line num="50" type="stmt" count="1"/>
-        <line num="51" type="stmt" count="1"/>
-        <line num="52" type="stmt" count="1"/>
-        <line num="57" type="method" name="handle" visibility="public" complexity="3" crap="3" count="1"/>
-        <line num="59" type="stmt" count="1"/>
-        <line num="60" type="stmt" count="1"/>
-        <line num="61" type="stmt" count="1"/>
-        <line num="62" type="stmt" count="1"/>
-        <line num="64" type="stmt" count="1"/>
-        <line num="65" type="stmt" count="1"/>
-        <line num="67" type="stmt" count="1"/>
-        <line num="68" type="stmt" count="1"/>
-        <line num="73" type="method" name="removeFiles" visibility="protected" complexity="2" crap="2" count="1"/>
-        <line num="75" type="stmt" count="1"/>
-        <line num="76" type="stmt" count="1"/>
-        <line num="77" type="stmt" count="1"/>
-        <line num="79" type="stmt" count="1"/>
-        <metrics loc="80" ncloc="48" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="19" coveredelements="19"/>
+        <line num="47" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="57" type="method" name="handle" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="73" type="method" name="removeFiles" visibility="protected" complexity="2" crap="6" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <metrics loc="80" ncloc="48" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="19" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Console/CompileCommand.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Console/CompileCommand.php">
         <class name="Ytake\LaravelAspect\Console\CompileCommand" namespace="Ytake\LaravelAspect\Console">
           <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
         </class>
-        <line num="44" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="44" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
         <line num="46" type="stmt" count="0"/>
         <line num="47" type="stmt" count="0"/>
         <line num="48" type="stmt" count="0"/>
-        <line num="53" type="method" name="handle" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="53" type="method" name="handle" visibility="public" complexity="1" crap="2" count="0"/>
         <line num="55" type="stmt" count="0"/>
         <line num="56" type="stmt" count="0"/>
         <line num="57" type="stmt" count="0"/>
         <metrics loc="58" ncloc="29" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Console/ModulePublishCommand.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Console/ModulePublishCommand.php">
         <class name="Ytake\LaravelAspect\Console\ModulePublishCommand" namespace="Ytake\LaravelAspect\Console">
           <metrics complexity="14" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
@@ -331,632 +331,636 @@
       </file>
     </package>
     <package name="Ytake\LaravelAspect\Exception">
-      <file name="/var/www/html/src/Exception/ClassNotFoundException.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Exception/ClassNotFoundException.php">
         <class name="Ytake\LaravelAspect\Exception\ClassNotFoundException" namespace="Ytake\LaravelAspect\Exception">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
         </class>
-        <line num="32" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="34" type="stmt" count="1"/>
-        <line num="35" type="stmt" count="1"/>
-        <metrics loc="36" ncloc="13" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+        <line num="32" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <metrics loc="36" ncloc="13" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Exception/FileNotFoundException.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Exception/FileNotFoundException.php">
         <class name="Ytake\LaravelAspect\Exception\FileNotFoundException" namespace="Ytake\LaravelAspect\Exception">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
         </class>
-        <line num="32" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="34" type="stmt" count="1"/>
-        <line num="35" type="stmt" count="1"/>
-        <metrics loc="36" ncloc="13" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
+        <line num="32" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <metrics loc="36" ncloc="13" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
       </file>
     </package>
     <package name="Ytake\LaravelAspect\Interceptor">
-      <file name="/var/www/html/src/Interceptor/AbstractCache.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/AbstractCache.php">
         <class name="Ytake\LaravelAspect\Interceptor\AbstractCache" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="18" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="34" coveredstatements="34" elements="39" coveredelements="39"/>
+          <metrics complexity="18" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="34" coveredstatements="0" elements="39" coveredelements="0"/>
         </class>
-        <line num="59" type="method" name="generateCacheName" visibility="protected" complexity="3" crap="3" count="14"/>
-        <line num="61" type="stmt" count="14"/>
-        <line num="62" type="stmt" count="1"/>
-        <line num="64" type="stmt" count="13"/>
-        <line num="65" type="stmt" count="7"/>
-        <line num="68" type="stmt" count="13"/>
-        <line num="78" type="method" name="detectCacheKeys" visibility="protected" complexity="6" crap="6" count="13"/>
-        <line num="83" type="stmt" count="13"/>
-        <line num="84" type="stmt" count="13"/>
-        <line num="86" type="stmt" count="9"/>
-        <line num="87" type="stmt" count="9"/>
-        <line num="88" type="stmt" count="8"/>
-        <line num="89" type="stmt" count="8"/>
-        <line num="92" type="stmt" count="9"/>
-        <line num="93" type="stmt" count="1"/>
-        <line num="98" type="stmt" count="13"/>
-        <line num="106" type="method" name="detectCacheRepository" visibility="protected" complexity="3" crap="3" count="13"/>
-        <line num="109" type="stmt" count="13"/>
-        <line num="110" type="stmt" count="13"/>
-        <line num="112" type="stmt" count="13"/>
-        <line num="113" type="stmt" count="13"/>
-        <line num="114" type="stmt" count="4"/>
-        <line num="116" type="stmt" count="4"/>
-        <line num="119" type="stmt" count="9"/>
-        <line num="127" type="method" name="setCache" visibility="public" complexity="1" crap="1" count="23"/>
-        <line num="129" type="stmt" count="23"/>
-        <line num="130" type="stmt" count="23"/>
-        <line num="138" type="method" name="recursiveImplode" visibility="protected" complexity="5" crap="5" count="13"/>
-        <line num="140" type="stmt" count="13"/>
-        <line num="141" type="stmt" count="13"/>
-        <line num="142" type="stmt" count="13"/>
-        <line num="143" type="stmt" count="13"/>
-        <line num="144" type="stmt" count="13"/>
-        <line num="145" type="stmt" count="1"/>
-        <line num="147" type="stmt" count="13"/>
-        <line num="149" type="stmt" count="13"/>
-        <line num="150" type="stmt" count="9"/>
-        <line num="152" type="stmt" count="13"/>
-        <line num="155" type="stmt" count="13"/>
-        <metrics loc="157" ncloc="104" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="34" coveredstatements="34" elements="39" coveredelements="39"/>
+        <line num="59" type="method" name="generateCacheName" visibility="protected" complexity="3" crap="12" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="78" type="method" name="detectCacheKeys" visibility="protected" complexity="6" crap="42" count="0"/>
+        <line num="83" type="stmt" count="0"/>
+        <line num="84" type="stmt" count="0"/>
+        <line num="86" type="stmt" count="0"/>
+        <line num="87" type="stmt" count="0"/>
+        <line num="88" type="stmt" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="92" type="stmt" count="0"/>
+        <line num="93" type="stmt" count="0"/>
+        <line num="98" type="stmt" count="0"/>
+        <line num="106" type="method" name="detectCacheRepository" visibility="protected" complexity="3" crap="12" count="0"/>
+        <line num="109" type="stmt" count="0"/>
+        <line num="110" type="stmt" count="0"/>
+        <line num="112" type="stmt" count="0"/>
+        <line num="113" type="stmt" count="0"/>
+        <line num="114" type="stmt" count="0"/>
+        <line num="116" type="stmt" count="0"/>
+        <line num="119" type="stmt" count="0"/>
+        <line num="127" type="method" name="setCache" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="129" type="stmt" count="0"/>
+        <line num="130" type="stmt" count="0"/>
+        <line num="138" type="method" name="recursiveImplode" visibility="protected" complexity="5" crap="30" count="0"/>
+        <line num="140" type="stmt" count="0"/>
+        <line num="141" type="stmt" count="0"/>
+        <line num="142" type="stmt" count="0"/>
+        <line num="143" type="stmt" count="0"/>
+        <line num="144" type="stmt" count="0"/>
+        <line num="145" type="stmt" count="0"/>
+        <line num="147" type="stmt" count="0"/>
+        <line num="149" type="stmt" count="0"/>
+        <line num="150" type="stmt" count="0"/>
+        <line num="152" type="stmt" count="0"/>
+        <line num="155" type="stmt" count="0"/>
+        <metrics loc="157" ncloc="104" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="34" coveredstatements="0" elements="39" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Interceptor/AbstractLogger.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/AbstractLogger.php">
         <class name="Ytake\LaravelAspect\Interceptor\AbstractLogger" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="4" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="17" coveredelements="17"/>
+          <metrics complexity="4" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="17" coveredelements="0"/>
         </class>
-        <line num="45" type="method" name="logFormatter" visibility="protected" complexity="3" crap="3" count="8"/>
-        <line num="47" type="stmt" count="8"/>
-        <line num="48" type="stmt" count="8"/>
-        <line num="49" type="stmt" count="8"/>
-        <line num="50" type="stmt" count="6"/>
-        <line num="51" type="stmt" count="6"/>
-        <line num="52" type="stmt" count="6"/>
-        <line num="56" type="stmt" count="8"/>
-        <line num="57" type="stmt" count="8"/>
-        <line num="58" type="stmt" count="8"/>
-        <line num="59" type="stmt" count="8"/>
-        <line num="60" type="stmt" count="8"/>
-        <line num="61" type="stmt" count="8"/>
-        <line num="63" type="stmt" count="8"/>
-        <line num="70" type="method" name="setLogger" visibility="public" complexity="1" crap="1" count="18"/>
-        <line num="72" type="stmt" count="18"/>
-        <line num="73" type="stmt" count="18"/>
-        <metrics loc="74" ncloc="45" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="17" coveredelements="17"/>
-      </file>
-      <file name="/var/www/html/src/Interceptor/CacheEvictInterceptor.php">
-        <class name="Ytake\LaravelAspect\Interceptor\CacheEvictInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="3" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="13" coveredelements="13"/>
-        </class>
-        <line num="36" type="method" name="invoke" visibility="public" complexity="3" crap="3" count="3"/>
-        <line num="38" type="stmt" count="3"/>
-        <line num="39" type="stmt" count="3"/>
-        <line num="40" type="stmt" count="3"/>
-        <line num="41" type="stmt" count="2"/>
-        <line num="43" type="stmt" count="3"/>
-        <line num="46" type="stmt" count="3"/>
-        <line num="48" type="stmt" count="3"/>
-        <line num="49" type="stmt" count="1"/>
-        <line num="51" type="stmt" count="1"/>
-        <line num="53" type="stmt" count="2"/>
-        <line num="54" type="stmt" count="2"/>
-        <line num="56" type="stmt" count="2"/>
-        <metrics loc="58" ncloc="33" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="13" coveredelements="13"/>
-      </file>
-      <file name="/var/www/html/src/Interceptor/CachePutInterceptor.php">
-        <class name="Ytake\LaravelAspect\Interceptor\CachePutInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="3" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="11" coveredelements="11"/>
-        </class>
-        <line num="36" type="method" name="invoke" visibility="public" complexity="3" crap="3" count="3"/>
-        <line num="38" type="stmt" count="3"/>
-        <line num="39" type="stmt" count="3"/>
-        <line num="40" type="stmt" count="2"/>
-        <line num="41" type="stmt" count="2"/>
-        <line num="43" type="stmt" count="2"/>
-        <line num="45" type="stmt" count="2"/>
-        <line num="46" type="stmt" count="2"/>
-        <line num="47" type="stmt" count="2"/>
-        <line num="48" type="stmt" count="1"/>
-        <line num="51" type="stmt" count="2"/>
-        <metrics loc="53" ncloc="28" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="11" coveredelements="11"/>
-      </file>
-      <file name="/var/www/html/src/Interceptor/CacheableInterceptor.php">
-        <class name="Ytake\LaravelAspect\Interceptor\CacheableInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="6" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="18" coveredelements="18"/>
-        </class>
-        <line num="38" type="method" name="invoke" visibility="public" complexity="6" crap="6" count="10"/>
-        <line num="41" type="stmt" count="10"/>
-        <line num="42" type="stmt" count="10"/>
-        <line num="43" type="stmt" count="10"/>
-        <line num="44" type="stmt" count="4"/>
-        <line num="46" type="stmt" count="10"/>
-        <line num="48" type="stmt" count="10"/>
-        <line num="49" type="stmt" count="10"/>
-        <line num="50" type="stmt" count="10"/>
-        <line num="51" type="stmt" count="3"/>
-        <line num="53" type="stmt" count="10"/>
-        <line num="54" type="stmt" count="10"/>
-        <line num="55" type="stmt" count="9"/>
-        <line num="56" type="stmt" count="9"/>
-        <line num="59" type="stmt" count="9"/>
-        <line num="61" type="stmt" count="1"/>
-        <line num="62" type="stmt" count="1"/>
-        <line num="65" type="stmt" count="1"/>
-        <metrics loc="67" ncloc="41" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="18" coveredelements="18"/>
-      </file>
-      <file name="/var/www/html/src/Interceptor/LogExceptionsInterceptor.php">
-        <class name="Ytake\LaravelAspect\Interceptor\LogExceptionsInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="5" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="14" coveredelements="14"/>
-        </class>
-        <line num="42" type="method" name="invoke" visibility="public" complexity="5" crap="5" count="5"/>
-        <line num="45" type="stmt" count="5"/>
-        <line num="47" type="stmt" count="5"/>
-        <line num="48" type="stmt" count="4"/>
-        <line num="49" type="stmt" count="4"/>
-        <line num="50" type="stmt" count="3"/>
-        <line num="51" type="stmt" count="3"/>
-        <line num="53" type="stmt" count="3"/>
-        <line num="54" type="stmt" count="3"/>
-        <line num="55" type="stmt" count="3"/>
-        <line num="56" type="stmt" count="3"/>
-        <line num="57" type="stmt" count="3"/>
-        <line num="59" type="stmt" count="3"/>
-        <line num="62" type="stmt" count="4"/>
-        <metrics loc="69" ncloc="39" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="14" coveredelements="14"/>
-      </file>
-      <file name="/var/www/html/src/Interceptor/LoggableInterceptor.php">
-        <class name="Ytake\LaravelAspect\Interceptor\LoggableInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="4" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="13" elements="15" coveredelements="13"/>
-        </class>
-        <line num="44" type="method" name="invoke" visibility="public" complexity="4" crap="4.01" count="5"/>
-        <line num="47" type="stmt" count="5"/>
-        <line num="48" type="stmt" count="5"/>
-        <line num="49" type="stmt" count="5"/>
-        <line num="50" type="stmt" count="5"/>
-        <line num="51" type="stmt" count="5"/>
-        <line num="52" type="stmt" count="5"/>
-        <line num="53" type="stmt" count="5"/>
-        <line num="54" type="stmt" count="4"/>
-        <line num="56" type="stmt" count="5"/>
-        <line num="58" type="stmt" count="5"/>
-        <line num="59" type="stmt" count="5"/>
+        <line num="45" type="method" name="logFormatter" visibility="protected" complexity="3" crap="12" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="59" type="stmt" count="0"/>
         <line num="60" type="stmt" count="0"/>
-        <line num="62" type="stmt" count="5"/>
-        <line num="65" type="stmt" count="5"/>
-        <metrics loc="67" ncloc="41" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="13" elements="15" coveredelements="13"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="70" type="method" name="setLogger" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <metrics loc="74" ncloc="45" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="17" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Interceptor/MessageDrivenInterceptor.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/CacheEvictInterceptor.php">
+        <class name="Ytake\LaravelAspect\Interceptor\CacheEvictInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
+          <metrics complexity="3" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="13" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="invoke" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <metrics loc="58" ncloc="33" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="13" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/CachePutInterceptor.php">
+        <class name="Ytake\LaravelAspect\Interceptor\CachePutInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
+          <metrics complexity="3" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="11" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="invoke" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <metrics loc="53" ncloc="28" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="11" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/CacheableInterceptor.php">
+        <class name="Ytake\LaravelAspect\Interceptor\CacheableInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
+          <metrics complexity="6" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="0" elements="18" coveredelements="0"/>
+        </class>
+        <line num="38" type="method" name="invoke" visibility="public" complexity="6" crap="42" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <metrics loc="67" ncloc="41" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="0" elements="18" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/LogExceptionsInterceptor.php">
+        <class name="Ytake\LaravelAspect\Interceptor\LogExceptionsInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
+          <metrics complexity="5" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+        </class>
+        <line num="42" type="method" name="invoke" visibility="public" complexity="5" crap="30" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <metrics loc="69" ncloc="39" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="14" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/LoggableInterceptor.php">
+        <class name="Ytake\LaravelAspect\Interceptor\LoggableInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
+          <metrics complexity="4" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="15" coveredelements="0"/>
+        </class>
+        <line num="44" type="method" name="invoke" visibility="public" complexity="4" crap="20" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <line num="49" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <metrics loc="67" ncloc="41" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="0" elements="15" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/MessageDrivenInterceptor.php">
         <class name="Ytake\LaravelAspect\Interceptor\MessageDrivenInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
           <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
         </class>
-        <line num="46" type="method" name="invoke" visibility="public" complexity="2" crap="2" count="3"/>
-        <line num="49" type="stmt" count="3"/>
-        <line num="50" type="stmt" count="3"/>
-        <line num="51" type="stmt" count="3"/>
-        <line num="52" type="stmt" count="2"/>
-        <line num="53" type="stmt" count="2"/>
-        <line num="54" type="stmt" count="2"/>
-        <line num="55" type="stmt" count="2"/>
-        <line num="58" type="stmt" count="3"/>
-        <line num="64" type="method" name="setBusDispatcher" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="66" type="stmt" count="3"/>
-        <line num="67" type="stmt" count="3"/>
-        <metrics loc="68" ncloc="39" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
-      </file>
-      <file name="/var/www/html/src/Interceptor/QueryLogInterceptor.php">
-        <class name="Ytake\LaravelAspect\Interceptor\QueryLogInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="6" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="27" elements="31" coveredelements="31"/>
-        </class>
-        <line num="52" type="method" name="invoke" visibility="public" complexity="3" crap="3" count="3"/>
-        <line num="55" type="stmt" count="3"/>
-        <line num="56" type="stmt" count="3"/>
-        <line num="57" type="stmt" count="3"/>
-        <line num="58" type="stmt" count="2"/>
-        <line num="59" type="stmt" count="2"/>
-        <line num="60" type="stmt" count="2"/>
-        <line num="61" type="stmt" count="2"/>
-        <line num="62" type="stmt" count="2"/>
-        <line num="64" type="stmt" count="2"/>
-        <line num="66" type="stmt" count="2"/>
-        <line num="68" type="stmt" count="2"/>
-        <line num="71" type="method" name="subscribeQueryLog" visibility="protected" complexity="1" crap="1" count="3"/>
-        <line num="74" type="stmt" count="3"/>
-        <line num="75" type="stmt" count="3"/>
-        <line num="76" type="stmt" count="3"/>
-        <line num="77" type="stmt" count="3"/>
-        <line num="78" type="stmt" count="3"/>
-        <line num="80" type="stmt" count="3"/>
-        <line num="81" type="stmt" count="3"/>
-        <line num="89" type="method" name="queryLogFormatter" visibility="protected" complexity="1" crap="1" count="2"/>
-        <line num="94" type="stmt" count="2"/>
-        <line num="95" type="stmt" count="2"/>
-        <line num="96" type="stmt" count="2"/>
-        <line num="97" type="stmt" count="2"/>
-        <line num="98" type="stmt" count="2"/>
-        <line num="99" type="stmt" count="2"/>
-        <line num="102" type="stmt" count="2"/>
-        <line num="110" type="method" name="setDispatcher" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="112" type="stmt" count="3"/>
-        <line num="113" type="stmt" count="3"/>
-        <metrics loc="114" ncloc="78" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="27" elements="31" coveredelements="31"/>
-      </file>
-      <file name="/var/www/html/src/Interceptor/RetryOnFailureInterceptor.php">
-        <class name="Ytake\LaravelAspect\Interceptor\RetryOnFailureInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="7" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="21" coveredelements="21"/>
-        </class>
-        <line num="47" type="method" name="invoke" visibility="public" complexity="6" crap="6" count="1"/>
+        <line num="46" type="method" name="invoke" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="49" type="stmt" count="1"/>
         <line num="50" type="stmt" count="1"/>
         <line num="51" type="stmt" count="1"/>
+        <line num="52" type="stmt" count="1"/>
         <line num="53" type="stmt" count="1"/>
         <line num="54" type="stmt" count="1"/>
+        <line num="55" type="stmt" count="1"/>
         <line num="58" type="stmt" count="1"/>
+        <line num="64" type="method" name="setBusDispatcher" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="66" type="stmt" count="1"/>
+        <line num="67" type="stmt" count="1"/>
+        <metrics loc="68" ncloc="39" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/QueryLogInterceptor.php">
+        <class name="Ytake\LaravelAspect\Interceptor\QueryLogInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
+          <metrics complexity="6" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="0" elements="31" coveredelements="0"/>
+        </class>
+        <line num="52" type="method" name="invoke" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="71" type="method" name="subscribeQueryLog" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="81" type="stmt" count="0"/>
+        <line num="89" type="method" name="queryLogFormatter" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="94" type="stmt" count="0"/>
+        <line num="95" type="stmt" count="0"/>
+        <line num="96" type="stmt" count="0"/>
+        <line num="97" type="stmt" count="0"/>
+        <line num="98" type="stmt" count="0"/>
+        <line num="99" type="stmt" count="0"/>
+        <line num="102" type="stmt" count="0"/>
+        <line num="110" type="method" name="setDispatcher" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="112" type="stmt" count="0"/>
+        <line num="113" type="stmt" count="0"/>
+        <metrics loc="114" ncloc="78" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="0" elements="31" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/RetryOnFailureInterceptor.php">
+        <class name="Ytake\LaravelAspect\Interceptor\RetryOnFailureInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
+          <metrics complexity="7" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="21" coveredelements="0"/>
+        </class>
+        <line num="47" type="method" name="invoke" visibility="public" complexity="6" crap="42" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="87" type="method" name="keyName" visibility="protected" complexity="1" crap="2" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <metrics loc="91" ncloc="60" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="21" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Interceptor/TransactionalInterceptor.php">
+        <class name="Ytake\LaravelAspect\Interceptor\TransactionalInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
+          <metrics complexity="4" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="14" coveredelements="0"/>
+        </class>
+        <line num="48" type="method" name="invoke" visibility="public" complexity="3" crap="12" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="69" type="method" name="setDatabaseManager" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <metrics loc="73" ncloc="43" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="14" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Ytake\LaravelAspect\Matcher">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Matcher/AnnotationScanMatcher.php">
+        <class name="Ytake\LaravelAspect\Matcher\AnnotationScanMatcher" namespace="Ytake\LaravelAspect\Matcher">
+          <metrics complexity="7" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="19" coveredelements="0"/>
+        </class>
+        <line num="38" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="48" type="method" name="matchesClass" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <line num="59" type="method" name="has" visibility="private" complexity="4" crap="20" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="63" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="82" type="method" name="matchesMethod" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="84" type="stmt" count="0"/>
+        <line num="86" type="stmt" count="0"/>
+        <metrics loc="88" ncloc="50" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="19" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Ytake\LaravelAspect\Modules">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/AspectModule.php">
+        <class name="Ytake\LaravelAspect\Modules\AspectModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="2" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        </class>
+        <line num="41" type="method" name="target" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <metrics loc="45" ncloc="19" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/CacheEvictModule.php">
+        <class name="Ytake\LaravelAspect\Modules\CacheEvictModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/CachePutModule.php">
+        <class name="Ytake\LaravelAspect\Modules\CachePutModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/CacheableModule.php">
+        <class name="Ytake\LaravelAspect\Modules\CacheableModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/LogExceptionsModule.php">
+        <class name="Ytake\LaravelAspect\Modules\LogExceptionsModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/LoggableModule.php">
+        <class name="Ytake\LaravelAspect\Modules\LoggableModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/MessageDrivenModule.php">
+        <class name="Ytake\LaravelAspect\Modules\MessageDrivenModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="38" type="stmt" count="1"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/PostConstructModule.php">
+        <class name="Ytake\LaravelAspect\Modules\PostConstructModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/QueryLogModule.php">
+        <class name="Ytake\LaravelAspect\Modules\QueryLogModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/RetryOnFailureModule.php">
+        <class name="Ytake\LaravelAspect\Modules\RetryOnFailureModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Modules/TransactionalModule.php">
+        <class name="Ytake\LaravelAspect\Modules\TransactionalModule" namespace="Ytake\LaravelAspect\Modules">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        </class>
+        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Ytake\LaravelAspect\PointCut">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/CacheEvictPointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\CacheEvictPointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/CachePutPointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\CachePutPointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/CacheablePointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\CacheablePointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/CommonPointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\CommonPointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+        </class>
+        <line num="40" type="method" name="setInterceptor" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="48" type="method" name="withAnnotatedAnyInterceptor" visibility="protected" complexity="2" crap="2" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="51" type="stmt" count="1"/>
+        <line num="54" type="stmt" count="1"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <metrics loc="60" ncloc="34" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/LogExceptionsPointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\LogExceptionsPointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/LoggablePointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\LoggablePointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="41" type="method" name="configure" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="25" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/MessageDrivenPointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\MessageDrivenPointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
+        </class>
+        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/PostConstructPointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\PostConstructPointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="41" type="method" name="configure" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="25" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/QueryLogPointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\QueryLogPointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
+        </class>
+        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="25" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/RetryOnFailurePointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\RetryOnFailurePointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+        </class>
+        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <metrics loc="46" ncloc="22" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/TransactionalPointCut.php">
+        <class name="Ytake\LaravelAspect\PointCut\TransactionalPointCut" namespace="Ytake\LaravelAspect\PointCut">
+          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+    </package>
+    <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/PointCut/PointCutable.php">
+      <metrics loc="35" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="Ytake\LaravelAspect\Queue">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Queue/EagerMessage.php">
+        <class name="Ytake\LaravelAspect\Queue\EagerMessage" namespace="Ytake\LaravelAspect\Queue">
+          <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="2" elements="6" coveredelements="3"/>
+        </class>
+        <line num="37" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="42" type="method" name="handle" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="44" type="stmt" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <metrics loc="46" ncloc="22" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="2" elements="6" coveredelements="3"/>
+      </file>
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Queue/LazyMessage.php">
+        <class name="Ytake\LaravelAspect\Queue\LazyMessage" namespace="Ytake\LaravelAspect\Queue">
+          <metrics complexity="4" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
+        </class>
+        <line num="46" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="48" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="56" type="method" name="handle" visibility="public" complexity="3" crap="3" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="59" type="stmt" count="1"/>
         <line num="60" type="stmt" count="1"/>
         <line num="61" type="stmt" count="1"/>
         <line num="62" type="stmt" count="1"/>
         <line num="63" type="stmt" count="1"/>
         <line num="64" type="stmt" count="1"/>
-        <line num="68" type="stmt" count="1"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="67" type="stmt" count="1"/>
         <line num="69" type="stmt" count="1"/>
         <line num="70" type="stmt" count="1"/>
-        <line num="71" type="stmt" count="1"/>
-        <line num="72" type="stmt" count="1"/>
-        <line num="74" type="stmt" count="1"/>
-        <line num="77" type="stmt" count="1"/>
-        <line num="78" type="stmt" count="1"/>
-        <line num="87" type="method" name="keyName" visibility="protected" complexity="1" crap="1" count="1"/>
-        <line num="89" type="stmt" count="1"/>
-        <metrics loc="91" ncloc="60" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="19" elements="21" coveredelements="21"/>
-      </file>
-      <file name="/var/www/html/src/Interceptor/TransactionalInterceptor.php">
-        <class name="Ytake\LaravelAspect\Interceptor\TransactionalInterceptor" namespace="Ytake\LaravelAspect\Interceptor">
-          <metrics complexity="4" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="14" coveredelements="14"/>
-        </class>
-        <line num="48" type="method" name="invoke" visibility="public" complexity="3" crap="3" count="10"/>
-        <line num="50" type="stmt" count="10"/>
-        <line num="52" type="stmt" count="10"/>
-        <line num="53" type="stmt" count="10"/>
-        <line num="54" type="stmt" count="7"/>
-        <line num="56" type="stmt" count="10"/>
-        <line num="57" type="stmt" count="10"/>
-        <line num="58" type="stmt" count="10"/>
-        <line num="60" type="stmt" count="10"/>
-        <line num="61" type="stmt" count="10"/>
-        <line num="63" type="stmt" count="10"/>
-        <line num="69" type="method" name="setDatabaseManager" visibility="public" complexity="1" crap="1" count="11"/>
-        <line num="71" type="stmt" count="11"/>
-        <line num="72" type="stmt" count="11"/>
-        <metrics loc="73" ncloc="43" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="14" coveredelements="14"/>
-      </file>
-    </package>
-    <package name="Ytake\LaravelAspect\Matcher">
-      <file name="/var/www/html/src/Matcher/AnnotationScanMatcher.php">
-        <class name="Ytake\LaravelAspect\Matcher\AnnotationScanMatcher" namespace="Ytake\LaravelAspect\Matcher">
-          <metrics complexity="7" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="19" coveredelements="19"/>
-        </class>
-        <line num="38" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="40" type="stmt" count="2"/>
-        <line num="41" type="stmt" count="2"/>
-        <line num="42" type="stmt" count="2"/>
-        <line num="43" type="stmt" count="2"/>
-        <line num="48" type="method" name="matchesClass" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="50" type="stmt" count="2"/>
-        <line num="59" type="method" name="has" visibility="private" complexity="4" crap="4" count="2"/>
-        <line num="61" type="stmt" count="2"/>
-        <line num="62" type="stmt" count="2"/>
-        <line num="63" type="stmt" count="2"/>
-        <line num="64" type="stmt" count="2"/>
-        <line num="65" type="stmt" count="2"/>
-        <line num="68" type="stmt" count="2"/>
-        <line num="69" type="stmt" count="1"/>
-        <line num="72" type="stmt" count="2"/>
-        <line num="82" type="method" name="matchesMethod" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="84" type="stmt" count="1"/>
-        <line num="86" type="stmt" count="1"/>
-        <metrics loc="88" ncloc="50" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="19" coveredelements="19"/>
-      </file>
-    </package>
-    <package name="Ytake\LaravelAspect\Modules">
-      <file name="/var/www/html/src/Modules/AspectModule.php">
-        <class name="Ytake\LaravelAspect\Modules\AspectModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="2" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="41" type="method" name="target" visibility="public" complexity="1" crap="1" count="40"/>
-        <line num="43" type="stmt" count="40"/>
-        <metrics loc="45" ncloc="19" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/CacheEvictModule.php">
-        <class name="Ytake\LaravelAspect\Modules\CacheEvictModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="11"/>
-        <line num="38" type="stmt" count="11"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/CachePutModule.php">
-        <class name="Ytake\LaravelAspect\Modules\CachePutModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="38" type="stmt" count="3"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/CacheableModule.php">
-        <class name="Ytake\LaravelAspect\Modules\CacheableModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="20"/>
-        <line num="38" type="stmt" count="20"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/LogExceptionsModule.php">
-        <class name="Ytake\LaravelAspect\Modules\LogExceptionsModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="7"/>
-        <line num="38" type="stmt" count="7"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/LoggableModule.php">
-        <class name="Ytake\LaravelAspect\Modules\LoggableModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="11"/>
-        <line num="38" type="stmt" count="11"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/MessageDrivenModule.php">
-        <class name="Ytake\LaravelAspect\Modules\MessageDrivenModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="38" type="stmt" count="3"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/PostConstructModule.php">
-        <class name="Ytake\LaravelAspect\Modules\PostConstructModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="38" type="stmt" count="1"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/QueryLogModule.php">
-        <class name="Ytake\LaravelAspect\Modules\QueryLogModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="38" type="stmt" count="3"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/RetryOnFailureModule.php">
-        <class name="Ytake\LaravelAspect\Modules\RetryOnFailureModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="38" type="stmt" count="1"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-      <file name="/var/www/html/src/Modules/TransactionalModule.php">
-        <class name="Ytake\LaravelAspect\Modules\TransactionalModule" namespace="Ytake\LaravelAspect\Modules">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-        </class>
-        <line num="36" type="method" name="registerPointCut" visibility="public" complexity="1" crap="1" count="11"/>
-        <line num="38" type="stmt" count="11"/>
-        <metrics loc="40" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
-      </file>
-    </package>
-    <package name="Ytake\LaravelAspect\PointCut">
-      <file name="/var/www/html/src/PointCut/CacheEvictPointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\CacheEvictPointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-        </class>
-        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="1" count="11"/>
-        <line num="42" type="stmt" count="11"/>
-        <line num="43" type="stmt" count="11"/>
-        <line num="44" type="stmt" count="11"/>
-        <line num="46" type="stmt" count="11"/>
-        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/CachePutPointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\CachePutPointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-        </class>
-        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="42" type="stmt" count="3"/>
-        <line num="43" type="stmt" count="3"/>
-        <line num="44" type="stmt" count="3"/>
-        <line num="46" type="stmt" count="3"/>
-        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/CacheablePointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\CacheablePointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-        </class>
-        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="1" count="20"/>
-        <line num="42" type="stmt" count="20"/>
-        <line num="43" type="stmt" count="20"/>
-        <line num="44" type="stmt" count="20"/>
-        <line num="46" type="stmt" count="20"/>
-        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/CommonPointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\CommonPointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
-        </class>
-        <line num="40" type="method" name="setInterceptor" visibility="protected" complexity="1" crap="1" count="39"/>
-        <line num="42" type="stmt" count="39"/>
-        <line num="43" type="stmt" count="39"/>
-        <line num="48" type="method" name="withAnnotatedAnyInterceptor" visibility="protected" complexity="2" crap="2" count="39"/>
-        <line num="50" type="stmt" count="39"/>
-        <line num="51" type="stmt" count="39"/>
-        <line num="54" type="stmt" count="39"/>
-        <line num="55" type="stmt" count="39"/>
-        <line num="56" type="stmt" count="39"/>
-        <line num="57" type="stmt" count="39"/>
-        <metrics loc="60" ncloc="34" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/LogExceptionsPointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\LogExceptionsPointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-        </class>
-        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="1" count="7"/>
-        <line num="42" type="stmt" count="7"/>
-        <line num="43" type="stmt" count="7"/>
-        <line num="44" type="stmt" count="7"/>
-        <line num="46" type="stmt" count="7"/>
-        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/LoggablePointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\LoggablePointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-        </class>
-        <line num="41" type="method" name="configure" visibility="public" complexity="1" crap="1" count="11"/>
-        <line num="43" type="stmt" count="11"/>
-        <line num="44" type="stmt" count="11"/>
-        <line num="45" type="stmt" count="11"/>
-        <line num="47" type="stmt" count="11"/>
-        <metrics loc="49" ncloc="25" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/MessageDrivenPointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\MessageDrivenPointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-        </class>
-        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="42" type="stmt" count="3"/>
-        <line num="43" type="stmt" count="3"/>
-        <line num="44" type="stmt" count="3"/>
-        <line num="46" type="stmt" count="3"/>
-        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/PostConstructPointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\PostConstructPointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-        </class>
-        <line num="41" type="method" name="configure" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="43" type="stmt" count="1"/>
-        <line num="44" type="stmt" count="1"/>
-        <line num="45" type="stmt" count="1"/>
-        <line num="46" type="stmt" count="1"/>
-        <metrics loc="49" ncloc="25" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/QueryLogPointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\QueryLogPointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="6" coveredelements="6"/>
-        </class>
-        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="42" type="stmt" count="3"/>
-        <line num="43" type="stmt" count="3"/>
-        <line num="44" type="stmt" count="3"/>
-        <line num="45" type="stmt" count="3"/>
-        <line num="47" type="stmt" count="3"/>
-        <metrics loc="49" ncloc="25" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="6" coveredelements="6"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/RetryOnFailurePointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\RetryOnFailurePointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
-        </class>
-        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="42" type="stmt" count="1"/>
-        <line num="44" type="stmt" count="1"/>
-        <metrics loc="46" ncloc="22" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
-      </file>
-      <file name="/var/www/html/src/PointCut/TransactionalPointCut.php">
-        <class name="Ytake\LaravelAspect\PointCut\TransactionalPointCut" namespace="Ytake\LaravelAspect\PointCut">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-        </class>
-        <line num="40" type="method" name="configure" visibility="public" complexity="1" crap="1" count="11"/>
-        <line num="42" type="stmt" count="11"/>
-        <line num="43" type="stmt" count="11"/>
-        <line num="44" type="stmt" count="11"/>
-        <line num="46" type="stmt" count="11"/>
-        <metrics loc="48" ncloc="24" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="5" coveredelements="5"/>
-      </file>
-    </package>
-    <file name="/var/www/html/src/PointCut/PointCutable.php">
-      <metrics loc="35" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
-    </file>
-    <package name="Ytake\LaravelAspect\Queue">
-      <file name="/var/www/html/src/Queue/EagerMessage.php">
-        <class name="Ytake\LaravelAspect\Queue\EagerMessage" namespace="Ytake\LaravelAspect\Queue">
-          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
-        </class>
-        <line num="37" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="39" type="stmt" count="3"/>
-        <line num="40" type="stmt" count="3"/>
-        <line num="42" type="method" name="handle" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="44" type="stmt" count="1"/>
-        <line num="45" type="stmt" count="1"/>
-        <metrics loc="46" ncloc="22" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
-      </file>
-      <file name="/var/www/html/src/Queue/LazyMessage.php">
-        <class name="Ytake\LaravelAspect\Queue\LazyMessage" namespace="Ytake\LaravelAspect\Queue">
-          <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
-        </class>
-        <line num="44" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="46" type="stmt" count="2"/>
-        <line num="47" type="stmt" count="2"/>
-        <line num="54" type="method" name="handle" visibility="public" complexity="2" crap="2" count="2"/>
-        <line num="56" type="stmt" count="2"/>
-        <line num="57" type="stmt" count="2"/>
-        <line num="58" type="stmt" count="2"/>
-        <line num="59" type="stmt" count="2"/>
-        <line num="61" type="stmt" count="2"/>
-        <line num="62" type="stmt" count="2"/>
-        <line num="64" type="stmt" count="2"/>
-        <line num="67" type="stmt" count="2"/>
-        <metrics loc="68" ncloc="39" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
+        <line num="75" type="stmt" count="1"/>
+        <metrics loc="76" ncloc="47" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
       </file>
     </package>
     <package name="Ytake\LaravelAspect\Transaction">
-      <file name="/var/www/html/src/Transaction/Execute.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Transaction/Execute.php">
         <class name="Ytake\LaravelAspect\Transaction\Execute" namespace="Ytake\LaravelAspect\Transaction">
-          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+          <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
         </class>
-        <line num="38" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
-        <line num="40" type="stmt" count="10"/>
-        <line num="41" type="stmt" count="10"/>
-        <line num="50" type="method" name="__invoke" visibility="public" complexity="1" crap="1" count="10"/>
-        <line num="55" type="stmt" count="10"/>
-        <metrics loc="57" ncloc="26" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
+        <line num="38" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="50" type="method" name="__invoke" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <metrics loc="57" ncloc="26" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Transaction/Runner.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Transaction/Runner.php">
         <class name="Ytake\LaravelAspect\Transaction\Runner" namespace="Ytake\LaravelAspect\Transaction">
-          <metrics complexity="3" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="5" elements="9" coveredelements="6"/>
+          <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
         </class>
-        <line num="40" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
-        <line num="42" type="stmt" count="10"/>
-        <line num="43" type="stmt" count="10"/>
-        <line num="52" type="method" name="__invoke" visibility="public" complexity="2" crap="2.26" count="10"/>
-        <line num="54" type="stmt" count="10"/>
-        <line num="55" type="stmt" count="10"/>
+        <line num="40" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="42" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="0"/>
+        <line num="52" type="method" name="__invoke" visibility="public" complexity="2" crap="6" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="55" type="stmt" count="0"/>
         <line num="57" type="stmt" count="0"/>
         <line num="58" type="stmt" count="0"/>
-        <line num="61" type="stmt" count="10"/>
-        <metrics loc="63" ncloc="32" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="5" elements="9" coveredelements="6"/>
+        <line num="61" type="stmt" count="0"/>
+        <metrics loc="63" ncloc="32" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
       </file>
-      <file name="/var/www/html/src/Transaction/TransactionInvoker.php">
+      <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Transaction/TransactionInvoker.php">
         <class name="Ytake\LaravelAspect\Transaction\TransactionInvoker" namespace="Ytake\LaravelAspect\Transaction">
-          <metrics complexity="5" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="18" coveredelements="18"/>
+          <metrics complexity="5" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="18" coveredelements="0"/>
         </class>
-        <line num="38" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
-        <line num="40" type="stmt" count="10"/>
-        <line num="41" type="stmt" count="10"/>
-        <line num="51" type="method" name="__invoke" visibility="public" complexity="4" crap="4" count="10"/>
-        <line num="53" type="stmt" count="10"/>
-        <line num="54" type="stmt" count="10"/>
-        <line num="56" type="stmt" count="10"/>
-        <line num="57" type="stmt" count="6"/>
-        <line num="58" type="stmt" count="4"/>
-        <line num="60" type="stmt" count="4"/>
-        <line num="61" type="stmt" count="2"/>
-        <line num="62" type="stmt" count="2"/>
-        <line num="64" type="stmt" count="2"/>
-        <line num="65" type="stmt" count="1"/>
-        <line num="66" type="stmt" count="1"/>
-        <line num="68" type="stmt" count="1"/>
-        <line num="69" type="stmt" count="1"/>
-        <line num="72" type="stmt" count="6"/>
-        <metrics loc="74" ncloc="40" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="18" coveredelements="18"/>
+        <line num="38" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="51" type="method" name="__invoke" visibility="public" complexity="4" crap="20" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <metrics loc="74" ncloc="40" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="18" coveredelements="0"/>
       </file>
     </package>
-    <file name="/var/www/html/src/Transaction/Runnable.php">
+    <file name="/Applications/MAMP/htdocs/Laravel-Aspect/src/Transaction/Runnable.php">
       <metrics loc="42" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <metrics files="70" loc="4104" ncloc="2176" classes="53" methods="93" coveredmethods="84" conditionals="0" coveredconditionals="0" statements="435" coveredstatements="420" elements="528" coveredelements="504"/>
+    <metrics files="70" loc="4112" ncloc="2184" classes="53" methods="93" coveredmethods="24" conditionals="0" coveredconditionals="0" statements="439" coveredstatements="123" elements="532" coveredelements="147"/>
   </project>
 </coverage>

@@ -8,7 +8,7 @@ class AspectBindTest extends AspectTestCase
     /** @var \Illuminate\Filesystem\Filesystem */
     protected $file;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->file = $this->app['files'];
@@ -36,7 +36,7 @@ class AspectBindTest extends AspectTestCase
         $this->assertTrue($this->file->exists($this->getDir()));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->file->deleteDirectory($this->getDir());
         parent::tearDown();
