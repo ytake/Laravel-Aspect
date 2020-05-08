@@ -34,12 +34,7 @@ This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com
 ### install 
 
 ```bash
-# laravel5.5, 5.6, 5.7
 $ composer require ytake/laravel-aspect
-# laravel5.4, 5.3, 5.2
-$ composer require --no-update ytake/laravel-aspect && composer update
-# or hhvm
-$ hhvm $(which composer) require --no-update ytake/laravel-aspect && hhvm $(which composer) update
 ```
 
 *Supported Auto-Discovery(^Laravel5.5)*
