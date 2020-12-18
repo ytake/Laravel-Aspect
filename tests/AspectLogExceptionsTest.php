@@ -83,7 +83,7 @@ class AspectLogExceptionsTest extends \AspectTestCase
         try {
             $logger->expectNoException();
         } catch (\Ytake\LaravelAspect\Exception\FileNotFoundException $e) {
-            $this->assertFileNotExists($this->getDir() . '/.testing.exceptions.log');
+            $this->assertFileDoesNotExist($this->getDir() . '/.testing.exceptions.log');
         }
         $this->app['files']->deleteDirectory($this->getDir());
     }

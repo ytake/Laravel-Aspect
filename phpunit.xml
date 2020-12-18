@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
-         colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="false"
-        >
-    <testsuites>
-        <testsuite name="Application Test Suite">
-            <directory suffix="Test.php">./tests/</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory>./src</directory>
-            <exclude>
-                <directory>./src/config</directory>
-                <file>./src/AspectServiceProvider.php</file>
-                <file>./src/CompileServiceProvider.php</file>
-                <file>./src/ConsoleServiceProvider.php</file>
-            </exclude>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-        <log type="coverage-clover" target="tests/logs/clover.xml"/>
-    </logging>
-    <php>
-        <includePath>./tests</includePath>
-    </php>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" backupStaticAttributes="false" bootstrap="vendor/autoload.php" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory>./src</directory>
+    </include>
+    <exclude>
+      <directory>./src/config</directory>
+      <file>./src/AspectServiceProvider.php</file>
+      <file>./src/CompileServiceProvider.php</file>
+      <file>./src/ConsoleServiceProvider.php</file>
+    </exclude>
+    <report>
+      <clover outputFile="tests/logs/clover.xml"/>
+      <text outputFile="php://stdout" showUncoveredFiles="false"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="Application Test Suite">
+      <directory suffix="Test.php">./tests/</directory>
+    </testsuite>
+  </testsuites>
+  <logging/>
+  <php>
+    <includePath>./tests</includePath>
+  </php>
 </phpunit>

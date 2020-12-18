@@ -55,12 +55,6 @@ class RayAspectKernel implements AspectDriverInterface
     /** @var bool */
     protected $forceCompile = false;
 
-    /** @var AspectModule */
-    protected $aspectResolver;
-
-    /** @var AspectModule[] */
-    protected $registerModules = [];
-
     /** @var AspectModule[] */
     protected $modules = [];
 
