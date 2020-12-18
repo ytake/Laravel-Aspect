@@ -91,11 +91,6 @@ class AspectTestCase extends \PHPUnit\Framework\TestCase
             return new \Illuminate\Config\Repository;
         });
         $logManager = new \Illuminate\Log\LogManager($this->app);
-        /*
-        $logManager->extend('testing', function (\Illuminate\Log\LogManager $log) {
-            var_dump($log);
-        });
-        */
         $this->app->instance('log', $logManager);
         $this->app->instance('Psr\Log\LoggerInterface', $logManager);
         $eventProvider = new \Illuminate\Events\EventServiceProvider($this->app);
