@@ -25,7 +25,7 @@ use Ytake\LaravelAspect\Console\ClearCacheCommand;
 use Ytake\LaravelAspect\Console\ModulePublishCommand;
 
 /**
- * Class AspectServiceProvider
+ * Class ConsoleServiceProvider
  */
 class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvider
 {
