@@ -1,7 +1,7 @@
 # Laravel-Aspect
 aspect-oriented programming Package for laravel framework
 
-[![Build Status](http://img.shields.io/travis/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://travis-ci.org/ytake/Laravel-Aspect)
+![Build Status](https://github.com/ytake/Laravel-Aspect/workflows/Tests/badge.svg?branch=master)
 [![Coverage Status](http://img.shields.io/coveralls/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://coveralls.io/r/ytake/Laravel-Aspect?branch=master)
 [![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/ytake/Laravel-Aspect.svg?style=flat-square)](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/?branch=master)
 
