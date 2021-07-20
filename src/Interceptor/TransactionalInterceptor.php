@@ -70,7 +70,7 @@ class TransactionalInterceptor implements MethodInterceptor
         $annotation->expect = is_array($annotation->expect) ? $annotation->expect : [$annotation->expect];
         $result = [QueryException::class];
         foreach ($annotation->expect as $expected) {
-            $result[] = $expected;
+            $result[] = ltrim($expected, '\\');
         }
         return $result;
     }
