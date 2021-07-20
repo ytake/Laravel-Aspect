@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -34,7 +35,7 @@ class LoggablePointCut extends CommonPointCut implements PointCutable
     protected $annotation = Loggable::class;
 
     /**
-     * @param Container $app
+     * @param  Container  $app
      *
      * @return \Ray\Aop\Pointcut
      */

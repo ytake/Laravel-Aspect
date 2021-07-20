@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -29,7 +30,7 @@ use function is_array;
 class CachePutInterceptor extends AbstractCache
 {
     /**
-     * @param MethodInvocation|\Ray\Aop\ReflectiveMethodInvocation $invocation
+     * @param  MethodInvocation|\Ray\Aop\ReflectiveMethodInvocation  $invocation
      *
      * @return mixed
      */

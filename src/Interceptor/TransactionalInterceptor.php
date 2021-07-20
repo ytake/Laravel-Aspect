@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,13 +20,13 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Ray\Aop\MethodInvocation;
-use Ray\Aop\MethodInterceptor;
 use Illuminate\Database\DatabaseManager;
-use Ytake\LaravelAspect\Transaction\Runner;
-use Ytake\LaravelAspect\Transaction\Execute;
-use Ytake\LaravelAspect\Transaction\TransactionInvoker;
+use Ray\Aop\MethodInterceptor;
+use Ray\Aop\MethodInvocation;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Transaction\Execute;
+use Ytake\LaravelAspect\Transaction\Runner;
+use Ytake\LaravelAspect\Transaction\TransactionInvoker;
 
 use function is_array;
 
@@ -40,7 +41,7 @@ class TransactionalInterceptor implements MethodInterceptor
     protected static $databaseManager;
 
     /**
-     * @param MethodInvocation $invocation
+     * @param  MethodInvocation  $invocation
      *
      * @return object
      * @throws \Exception
@@ -64,7 +65,7 @@ class TransactionalInterceptor implements MethodInterceptor
     }
 
     /**
-     * @param DatabaseManager $databaseManager
+     * @param  DatabaseManager  $databaseManager
      */
     public function setDatabaseManager(DatabaseManager $databaseManager): void
     {

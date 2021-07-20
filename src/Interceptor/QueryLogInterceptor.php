@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -44,7 +45,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     protected $queryLogs = [];
 
     /**
-     * @param MethodInvocation $invocation
+     * @param  MethodInvocation  $invocation
      *
      * @return object
      * @throws \Exception
@@ -72,17 +73,17 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     {
         static::$dispatcher->listen(QueryExecuted::class, function (QueryExecuted $executed) {
             $this->queryLogs[] = [
-                'query'          => $executed->sql,
-                'bindings'       => $executed->bindings,
-                'time'           => $executed->time,
+                'query' => $executed->sql,
+                'bindings' => $executed->bindings,
+                'time' => $executed->time,
                 'connectionName' => $executed->connectionName,
             ];
         });
     }
 
     /**
-     * @param QueryLog         $annotation
-     * @param MethodInvocation $invocation
+     * @param  QueryLog          $annotation
+     * @param  MethodInvocation  $invocation
      *
      * @return array
      */
@@ -91,7 +92,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
         MethodInvocation $invocation
     ): array {
         return [
-            'level'   => $annotation->value,
+            'level' => $annotation->value,
             'message' => sprintf(
                 $this->format,
                 $annotation->name,
@@ -105,7 +106,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     }
 
     /**
-     * @param EventDispatcher $dispatcher
+     * @param  EventDispatcher  $dispatcher
      */
     public function setDispatcher(EventDispatcher $dispatcher): void
     {

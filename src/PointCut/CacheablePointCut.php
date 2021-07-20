@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -33,7 +34,7 @@ class CacheablePointCut extends CommonPointCut implements PointCutable
     protected $annotation = Cacheable::class;
 
     /**
-     * @param Container $app
+     * @param  Container  $app
      *
      * @return \Ray\Aop\Pointcut
      */

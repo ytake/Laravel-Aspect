@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,8 +20,8 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Annotation;
 
-use Monolog\Logger;
 use Doctrine\Common\Annotations\Annotation;
+use Monolog\Logger;
 
 /**
  * @Annotation
@@ -31,9 +32,9 @@ class Loggable extends LoggableAnnotate
     /** @var int  Log level */
     public $value = Logger::INFO;
 
-    /** @var bool  */
+    /** @var bool */
     public $skipResult = false;
 
-    /** @var string  */
+    /** @var string */
     public $name = 'Loggable';
 }

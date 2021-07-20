@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,8 +20,8 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Modules;
 
-use Ytake\LaravelAspect\PointCut\PointCutable;
 use Ytake\LaravelAspect\PointCut\CacheEvictPointCut;
+use Ytake\LaravelAspect\PointCut\PointCutable;
 
 /**
  * Class CacheEvictModule

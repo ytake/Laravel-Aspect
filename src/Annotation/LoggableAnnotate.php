@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -26,7 +27,7 @@ use Doctrine\Common\Annotations\Annotation;
  */
 abstract class LoggableAnnotate extends Annotation
 {
-    /** @var string  */
+    /** @var string */
     public $name = 'Logger';
 
     /** @var string|null */

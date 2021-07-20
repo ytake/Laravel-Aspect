@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -22,10 +23,10 @@ namespace Ytake\LaravelAspect;
 use Illuminate\Filesystem\Filesystem;
 use Ray\Aop\Bind;
 
-use function str_replace;
-use function serialize;
-use function unserialize;
 use function file_get_contents;
+use function serialize;
+use function str_replace;
+use function unserialize;
 
 /**
  * Class AspectBind
@@ -47,9 +48,9 @@ class AspectBind
     /**
      * AspectBind constructor.
      *
-     * @param Filesystem $filesystem
-     * @param string     $path
-     * @param bool       $cacheable
+     * @param  Filesystem  $filesystem
+     * @param  string      $path
+     * @param  bool        $cacheable
      */
     public function __construct(
         Filesystem $filesystem,
@@ -62,8 +63,9 @@ class AspectBind
     }
 
     /**
-     * @param string $class
-     * @param array $pointcuts
+     * @param  string  $class
+     * @param  array   $pointcuts
+     *
      * @return mixed|\Ray\Aop\BindInterface
      * @throws \Doctrine\Common\Annotations\AnnotationException
      * @throws \ReflectionException
@@ -74,7 +76,7 @@ class AspectBind
             return (new Bind)->bind($class, $pointcuts);
         }
         $className = str_replace("\\", "_", $class);
-        $filePath = $this->path . "/{$className}" . $this->extension;
+        $filePath = $this->path."/{$className}".$this->extension;
         if (!$this->filesystem->exists($filePath)) {
             $this->makeCacheDir($this->path);
             $bind = (new Bind)->bind($class, $pointcuts);
@@ -85,7 +87,7 @@ class AspectBind
     }
 
     /**
-     * @param string $path
+     * @param  string  $path
      */
     private function makeCacheDir(string $path): void
     {

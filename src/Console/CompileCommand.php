@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -39,7 +40,7 @@ class CompileCommand extends Command
     /**
      * CompileCommand constructor.
      *
-     * @param AspectManager $aspectManager
+     * @param  AspectManager  $aspectManager
      */
     public function __construct(AspectManager $aspectManager)
     {

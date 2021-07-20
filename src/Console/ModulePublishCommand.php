@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,13 +20,14 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Console;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
+use ReflectionClass;
 use Symfony\Component\Console\Input\InputArgument;
 
-use function trim;
 use function str_replace;
+use function trim;
 
 /**
  * Class ModulePublishCommand
@@ -48,20 +50,20 @@ class ModulePublishCommand extends Command
 
     /** @var array  package modules */
     protected $modules = [
-        'CacheableModule'      => 'Ytake\LaravelAspect\Modules\CacheableModule',
-        'CacheEvictModule'     => 'Ytake\LaravelAspect\Modules\CacheEvictModule',
-        'CachePutModule'       => 'Ytake\LaravelAspect\Modules\CachePutModule',
-        'TransactionalModule'  => 'Ytake\LaravelAspect\Modules\TransactionalModule',
-        'LoggableModule'       => 'Ytake\LaravelAspect\Modules\LoggableModule',
-        'LogExceptionsModule'  => 'Ytake\LaravelAspect\Modules\LogExceptionsModule',
-        'PostConstructModule'  => 'Ytake\LaravelAspect\Modules\PostConstructModule',
+        'CacheableModule' => 'Ytake\LaravelAspect\Modules\CacheableModule',
+        'CacheEvictModule' => 'Ytake\LaravelAspect\Modules\CacheEvictModule',
+        'CachePutModule' => 'Ytake\LaravelAspect\Modules\CachePutModule',
+        'TransactionalModule' => 'Ytake\LaravelAspect\Modules\TransactionalModule',
+        'LoggableModule' => 'Ytake\LaravelAspect\Modules\LoggableModule',
+        'LogExceptionsModule' => 'Ytake\LaravelAspect\Modules\LogExceptionsModule',
+        'PostConstructModule' => 'Ytake\LaravelAspect\Modules\PostConstructModule',
         'RetryOnFailureModule' => 'Ytake\LaravelAspect\Modules\RetryOnFailureModule',
-        'MessageDrivenModule'  => 'Ytake\LaravelAspect\Modules\MessageDrivenModule',
-        'QueryLogModule'       => 'Ytake\LaravelAspect\Modules\QueryLogModule',
+        'MessageDrivenModule' => 'Ytake\LaravelAspect\Modules\MessageDrivenModule',
+        'QueryLogModule' => 'Ytake\LaravelAspect\Modules\QueryLogModule',
     ];
 
     /**
-     * @param Filesystem $filesystem
+     * @param  Filesystem  $filesystem
      */
     public function __construct(Filesystem $filesystem)
     {
@@ -91,31 +93,21 @@ class ModulePublishCommand extends Command
                     'DummyModuleClass',
                 ],
                 [
-                    $this->laravel->getNamespace() . $this->argument('module_dir'),
+                    $this->laravel->getNamespace().$this->argument('module_dir'),
                     $className,
-                    $module . ' as ' . $extendClassName,
+                    $module.' as '.$extendClassName,
                     $extendClassName,
                 ],
                 $stub
             );
             $this->makeDirectory($path);
             $this->filesystem->put($path, $source);
-            $this->info($path . ' created successfully.');
+            $this->info($path.' created successfully.');
         }
     }
 
     /**
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            ['module_dir', InputArgument::OPTIONAL, 'The name of the class directory', $this->classPath],
-        ];
-    }
-
-    /**
-     * @param string $name
+     * @param  string  $name
      *
      * @return string
      */
@@ -123,14 +115,14 @@ class ModulePublishCommand extends Command
     {
         $name = str_replace($this->laravel->getNamespace(), '', $name);
 
-        return $this->laravel['path'] . '/' . str_replace('\\', '/', $name) . '.php';
+        return $this->laravel['path'].'/'.str_replace('\\', '/', $name).'.php';
     }
 
     /**
      * Parse the name and format according to the root namespace.
      *
-     * @param string      $name
-     * @param string|null $moduleDirectory
+     * @param  string       $name
+     * @param  string|null  $moduleDirectory
      *
      * @return string
      */
@@ -147,28 +139,37 @@ class ModulePublishCommand extends Command
         }
 
         return $this->parseClassName(
-            trim($rootNamespace, '\\') . '\\' . $moduleDirectory . '\\' . $name
+            trim($rootNamespace, '\\').'\\'.$moduleDirectory.'\\'.$name
         );
     }
 
     /**
-     * added custom aspect module, override package modules
-     *
-     * @param string $module
-     *
-     * @return ModulePublishCommand
+     * @return string
      */
-    protected function addModule(string $module): self
+    protected function stub(): string
     {
-        $this->modules[$module];
+        /** module stub file path */
+        return __DIR__.'/stub/ModuleStub.stub';
+    }
 
-        return $this;
+    /**
+     * @param  string  $module
+     *
+     * @return string
+     * @throws \ReflectionException
+     */
+    protected function getExtendsClassName(string $module): string
+    {
+        $shortName = (new ReflectionClass($module))->getShortName();
+        $extendClassName = "Package{$shortName}";
+
+        return $extendClassName;
     }
 
     /**
      * Build the directory for the class if necessary.
      *
-     * @param  string $path
+     * @param  string  $path
      */
     protected function makeDirectory(string $path): void
     {
@@ -178,25 +179,26 @@ class ModulePublishCommand extends Command
     }
 
     /**
-     * @param string $module
-     *
-     * @return string
-     * @throws \ReflectionException
+     * @return array
      */
-    protected function getExtendsClassName(string $module): string
+    protected function getArguments()
     {
-        $shortName = (new \ReflectionClass($module))->getShortName();
-        $extendClassName = "Package{$shortName}";
-
-        return $extendClassName;
+        return [
+            ['module_dir', InputArgument::OPTIONAL, 'The name of the class directory', $this->classPath],
+        ];
     }
 
     /**
-     * @return string
+     * added custom aspect module, override package modules
+     *
+     * @param  string  $module
+     *
+     * @return ModulePublishCommand
      */
-    protected function stub(): string
+    protected function addModule(string $module): self
     {
-        /** module stub file path */
-        return __DIR__ . '/stub/ModuleStub.stub';
+        $this->modules[$module];
+
+        return $this;
     }
 }

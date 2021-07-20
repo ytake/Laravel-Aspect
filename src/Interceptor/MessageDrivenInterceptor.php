@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -16,16 +17,17 @@ declare(strict_types=1);
  * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Ray\Aop\MethodInvocation;
-use Ray\Aop\MethodInterceptor;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Ytake\LaravelAspect\Queue\LazyMessage;
-use Ytake\LaravelAspect\Queue\EagerMessage;
+use Ray\Aop\MethodInterceptor;
+use Ray\Aop\MethodInvocation;
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Ytake\LaravelAspect\Annotation\LazyQueue;
 use Ytake\LaravelAspect\Annotation\MessageDriven;
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Queue\EagerMessage;
+use Ytake\LaravelAspect\Queue\LazyMessage;
 
 /**
  * Class MessageDrivenInterceptor
@@ -38,7 +40,7 @@ class MessageDrivenInterceptor implements MethodInterceptor
     protected static $dispatcher;
 
     /**
-     * @param MethodInvocation $invocation
+     * @param  MethodInvocation  $invocation
      *
      * @return object
      * @throws \Exception
@@ -59,7 +61,7 @@ class MessageDrivenInterceptor implements MethodInterceptor
     }
 
     /**
-     * @param Dispatcher $dispatcher
+     * @param  Dispatcher  $dispatcher
      */
     public function setBusDispatcher(Dispatcher $dispatcher)
     {

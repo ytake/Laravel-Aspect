@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -16,10 +17,11 @@ declare(strict_types=1);
  * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Annotation;
 
-use Monolog\Logger;
 use Doctrine\Common\Annotations\Annotation;
+use Monolog\Logger;
 
 /**
  * Class QueryLog
@@ -32,7 +34,7 @@ class QueryLog extends Annotation
     /** @var int  Log level */
     public $value = Logger::INFO;
 
-    /** @var string  */
+    /** @var string */
     public $name = 'QueryLog';
 
     /** @var string|null */

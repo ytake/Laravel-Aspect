@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -27,9 +28,9 @@ use Illuminate\Database\DatabaseManager;
 interface Runnable
 {
     /**
-     * @param DatabaseManager $databaseManager
-     * @param string          $exceptionName
-     * @param callable        $invoker
+     * @param  DatabaseManager  $databaseManager
+     * @param  string           $exceptionName
+     * @param  callable         $invoker
      *
      * @return mixed
      * @throws \Exception

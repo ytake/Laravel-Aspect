@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -32,7 +33,7 @@ final class EagerMessage
     /**
      * LazyMessage constructor.
      *
-     * @param MethodInvocation $invocation
+     * @param  MethodInvocation  $invocation
      */
     public function __construct(MethodInvocation $invocation)
     {

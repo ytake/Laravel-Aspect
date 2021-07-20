@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -35,7 +36,7 @@ final class Runner
     /**
      * Runner constructor.
      *
-     * @param array $invoker
+     * @param  array  $invoker
      */
     public function __construct(array $invoker = [])
     {
@@ -43,8 +44,8 @@ final class Runner
     }
 
     /**
-     * @param DatabaseManager $databaseManager
-     * @param string          $exceptionName
+     * @param  DatabaseManager  $databaseManager
+     * @param  string           $exceptionName
      *
      * @return \Closure|mixed
      * @throws \Exception

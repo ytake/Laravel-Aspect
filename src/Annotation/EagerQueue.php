@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -16,6 +17,7 @@ declare(strict_types=1);
  * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;

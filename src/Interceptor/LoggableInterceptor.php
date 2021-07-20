@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -36,7 +37,7 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
     use AnnotationReaderTrait;
 
     /**
-     * @param MethodInvocation $invocation
+     * @param  MethodInvocation  $invocation
      *
      * @return object
      * @throws \Exception

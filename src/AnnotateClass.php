@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -31,7 +32,7 @@ use function unserialize;
 final class AnnotateClass
 {
     /**
-     * @param WeavedInterface $weavedInstance
+     * @param  WeavedInterface  $weavedInstance
      *
      * @return string
      */

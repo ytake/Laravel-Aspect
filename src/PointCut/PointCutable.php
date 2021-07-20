@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -28,7 +29,8 @@ use Ray\Aop\Pointcut;
 interface PointCutable
 {
     /**
-     * @param Container $app
+     * @param  Container  $app
+     *
      * @return \Ray\Aop\Pointcut
      */
     public function configure(Container $app): PointCut;

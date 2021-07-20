@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,6 +20,7 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Transaction;
 
+use Exception;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\QueryException;
 
@@ -33,7 +35,7 @@ class TransactionInvoker implements Runnable
     /**
      * TransactionInvoker constructor.
      *
-     * @param string|null $connection
+     * @param  string|null  $connection
      */
     public function __construct($connection)
     {
@@ -41,9 +43,9 @@ class TransactionInvoker implements Runnable
     }
 
     /**
-     * @param DatabaseManager $databaseManager
-     * @param string          $exceptionName
-     * @param callable        $invoker
+     * @param  DatabaseManager  $databaseManager
+     * @param  string           $exceptionName
+     * @param  callable         $invoker
      *
      * @return mixed
      * @throws \Exception
@@ -55,7 +57,7 @@ class TransactionInvoker implements Runnable
         try {
             $result = $invoker($databaseManager, $exceptionName);
             $database->commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             // for default Exception
             if ($exception instanceof QueryException) {
                 $database->rollBack();

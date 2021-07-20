@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,23 +20,24 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Illuminate\Contracts\Cache\Repository;
-use Ray\Aop\MethodInvocation;
-use Ray\Aop\MethodInterceptor;
+use Doctrine\Common\Annotations\Annotation;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Factory;
-use Doctrine\Common\Annotations\Annotation;
+use Illuminate\Contracts\Cache\Repository;
+use InvalidArgumentException;
+use Ray\Aop\MethodInterceptor;
+use Ray\Aop\MethodInvocation;
 use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Ytake\LaravelAspect\Annotation\Cacheable;
 use Ytake\LaravelAspect\Annotation\CacheEvict;
 use Ytake\LaravelAspect\Annotation\CachePut;
 
-use function in_array;
-use function is_array;
-use function is_object;
-use function is_null;
 use function count;
 use function get_class;
+use function in_array;
+use function is_array;
+use function is_null;
+use function is_object;
 
 /**
  * Class AbstractCache
@@ -44,22 +46,31 @@ abstract class AbstractCache implements MethodInterceptor
 {
     use AnnotationReaderTrait;
 
+    /** @var Factory|\Illuminate\Cache\CacheManager */
+    protected static $factory;
     /** @var string */
     protected $join = ":";
 
-    /** @var Factory|\Illuminate\Cache\CacheManager */
-    protected static $factory;
+    /**
+     * set cache instance
+     *
+     * @param  Factory  $factory
+     */
+    public function setCache(Factory $factory): void
+    {
+        static::$factory = $factory;
+    }
 
     /**
-     * @param string|array     $name
-     * @param MethodInvocation $invocation
+     * @param  string|array      $name
+     * @param  MethodInvocation  $invocation
      *
      * @return array
      */
     protected function generateCacheName($name, MethodInvocation $invocation): array
     {
         if (is_array($name)) {
-            throw new \InvalidArgumentException('Invalid argument');
+            throw new InvalidArgumentException('Invalid argument');
         }
         if (is_null($name)) {
             $name = $invocation->getMethod()->name;
@@ -69,9 +80,9 @@ abstract class AbstractCache implements MethodInterceptor
     }
 
     /**
-     * @param MethodInvocation                         $invocation
-     * @param Annotation|Cacheable|CacheEvict|CachePut $annotation
-     * @param array                                    $keys
+     * @param  MethodInvocation                          $invocation
+     * @param  Annotation|Cacheable|CacheEvict|CachePut  $annotation
+     * @param  array                                     $keys
      *
      * @return array
      */
@@ -83,7 +94,7 @@ abstract class AbstractCache implements MethodInterceptor
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
             // exclude object
-            if (in_array('#' . $parameter->name, $annotation->key)) {
+            if (in_array('#'.$parameter->name, $annotation->key)) {
                 if (isset($arguments[$parameter->getPosition()])) {
                     if (!is_object($arguments[$parameter->getPosition()])) {
                         $keys[] = $arguments[$parameter->getPosition()];
@@ -120,18 +131,8 @@ abstract class AbstractCache implements MethodInterceptor
     }
 
     /**
-     * set cache instance
-     *
-     * @param Factory $factory
-     */
-    public function setCache(Factory $factory): void
-    {
-        static::$factory = $factory;
-    }
-
-    /**
-     * @param string $glue
-     * @param array  $array
+     * @param  string  $glue
+     * @param  array   $array
      *
      * @return string
      */

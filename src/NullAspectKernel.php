@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -25,7 +26,7 @@ namespace Ytake\LaravelAspect;
 class NullAspectKernel implements AspectDriverInterface
 {
     /**
-     * @param string|null $module
+     * @param  string|null  $module
      */
     public function register(string $module = null): void
     {

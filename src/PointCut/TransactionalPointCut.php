@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -33,7 +34,7 @@ class TransactionalPointCut extends CommonPointCut implements PointCutable
     protected $annotation = Transactional::class;
 
     /**
-     * @param Container $app
+     * @param  Container  $app
      *
      * @return \Ray\Aop\Pointcut
      */
