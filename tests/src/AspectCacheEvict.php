@@ -5,8 +5,8 @@
 
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\Cacheable;
-use Ytake\LaravelAspect\Annotation\CacheEvict;
+use Bssd\LaravelAspect\Annotation\Cacheable;
+use Bssd\LaravelAspect\Annotation\CacheEvict;
 
 /**
  * Class AspectCacheEvict

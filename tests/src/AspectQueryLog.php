@@ -5,8 +5,8 @@
 
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\QueryLog;
-use Ytake\LaravelAspect\Annotation\Transactional;
+use Bssd\LaravelAspect\Annotation\QueryLog;
+use Bssd\LaravelAspect\Annotation\Transactional;
 use Illuminate\Database\ConnectionResolverInterface;
 
 /**

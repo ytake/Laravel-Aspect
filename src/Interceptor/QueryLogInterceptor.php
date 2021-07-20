@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,15 +17,15 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Ytake\LaravelAspect\Annotation\QueryLog;
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Bssd\LaravelAspect\Annotation\QueryLog;
 
 use function is_null;
 use function sprintf;
@@ -45,14 +44,14 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     protected $queryLogs = [];
 
     /**
-     * @param  MethodInvocation  $invocation
+     * @param MethodInvocation $invocation
      *
      * @return object
      * @throws \Exception
      */
     public function invoke(MethodInvocation $invocation)
     {
-        /** @var \Ytake\LaravelAspect\Annotation\QueryLog $annotation */
+        /** @var \Bssd\LaravelAspect\Annotation\QueryLog $annotation */
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         $this->subscribeQueryLog();
         $result = $invocation->proceed();
@@ -73,17 +72,17 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     {
         static::$dispatcher->listen(QueryExecuted::class, function (QueryExecuted $executed) {
             $this->queryLogs[] = [
-                'query' => $executed->sql,
-                'bindings' => $executed->bindings,
-                'time' => $executed->time,
+                'query'          => $executed->sql,
+                'bindings'       => $executed->bindings,
+                'time'           => $executed->time,
                 'connectionName' => $executed->connectionName,
             ];
         });
     }
 
     /**
-     * @param  QueryLog          $annotation
-     * @param  MethodInvocation  $invocation
+     * @param QueryLog         $annotation
+     * @param MethodInvocation $invocation
      *
      * @return array
      */
@@ -92,7 +91,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
         MethodInvocation $invocation
     ): array {
         return [
-            'level' => $annotation->value,
+            'level'   => $annotation->value,
             'message' => sprintf(
                 $this->format,
                 $annotation->name,
@@ -106,7 +105,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     }
 
     /**
-     * @param  EventDispatcher  $dispatcher
+     * @param EventDispatcher $dispatcher
      */
     public function setDispatcher(EventDispatcher $dispatcher): void
     {

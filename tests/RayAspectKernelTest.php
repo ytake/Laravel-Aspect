@@ -2,13 +2,13 @@
 
 class RayAspectKernelTest extends \AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\RayAspectKernel */
+    /** @var \Bssd\LaravelAspect\RayAspectKernel */
     protected $kernel;
     public function setUp(): void
     {
         parent::setUp();
         $aspectConfigure = $this->app['config']->get('ytake-laravel-aop.aspect.drivers');
-        $this->kernel = new \Ytake\LaravelAspect\RayAspectKernel(
+        $this->kernel = new \Bssd\LaravelAspect\RayAspectKernel(
             $this->app,
             $this->app['files'],
             $aspectConfigure['ray']

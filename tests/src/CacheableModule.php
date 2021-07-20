@@ -2,7 +2,7 @@
 
 namespace __Test;
 
-class CacheableModule extends \Ytake\LaravelAspect\Modules\CacheableModule
+class CacheableModule extends \Bssd\LaravelAspect\Modules\CacheableModule
 {
     /**
      * @var array

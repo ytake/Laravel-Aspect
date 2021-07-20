@@ -16,7 +16,7 @@ class AspectBindTest extends AspectTestCase
 
     public function testShouldReturnNoCacheableBindInstance()
     {
-        $bind = new \Ytake\LaravelAspect\AspectBind(
+        $bind = new \Bssd\LaravelAspect\AspectBind(
             $this->file,
             $this->getDir(),
             false
@@ -27,7 +27,7 @@ class AspectBindTest extends AspectTestCase
 
     public function testShouldReturnCacheableBindInstance()
     {
-        $bind = new \Ytake\LaravelAspect\AspectBind(
+        $bind = new \Bssd\LaravelAspect\AspectBind(
             $this->file,
             $this->getDir(),
             true

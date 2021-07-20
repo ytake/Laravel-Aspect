@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,14 +17,14 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect;
+namespace Bssd\LaravelAspect;
 
+use Bssd\LaravelAspect\Annotation;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Ytake\LaravelAspect\Annotation;
 
-use function array_merge;
 use function count;
+use function array_merge;
 
 /**
  * Class AnnotationConfiguration
@@ -55,14 +54,29 @@ class AnnotationConfiguration
     ];
 
     /**
-     * @param  array  $configuration
-     * @param  array  $customAnnotations
+     * @param array $configuration
+     * @param array $customAnnotations
      */
     public function __construct(array $configuration, array $customAnnotations = [])
     {
         $this->configuration = $configuration;
         $this->customAnnotations = $customAnnotations;
         $this->registerAnnotations();
+    }
+
+    /**
+     * Add a new annotation to the globally ignored annotation names with regard to exception handling.
+     */
+    public function ignoredAnnotations(): void
+    {
+        if (isset($this->configuration['ignores'])) {
+            $ignores = $this->configuration['ignores'];
+            if (count($ignores)) {
+                foreach ($ignores as $ignore) {
+                    AnnotationReader::addGlobalIgnoredName($ignore);
+                }
+            }
+        }
     }
 
     protected function registerAnnotations(): void
@@ -79,21 +93,6 @@ class AnnotationConfiguration
         }
         foreach ($this->annotations as $annotation) {
             AnnotationRegistry::loadAnnotationClass($annotation);
-        }
-    }
-
-    /**
-     * Add a new annotation to the globally ignored annotation names with regard to exception handling.
-     */
-    public function ignoredAnnotations(): void
-    {
-        if (isset($this->configuration['ignores'])) {
-            $ignores = $this->configuration['ignores'];
-            if (count($ignores)) {
-                foreach ($ignores as $ignore) {
-                    AnnotationReader::addGlobalIgnoredName($ignore);
-                }
-            }
         }
     }
 }

@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Ytake\LaravelAspect\Annotation\MessageDriven;
-use Ytake\LaravelAspect\Interceptor\MessageDrivenInterceptor;
+use Bssd\LaravelAspect\Annotation\MessageDriven;
+use Bssd\LaravelAspect\Interceptor\MessageDrivenInterceptor;
 
 final class MessageDrivenInterceptorTest extends \AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var \Bssd\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     /** @var  MessageDrivenInterceptor */
@@ -17,7 +17,7 @@ final class MessageDrivenInterceptorTest extends \AspectTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
         $this->interceptor = new MessageDrivenInterceptor;
     }

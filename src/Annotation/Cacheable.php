@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -17,8 +16,7 @@ declare(strict_types=1);
  * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
-
-namespace Ytake\LaravelAspect\Annotation;
+namespace Bssd\LaravelAspect\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
 
@@ -43,6 +41,6 @@ class Cacheable extends Annotation
     /** @var array $tags if use array tagging */
     public $tags = [];
 
-    /** @var bool */
+    /** @var bool  */
     public $negative = false;
 }

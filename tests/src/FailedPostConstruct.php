@@ -5,7 +5,7 @@
  */
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\PostConstruct;
+use Bssd\LaravelAspect\Annotation\PostConstruct;
 
 /**
  * Class FailedPostConstruct

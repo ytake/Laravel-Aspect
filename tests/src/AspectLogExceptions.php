@@ -5,8 +5,8 @@
  */
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\LogExceptions;
-use Ytake\LaravelAspect\Exception\FileNotFoundException;
+use Bssd\LaravelAspect\Annotation\LogExceptions;
+use Bssd\LaravelAspect\Exception\FileNotFoundException;
 
 class AspectLogExceptions
 {

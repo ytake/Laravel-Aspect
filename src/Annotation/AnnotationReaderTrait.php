@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -17,8 +16,7 @@ declare(strict_types=1);
  * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
-
-namespace Ytake\LaravelAspect\Annotation;
+namespace Bssd\LaravelAspect\Annotation;
 
 /**
  * Class AnnotationReaderTrait
@@ -29,7 +27,7 @@ trait AnnotationReaderTrait
     protected $annotation;
 
     /**
-     * @param  string  $annotation
+     * @param string $annotation
      */
     public function setAnnotation(string $annotation)
     {

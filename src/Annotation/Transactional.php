@@ -18,9 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Annotation;
+namespace Bssd\LaravelAspect\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
+use Illuminate\Database\QueryException;
 
 /**
  * Class Transactional
@@ -34,5 +35,5 @@ class Transactional extends Annotation
     public $value = null;
 
     /** @var string */
-    public $expect = 'Illuminate\Database\QueryException';
+    public $expect = QueryException::class;
 }

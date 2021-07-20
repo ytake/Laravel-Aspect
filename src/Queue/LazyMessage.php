@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,18 +17,18 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Queue;
+namespace Bssd\LaravelAspect\Queue;
 
+use ReflectionClass;
+use Ray\Aop\MethodInvocation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Ray\Aop\MethodInvocation;
-use ReflectionClass;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-use function array_values;
 use function get_class;
+use function array_values;
 
 /**
  * Class LazyMessage
@@ -44,7 +43,7 @@ class LazyMessage implements ShouldQueue
     /**
      * LazyMessage constructor.
      *
-     * @param  MethodInvocation  $invocation
+     * @param MethodInvocation $invocation
      */
     public function __construct(MethodInvocation $invocation)
     {
@@ -52,7 +51,7 @@ class LazyMessage implements ShouldQueue
     }
 
     /**
-     * @param  Container  $container
+     * @param Container $container
      *
      * @throws \ReflectionException
      */

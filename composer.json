@@ -1,5 +1,5 @@
 {
-  "name": "ytake/laravel-aspect",
+  "name": "bssd-ltd/laravel-aspect",
   "description": "Aspect Oriented Programming library for laravel framework, and lumen",
   "minimum-stability": "stable",
   "license": "MIT",
@@ -14,6 +14,10 @@
     {
       "name": "Yuuki Takezawa",
       "email": "yuuki.takezawa@comnect.jp.net"
+    },
+    {
+      "name": "Tuyen",
+      "email": "tuyen@bssd.vn"
     }
   ],
   "require": {
@@ -35,6 +39,8 @@
     "psr/log": "~1.0"
   },
   "require-dev": {
+    "roave/security-advisories": "dev-latest"
+    ,
     "symfony/framework-bundle": "^5.2",
     "symfony/console": "^5.2",
     "phpunit/phpunit": "^9.3.3",
@@ -50,7 +56,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Ytake\\LaravelAspect\\": "src/"
+      "Bssd\\LaravelAspect\\": "src/"
     }
   },
   "autoload-dev": {

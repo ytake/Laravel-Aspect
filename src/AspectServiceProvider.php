@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect;
+namespace Bssd\LaravelAspect;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -46,7 +45,7 @@ class AspectServiceProvider extends ServiceProvider
         /**
          * for package configure
          */
-        $configPath = __DIR__.'/config/ytake-laravel-aop.php';
+        $configPath = __DIR__ . '/config/ytake-laravel-aop.php';
         $this->mergeConfigFrom($configPath, 'ytake-laravel-aop');
         $this->publishes([$configPath => config_path('ytake-laravel-aop.php')], 'aspect');
 

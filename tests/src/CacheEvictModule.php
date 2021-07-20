@@ -2,7 +2,7 @@
 
 namespace __Test;
 
-class CacheEvictModule extends \Ytake\LaravelAspect\Modules\CacheEvictModule
+class CacheEvictModule extends \Bssd\LaravelAspect\Modules\CacheEvictModule
 {
     /**
      * @var array

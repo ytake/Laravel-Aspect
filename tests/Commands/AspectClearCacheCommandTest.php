@@ -5,19 +5,19 @@
  */
 class AspectClearCacheCommandTest extends \AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var \Bssd\LaravelAspect\AspectManager $manager */
     protected $manager;
 
-    /** @var \Ytake\LaravelAspect\Console\ClearCacheCommand */
+    /** @var \Bssd\LaravelAspect\Console\ClearCacheCommand */
     protected $command;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
 
-        $this->command = new \Ytake\LaravelAspect\Console\ClearCacheCommand(
+        $this->command = new \Bssd\LaravelAspect\Console\ClearCacheCommand(
             $this->app['config'],
             $this->app['files']
         );

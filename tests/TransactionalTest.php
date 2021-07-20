@@ -3,7 +3,7 @@
 class TransactionalTest extends \AspectTestCase
 {
 
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var \Bssd\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     protected static $instance;
@@ -11,7 +11,7 @@ class TransactionalTest extends \AspectTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
     }
 
@@ -92,7 +92,7 @@ class TransactionalTest extends \AspectTestCase
      */
     protected function resolveManager()
     {
-        /** @var \Ytake\LaravelAspect\AspectDriverInterface $aspect */
+        /** @var \Bssd\LaravelAspect\AspectDriverInterface $aspect */
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\TransactionalModule::class);
         $aspect->weave();

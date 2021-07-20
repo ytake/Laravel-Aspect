@@ -3,7 +3,7 @@
 
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\LogExceptions;
+use Bssd\LaravelAspect\Annotation\LogExceptions;
 
 /**
  * Class AnnotationStub

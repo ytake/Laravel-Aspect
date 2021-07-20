@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Transaction;
+namespace Bssd\LaravelAspect\Transaction;
 
 use Illuminate\Database\DatabaseManager;
 
@@ -29,7 +28,7 @@ interface Runnable
 {
     /**
      * @param  DatabaseManager  $databaseManager
-     * @param  string           $exceptionName
+     * @param  array            $expectedExceptions
      * @param  callable         $invoker
      *
      * @return mixed
@@ -37,7 +36,7 @@ interface Runnable
      */
     public function __invoke(
         DatabaseManager $databaseManager,
-        string $exceptionName,
+        array $expectedExceptions,
         callable $invoker
     );
 }

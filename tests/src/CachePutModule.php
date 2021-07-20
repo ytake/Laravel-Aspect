@@ -2,7 +2,7 @@
 
 namespace __Test;
 
-class CachePutModule extends \Ytake\LaravelAspect\Modules\CachePutModule
+class CachePutModule extends \Bssd\LaravelAspect\Modules\CachePutModule
 {
     /**
      * @var array

@@ -5,7 +5,7 @@
 
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\Transactional;
+use Bssd\LaravelAspect\Annotation\Transactional;
 
 /**
  * Class AspectTransactional

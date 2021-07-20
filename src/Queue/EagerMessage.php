@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Queue;
+namespace Bssd\LaravelAspect\Queue;
 
 use Ray\Aop\MethodInvocation;
 
@@ -33,7 +32,7 @@ final class EagerMessage
     /**
      * LazyMessage constructor.
      *
-     * @param  MethodInvocation  $invocation
+     * @param MethodInvocation $invocation
      */
     public function __construct(MethodInvocation $invocation)
     {

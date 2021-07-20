@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -17,14 +16,13 @@ declare(strict_types=1);
  * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
-
-namespace Ytake\LaravelAspect;
+namespace Bssd\LaravelAspect;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use Ytake\LaravelAspect\Console\ClearCacheCommand;
-use Ytake\LaravelAspect\Console\CompileCommand;
-use Ytake\LaravelAspect\Console\ModulePublishCommand;
+use Bssd\LaravelAspect\Console\CompileCommand;
+use Bssd\LaravelAspect\Console\ClearCacheCommand;
+use Bssd\LaravelAspect\Console\ModulePublishCommand;
 
 /**
  * Class ConsoleServiceProvider

@@ -106,12 +106,12 @@ class AspectTestCase extends \PHPUnit\Framework\TestCase
         $this->registerConfigure();
         $this->registerDatabase();
         $this->registerCache();
-        $annotationConfiguration = new \Ytake\LaravelAspect\AnnotationConfiguration(
+        $annotationConfiguration = new \Bssd\LaravelAspect\AnnotationConfiguration(
             $this->app['config']->get('ytake-laravel-aop.annotation')
         );
         $annotationConfiguration->ignoredAnnotations();
         $this->app->singleton('aspect.manager', function ($app) {
-            return new \Ytake\LaravelAspect\AspectManager($app);
+            return new \Bssd\LaravelAspect\AspectManager($app);
         });
         $this->app->bind(
             \Illuminate\Contracts\Container\Container::class,

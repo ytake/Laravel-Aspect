@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,10 +17,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Modules;
+namespace Bssd\LaravelAspect\Modules;
 
-use Ytake\LaravelAspect\PointCut\MessageDrivenPointCut;
-use Ytake\LaravelAspect\PointCut\PointCutable;
+use Bssd\LaravelAspect\PointCut\PointCutable;
+use Bssd\LaravelAspect\PointCut\MessageDrivenPointCut;
 
 /**
  * Class MessageDrivenModule

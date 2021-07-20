@@ -2,7 +2,7 @@
 
 class CachePutTest extends \AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var \Bssd\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     protected static $instance;
@@ -10,7 +10,7 @@ class CachePutTest extends \AspectTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
     }
 

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Annotation;
+namespace Bssd\LaravelAspect\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
 
@@ -27,7 +26,7 @@ use Doctrine\Common\Annotations\Annotation;
  */
 abstract class LoggableAnnotate extends Annotation
 {
-    /** @var string */
+    /** @var string  */
     public $name = 'Logger';
 
     /** @var string|null */

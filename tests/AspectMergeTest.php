@@ -5,7 +5,7 @@
  */
 class AspectMergeTest extends \AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var \Bssd\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     protected static $instance;
@@ -13,7 +13,7 @@ class AspectMergeTest extends \AspectTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
     }
 
@@ -31,7 +31,7 @@ class AspectMergeTest extends \AspectTestCase
      */
     protected function resolveManager()
     {
-        /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
+        /** @var \Bssd\LaravelAspect\RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\CacheableModule::class);
         $aspect->register(\__Test\CacheEvictModule::class);

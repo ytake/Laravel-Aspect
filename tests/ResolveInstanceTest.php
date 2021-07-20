@@ -5,13 +5,13 @@
  */
 class ResolveInstanceTest extends AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var \Bssd\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
     }
 
@@ -46,7 +46,7 @@ class ResolveInstanceTest extends AspectTestCase
         $this->app->when(\__Test\AspectContextualBinding::class)
             ->needs(ResolveMockInterface::class)
             ->give(ResolveMockClass::class);
-        /** @var  \Ytake\LaravelAspect\AspectManager $aspectManager */
+        /** @var  \Bssd\LaravelAspect\AspectManager $aspectManager */
         $aspectManager = $this->app['aspect.manager'];
         $driver = $aspectManager->driver('ray');
         $driver->register(\__Test\CacheableModule::class);

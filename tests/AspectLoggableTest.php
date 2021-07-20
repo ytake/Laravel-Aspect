@@ -5,7 +5,7 @@
  */
 class AspectLoggableTest extends \AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var \Bssd\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     /** @var Illuminate\Log\Writer */
@@ -17,7 +17,7 @@ class AspectLoggableTest extends \AspectTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
         $this->resolveManager();
         $this->log = $this->app['Psr\Log\LoggerInterface'];
         $this->file = $this->app['files'];
@@ -57,7 +57,7 @@ class AspectLoggableTest extends \AspectTestCase
      */
     protected function resolveManager()
     {
-        /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
+        /** @var \Bssd\LaravelAspect\RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
         $aspect->register(\__Test\LoggableModule::class);
         $aspect->register(\__Test\CacheEvictModule::class);

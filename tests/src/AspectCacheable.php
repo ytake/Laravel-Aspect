@@ -5,7 +5,7 @@
 
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\Cacheable;
+use Bssd\LaravelAspect\Annotation\Cacheable;
 
 /**
  * Class AspectCacheable

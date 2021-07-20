@@ -30,7 +30,7 @@ class RecursiveImplodeTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-final class StubCacheInterceptor extends \Ytake\LaravelAspect\Interceptor\AbstractCache
+final class StubCacheInterceptor extends \Bssd\LaravelAspect\Interceptor\AbstractCache
 {
     public function invoke(\Ray\Aop\MethodInvocation $invocation)
     {

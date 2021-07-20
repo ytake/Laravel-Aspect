@@ -2,7 +2,7 @@
 
 namespace __Test;
 
-use Ytake\LaravelAspect\Modules\LogExceptionsModule as Loggable;
+use Bssd\LaravelAspect\Modules\LogExceptionsModule as Loggable;
 
 class LogExceptionsModule extends Loggable
 {

@@ -5,7 +5,7 @@
 
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\CachePut;
+use Bssd\LaravelAspect\Annotation\CachePut;
 
 /**
  * Class AspectCachePut

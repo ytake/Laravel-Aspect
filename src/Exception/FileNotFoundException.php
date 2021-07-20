@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,22 +17,20 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Exception;
-
-use Exception;
+namespace Bssd\LaravelAspect\Exception;
 
 /**
  * Class FileNotFoundException
  */
-final class FileNotFoundException extends Exception
+final class FileNotFoundException extends \Exception
 {
     /**
-     * @param  string           $path
-     * @param  int              $code
-     * @param  \Exception|null  $previous
+     * @param string          $path
+     * @param int             $code
+     * @param \Exception|null $previous
      */
-    public function __construct($path, $code = 0, Exception $previous = null)
+    public function __construct($path, $code = 0, \Exception $previous = null)
     {
-        parent::__construct('File not found at path: '.$path, $code, $previous);
+        parent::__construct('File not found at path: ' . $path, $code, $previous);
     }
 }

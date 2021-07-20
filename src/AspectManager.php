@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect;
+namespace Bssd\LaravelAspect;
 
 use Illuminate\Support\Manager;
 
@@ -29,14 +28,6 @@ use Illuminate\Support\Manager;
  */
 class AspectManager extends Manager
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getDefaultDriver()
-    {
-        return $this->container['config']->get('ytake-laravel-aop.aspect.default');
-    }
-
     /**
      * for ray aop driver
      *
@@ -53,7 +44,23 @@ class AspectManager extends Manager
     }
 
     /**
-     * @param  string  $driver
+     * @return AspectDriverInterface
+     */
+    protected function createNoneDriver(): AspectDriverInterface
+    {
+        return new NullAspectKernel();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefaultDriver()
+    {
+        return $this->container['config']->get('ytake-laravel-aop.aspect.default');
+    }
+
+    /**
+     * @param string $driver
      *
      * @return string[]
      */
@@ -63,13 +70,5 @@ class AspectManager extends Manager
         $aspectConfigure[$driver]['modules'] = $this->container['config']->get('ytake-laravel-aop.aspect.modules', []);
 
         return $aspectConfigure[$driver];
-    }
-
-    /**
-     * @return AspectDriverInterface
-     */
-    protected function createNoneDriver(): AspectDriverInterface
-    {
-        return new NullAspectKernel();
     }
 }

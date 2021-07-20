@@ -1,7 +1,7 @@
 <?php
 
-use Ytake\LaravelAspect\Annotation\PostConstruct;
-use Ytake\LaravelAspect\Matcher\AnnotationScanMatcher;
+use Bssd\LaravelAspect\Annotation\PostConstruct;
+use Bssd\LaravelAspect\Matcher\AnnotationScanMatcher;
 
 /**
  * Class AnnotationScanMatcherTest

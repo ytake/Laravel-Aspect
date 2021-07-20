@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Bssd\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
@@ -29,8 +28,7 @@ use Ray\Aop\Pointcut;
 interface PointCutable
 {
     /**
-     * @param  Container  $app
-     *
+     * @param Container $app
      * @return \Ray\Aop\Pointcut
      */
     public function configure(Container $app): PointCut;

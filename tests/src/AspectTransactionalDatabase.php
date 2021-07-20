@@ -6,7 +6,7 @@
 namespace __Test;
 
 use Illuminate\Database\QueryException;
-use Ytake\LaravelAspect\Annotation\Transactional;
+use Bssd\LaravelAspect\Annotation\Transactional;
 use Illuminate\Database\ConnectionResolverInterface;
 
 /**

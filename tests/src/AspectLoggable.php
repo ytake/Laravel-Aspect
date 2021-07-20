@@ -5,7 +5,7 @@
  */
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\Loggable;
+use Bssd\LaravelAspect\Annotation\Loggable;
 
 class AspectLoggable
 {

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,12 +17,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Bssd\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
-use Ytake\LaravelAspect\Annotation\LogExceptions;
-use Ytake\LaravelAspect\Interceptor\LogExceptionsInterceptor;
+use Bssd\LaravelAspect\Annotation\LogExceptions;
+use Bssd\LaravelAspect\Interceptor\LogExceptionsInterceptor;
 
 /**
  * Class LogExceptionsPointCut
@@ -34,7 +33,7 @@ class LogExceptionsPointCut extends CommonPointCut implements PointCutable
     protected $annotation = LogExceptions::class;
 
     /**
-     * @param  Container  $app
+     * @param Container $app
      *
      * @return \Ray\Aop\Pointcut
      */

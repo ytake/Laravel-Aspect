@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace __Test;
 
-use Ytake\LaravelAspect\Annotation\EagerQueue;
-use Ytake\LaravelAspect\Annotation\LazyQueue;
-use Ytake\LaravelAspect\Annotation\Loggable;
-use Ytake\LaravelAspect\Annotation\MessageDriven;
+use Bssd\LaravelAspect\Annotation\EagerQueue;
+use Bssd\LaravelAspect\Annotation\LazyQueue;
+use Bssd\LaravelAspect\Annotation\Loggable;
+use Bssd\LaravelAspect\Annotation\MessageDriven;
 
 /**
  * Class AspectMessageDriven

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,11 +17,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Console;
+namespace Bssd\LaravelAspect\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 /**
  * Class ClearCacheCommand
@@ -42,8 +41,8 @@ class ClearCacheCommand extends Command
     protected $filesystem;
 
     /**
-     * @param  ConfigRepository  $config
-     * @param  Filesystem        $filesystem
+     * @param ConfigRepository $config
+     * @param Filesystem       $filesystem
      */
     public function __construct(ConfigRepository $config, Filesystem $filesystem)
     {
@@ -69,11 +68,11 @@ class ClearCacheCommand extends Command
     }
 
     /**
-     * @param  string  $dir
+     * @param string $dir
      */
     protected function removeFiles(string $dir): void
     {
-        $files = $this->filesystem->glob($dir.'/*');
+        $files = $this->filesystem->glob($dir . '/*');
         foreach ($files as $file) {
             $this->filesystem->delete($file);
         }

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,12 +17,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Bssd\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
-use Ytake\LaravelAspect\Annotation\RetryOnFailure;
-use Ytake\LaravelAspect\Interceptor\RetryOnFailureInterceptor;
+use Bssd\LaravelAspect\Annotation\RetryOnFailure;
+use Bssd\LaravelAspect\Interceptor\RetryOnFailureInterceptor;
 
 /**
  * Class RetryOnFailurePointCut
@@ -34,7 +33,7 @@ class RetryOnFailurePointCut extends CommonPointCut implements PointCutable
     protected $annotation = RetryOnFailure::class;
 
     /**
-     * @param  Container  $app
+     * @param Container $app
      *
      * @return \Ray\Aop\Pointcut
      */

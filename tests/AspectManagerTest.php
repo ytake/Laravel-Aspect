@@ -2,13 +2,13 @@
 
 class AspectManagerTest extends \AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var \Bssd\LaravelAspect\AspectManager $manager */
     protected $manager;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
     }
 
     public function testCreateDriverInstance()
@@ -19,15 +19,15 @@ class AspectManagerTest extends \AspectTestCase
     public function testCreateGoDriverInstance()
     {
         $this->assertInstanceOf(
-            \Ytake\LaravelAspect\RayAspectKernel::class, $this->manager->driver('ray')
+            \Bssd\LaravelAspect\RayAspectKernel::class, $this->manager->driver('ray')
         );
     }
 
     public function testCreateNullDriverInstance()
     {
-        /** @var \Ytake\LaravelAspect\NullAspectKernel $driver */
+        /** @var \Bssd\LaravelAspect\NullAspectKernel $driver */
         $driver = $this->manager->driver('none');
-        $this->assertInstanceOf(\Ytake\LaravelAspect\NullAspectKernel::class, $driver);
+        $this->assertInstanceOf(\Bssd\LaravelAspect\NullAspectKernel::class, $driver);
         $this->assertNull($driver->register());
         $class = new \ReflectionClass($driver);
         $this->assertSame(0, count($class->getProperties()));

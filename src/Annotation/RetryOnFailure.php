@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 /**
@@ -18,10 +17,9 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Annotation;
+namespace Bssd\LaravelAspect\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
-use Exception;
 
 /**
  * Class RetryOnFailure
@@ -39,9 +37,9 @@ class RetryOnFailure extends Annotation
 
     /** @var string[]  When to retry (in case of what exception types). */
     public $types = [
-        Exception::class,
+        \Exception::class,
     ];
 
     /** @var string  Exception types to ignore. */
-    public $ignore = Exception::class;
+    public $ignore = \Exception::class;
 }
