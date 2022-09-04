@@ -17,7 +17,7 @@
     }
   ],
   "require": {
-    "php": "^7.3|^8.0",
+    "php": "^8.0.2",
     "illuminate/console": "^9.0",
     "illuminate/filesystem": "^9.0",
     "illuminate/support": "^9.0",
@@ -29,23 +29,21 @@
     "illuminate/events": "^9.0",
     "illuminate/bus": "^9.0",
     "illuminate/queue": "^9.0",
-    "ray/aop": "^2.9",
-    "doctrine/annotations": "^1.11",
-    "nikic/php-parser": "^4.0",
+    "ray/aop": "^2.12.3",
+    "doctrine/annotations": "^1.12",
+    "nikic/php-parser": "^4.12",
     "psr/log": "~1.0"
   },
   "require-dev": {
-    "symfony/framework-bundle": "^5.2",
-    "symfony/console": "^5.2",
-    "phpunit/phpunit": "^9.3.3",
-    "mockery/mockery": "*",
-    "satooshi/php-coveralls": "*",
+    "symfony/framework-bundle": "^6.0",
+    "symfony/console": "^6.0",
+    "phpunit/phpunit": "^9.5.10",
     "sebastian/phpcpd": "*",
     "phploc/phploc": "*",
     "pdepend/pdepend" : "^2.2.4",
     "phpmd/phpmd": "@stable",
-    "squizlabs/php_codesniffer": "~2.7",
-    "illuminate/encryption":"^8.0",
+    "squizlabs/php_codesniffer": "^3.7.1",
+    "illuminate/encryption":"^9.0",
     "vlucas/phpdotenv": "^5.2"
   },
   "autoload": {

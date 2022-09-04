@@ -3,14 +3,13 @@ name: Tests
 on:
   push:
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.3', '7.4', '8.0']
+        php-versions: ['8.0', '8.1']
     name: PHP ${{ matrix.php-versions }} Test
     steps:
     - uses: actions/checkout@v2

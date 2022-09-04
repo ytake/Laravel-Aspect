@@ -24,20 +24,21 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
+#[\Attribute(\Attribute::TARGET_METHOD)]
 class CacheEvict extends Annotation
 {
     /** @var null|string[] $value cache key, if use array tagging */
-    public $key = null;
+    public ?array $key = null;
 
     /** @var null */
-    public $cacheName = null;
+    public ?String $cacheName = null;
 
     /** @var string $driver cache driver */
-    public $driver = null;
+    public ?String $driver = null;
 
     /** @var array $tags */
-    public $tags = [];
+    public array $tags = [];
 
     /** @var bool  */
-    public $allEntries = false;
+    public bool $allEntries = false;
 }

@@ -18,19 +18,19 @@ This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com
 
 ### Laravel version Compatibility
 
- Laravel  | Package
-:---------|:----------
- 5.0.x    | 1.x
- 5.1.x    | 1.x
- 5.2.x    | 1.x
- 5.3.x    | 1.x
- 5.4.x    | 1.x
- 5.5.x    | 2.0.*
- 5.6.x    | 2.1.*
- 5.7.x    | 3.0.*
- 6.0.x    | 4.0
- 7.x      | 6.0
- 8.x      | 7.0
+| Laravel | Package |
+|---------|---------|
+| 5.0.x   | 1.x     |
+| 5.1.x   | 1.x     |
+| 5.2.x   | 1.x     |
+| 5.3.x   | 1.x     |
+| 5.4.x   | 1.x     |
+| 5.5.x   | 2.0.*   |
+| 5.6.x   | 2.1.*   |
+| 5.7.x   | 3.0.*   |
+| 6.0.x   | 4.0     |
+| 7.x     | 6.0     |
+| 8.x     | 7.0     |
 
 ### install 
 

@@ -19,27 +19,24 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Annotation;
 
-use Doctrine\Common\Annotations\Annotation;
-
 /**
  * Class RetryOnFailure
- *
- * @Annotation
- * @Target("METHOD")
  */
-class RetryOnFailure extends Annotation
+#[\Attribute(\Attribute::TARGET_METHOD)]
+class RetryOnFailure
 {
-    /** @var int  How many times to retry. */
-    public $attempts = 0;
-
-    /** @var int  Delay between attempts. */
-    public $delay = 0;
-
-    /** @var string[]  When to retry (in case of what exception types). */
-    public $types = [
-        \Exception::class,
-    ];
-
-    /** @var string  Exception types to ignore. */
-    public $ignore = \Exception::class;
+    /**
+     * @param int $attempts How many times to retry.
+     * @param int $delay Delay between attempts.
+     * @param array $types When to retry (in case of what exception types).
+     * @param string $ignore Exception types to ignore.
+     */
+    public function __construct(
+        public int $attempts = 0,
+        public int $delay = 0,
+        public array $types = [
+            \Exception::class,
+        ],
+        public string $ignore = \Exception::class
+    ) {}
 }

@@ -19,18 +19,17 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Annotation;
 
-use Doctrine\Common\Annotations\Annotation;
-
 /**
  * Class Transactional
- * @Annotation
- * @Target("METHOD")
  */
-class Transactional extends Annotation
+#[\Attribute(\Attribute::TARGET_METHOD)]
+class Transactional
 {
-    /** @var null|string|array $value  database connection names */
-    public $value = null;
-
-    /** @var string  */
-    public $expect = 'Illuminate\Database\QueryException';
+    /**
+     * @param string|array|null $value database connection names
+     */
+    public function __construct(
+        public null|string|array $value,
+        public string $expect = 'Illuminate\Database\QueryException'
+    ) {}
 }

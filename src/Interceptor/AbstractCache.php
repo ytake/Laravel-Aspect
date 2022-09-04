@@ -45,18 +45,18 @@ abstract class AbstractCache implements MethodInterceptor
     use AnnotationReaderTrait;
 
     /** @var string */
-    protected $join = ":";
+    protected string $join = ":";
 
-    /** @var Factory|\Illuminate\Cache\CacheManager */
-    protected static $factory;
+    /** @var CacheManager|Factory */
+    protected static Factory|CacheManager $factory;
 
     /**
-     * @param string|array     $name
+     * @param array|string|null $name
      * @param MethodInvocation $invocation
      *
      * @return array
      */
-    protected function generateCacheName($name, MethodInvocation $invocation): array
+    protected function generateCacheName(array|string|null $name, MethodInvocation $invocation): array
     {
         if (is_array($name)) {
             throw new \InvalidArgumentException('Invalid argument');

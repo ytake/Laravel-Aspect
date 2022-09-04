@@ -31,16 +31,15 @@ use function sprintf;
 abstract class AbstractLogger
 {
     /** @var string */
-    protected $format = "%s:%s.%s";
+    protected string $format = "%s:%s.%s";
 
     /** @var LoggerInterface */
-    protected static $logger;
+    protected static LoggerInterface $logger;
 
     /**
      * @param LoggableAnnotate $annotation
      * @param MethodInvocation $invocation
      * @return array
-     * @throws \ReflectionException
      */
     protected function logFormatter(
         LoggableAnnotate $annotation,

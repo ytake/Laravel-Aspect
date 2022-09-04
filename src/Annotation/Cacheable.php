@@ -24,23 +24,24 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target("METHOD")
  */
+#[\Attribute(\Attribute::TARGET_METHOD)]
 class Cacheable extends Annotation
 {
     /** @var null|string[] $value cache key */
-    public $key = null;
+    public ?array $key = null;
 
     /** @var null */
-    public $cacheName = null;
+    public ?string $cacheName = null;
 
     /** @var string $driver cache driver */
-    public $driver = null;
+    public ?string $driver = null;
 
     /** @var int $lifetime cache life time */
-    public $lifetime = 120;
+    public int $lifetime = 120;
 
     /** @var array $tags if use array tagging */
-    public $tags = [];
+    public array $tags = [];
 
     /** @var bool  */
-    public $negative = false;
+    public bool $negative = false;
 }
