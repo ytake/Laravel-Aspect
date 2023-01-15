@@ -86,6 +86,11 @@ class AspectTestCase extends \PHPUnit\Framework\TestCase
             {
                 return __DIR__;
             }
+
+            public function runningUnitTests()
+            {
+                return true;
+            }
         };
         $this->app->singleton('config', function () {
             return new \Illuminate\Config\Repository;

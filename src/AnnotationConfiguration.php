@@ -47,7 +47,6 @@ class AnnotationConfiguration
         Annotation\LogExceptions::class,
         Annotation\Loggable::class,
         Annotation\MessageDriven::class,
-        Annotation\PostConstruct::class,
         Annotation\QueryLog::class,
         Annotation\RetryOnFailure::class,
         Annotation\Transactional::class,

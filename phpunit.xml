@@ -23,5 +23,6 @@
   <logging/>
   <php>
     <includePath>./tests</includePath>
+    <ini name="memory_limit" value="512M"/>
   </php>
 </phpunit>

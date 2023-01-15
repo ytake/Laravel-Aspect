@@ -174,7 +174,7 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
         // TODO: Implement resourcePath() method.
     }
 
-    public function storagePath()
+    public function storagePath($path = '')
     {
         // TODO: Implement storagePath() method.
     }
@@ -269,7 +269,15 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
         // TODO: Implement terminate() method.
     }
 
+    public function maintenanceMode()
+    {
+        // TODO: Implement maintenanceMode() method.
+    }
 
+    public function terminating($callback)
+    {
+        // TODO: Implement terminating() method.
+    }
 }
 
 function base_path()

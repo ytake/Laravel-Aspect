@@ -2,11 +2,7 @@
 aspect-oriented programming Package for laravel framework
 
 ![Build Status](https://github.com/ytake/Laravel-Aspect/workflows/Tests/badge.svg?branch=master)
-[![Coverage Status](http://img.shields.io/coveralls/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://coveralls.io/r/ytake/Laravel-Aspect?branch=master)
-[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/ytake/Laravel-Aspect.svg?style=flat-square)](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/?branch=master)
-
 [![StyleCI](https://styleci.io/repos/40900709/shield)](https://styleci.io/repos/40900709)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/70dace68-fe04-4039-aeb4-47a64c6acca3/mini.png)](https://insight.sensiolabs.com/projects/70dace68-fe04-4039-aeb4-47a64c6acca3)
 
 [![License](http://img.shields.io/packagist/l/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
 [![Latest Version](http://img.shields.io/packagist/v/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
@@ -31,6 +27,7 @@ This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com
  6.0.x    | 4.0
  7.x      | 6.0
  8.x      | 7.0
+ 9.x      | 8.0
 
 ### install 
 
@@ -40,25 +37,15 @@ $ composer require ytake/laravel-aspect
 
 *Supported Auto-Discovery(^Laravel5.5)*
 
-#### for Laravel5.1, 5.2
-[branch](https://github.com/ytake/Laravel-Aspect/tree/master-laravel5-legacy)
 
- ```json
-   "require": {
-    "php": ">=5.5.9",
-    "laravel/framework": "5.*",
-    "ytake/laravel-aspect": "^1.0"
-  },
- ```
-
-#### for Laravel5.6
+#### for Laravel9
 [Laravel-Aspect Supported Laravel5.6](https://github.com/ytake/Laravel-Aspect/blob/master-laravel5.6)
 
  ```json
    "require": {
     "php": ">=7.1.3",
     "laravel/framework": "^5.7",
-    "ytake/laravel-aspect": "^3.0.0"
+    "ytake/laravel-aspect": "^8.0.0"
   },
  ```
  
@@ -447,46 +434,6 @@ class AspectQueryLog
 ```
 testing.INFO: QueryLog:AspectQueryLog.multipleDatabaseAppendRecord {"queries":[{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)","bindings":[],"time":0.58,"connectionName":"testing"},{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)","bindings":[],"time":0.31,"connectionName":"testing_second"} ...
 ```
-
-### @PostConstruct
-The PostConstruct annotation is used on a method that needs to be executed after dependency injection is done to perform any initialization.
-
-you must use the PostConstructModule
-
-```php
-use Ytake\LaravelAspect\Annotation\PostConstruct;
-
-class Something
-{
-    protected $abstract;
-    
-    protected $counter = 0;
-    
-    public function __construct(ExampleInterface $abstract)
-    {
-        $this->abstract = $abstract;
-    }
-    
-    /**
-     * @PostConstruct
-     */
-    public function init()
-    {
-        $this->counter += 1;
-    }
-    
-    /**
-     * @return int
-     */
-    public function returning()
-    {
-        return $this->counter;
-    }
-}
-
-```
-
-**The method MUST NOT have any parameters**
 
 ### @RetryOnFailure
 
