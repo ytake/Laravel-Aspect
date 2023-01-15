@@ -31,17 +31,12 @@ final class ContainerInterceptor
     /** @var Container|\Illuminate\Container\Container */
     private $container;
 
-    /** @var AnnotateClass */
-    private $annotateClass;
-
     /**
      * @param Container     $container
-     * @param AnnotateClass $annotateClass
      */
-    public function __construct(Container $container, AnnotateClass $annotateClass)
+    public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->annotateClass = $annotateClass;
     }
 
     /**
@@ -64,12 +59,6 @@ final class ContainerInterceptor
             /** @var WeavedInterface $instance */
             $instance = $app->make($className, $params);
             $instance->bindings = $bind->getBindings();
-            $method = $this->annotateClass->getPostConstructMethod($instance);
-            if (!empty($method)) {
-                $instance->bindings = $bind->getBindings();
-                $instance->$method();
-            }
-
             return $instance;
         });
 
