@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.0', '8.1']
+        php-versions: ['8.1']
     name: PHP ${{ matrix.php-versions }} Test
     steps:
     - uses: actions/checkout@v2
