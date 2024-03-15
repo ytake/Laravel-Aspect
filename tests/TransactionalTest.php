@@ -59,7 +59,7 @@ class TransactionalTest extends \AspectTestCase
         // return method
         $this->assertTrue($transactional->appendRecord(['test' => 'testing']));
         $result = $this->app['db']->connection()->table("tests")->where('test', 'testing')->first();
-        $this->assertObjectHasAttribute('test', $result);
+        $this->assertObjectHasProperty('test', $result);
     }
 
     public function testTransactionalMultipleDatabaseThrowException()
@@ -82,9 +82,9 @@ class TransactionalTest extends \AspectTestCase
         $transactional = $this->app->make(\__Test\AspectTransactionalDatabase::class);
         $this->assertSame('transaction test', $transactional->multipleDatabaseAppendRecord());
         $result = $this->app['db']->connection()->table("tests")->where('test', 'testing')->first();
-        $this->assertObjectHasAttribute('test', $result);
+        $this->assertObjectHasProperty('test', $result);
         $result = $this->app['db']->connection('testing_second')->table("tests")->where('test', 'testing second')->first();
-        $this->assertObjectHasAttribute('test', $result);
+        $this->assertObjectHasProperty('test', $result);
     }
 
     /**
