@@ -28,7 +28,8 @@ This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com
  7.x      | 6.0
  8.x      | 7.0
  9.x      | 8.0
-
+ 10.x     | 9.0
+ 
 ### install 
 
 ```bash
