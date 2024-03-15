@@ -44,7 +44,7 @@ class AspectTransactionalDatabase
     {
         $this->db->connection()->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
         $this->db->connection()->table("tests")->insert(['test' => 'testing']);
-        throw new QueryException("SELECT date('now')", [], new \Exception);
+        throw new QueryException('connectionName',"SELECT date('now')", [], new \Exception);
     }
 
     /**
@@ -79,7 +79,7 @@ class AspectTransactionalDatabase
         $this->db->connection('testing_second')->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
         $this->db->connection()->table("tests")->insert(['test' => 'testing']);
         $this->db->connection('testing_second')->table("tests")->insert(['test' => 'testing second']);
-        throw new QueryException("SELECT date('now')", [], new \Exception);
+        throw new QueryException('connectionName',"SELECT date('now')", [], new \Exception);
     }
 
     /**

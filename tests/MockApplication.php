@@ -278,6 +278,21 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
     {
         // TODO: Implement terminating() method.
     }
+
+    public function langPath($path = '')
+    {
+        // TODO: Implement langPath() method.
+    }
+
+    public function publicPath($path = '')
+    {
+        // TODO: Implement publicPath() method.
+    }
+
+    public function hasDebugModeEnabled()
+    {
+        // TODO: Implement hasDebugModeEnabled() method.
+    }
 }
 
 function base_path()
