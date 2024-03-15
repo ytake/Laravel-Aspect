@@ -7,6 +7,21 @@
  */
 class MockApplication extends \Illuminate\Container\Container implements \Illuminate\Contracts\Foundation\Application
 {
+    public function langPath($path = '')
+    {
+        // TODO: Implement langPath() method.
+    }
+
+    public function publicPath($path = '')
+    {
+        // TODO: Implement publicPath() method.
+    }
+
+    public function hasDebugModeEnabled()
+    {
+        // TODO: Implement hasDebugModeEnabled() method.
+    }
+
     public function runningUnitTests()
     {
         return true;
