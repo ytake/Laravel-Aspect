@@ -16,6 +16,7 @@
       "email": "yuuki.takezawa@comnect.jp.net"
     }
   ],
+
   "require": {
     "php": "^8.1",
     "illuminate/console": "^10.0",
