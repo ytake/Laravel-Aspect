@@ -45,7 +45,7 @@
     "pdepend/pdepend" : "^2.2.4",
     "phpmd/phpmd": "@stable",
     "squizlabs/php_codesniffer": "~2.7",
-    "illuminate/encryption":"^10.0",
+    "illuminate/encryption":"^11.0",
     "vlucas/phpdotenv": "^5.2"
   },
   "autoload": {
