@@ -19,20 +19,20 @@
 
   "require": {
     "php": "^8.2",
-    "illuminate/console": "^11.0",
-    "illuminate/filesystem": "^11.0",
-    "illuminate/support": "^11.0",
-    "illuminate/config": "^11.0",
-    "illuminate/contracts": "^11.0",
-    "illuminate/log": "^11.0",
-    "illuminate/database": "^11.0",
-    "illuminate/cache": "^11.0",
-    "illuminate/events": "^11.0",
-    "illuminate/bus": "^11.0",
-    "illuminate/queue": "^11.0",
+    "illuminate/console": "^12.0",
+    "illuminate/filesystem": "^12.0",
+    "illuminate/support": "^12.0",
+    "illuminate/config": "^12.0",
+    "illuminate/contracts": "^12.0",
+    "illuminate/log": "^12.0",
+    "illuminate/database": "^12.0",
+    "illuminate/cache": "^12.0",
+    "illuminate/events": "^12.0",
+    "illuminate/bus": "^12.0",
+    "illuminate/queue": "^12.0",
     "ray/aop": "^2.9",
     "doctrine/annotations": "^1.10",
-    "nikic/php-parser": "^4.2",
+    "nikic/php-parser": "^5.0",
     "psr/log": "^1.0.1 || ^2.0 || ^3.0"
   },
   "require-dev": {
@@ -45,7 +45,7 @@
     "pdepend/pdepend" : "^2.2.4",
     "phpmd/phpmd": "@stable",
     "squizlabs/php_codesniffer": "~2.7",
-    "illuminate/encryption":"^11.0",
+    "illuminate/encryption":"^12.0",
     "vlucas/phpdotenv": "^5.2"
   },
   "autoload": {
