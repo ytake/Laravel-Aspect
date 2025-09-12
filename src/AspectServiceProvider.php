@@ -26,7 +26,6 @@ use Illuminate\Support\ServiceProvider;
  */
 class AspectServiceProvider extends ServiceProvider
 {
-
     /**
      * boot aspect kernel
      */

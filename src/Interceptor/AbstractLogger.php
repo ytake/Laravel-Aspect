@@ -77,7 +77,6 @@ abstract class AbstractLogger
 
     /**
      * Normalize log level to integer for Monolog addRecord()
-     * 
      * @param mixed $level Monolog Level enum, integer constant, or string
      * @return int
      */
