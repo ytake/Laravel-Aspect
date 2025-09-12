@@ -97,5 +97,4 @@ abstract class AbstractLogger
         // Default fallback
         return Level::Info->value;
     }
-
 }
