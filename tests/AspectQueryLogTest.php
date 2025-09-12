@@ -32,8 +32,16 @@ class AspectQueryLogTest extends \AspectTestCase
     {
         /** @var AspectQueryLog $concrete */
         $concrete = $this->app->make(AspectQueryLog::class);
+        
+        // Clear any existing log
+        $logFile = __DIR__ . '/logs/laravel.log';
+        if (file_exists($logFile)) {
+            file_put_contents($logFile, '');
+        }
+        
         $concrete->start();
-        $put = $this->app['files']->get($this->logDir() . '/.testing.log');
+        
+        $put = file_get_contents($logFile);
         $this->assertStringContainsString('INFO: QueryLog:__Test\AspectQueryLog.start', $put);
         $this->assertStringContainsString('SELECT date(\'now\')', $put);
     }
@@ -42,8 +50,16 @@ class AspectQueryLogTest extends \AspectTestCase
     {
         /** @var AspectQueryLog $concrete */
         $concrete = $this->app->make(AspectQueryLog::class);
+        
+        // Clear any existing log
+        $logFile = __DIR__ . '/logs/laravel.log';
+        if (file_exists($logFile)) {
+            file_put_contents($logFile, '');
+        }
+        
         $concrete->multipleDatabaseAppendRecord();
-        $put = $this->app['files']->get($this->logDir() . '/.testing.log');
+        
+        $put = file_get_contents($logFile);
         $this->assertStringContainsString('INFO: QueryLog:__Test\AspectQueryLog.multipleDatabaseAppendRecord', $put);
         $this->assertStringContainsString('"queries":[{"query":"CREATE TABLE tests (test varchar(255) NOT NULL)"', $put);
     }

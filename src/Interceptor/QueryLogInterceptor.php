@@ -58,11 +58,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
         $logFormat = $this->queryLogFormatter($annotation, $invocation);
         $logger = static::$logger;
         if ($logger instanceof LogManager) {
-            if (!is_null($annotation->driver)) {
-                $logger = $logger->driver($annotation->driver);
-            } else {
-                $logger = $logger->driver();
-            }
+            $logger = $logger->driver($annotation->driver);
             $logger->addRecord($logFormat['level'], $logFormat['message'], $logFormat['context']);
         }
         $this->queryLogs = [];
