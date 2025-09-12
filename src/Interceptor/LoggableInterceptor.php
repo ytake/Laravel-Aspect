@@ -56,11 +56,7 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
         }
         $logFormat['context']['time'] = $time;
         if ($logger instanceof LogManager) {
-            if (!is_null($annotation->driver)) {
-                $logger = $logger->driver($annotation->driver);
-            } else {
-                $logger = $logger->driver();
-            }
+            $logger = $logger->driver($annotation->driver);
             $logger->addRecord($logFormat['level'], $logFormat['message'], $logFormat['context']);
         }
 

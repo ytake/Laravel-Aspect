@@ -80,7 +80,7 @@ abstract class AbstractLogger
      * @param mixed $level Monolog Level enum, integer constant, or string
      * @return int
      */
-    protected function normalizeLogLevel($level): int
+    protected function normalizeLogLevel(mixed $level): int
     {
         if (is_int($level)) {
             return $level;

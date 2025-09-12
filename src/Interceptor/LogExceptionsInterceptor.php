@@ -53,11 +53,7 @@ class LogExceptionsInterceptor extends AbstractLogger implements MethodIntercept
                 $logFormat['context']['code'] = $exception->getCode();
                 $logFormat['context']['error_message'] = $exception->getMessage();
                 if ($logger instanceof LogManager) {
-                    if (!is_null($annotation->driver)) {
-                        $logger = $logger->driver($annotation->driver);
-                    } else {
-                        $logger = $logger->driver();
-                    }
+                    $logger = $logger->driver($annotation->driver);
                     $logger->addRecord($logFormat['level'], $logFormat['message'], $logFormat['context']);
                 }
             }
