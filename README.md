@@ -343,7 +343,7 @@ you must use the LoggableModule / LogExceptionsModule
 
 | params | description |
 |-----|-------|
-| value | log level (default: \Monolog\Logger::INFO) should Monolog Constants |
+| value | log level (default: Level::Info->value). Supports integer constants, Monolog Level enum values, or string level names ("debug", "info", etc.) |
 | skipResult | method result output to log |
 | name |log name prefix(default: Loggable) |
 | driver | logger driver or channel name [docs](https://laravel.com/docs/5.6/logging#configuration) |

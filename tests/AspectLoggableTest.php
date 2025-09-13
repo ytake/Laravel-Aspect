@@ -30,8 +30,16 @@ class AspectLoggableTest extends \AspectTestCase
     {
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLoggable::class);
+        
+        // Clear any existing log
+        $logFile = __DIR__ . '/logs/laravel.log';
+        if (file_exists($logFile)) {
+            file_put_contents($logFile, '');
+        }
+        
         $cache->normalLog(1);
-        $put = $this->app['files']->get($this->logDir() . '/.testing.log');
+        
+        $put = file_get_contents($logFile);
         $this->assertStringContainsString('Loggable:__Test\AspectLoggable.normalLog', $put);
         $this->assertStringContainsString('{"args":{"id":1},"result":1', $put);
     }
@@ -40,8 +48,16 @@ class AspectLoggableTest extends \AspectTestCase
     {
         /** @var \__Test\AspectLoggable $cache */
         $cache = $this->app->make(\__Test\AspectLoggable::class);
+        
+        // Clear any existing log
+        $logFile = __DIR__ . '/logs/laravel.log';
+        if (file_exists($logFile)) {
+            file_put_contents($logFile, '');
+        }
+        
         $cache->skipResultLog(1);
-        $put = $this->app['files']->get($this->logDir() . '/.testing.log');
+        
+        $put = file_get_contents($logFile);
         $this->assertStringContainsString('Loggable:__Test\AspectLoggable.skipResultLog', $put);
         $this->assertStringNotContainsString('"result":1', $put);
     }

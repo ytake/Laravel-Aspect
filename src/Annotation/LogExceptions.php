@@ -19,7 +19,7 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Annotation;
 
-use Monolog\Logger;
+use Monolog\Level;
 use Doctrine\Common\Annotations\Annotation;
 
 /**
@@ -28,8 +28,8 @@ use Doctrine\Common\Annotations\Annotation;
  */
 class LogExceptions extends LoggableAnnotate
 {
-    /** @var int  Log level */
-    public $value = Logger::ERROR;
+    /** @var int Log level */
+    public $value = Level::Error->value;
 
     /** @var string */
     public $expect = '\Exception';

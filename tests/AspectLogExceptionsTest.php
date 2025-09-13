@@ -40,13 +40,19 @@ class AspectLogExceptionsTest extends \AspectTestCase
 
     public function testShouldBeLogger()
     {
-         //$this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
-        /** @var \__Test\AspectLoggable $cache */
+        /** @var \__Test\AspectLogExceptions $cache */
         $cache = $this->app->make(\__Test\AspectLogExceptions::class);
+        
+        // Clear any existing log
+        $logFile = __DIR__ . '/logs/laravel.log';
+        if (file_exists($logFile)) {
+            file_put_contents($logFile, '');
+        }
+        
         try {
             $cache->normalLog(1);
         } catch (\Exception $e) {
-            $put = $this->app['files']->get($this->getDir() . '/.testing.exceptions.log');
+            $put = file_get_contents($logFile);
             $this->assertStringContainsString('LogExceptions:__Test\AspectLogExceptions.normalLog', $put);
             $this->assertStringContainsString('"code":0,"error_message":"', $put);
         }
@@ -62,13 +68,19 @@ class AspectLogExceptionsTest extends \AspectTestCase
 
     public function testExpectException()
     {
-        // $this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
         /** @var \__Test\AspectLogExceptions $cache */
         $cache = $this->app->make(\__Test\AspectLogExceptions::class);
+        
+        // Clear any existing log
+        $logFile = __DIR__ . '/logs/laravel.log';
+        if (file_exists($logFile)) {
+            file_put_contents($logFile, '');
+        }
+        
         try {
             $cache->expectException();
         } catch (\LogicException $e) {
-            $put = $this->app['files']->get($this->getDir() . '/.testing.exceptions.log');
+            $put = file_get_contents($logFile);
             $this->assertStringContainsString('LogExceptions:__Test\AspectLogExceptions.expectException', $put);
             $this->assertStringContainsString('"code":0,"error_message":"', $put);
         }

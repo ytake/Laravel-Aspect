@@ -35,8 +35,16 @@ class MessageDrivenFunctionalTest extends AspectTestCase
         $this->expectOutputString('this');
         /** @var AspectMessageDriven $concrete */
         $concrete = $this->app->make(AspectMessageDriven::class);
+        
+        // Clear any existing log
+        $logFile = __DIR__ . '/logs/laravel.log';
+        if (file_exists($logFile)) {
+            file_put_contents($logFile, '');
+        }
+        
         $concrete->exec('this');
-        $put = $this->app['files']->get($this->logDir() . '/.testing.log');
+        
+        $put = file_get_contents($logFile);
         $this->assertStringContainsString('Loggable:__Test\AspectMessageDriven.exec {"args":{"param":"this"}', $put);
         $this->assertStringContainsString('Queued:__Test\AspectMessageDriven.logWith', $put);
     }
@@ -45,8 +53,16 @@ class MessageDrivenFunctionalTest extends AspectTestCase
     {
         /** @var AspectMessageDriven $concrete */
         $concrete = $this->app->make(AspectMessageDriven::class);
+        
+        // Clear any existing log
+        $logFile = __DIR__ . '/logs/laravel.log';
+        if (file_exists($logFile)) {
+            file_put_contents($logFile, '');
+        }
+        
         $concrete->eagerExec('testing');
-        $put = $this->app['files']->get($this->logDir() . '/.testing.log');
+        
+        $put = file_get_contents($logFile);
         $this->assertStringContainsString('Queued:__Test\AspectMessageDriven.logWith', $put);
     }
 
