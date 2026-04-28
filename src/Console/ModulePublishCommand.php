@@ -133,7 +133,7 @@ class ModulePublishCommand extends Command
      *
      * @return string
      */
-    protected function parseClassName(string $name, string $moduleDirectory = null): string
+    protected function parseClassName(string $name, ?string $moduleDirectory = null): string
     {
         $rootNamespace = $this->laravel->getNamespace();
 

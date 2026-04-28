@@ -28,7 +28,7 @@ interface AspectDriverInterface
      *
      * @return void
      */
-    public function register(string $module = null): void;
+    public function register(?string $module = null): void;
 
     /**
      * weaving
